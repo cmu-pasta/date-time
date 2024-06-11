@@ -1,0 +1,7 @@
+name,url,description,stars,primaryLanguage,updatedAt,createdAt,issuesCount,forkCount,watchersCount,discussionsCount,contains_import
+Python,https://github.com/TheAlgorithms/Python,All Algorithms implemented in Python,181296,Python,2024-06-11T18:44:53Z,2016-07-16T09:44:01Z,1451,43888,5929,58,1
+AutoGPT,https://github.com/Significant-Gravitas/AutoGPT,"AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",162950,Python,2024-06-11T17:29:33Z,2023-03-16T09:21:07Z,2225,43131,1555,1084,1
+Python-100-Days,https://github.com/jackfrued/Python-100-Days,Python - 100天从新手到大师,151569,Python,2024-06-11T16:49:46Z,2018-03-01T16:05:52Z,636,51509,6136,0,1
+stable-diffusion-webui,https://github.com/AUTOMATIC1111/stable-diffusion-webui,Stable Diffusion web UI,133448,Python,2024-06-11T18:48:54Z,2022-08-22T14:05:26Z,7453,25587,1039,4783,1
+youtube-dl,https://github.com/ytdl-org/youtube-dl,Command-line program to download videos from YouTube.com and other video sites,129343,Python,2024-06-11T18:42:14Z,2010-10-31T14:35:07Z,26517,9723,2198,0,1
+transformers,https://github.com/huggingface/transformers,"🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.",127430,Python,2024-06-11T18:39:22Z,2018-10-29T13:56:00Z,14975,25257,1101,0,1
