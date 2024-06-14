@@ -37,6 +37,10 @@ def run_command(command):
 
 def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF_FACTOR):
     repo_path = f"{repo_owner}:{repo_name}"
+    
+    if os.path.exists(os.path.join(CLONED_REPOS_DIR, repo_path)):
+        return "Repository already exists, skipping clone.", "", True
+    
     for attempt in range(retries):
         stdout, stderr = run_command(f"git clone --depth 1 https://github.com/{repo_owner}/{repo_name} {os.path.join(CLONED_REPOS_DIR, repo_path)}")
         if "fatal" not in stderr:
