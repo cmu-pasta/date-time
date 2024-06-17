@@ -1,6 +1,9 @@
 # access tokens
 *_access_token
 
+# nohup
+*nohup.out
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
