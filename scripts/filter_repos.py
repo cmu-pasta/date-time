@@ -60,37 +60,39 @@ def count_python_lines(repo_owner, repo_name):
     return total_lines
 
 def delete_repo_contents(repo_owner, repo_name):
-    repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    for item in os.listdir(repo_path):
-        item_path = os.path.join(repo_path, item)
-        if os.path.isdir(item_path):
-            shutil.rmtree(item_path)
-        else:
-            os.remove(item_path)
+    return
+    # repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    # for item in os.listdir(repo_path):
+    #     item_path = os.path.join(repo_path, item)
+    #     if os.path.isdir(item_path):
+    #         shutil.rmtree(item_path)
+    #     else:
+    #         os.remove(item_path)
 
 def get_dir_size(path, logger):
-    total = 0
-    with os.scandir(path) as it:
-        for entry in it:
-            try:
-                if entry.is_symlink():
-                    logger.warning(f"Skipping symbolic link: {entry.path}")
-                    continue
-                if entry.is_file():
-                    total += entry.stat().st_size
-                elif entry.is_dir():
-                    total += get_dir_size(entry.path, logger)
-            except OSError as e:
-                logger.error(f"Error accessing {entry.path}: {str(e)}")
-                continue
-    return total
+    return 1
+    # total = 0
+    # with os.scandir(path) as it:
+    #     for entry in it:
+    #         try:
+    #             if entry.is_symlink():
+    #                 logger.warning(f"Skipping symbolic link: {entry.path}")
+    #                 continue
+    #             if entry.is_file():
+    #                 total += entry.stat().st_size
+    #             elif entry.is_dir():
+    #                 total += get_dir_size(entry.path, logger)
+    #         except OSError as e:
+    #             logger.error(f"Error accessing {entry.path}: {str(e)}")
+    #             continue
+    # return total
 
 def process_repo(repo_owner, repo_name, logger):
     repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
-    if not success:
-        logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
-        return pd.DataFrame()
+    # clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
+    # if not success:
+    #     logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
+    #     return pd.DataFrame()
 
     grep_result = grep_repo(repo_owner, repo_name)
     loc = count_python_lines(repo_owner, repo_name)
@@ -106,6 +108,8 @@ def process_repo(repo_owner, repo_name, logger):
         "loc": [loc],
         "size": [repo_size]
     })
+    
+    return pd.DataFrame()
 
 def process_repos(df, start_index, end_index, logger, thread_id):
     df_ret = pd.DataFrame()
