@@ -50,10 +50,14 @@ def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF
 
 def grep_repo(repo_owner, repo_name):
     repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    stdout, stderr = run_command(f"grep -rE '{GREP_PATTERN}' {repo_path}")
-    return 1 if stdout else 0
+    stdout1, stderr = run_command(f"grep -rE -m 1 'import datetime' {repo_path}")
+    stdout2, stderr = run_command(f"grep -rE -m 1 'import arrow' {repo_path}")
+    stdout3, stderr = run_command(f"grep -rE -m 1 'import pendulum' {repo_path}")
+    stdout4, stderr = run_command(f"grep -rE -m 1 'import whenever' {repo_path}")
+    return (1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0, 1 if stdout4 else 0)
 
 def count_python_lines(repo_owner, repo_name):
+    return 1
     repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
     stdout, stderr = run_command(f"find {repo_path} -name '*.py' | xargs wc -l")
     total_lines = sum(int(line.split()[0]) for line in stdout.splitlines() if line.split())
@@ -104,7 +108,10 @@ def process_repo(repo_owner, repo_name, logger):
     return pd.DataFrame({
         "owner": [repo_owner],
         "name": [repo_name],
-        "grep_results": [grep_result],
+        "grep_results0": [grep_result[0]],
+        "grep_results1": [grep_result[1]],
+        "grep_results2": [grep_result[2]],
+        "grep_results3": [grep_result[3]],
         "loc": [loc],
         "size": [repo_size]
     })
@@ -128,7 +135,10 @@ def main():
     df = pd.read_csv(REPOS_PATH)
 
     # Initialize columns with correct types
-    df['grep_results'] = 0
+    df['grep_results0'] = 0
+    df['grep_results1'] = 0
+    df['grep_results2'] = 0
+    df['grep_results3'] = 0
     df['loc'] = 0
     df['size'] = 0
 
