@@ -152,6 +152,9 @@ def main():
 
     print(indices)
 
+    for index, row in df.iterrows():
+        process_repos(
+
     # Process each repo using ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=NUM_THREADS) as executor:
         futures = {}
