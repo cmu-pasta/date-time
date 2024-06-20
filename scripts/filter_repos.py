@@ -6,22 +6,17 @@ import logging
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-import global_paths
+from global_paths import *
 
 # Constants
-CLONED_REPOS_DIR = global_paths.CLONE_REPOS_DIR
-LOG_DIR = global_paths.CLONE_REPOS_DIR
-REPOS_PATH = global_paths.REPOS_PATH
-DATA_DIR = global_paths.DATA_DIR
-FILTERED_REPOS_PATH = global_paths.FILTERED_REPOS_PATH
 NUM_THREADS = 16
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2
 GREP_PATTERN = "import datetime|import whenever|import arrow|import pendulum"
 
 # Setup logging
-if not os.path.exists(LOG_DIR):
-    os.makedirs(LOG_DIR)
+if not os.path.exists(CLONE_REPOS_DIR):
+    os.makedirs(CLONE_REPOS_DIR)
 
 def setup_logger(name, log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
@@ -38,18 +33,18 @@ def run_command(command):
 def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF_FACTOR):
     repo_path = f"{repo_owner}:{repo_name}"
     
-    if os.path.exists(os.path.join(CLONED_REPOS_DIR, repo_path)):
+    if os.path.exists(os.path.join(CLONE_REPOS_DIR, repo_path)):
         return "Repository already exists, skipping clone.", "", True
     
     for attempt in range(retries):
-        stdout, stderr = run_command(f"git clone --depth 1 https://github.com/{repo_owner}/{repo_name} {os.path.join(CLONED_REPOS_DIR, repo_path)}")
+        stdout, stderr = run_command(f"git clone --depth 1 https://github.com/{repo_owner}/{repo_name} {os.path.join(CLONE_REPOS_DIR, repo_path)}")
         if "fatal" not in stderr:
             return stdout, stderr, True
         time.sleep(backoff_factor ** attempt)
     return stdout, stderr, False
 
 def grep_repo(repo_owner, repo_name):
-    repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
     stdout1, stderr = run_command(f"grep -rE -m 1 'import datetime' {repo_path}")
     stdout2, stderr = run_command(f"grep -rE -m 1 'import arrow' {repo_path}")
     stdout3, stderr = run_command(f"grep -rE -m 1 'import pendulum' {repo_path}")
@@ -58,14 +53,14 @@ def grep_repo(repo_owner, repo_name):
 
 def count_python_lines(repo_owner, repo_name):
     return 1
-    repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
     stdout, stderr = run_command(f"find {repo_path} -name '*.py' | xargs wc -l")
     total_lines = sum(int(line.split()[0]) for line in stdout.splitlines() if line.split())
     return total_lines
 
 def delete_repo_contents(repo_owner, repo_name):
     return
-    # repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    # repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
     # for item in os.listdir(repo_path):
     #     item_path = os.path.join(repo_path, item)
     #     if os.path.isdir(item_path):
@@ -92,7 +87,7 @@ def get_dir_size(path, logger):
     # return total
 
 def process_repo(repo_owner, repo_name, logger):
-    repo_path = os.path.join(CLONED_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
     # clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
     # if not success:
     #     logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
@@ -132,7 +127,7 @@ def main():
     print("STARTING")
     
     # Load DataFrame
-    df = pd.read_csv(REPOS_PATH)
+    df = pd.read_csv(DATETIME_REPOS_PATH)
 
     # Initialize columns with correct types
     df['grep_results0'] = 0
@@ -143,18 +138,23 @@ def main():
     df['size'] = 0
 
     # Create the directory to store cloned repos if it doesn't exist
-    if not os.path.exists(CLONED_REPOS_DIR):
-        os.makedirs(CLONED_REPOS_DIR)
+    if not os.path.exists(CLONE_REPOS_DIR):
+        os.makedirs(CLONE_REPOS_DIR)
 
     # Create indices for splitting the DataFrame
-    len_each = len(df) // NUM_THREADS
-    indices = [(len_each * i, len(df) if i == NUM_THREADS - 1 else len_each * (i + 1)) for i in range(NUM_THREADS)]
+    # len_each = len(df) // NUM_THREADS
+    # indices = [(len_each * i, len(df) if i == NUM_THREADS - 1 else len_each * (i + 1)) for i in range(NUM_THREADS)]
 
-    print(indices)
+    # indices = [(i*10, i*10 + 10) for i in range(10)]
 
-    for index, row in df.iterrows():
-        process_repos(
+    # print(indices)
 
+    logger = setup_logger("thread_A", CLONE_REPOS_DIR + "thread_A.log")
+    df_ret = process_repos(df, 0, 0, logger, 0)
+    df_ret.to_csv(FILTERED_REPOS_PATH, index=False)
+    
+    exit(0)
+    
     # Process each repo using ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=NUM_THREADS) as executor:
         futures = {}
@@ -162,7 +162,7 @@ def main():
         df_ret = pd.DataFrame()
         
         for thread_id, (start_index, end_index) in enumerate(indices):
-            logger = setup_logger(f"thread_{thread_id}", os.path.join(LOG_DIR, f"thread_{thread_id}.log"))
+            logger = setup_logger(f"thread_{thread_id}", os.path.join(CLONE_REPOS_DIR, f"thread_{thread_id}.log"))
             loggers[thread_id] = logger
             df_cur = df.loc[start_index:end_index]
             futures[executor.submit(process_repos, df_cur, start_index, end_index, logger, thread_id)] = thread_id

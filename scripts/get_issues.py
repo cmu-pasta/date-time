@@ -1,0 +1,119 @@
+print("STARTING GET_ISSUES")
+
+import requests
+import json
+import csv
+import pandas as pd
+
+from global_paths import *
+
+with open(GH_ACCESS_TOKEN, "r") as file:
+  gh_access_token = file.read().strip()
+
+df = pd.read_csv(DATETIME_REPOS_PATH)
+
+gh_query = """
+query($q: String!, $cursor: String) {
+  rateLimit {
+    remaining
+    cost
+    used
+  }
+  search(query:$q, type: ISSUE, first: 100, after:$cursor) {
+		pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      ... on Issue {
+        
+        title
+        bodyHTML
+        url
+        activeLockReason
+        
+        
+        labels (first:100) {
+          nodes {
+            name
+          }
+        }
+        
+      }
+    }
+  }
+}
+"""
+
+with open(ISSUES_PATH, "w") as file:
+  writer = csv.writer(file, lineterminator="\n")
+  
+  row = ["repoName", "title", "bodyHtml", "url", "lockReason", "labels"]
+  writer.writerow(row)
+
+import time
+
+url = "https://api.github.com/graphql"
+headers = {"Authorization": f"Bearer {gh_access_token}"}
+
+def search_issues(nameWithOwner):
+  count = 0
+  # q = f"repo:{nameWithOwner} is:issue is:closed (\"datetime\" OR \"daylight savings\" OR \"DST\" OR \"leap\") AND (\"wrong\" OR \"fix\" OR \"bug\")"
+  q = f"repo:{nameWithOwner} is:issue is:closed in:title \"datetime\" OR \"DST\" OR \"daylight saving\" OR \"utc\" OR \"time zone\""
+  cursor = None
+  while (True):
+    json = {"query": gh_query, "variables": {"q": q, "cursor": cursor}}
+    response = requests.post(url, json=json, headers=headers)
+    
+    if (response.status_code != 200):
+      print(f"Response code: {response.status_code}")
+      time.sleep(20)
+      continue
+    
+    response = response.json()
+    
+    if ("errors" in response):
+      cont = False
+      for error in response["errors"]:
+        if (error["type"] == "RATE_LIMITED"):
+          cont = True
+      if cont:
+        print("Rate limited. Sleeping...")
+        time.sleep(20)
+        continue
+      else:
+        exit(0)
+
+    response = response["data"]
+    rateLimit = response["rateLimit"]
+    
+    hasNextPage = response["search"]["pageInfo"]["hasNextPage"]
+    issues = response["search"]["nodes"]
+
+    with open(ISSUES_PATH, "a") as file:
+      writer = csv.writer(file, lineterminator="\n")
+
+      for issue in issues:
+        labels = []
+        for l in issue["labels"]["nodes"]:
+          labels.append(l["name"])
+
+        row = [nameWithOwner, issue["title"], "<html redacted>", issue["url"], # issue["bodyHTML"]
+               issue["activeLockReason"], labels
+        ]
+        writer.writerow(row)
+
+    # if (count % 1 == 0):
+      # print(f"Requests: {count}, endCursor: {cursor}, remaining: {rateLimit['remaining']}")
+    # count += 1
+    cursor = response["search"]["pageInfo"]["endCursor"]
+    if (not hasNextPage):
+      # print("done")
+      break
+
+for index, row in df.iterrows():
+  # nameWithOwner = row["nameWithOwner"]
+  nameWithOwner = row["owner"] + "/" + row["name"]
+  search_issues(nameWithOwner)
+  if (index % 100 == 0):
+    print(f"{nameWithOwner} completed")
