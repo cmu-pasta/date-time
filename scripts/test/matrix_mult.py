@@ -1,3 +1,5 @@
+import time
+
 def matrix_multiply_blockwise_from_file(file_A, file_B, file_C, block_size=100):
     print(f"block_size: {block_size}")
     def read_block(filename, start_row, start_col, num_rows, num_cols):
@@ -15,6 +17,7 @@ def matrix_multiply_blockwise_from_file(file_A, file_B, file_C, block_size=100):
     with open(file_C, 'w') as file:
         for i in range(0, rows_A, block_size):
             print(f"Processing row block starting at row {i}")
+            for j in range(int(1e6)): 1e9 + 1e9
             for j in range(0, cols_B, block_size):
                 result_block = [[0]*block_size for _ in range(block_size)]
                 for k in range(0, cols_A, block_size):
@@ -27,4 +30,4 @@ def matrix_multiply_blockwise_from_file(file_A, file_B, file_C, block_size=100):
                 for row in result_block:
                     file.write(' '.join(map(str, row)) + '\n')
 
-matrix_multiply_blockwise_from_file('matrix_A.txt', 'matrix_B.txt', 'result_matrix.txt', block_size=10)
+matrix_multiply_blockwise_from_file('matrix_A.txt', 'matrix_B.txt', 'result_matrix.txt', block_size=50)
