@@ -45,11 +45,9 @@ def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF
 
 def grep_repo(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    stdout1, stderr = run_command(f"grep -rE -m 1 'import datetime' {repo_path}")
-    stdout2, stderr = run_command(f"grep -rE -m 1 'import arrow' {repo_path}")
-    stdout3, stderr = run_command(f"grep -rE -m 1 'import pendulum' {repo_path}")
-    stdout4, stderr = run_command(f"grep -rE -m 1 'import whenever' {repo_path}")
-    return (1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0, 1 if stdout4 else 0)
+    stdout0, _ = run_command(f"grep -r -m 1 '^\s*(import.*|from\s*)(datetime|arrow|pendulum|whenever)' {repo_path}")
+    # return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0)
+    return 1 if stdout0 else 0
 
 def count_python_lines(repo_owner, repo_name):
     return 1
@@ -87,47 +85,48 @@ def get_dir_size(path, logger):
     # return total
 
 def process_repo(repo_owner, repo_name, logger):
-    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    # repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
     # clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
     # if not success:
     #     logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
     #     return pd.DataFrame()
 
     grep_result = grep_repo(repo_owner, repo_name)
-    loc = count_python_lines(repo_owner, repo_name)
-    repo_size = get_dir_size(repo_path, logger)
+    # loc = count_python_lines(repo_owner, repo_name)
+    # repo_size = get_dir_size(repo_path, logger)
     
-    if repo_size > 1 * 1024 * 1024 * 1024:  # 1 GB
-        delete_repo_contents(repo_owner, repo_name)
+    # if repo_size > 1 * 1024 * 1024 * 1024:  # 1 GB
+        # delete_repo_contents(repo_owner, repo_name)
 
     return pd.DataFrame({
         "owner": [repo_owner],
         "name": [repo_name],
-        "grep_results0": [grep_result[0]],
-        "grep_results1": [grep_result[1]],
-        "grep_results2": [grep_result[2]],
-        "grep_results3": [grep_result[3]],
-        "loc": [loc],
-        "size": [repo_size]
+        "grep_results": [grep_result],
+        # "grep_results0": [grep_result[0]],
+        # "grep_results1": [grep_result[1]],
+        # "grep_results2": [grep_result[2]],
+        # "grep_results3": [grep_result[3]],
+        # "loc": [loc],
+        # "size": [repo_size]
     })
     
-    return pd.DataFrame()
+    # return pd.DataFrame()
 
 def process_repos(df, start_index, end_index, logger, thread_id):
-    df_ret = pd.DataFrame()
-    for i, row in df.iterrows():  # Corrected method name
+    df_curs = []
+    for i, row in df.iterrows():
         repo_owner = row['owner']
         repo_name = row['name']
-        df_cur = process_repo(repo_owner, repo_name, logger)
-        df_ret = pd.concat([df_ret, df_cur], ignore_index=True)
+        df_curs.append(process_repo(repo_owner, repo_name, logger))
         logger.info(f"Processed repository {repo_owner}/{repo_name} in thread {thread_id}")
+    df_ret = pd.concat(df_curs, ignore_index=True)
     return df_ret
 
 def main():
     print("STARTING")
     
     # Load DataFrame
-    df = pd.read_csv(DATETIME_REPOS_PATH)
+    df = pd.read_csv(REPOS_PATH)
 
     # Initialize columns with correct types
     df['grep_results0'] = 0
