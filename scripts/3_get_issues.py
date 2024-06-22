@@ -5,7 +5,7 @@ import json
 import csv
 import pandas as pd
 
-from global_paths import *
+from __global_paths import *
 
 with open(GH_ACCESS_TOKEN, "r") as file:
   gh_access_token = file.read().strip()
