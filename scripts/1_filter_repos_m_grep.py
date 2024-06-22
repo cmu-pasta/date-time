@@ -5,14 +5,14 @@ import shutil
 import logging
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import sys
 
-from global_paths import *
+from __global_paths import *
 
 # Constants
 NUM_THREADS = 16
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2
-GREP_PATTERN = "import datetime|import whenever|import arrow|import pendulum"
 
 # Setup logging
 if not os.path.exists(CLONE_REPOS_DIR):
@@ -45,9 +45,12 @@ def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF
 
 def grep_repo(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    stdout0, _ = run_command(f"grep -r -m 1 '^\s*(import.*|from\s*)(datetime|arrow|pendulum|whenever)' {repo_path}")
-    # return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0)
-    return 1 if stdout0 else 0
+    stdout0, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)datetime' {repo_path}")
+    stdout1, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)arrow' {repo_path}")
+    stdout2, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)pendulum' {repo_path}")
+    stdout3, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)whenever' {repo_path}")
+    return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0)
+    # return 1 if stdout0 else 0
 
 def count_python_lines(repo_owner, repo_name):
     return 1
@@ -101,24 +104,24 @@ def process_repo(repo_owner, repo_name, logger):
     return pd.DataFrame({
         "owner": [repo_owner],
         "name": [repo_name],
-        "grep_results": [grep_result],
-        # "grep_results0": [grep_result[0]],
-        # "grep_results1": [grep_result[1]],
-        # "grep_results2": [grep_result[2]],
-        # "grep_results3": [grep_result[3]],
+        # "grep_results": [grep_result],
+        "grep_results0": [grep_result[0]],
+        "grep_results1": [grep_result[1]],
+        "grep_results2": [grep_result[2]],
+        "grep_results3": [grep_result[3]],
         # "loc": [loc],
         # "size": [repo_size]
     })
     
     # return pd.DataFrame()
 
-def process_repos(df, start_index, end_index, logger, thread_id):
+def process_repos(df, logger):
     df_curs = []
     for i, row in df.iterrows():
         repo_owner = row['owner']
         repo_name = row['name']
         df_curs.append(process_repo(repo_owner, repo_name, logger))
-        logger.info(f"Processed repository {repo_owner}/{repo_name} in thread {thread_id}")
+        logger.info(f"Processed repository {repo_owner}/{repo_name}")
     df_ret = pd.concat(df_curs, ignore_index=True)
     return df_ret
 
@@ -126,7 +129,7 @@ def main():
     print("STARTING")
     
     # Load DataFrame
-    df = pd.read_csv(REPOS_PATH)
+    df = pd.read_csv(DATETIME_REPOS_PATH)
 
     # Initialize columns with correct types
     df['grep_results0'] = 0
@@ -148,36 +151,14 @@ def main():
 
     # print(indices)
 
-    logger = setup_logger("thread_A", CLONE_REPOS_DIR + "thread_A.log")
-    df_ret = process_repos(df, 0, 0, logger, 0)
-    df_ret.to_csv(FILTERED_REPOS_PATH, index=False)
-    
+    from_index = 0 if (len(sys.argv) == 1) else int(sys.argv[1])
+    to_index = len(df) if (len(sys.argv) == 1) else int(sys.argv[2])
+
+    logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
+    df_ret = process_repos(df[from_index:to_index], logger)
+    df_ret.to_csv(f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv", index=False)
+
     exit(0)
-    
-    # Process each repo using ThreadPoolExecutor
-    with ThreadPoolExecutor(max_workers=NUM_THREADS) as executor:
-        futures = {}
-        loggers = {}
-        df_ret = pd.DataFrame()
-        
-        for thread_id, (start_index, end_index) in enumerate(indices):
-            logger = setup_logger(f"thread_{thread_id}", os.path.join(CLONE_REPOS_DIR, f"thread_{thread_id}.log"))
-            loggers[thread_id] = logger
-            df_cur = df.loc[start_index:end_index]
-            futures[executor.submit(process_repos, df_cur, start_index, end_index, logger, thread_id)] = thread_id
-
-        for future in as_completed(futures):
-            thread_id = futures[future]
-            try:
-                df_cur = future.result()  # Correct method name
-                df_cur.to_csv(DATA_DIR + f"{thread_id}.csv", index=False)
-                print(f"thread {thread_id}, len: {len(df_cur)}")
-                df_ret = pd.concat([df_ret, df_cur], ignore_index=True)
-            except Exception as e:
-                loggers[thread_id].error(f"Error processing process: {str(e)}")
-
-    # Save the updated DataFrame to a new CSV file
-    df_ret.to_csv(FILTERED_REPOS_PATH, index=False)
 
 if __name__ == "__main__":
     main()
