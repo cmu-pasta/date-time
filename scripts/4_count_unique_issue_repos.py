@@ -1,4 +1,4 @@
 import pandas as pd
-from global_paths import *
+from __global_paths import *
 
 print(pd.read_csv(ISSUES_PATH)["repoName"].nunique())
