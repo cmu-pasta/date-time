@@ -13,4 +13,5 @@ FILTERED_REPOS_PATH = DATA_DIR + "repos_with_grep_and_loc.csv"
 SEPARATED_FILTERED_REPOS_PATH = DATA_DIR + "repos_with_separated_grep.csv"
 
 ISSUES_PATH = DATA_DIR + "issues.csv"
+BUGS_PATH = DATA_DIR + "bugs.csv"
 DIFFS_PATH = DATA_DIR + "diffs.csv"
