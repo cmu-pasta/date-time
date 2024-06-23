@@ -19,13 +19,13 @@ def benchmark_replace_2():
 def benchmark_replace_3():
     tzUTC = tz.gettz("UTC")
     tzNaTZ = tz.gettz("Not A Timezone")
-    now = datetime.datetime.now(tzinfo=tzUTC)
-    nonexistent_timezone = now.replace(tzinfo=tzNaTZ)
+    now = datetime.datetime.now(tz=tzUTC)
+    nonexistent_timezone = now.replace(tz=tzNaTZ)
     assert now.tzinfo == tzNaTZ
 
 def benchmark_replace_4():
     tzNYC = tz.gettz("America/New_York")
-    now = datetime.datetime.now(tzinfo=tzNYC)
+    now = datetime.datetime.now(tz=tzNYC)
     shifted = datetime.datetime(now.year, now.month, now.day, 5, tzinfo=now.tzinfo).astimezone(tzNYC)
     assert now.tzinfo == shifted.tzinfo
 
