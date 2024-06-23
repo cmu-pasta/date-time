@@ -21,7 +21,7 @@ def benchmark_deprecated_2():
     now_du = datetime.datetime.now(tz=tzNYC)
     now_pytz = datetime.datetime.now(tz=tzNYC_pytz)
     tomorrow_du = now_du + timedelta(days=1)
-    tomorrow_pytz = now_pytz + timedelta(days=1)
+    tomorrow_pytz = now_pytz + timedelta(days=1) # adding timedelta without normalizing
     assert tomorrow_du == tomorrow_pytz
 
 
