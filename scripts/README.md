@@ -26,8 +26,8 @@ First, create a GitHub access token. Copy its contents into the file `access_tok
 Run the data-gathering scripts:
 
 ```sh
-python3 0_get_repos.py
-python3 1_filter_repos_m_grep.py
+python3 0_find_repos.py
+python3 1_get_repos.py
 python3 2_get_issues.py
 python3 3_get_issues_statistics.py
 ```

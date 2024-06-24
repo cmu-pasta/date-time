@@ -11,7 +11,7 @@ from __global_paths import *
 with open(GH_ACCESS_TOKEN, "r") as file:
   gh_access_token = file.read().strip()
 
-df = pd.read_csv(DATETIME_REPOS_PATH)
+df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
 
 gh_query = """
 query($q: String!, $cursor: String) {
@@ -59,7 +59,6 @@ headers = {"Authorization": f"Bearer {gh_access_token}"}
 
 def search_issues(nameWithOwner):
   count = 0
-  # q = f"repo:{nameWithOwner} is:issue is:closed (\"datetime\" OR \"daylight savings\" OR \"DST\" OR \"leap\") AND (\"wrong\" OR \"fix\" OR \"bug\")"
   q = f"repo:{nameWithOwner} is:issue is:closed in:title \"datetime\" OR \"DST\" OR \"daylight saving\" OR \"utc\" OR \"time zone\""
   cursor = None
   while (True):
