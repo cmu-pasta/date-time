@@ -17,12 +17,12 @@ def benchmark_arithmetic_1():
 def benchmark_arithmetic_2():
     now = datetime.datetime.now()
     a_bit_later = now + (datetime.timedelta(hours=5) * 1.5)
-    assert (a_bit_later.astimezone(tzUTC) - now.astimezone(tzUTC)).total_seconds % 3600 == 0 # assuming integer number of hours diff
+    assert int((a_bit_later.astimezone(tzUTC) - now.astimezone(tzUTC)).total_seconds()) % 3600 == 0 # assuming integer number of hours diff
     
 def benchmark_arithmetic_3():
     now = datetime.datetime.now()
     a_bit_later = now + (datetime.timedelta(hours=5) / 2)
-    assert (a_bit_later.astimezone(tzUTC) - now.astimezone(tzUTC)).total_seconds % 3600 == 0 # assuming integer number of hours diff
+    assert int((a_bit_later.astimezone(tzUTC) - now.astimezone(tzUTC)).total_seconds()) % 3600 == 0 # assuming integer number of hours diff
     
 def benchmark_arithmetic_4():
     now = datetime.datetime.now()
@@ -36,7 +36,7 @@ def run_benchmarks_naive_utc_local():
         benchmark_arithmetic_1,
         benchmark_arithmetic_2,
         benchmark_arithmetic_3,
-        benchmark_arithmetic_4,
+        benchmark_arithmetic_4
     ]
     for benchmark in benchmarks:
         benchmark()
