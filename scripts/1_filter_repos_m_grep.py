@@ -9,12 +9,10 @@ import sys
 
 from __global_paths import *
 
-# Constants
 NUM_THREADS = 16
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2
 
-# Setup logging
 if not os.path.exists(CLONE_REPOS_DIR):
     os.makedirs(CLONE_REPOS_DIR)
 
@@ -50,70 +48,33 @@ def grep_repo(repo_owner, repo_name):
     stdout2, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)pendulum' {repo_path}")
     stdout3, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)whenever' {repo_path}")
     return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0)
-    # return 1 if stdout0 else 0
 
 def count_python_lines(repo_owner, repo_name):
-    return 1
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
     stdout, stderr = run_command(f"find {repo_path} -name '*.py' | xargs wc -l")
     total_lines = sum(int(line.split()[0]) for line in stdout.splitlines() if line.split())
     return total_lines
 
-def delete_repo_contents(repo_owner, repo_name):
-    return
-    # repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    # for item in os.listdir(repo_path):
-    #     item_path = os.path.join(repo_path, item)
-    #     if os.path.isdir(item_path):
-    #         shutil.rmtree(item_path)
-    #     else:
-    #         os.remove(item_path)
-
-def get_dir_size(path, logger):
-    return 1
-    # total = 0
-    # with os.scandir(path) as it:
-    #     for entry in it:
-    #         try:
-    #             if entry.is_symlink():
-    #                 logger.warning(f"Skipping symbolic link: {entry.path}")
-    #                 continue
-    #             if entry.is_file():
-    #                 total += entry.stat().st_size
-    #             elif entry.is_dir():
-    #                 total += get_dir_size(entry.path, logger)
-    #         except OSError as e:
-    #             logger.error(f"Error accessing {entry.path}: {str(e)}")
-    #             continue
-    # return total
-
 def process_repo(repo_owner, repo_name, logger):
-    # repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    # clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
-    # if not success:
-    #     logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
-    #     return pd.DataFrame()
+    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
+    if not success:
+        logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
+        return pd.DataFrame()
 
     grep_result = grep_repo(repo_owner, repo_name)
-    # loc = count_python_lines(repo_owner, repo_name)
-    # repo_size = get_dir_size(repo_path, logger)
-    
-    # if repo_size > 1 * 1024 * 1024 * 1024:  # 1 GB
-        # delete_repo_contents(repo_owner, repo_name)
+    loc = count_python_lines(repo_owner, repo_name)
 
     return pd.DataFrame({
+        "nameWithOwner": [repo_owner + "/" + repo_name],
         "owner": [repo_owner],
         "name": [repo_name],
-        # "grep_results": [grep_result],
         "grep_results0": [grep_result[0]],
         "grep_results1": [grep_result[1]],
         "grep_results2": [grep_result[2]],
         "grep_results3": [grep_result[3]],
-        # "loc": [loc],
-        # "size": [repo_size]
+        "loc": [loc]
     })
-    
-    # return pd.DataFrame()
 
 def process_repos(df, logger):
     df_curs = []
@@ -126,37 +87,19 @@ def process_repos(df, logger):
     return df_ret
 
 def main():
-    print("STARTING")
-    
-    # Load DataFrame
-    df = pd.read_csv(DATETIME_REPOS_PATH)
-
-    # Initialize columns with correct types
-    df['grep_results0'] = 0
-    df['grep_results1'] = 0
-    df['grep_results2'] = 0
-    df['grep_results3'] = 0
-    df['loc'] = 0
-    df['size'] = 0
-
-    # Create the directory to store cloned repos if it doesn't exist
+    print("STARTING REPO FILTERING")
+    df = pd.read_csv(REPOS_PATH)
     if not os.path.exists(CLONE_REPOS_DIR):
         os.makedirs(CLONE_REPOS_DIR)
-
-    # Create indices for splitting the DataFrame
-    # len_each = len(df) // NUM_THREADS
-    # indices = [(len_each * i, len(df) if i == NUM_THREADS - 1 else len_each * (i + 1)) for i in range(NUM_THREADS)]
-
-    # indices = [(i*10, i*10 + 10) for i in range(10)]
-
-    # print(indices)
 
     from_index = 0 if (len(sys.argv) == 1) else int(sys.argv[1])
     to_index = len(df) if (len(sys.argv) == 1) else int(sys.argv[2])
 
     logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
     df_ret = process_repos(df[from_index:to_index], logger)
-    df_ret.to_csv(f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv", index=False)
+
+    ret_path = SEPARATED_FILTERED_REPOS_PATH if len(sys.argv) == 1 else f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
+    df_ret.to_csv(ret_path, index=False)
 
     exit(0)
 

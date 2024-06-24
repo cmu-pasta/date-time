@@ -4,6 +4,7 @@ import requests
 import json
 import csv
 import pandas as pd
+import subprocess
 
 from __global_paths import *
 
@@ -117,3 +118,6 @@ for index, row in df.iterrows():
   search_issues(nameWithOwner)
   if (index % 100 == 0):
     print(f"{nameWithOwner} completed")
+
+subprocess.run(f"head -n 1 {ISSUES_PATH} > {BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+subprocess.run(f"grep -E '(bug|fix|wrong)' {ISSUES_PATH} >> {BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
