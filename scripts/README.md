@@ -1,14 +1,5 @@
 # Data Gathering Scripts
 
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Requirements](#requirements)
-4. [Usage](#usage)
-5. [Command-Line Checks](#command-line-checks)
-
-## Introduction
-
 This directory contains the scripts used to generate our dataset.
 
 ## Requirements
