@@ -6,17 +6,17 @@ tzEST = tz.gettz("EST")
 tzUTC = tz.gettz("UTC")
 tzEST_offset = datetime.timezone(datetime.timedelta(hours=-5))
 
-def benchmark_timezone_0():
+def benchmark_bad_timezones_0():
     nowEST = datetime.datetime.fromtimestamp(1000000000).astimezone(tzEST)
     nowNYC = datetime.datetime.fromtimestamp(1000000000).astimezone(tzNYC)
     assert nowEST.hour == nowNYC.hour
     
-def benchmark_timezone_1():
+def benchmark_bad_timezones_1():
     nowEST_offset = datetime.datetime.fromtimestamp(1000000000).astimezone(tzEST_offset)
     nowNYC = datetime.datetime.fromtimestamp(1000000000).astimezone(tzNYC)
     assert nowEST_offset.hour == nowNYC.hour
 
-def benchmark_timezone_2():
+def benchmark_bad_timezones_2():
     first = datetime.datetime.fromtimestamp(1000000000).astimezone(tzNYC)
     second = datetime.datetime.fromtimestamp(1000000000).astimezone(tzUTC)
     tzOFF = datetime.timezone(second - first) # create timezone from current timezone differences
@@ -25,14 +25,14 @@ def benchmark_timezone_2():
     nowOFF = now.astimezone(tzOFF)
     assert nowNYC.hour == nowOFF.hour
 
-def run_benchmarks_timezone():
+def run_benchmarks_bad_timezones():
     benchmarks = [
-        benchmark_timezone_0,
-        benchmark_timezone_1,
-        benchmark_timezone_2
+        benchmark_bad_timezones_0,
+        benchmark_bad_timezones_1,
+        benchmark_bad_timezones_2
     ]
     for benchmark in benchmarks:
         benchmark()
 
 if __name__ == "__main__":
-    run_benchmarks_timezone()
+    run_benchmarks_bad_timezones()
