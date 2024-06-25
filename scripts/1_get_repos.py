@@ -9,7 +9,6 @@ import sys
 
 from __global_paths import *
 
-NUM_THREADS = 16
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2
 

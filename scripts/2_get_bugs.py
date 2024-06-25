@@ -103,16 +103,11 @@ def search_issues(nameWithOwner):
         ]
         writer.writerow(row)
 
-    # if (count % 1 == 0):
-      # print(f"Requests: {count}, endCursor: {cursor}, remaining: {rateLimit['remaining']}")
-    # count += 1
     cursor = response["search"]["pageInfo"]["endCursor"]
     if (not hasNextPage):
-      # print("done")
       break
 
 for index, row in df.iterrows():
-  # nameWithOwner = row["nameWithOwner"]
   nameWithOwner = row["owner"] + "/" + row["name"]
   search_issues(nameWithOwner)
   if (index % 100 == 0):

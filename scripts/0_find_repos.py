@@ -7,12 +7,6 @@ from __global_paths import *
 with open(GH_ACCESS_TOKEN, "r") as file:
     gh_access_token = file.read().strip()
 
-
-
-##########
-
-
-
 query = """
 query($q: String!, $cursor: String) {
   rateLimit {
@@ -56,12 +50,6 @@ query($q: String!, $cursor: String) {
 }
 """
 
-
-
-##########
-
-
-
 with open(REPOS_PATH, "w") as file:
   writer = csv.writer(file, lineterminator="\n")
   
@@ -71,12 +59,6 @@ with open(REPOS_PATH, "w") as file:
          "watchersCount", "discussionsCount"
   ]
   writer.writerow(row)
-
-
-
-##########
-
-
 
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {access_token}"}

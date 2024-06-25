@@ -108,18 +108,12 @@ def search_issues(nameWithOwner):
 
 print("STARTING GET_ISSUES")
 
-# search_issues("python/cpython")
-
-# exit(0)
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
 
 for index, row in df.iterrows():
-  # nameWithOwner = row["nameWithOwner"]
   nameWithOwner = row["owner"] + "/" + row["name"]
   search_issues(nameWithOwner)
-  # if (index % 100 == 0):
-    # print(f"{nameWithOwner} completed")
 
 subprocess.run(f"head -n 1 {OPEN_ISSUES_PATH} > {OPEN_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 subprocess.run(f"grep -E '(bug|fix|wrong)' {OPEN_ISSUES_PATH} >> {OPEN_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
