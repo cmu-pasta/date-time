@@ -55,7 +55,7 @@ query($q: String!, $cursor: String) {
 with open(WRITE_ISSUES_PATH, "w") as file:
   writer = csv.writer(file, lineterminator="\n")
   
-  row = ["repoName", "title", "bodyHtml", "url", "lockReason", "labels"]
+  row = ["repoName", "title", "url", "lockReason", "labels"]
   writer.writerow(row)
 
 url = "https://api.github.com/graphql"
@@ -102,7 +102,7 @@ def search_issues(nameWithOwner):
         for l in issue["labels"]["nodes"]:
           labels.append(l["name"])
 
-        row = [nameWithOwner, issue["title"], "<html redacted>", issue["url"], # issue["bodyHTML"]
+        row = [nameWithOwner, issue["title"], issue["url"],
                issue["activeLockReason"], labels
         ]
         writer.writerow(row)
