@@ -1,0 +1,911 @@
+repoName,title,bodyHtml,url,lockReason,labels
+googleapis/google-cloud-python,Must add UTC time offset to `Query`s in order to get any results,<html redacted>,https://github.com/googleapis/google-cloud-python/issues/11096,,"['type: bug', 'api: monitoring', 'priority: p2']"
+pynamodb/PynamoDB,UTCDateTimeAttribute accepts timezone-naive datetime objects.,<html redacted>,https://github.com/pynamodb/PynamoDB/issues/1060,,[]
+pynamodb/PynamoDB,UTCDateTimeAttribute can return non-tz-aware datetime,<html redacted>,https://github.com/pynamodb/PynamoDB/issues/652,,[]
+evennia/evennia,Feature Request: Time-zone aware utilities,<html redacted>,https://github.com/evennia/evennia/issues/819,,['feature-request']
+dropbox/PyHive,"Support variable precision time, timestamp, time with time zone, timestamp with time zone types",<html redacted>,https://github.com/dropbox/PyHive/issues/363,,[]
+dropbox/PyHive,Querying of date/datetime with year 1-999 is incorrect on some platforms,<html redacted>,https://github.com/dropbox/PyHive/issues/404,,[]
+dropbox/PyHive,table.insert(values) expects datetime for timestamp but cannot quote it when using presto,<html redacted>,https://github.com/dropbox/PyHive/issues/276,,[]
+Charcoal-SE/SmokeDetector,Fix DeprecationWarning: datetime.datetime.utcnow(),<html redacted>,https://github.com/Charcoal-SE/SmokeDetector/issues/8510,,['type: enhancement']
+py-sherlock/sherlock,`FileLock._expiry_time` crash on a different timezone than UTC,<html redacted>,https://github.com/py-sherlock/sherlock/issues/71,,[]
+wagtail/wagtail,DateTimeBlocks seem to ignore Django TIME_ZONE settings,<html redacted>,https://github.com/wagtail/wagtail/issues/2406,,"['type:Bug', 'component:Streamfield']"
+wagtail/wagtail,"Regression in checks with WAGTAIL_DATE_FORMAT, WAGTAIL_DATETIME_FORMAT, WAGTAIL_TIME_FORMAT",<html redacted>,https://github.com/wagtail/wagtail/issues/12005,,"['type:Bug', 'status:Unconfirmed']"
+wagtail/wagtail,AdminDateTime widget problem with localized datetimes,<html redacted>,https://github.com/wagtail/wagtail/issues/5454,,"['type:Bug', 'component:i18n', 'component:UI localization']"
+enthought/comtypes,Date arguments raise ctypes.ArgumentError when a datetime value is used,<html redacted>,https://github.com/enthought/comtypes/issues/152,,[]
+xlwings/xlwings,Time zone shifted when passing a datetime object as an argument to a macro,<html redacted>,https://github.com/xlwings/xlwings/issues/2382,,[]
+xlwings/xlwings,Inconsistent time zone handling between `.formula` and `.value`,<html redacted>,https://github.com/xlwings/xlwings/issues/2010,,[]
+xlwings/xlwings,xlwings server results in inproper datetime handling of dataframes,<html redacted>,https://github.com/xlwings/xlwings/issues/2338,,[]
+xlwings/xlwings,datetime conversion from numpy datetime64,<html redacted>,https://github.com/xlwings/xlwings/issues/661,,[]
+xlwings/xlwings,Mac: datetime assert microseconds=0,<html redacted>,https://github.com/xlwings/xlwings/issues/121,,['bug']
+xlwings/xlwings,Add proper support for datetime.time objects/ time-only cell formats,<html redacted>,https://github.com/xlwings/xlwings/issues/86,,['enhancement']
+xlwings/xlwings,Can we handle milliseconds in the from/to com_datetime conversion?,<html redacted>,https://github.com/xlwings/xlwings/issues/6,,['enhancement']
+micropython/micropython-lib,datetime module has issue with year 2038 problem,<html redacted>,https://github.com/micropython/micropython-lib/issues/842,,[]
+micropython/micropython-lib,micropython-datetime PYPI package needs updating,<html redacted>,https://github.com/micropython/micropython-lib/issues/329,,[]
+micropython/micropython-lib,datetime 'tzinfo' has no attribute '__new__',<html redacted>,https://github.com/micropython/micropython-lib/issues/319,,[]
+dronekit/dronekit-python,GPS UTC timing,<html redacted>,https://github.com/dronekit/dronekit-python/issues/501,,[]
+danforthcenter/plantcv,Store the version of PlantCV and the start datetime as metadata when running plantcv-run-workflow,<html redacted>,https://github.com/danforthcenter/plantcv/issues/1231,,['new feature']
+getting-things-gnome/gtg,Malformed CalDAV timezone/dates can cause an AttributeError: 'datetime.date' object has no attribute 'tzinfo',<html redacted>,https://github.com/getting-things-gnome/gtg/issues/923,,"['bug', 'plugins']"
+WattTime/pyiso,Time-zone handling error in NYISO local_now,<html redacted>,https://github.com/WattTime/pyiso/issues/57,,[]
+pywemo/pywemo,util.ExtMetaInfo uses non-timezone-aware datetime,<html redacted>,https://github.com/pywemo/pywemo/issues/581,,['bug']
+dionach/PANhunt,datetime limitation (Y10K),<html redacted>,https://github.com/dionach/PANhunt/issues/8,,[]
+cackharot/suds-py3,Datetime Object formatting default,<html redacted>,https://github.com/cackharot/suds-py3/issues/78,,[]
+pallets-eco/flask-session,Fix datetime.utcnow() deprecations in SQLAlchemy backend,<html redacted>,https://github.com/pallets-eco/flask-session/issues/253,,[]
+rshk/python-pcapng,Packet SRC and DST information is mixed up (in dump_tcpip_stats.py),<html redacted>,https://github.com/rshk/python-pcapng/issues/37,,[]
+domlysz/BlenderGIS, check separate object typeerror:invalid id-property type datetime.date not supported,<html redacted>,https://github.com/domlysz/BlenderGIS/issues/746,,[]
+domlysz/BlenderGIS,Can't Import Separate .shp objects if a DateTime exists in the XML,<html redacted>,https://github.com/domlysz/BlenderGIS/issues/683,,[]
+holoviz/holoviews,Stacked bars not rendered correctly with datetime axis,<html redacted>,https://github.com/holoviz/holoviews/issues/6288,,['type: bug']
+holoviz/holoviews,Tz aware datetime values displayed in UTC time on x axis of the plot,<html redacted>,https://github.com/holoviz/holoviews/issues/3893,,['type: bug']
+holoviz/holoviews,datashading with datetime axis fails unexpectedly,<html redacted>,https://github.com/holoviz/holoviews/issues/3539,,[]
+holoviz/holoviews,Datetime Support for Vectorfield,<html redacted>,https://github.com/holoviz/holoviews/issues/2467,,['type: enhancement']
+holoviz/holoviews,"DictInterface, pandas, and datetimes",<html redacted>,https://github.com/holoviz/holoviews/issues/3697,,['type: discussion']
+holoviz/holoviews,[FEATURE] Support color mapping for datetime types?,<html redacted>,https://github.com/holoviz/holoviews/issues/6073,,['type: enhancement']
+holoviz/holoviews,HeatMap doesn't work with datetime very well // can we specify bins?,<html redacted>,https://github.com/holoviz/holoviews/issues/6185,,[]
+holoviz/holoviews,Plotting datetime time axis with filled contours,<html redacted>,https://github.com/holoviz/holoviews/issues/5549,,[]
+holoviz/holoviews,Datetime granularity issue for Datashader plots,<html redacted>,https://github.com/holoviz/holoviews/issues/5299,,['TRIAGE']
+holoviz/holoviews,Automatic datetime formater for default HoverTool,<html redacted>,https://github.com/holoviz/holoviews/issues/4425,,['type: bug']
+holoviz/holoviews,Ibis Timestamp not displaying as datetime axis,<html redacted>,https://github.com/holoviz/holoviews/issues/5521,,['type: bug']
+holoviz/holoviews,datashade with datetime axis plots inconsistent ranges,<html redacted>,https://github.com/holoviz/holoviews/issues/4603,,[]
+holoviz/holoviews,Polygons not allowing datetime values or X axis,<html redacted>,https://github.com/holoviz/holoviews/issues/3887,,['type: bug']
+holoviz/holoviews,Image with datetime index raises TypeError with matplotlib backend,<html redacted>,https://github.com/holoviz/holoviews/issues/4629,,"['type: bug', 'tag: backend: mpl']"
+holoviz/holoviews,Incongruent handling of distances between datetimes for plotting routines,<html redacted>,https://github.com/holoviz/holoviews/issues/3496,,[]
+holoviz/holoviews,Datetime axis in plotly can give out of bounds warning,<html redacted>,https://github.com/holoviz/holoviews/issues/5728,,['tag: backend: plotly']
+holoviz/holoviews,Labels overlay on Bars doesn't work for datetime.date,<html redacted>,https://github.com/holoviz/holoviews/issues/5284,,['TRIAGE']
+holoviz/holoviews,Error in overlay of Line and Bar with datetime index,<html redacted>,https://github.com/holoviz/holoviews/issues/4332,,[]
+holoviz/holoviews,Select_mask & decimate fail when dtype changes from numeric to datetime,<html redacted>,https://github.com/holoviz/holoviews/issues/5789,,[]
+holoviz/holoviews,hv.Text cannot place text on plots with a datetime X-axis,<html redacted>,https://github.com/holoviz/holoviews/issues/5271,,[]
+holoviz/holoviews,Timezone-aware data is plotted incorrectly when using `rasterize` (plotted as though axis were UTC),<html redacted>,https://github.com/holoviz/holoviews/issues/5127,,['type: bug']
+pwnlandia/mhn,logstash mhn.conf dst_ip should be dest_ip,<html redacted>,https://github.com/pwnlandia/mhn/issues/250,,['bug']
+pwnlandia/mhn,Time on the Attack page is displayed in UTC instead of my local time,<html redacted>,https://github.com/pwnlandia/mhn/issues/533,,"['question', 'mhn-server']"
+yahoo-finance/yahoo-finance,get_trade_datetime() for Share and refresh --- wrong UTC times,<html redacted>,https://github.com/yahoo-finance/yahoo-finance/issues/53,,['bug']
+yahoo-finance/yahoo-finance,get_trade_datetime(),<html redacted>,https://github.com/yahoo-finance/yahoo-finance/issues/136,,[]
+StamusNetworks/scirius,scirius uses UTC for naming backup files,<html redacted>,https://github.com/StamusNetworks/scirius/issues/73,,[]
+Yelp/bravado,Passing datetime as request body throws JSON serializable error.,<html redacted>,https://github.com/Yelp/bravado/issues/191,,"['bug', 'swaggerpy12']"
+inducer/relate,Calendar shows different dates for all-day events when viewed from different time zone,<html redacted>,https://github.com/inducer/relate/issues/1015,,[]
+qutebrowser/qutebrowser,[Feature request] `datetime` in process list and details,<html redacted>,https://github.com/qutebrowser/qutebrowser/issues/6716,,['priority: 2 - low']
+robotframework/robotframework,"DateTime suffers from ""Year 2038"" problem with epoch conversion on 32 bit systems",<html redacted>,https://github.com/robotframework/robotframework/issues/4244,,"['bug', 'priority: medium']"
+robotframework/robotframework,DateTime.py: extend Convert Date epoch calculation to respect timezone via %Z date_format,<html redacted>,https://github.com/robotframework/robotframework/issues/4590,,[]
+GAM-team/got-your-back,Strptime datetime error,<html redacted>,https://github.com/GAM-team/got-your-back/issues/456,,[]
+GAM-team/got-your-back,"Warning ""datetime adapter is deprecated as of Python 3.12""",<html redacted>,https://github.com/GAM-team/got-your-back/issues/437,,[]
+google/timesketch,Error parsing datetime from CSV files,<html redacted>,https://github.com/google/timesketch/issues/2279,,"['Bug', 'Data import']"
+OCA/server-tools,[15.0][MIG] datetime_formatter: Migration to 15.0,<html redacted>,https://github.com/OCA/server-tools/issues/2273,,['enhancement']
+earthgecko/skyline,Apply time zone fix to skyline.js,<html redacted>,https://github.com/earthgecko/skyline/issues/18,,['enhancement']
+datactive/bigbang,Archive 'Date' column sometimes is string not datetime type,<html redacted>,https://github.com/datactive/bigbang/issues/183,,['Archive']
+pabigot/pyxb,Marshalling of restricted dateTime ignores restriction pattern,<html redacted>,https://github.com/pabigot/pyxb/issues/119,,[]
+pabigot/pyxb,What is the reason behind dateTime.XsdLiteral method logic,<html redacted>,https://github.com/pabigot/pyxb/issues/106,,[]
+pabigot/pyxb,TypeError: can't compare offset-naive and offset-aware datetimes,<html redacted>,https://github.com/pabigot/pyxb/issues/108,,['bug']
+lionheart/pinboard.py,Time zones on datetime objects,<html redacted>,https://github.com/lionheart/pinboard.py/issues/25,,[]
+djc/couchdb-python,DateTimeField and time zone,<html redacted>,https://github.com/djc/couchdb-python/issues/166,,['imported']
+djc/couchdb-python,`ViewResult` slicing with `datetime` object,<html redacted>,https://github.com/djc/couchdb-python/issues/297,,[]
+noirbizarre/flask-restplus,@api.expect decorator does not validate DateTime fields,<html redacted>,https://github.com/noirbizarre/flask-restplus/issues/204,,[]
+noirbizarre/flask-restplus,Sending datetime as a parameter to the GET Request.,<html redacted>,https://github.com/noirbizarre/flask-restplus/issues/343,,[]
+smart-on-fhir/client-py,"Create individual classes for Date, DateTime, Time and Instant",<html redacted>,https://github.com/smart-on-fhir/client-py/issues/11,,[]
+OxWearables/biobankAccelerometerAnalysis,GT3X expected time zone behaviour,<html redacted>,https://github.com/OxWearables/biobankAccelerometerAnalysis/issues/198,,"['bug', 'help wanted']"
+OxWearables/biobankAccelerometerAnalysis,GENEActive not parsing the tz/dst correctly,<html redacted>,https://github.com/OxWearables/biobankAccelerometerAnalysis/issues/203,,"['bug', 'priority']"
+gunthercox/ChatterBot,bug in datetime parsing,<html redacted>,https://github.com/gunthercox/ChatterBot/issues/651,,"['bug', 'help wanted']"
+vaexio/vaex,Datetime column conversion [to_datetime] support,<html redacted>,https://github.com/vaexio/vaex/issues/2358,,[]
+vaexio/vaex,[FEATURE-REQUEST] datetime comparing expression: automatic converts datetime value to string,<html redacted>,https://github.com/vaexio/vaex/issues/2375,,[]
+vaexio/vaex,max() on  datetime type    return 'NaT',<html redacted>,https://github.com/vaexio/vaex/issues/1340,,[]
+vaexio/vaex,Vaex Dataframe Parquet Exports Don't Perserve Datetimes,<html redacted>,https://github.com/vaexio/vaex/issues/646,,[]
+vaexio/vaex,Support datetime module (in addition to numpy datetime64),<html redacted>,https://github.com/vaexio/vaex/issues/659,,[]
+vaexio/vaex,Cannot retrieve the groups on datetime column after binning,<html redacted>,https://github.com/vaexio/vaex/issues/1303,,['bug']
+vaexio/vaex,"[BUG-REPORT] vaex to_pandas_df, datetime type values change",<html redacted>,https://github.com/vaexio/vaex/issues/1354,,[]
+vaexio/vaex,"[BUG-REPORT] ""None"" do not convert ""NaT"" when string type convert to datetime type ",<html redacted>,https://github.com/vaexio/vaex/issues/1292,,[]
+vaexio/vaex,[BUG-REPORT] Got unexpected argument type 'numpy.datetime64'> for compute function  when used scalar_datetime,<html redacted>,https://github.com/vaexio/vaex/issues/2317,,[]
+sunscrapers/djoser,add expiration  datetime field for validation and verification !?,<html redacted>,https://github.com/sunscrapers/djoser/issues/659,,[]
+seperman/deepdiff,DeepDiff cannot distinguish between datetime timezones,<html redacted>,https://github.com/seperman/deepdiff/issues/466,,[]
+google/transitfeed,No warning on missing DST adjustment,<html redacted>,https://github.com/google/transitfeed/issues/228,,"['bug', 'imported', 'App-FeedValidator', 'Difficulty-Hard']"
+biosustain/potion,Merge Date with DateString and DateTime with DateTimeString field,<html redacted>,https://github.com/biosustain/potion/issues/53,,[]
+dbcli/pgcli,Feature request: Autocomplete suggestion for current date or datetime,<html redacted>,https://github.com/dbcli/pgcli/issues/1280,,[]
+boto/boto3,Boto3 UTC DeprecationWarnings,<html redacted>,https://github.com/boto/boto3/issues/3889,,"['bug', 'p2']"
+cea-sec/miasm,IRCFG always sets dst to next block,<html redacted>,https://github.com/cea-sec/miasm/issues/1083,,[]
+GeneralMills/pytrends,tz (time zone) parameter does not work,<html redacted>,https://github.com/GeneralMills/pytrends/issues/490,,[]
+jeffknupp/sandman2,how to find a datetime value?,<html redacted>,https://github.com/jeffknupp/sandman2/issues/238,,[]
+marshmallow-code/apispec,Add minimum/maximum on date/datetime fields,<html redacted>,https://github.com/marshmallow-code/apispec/issues/440,,"['enhancement', 'help wanted']"
+OpenDataServices/flatten-tool,Datetime in the headings row causes TypeError,<html redacted>,https://github.com/OpenDataServices/flatten-tool/issues/438,,[]
+OpenDataServices/flatten-tool,Convert Excel dates to dates rather than datetimes if possible,<html redacted>,https://github.com/OpenDataServices/flatten-tool/issues/220,,[]
+Yelp/elastalert,Time Zone configuration for match percent rule,<html redacted>,https://github.com/Yelp/elastalert/issues/2377,,[]
+Yelp/elastalert,"job.modify(next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=random.randint(0, 15)))",<html redacted>,https://github.com/Yelp/elastalert/issues/2662,,[]
+Yelp/elastalert,"Excuse me, Can y add configuration options for scheduled task time zones",<html redacted>,https://github.com/Yelp/elastalert/issues/2845,,[]
+Yelp/elastalert,Getting TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'dict' when running my custom rule,<html redacted>,https://github.com/Yelp/elastalert/issues/1727,,[]
+Yelp/elastalert,Matches containing datetimes contain strings after aggregation,<html redacted>,https://github.com/Yelp/elastalert/issues/1262,,"['bug', 'enhancement']"
+Yelp/elastalert,Elastalert searching current timezone but Filebeat pushing to UTC time,<html redacted>,https://github.com/Yelp/elastalert/issues/2159,,[]
+Yelp/elastalert,How to convert timestamp in milliseconds to UTC format to generate alerts.,<html redacted>,https://github.com/Yelp/elastalert/issues/1660,,[]
+scrapinghub/dateparser,Daylight Saving Time (DST) not observed for US/Central (CST),<html redacted>,https://github.com/scrapinghub/dateparser/issues/443,,['Type: Bug']
+scrapinghub/dateparser,Handle DST unaware timezone abbreviations,<html redacted>,https://github.com/scrapinghub/dateparser/issues/1070,,[]
+scrapinghub/dateparser,Parsing date with ist or Bdst returns Israeli time zone,<html redacted>,https://github.com/scrapinghub/dateparser/issues/580,,['Type: Bug']
+scrapinghub/dateparser,datetime formatting problem,<html redacted>,https://github.com/scrapinghub/dateparser/issues/528,,['Type: Bug']
+scrapinghub/dateparser,Timezone selection during relative/partial datetime parsing,<html redacted>,https://github.com/scrapinghub/dateparser/issues/927,,[]
+scrapinghub/dateparser,"Parsing ISO 8601 datetimes without hyphens, colons",<html redacted>,https://github.com/scrapinghub/dateparser/issues/867,,['Type: Enhancement']
+scrapinghub/dateparser,Unable to parse date with UTC offset,<html redacted>,https://github.com/scrapinghub/dateparser/issues/375,,['Type: Bug']
+scrapinghub/dateparser,dateparser.parse returns None for any datetime using military time format,<html redacted>,https://github.com/scrapinghub/dateparser/issues/633,,['Type: Enhancement']
+scrapinghub/dateparser,TIMEZONE setting unable to handle two-digit UTC offset,<html redacted>,https://github.com/scrapinghub/dateparser/issues/1192,,[]
+scrapinghub/dateparser,The UTC time for different locations in search_dates,<html redacted>,https://github.com/scrapinghub/dateparser/issues/1161,,[]
+scrapinghub/dateparser,"""hh:mm"" incorrectly jumps 24 hours ahead when date in localtime is ahead of UTC date (eg New Zealand)",<html redacted>,https://github.com/scrapinghub/dateparser/issues/934,,[]
+dateutil/dateutil,rrule daylight saving issue,<html redacted>,https://github.com/dateutil/dateutil/issues/1240,,[]
+dateutil/dateutil,Memoize time zones,<html redacted>,https://github.com/dateutil/dateutil/issues/342,,"['enhancement', 'help wanted', 'time zones', 'high-difficulty']"
+dateutil/dateutil,Difference in behavior between `dateutil.tz.utc()` and `datetime.timezone.utc`,<html redacted>,https://github.com/dateutil/dateutil/issues/1205,,[]
+dateutil/dateutil,rrule generator skipping window during exit of DST,<html redacted>,https://github.com/dateutil/dateutil/issues/1351,,"['rrule', 'implementation-uncertain']"
+dateutil/dateutil,Wrong offset for America/Mexico_City in Python DateTimeZone after Daylight Saving Time cancellation,<html redacted>,https://github.com/dateutil/dateutil/issues/1283,,[]
+dateutil/dateutil,Feature request: support specifiying time zone by full name,<html redacted>,https://github.com/dateutil/dateutil/issues/93,,"['bug', 'parser', 'time zones']"
+dateutil/dateutil,Use singletons or factories for all time zone classes,<html redacted>,https://github.com/dateutil/dateutil/issues/668,,"['enhancement', 'help wanted', 'time zones', 'low-difficulty', 'medium-difficulty']"
+dateutil/dateutil,"python-dateutil returns ""naive"" datetime objects",<html redacted>,https://github.com/dateutil/dateutil/issues/1325,,[]
+dateutil/dateutil,Wrong DST info for Chile/Continental,<html redacted>,https://github.com/dateutil/dateutil/issues/1227,,[]
+dateutil/dateutil,Add (optional) support for seconds in time zone for isoparser,<html redacted>,https://github.com/dateutil/dateutil/issues/572,,"['enhancement', 'medium-difficulty', 'implementation-uncertain', 'isoparser']"
+dateutil/dateutil,Wrong DST time reported when using dst-end on 00:00 and month starts with Monday,<html redacted>,https://github.com/dateutil/dateutil/issues/1289,,[]
+dateutil/dateutil,"Wrong parsing - june 15,1987 to datetime.datetime(2023, 6, 15, 0, 0)",<html redacted>,https://github.com/dateutil/dateutil/issues/1321,,[]
+dateutil/dateutil,dst() value not correct in Asia/Colombo in 1945,<html redacted>,https://github.com/dateutil/dateutil/issues/1049,,[]
+dateutil/dateutil,Comma delimited datetime weird behavior,<html redacted>,https://github.com/dateutil/dateutil/issues/917,,[]
+dateutil/dateutil,EXIF datetime format is unsupported,<html redacted>,https://github.com/dateutil/dateutil/issues/271,,"['enhancement', 'parser']"
+dateutil/dateutil,dst() value not correct in America/Iqaluit during EWT / EPT,<html redacted>,https://github.com/dateutil/dateutil/issues/1050,,"['bug', 'time zones']"
+dateutil/dateutil,"BUG: ""t2m"" incorrectly parsed as datetime",<html redacted>,https://github.com/dateutil/dateutil/issues/1180,,[]
+dateutil/dateutil,datetime exception while parsing unambiguous string,<html redacted>,https://github.com/dateutil/dateutil/issues/487,,"['bug', 'parser']"
+dateutil/dateutil,"Wrong parsing - parse('2023年12月4日10点',fuzzy=True) datetime.datetime(2010, 12, 4, 0, 0)",<html redacted>,https://github.com/dateutil/dateutil/issues/1327,,[]
+dateutil/dateutil,_naive_is_dst results in exception for negative epoch dates on windows,<html redacted>,https://github.com/dateutil/dateutil/issues/434,,"['bug', 'time zones']"
+dateutil/dateutil,Add ability to convert datetime to Unix timestamp,<html redacted>,https://github.com/dateutil/dateutil/issues/23,,"['enhancement', 'utils', 'compat']"
+dateutil/dateutil,"make gettz(""UTC"") return tzutc()",<html redacted>,https://github.com/dateutil/dateutil/issues/1045,,[]
+dateutil/dateutil,Unable to parse strings with datetime from the beginning,<html redacted>,https://github.com/dateutil/dateutil/issues/1152,,[]
+dateutil/dateutil,Parser UTC offset logic is inverted,<html redacted>,https://github.com/dateutil/dateutil/issues/70,,"['enhancement', 'help wanted', 'parser', 'time zones', 'medium-difficulty']"
+dateutil/dateutil,Strange results for Kwajalein during UTC+11h -> UTC-12h transition in 1969 on OS X,<html redacted>,https://github.com/dateutil/dateutil/issues/838,,[]
+dateutil/dateutil,Equality in folded datetimes is inconsistent pre- and post-495,<html redacted>,https://github.com/dateutil/dateutil/issues/344,,"['bug', 'time zones', 'high-difficulty']"
+dateutil/dateutil,No exception raised when parsing datetime string with bogus year,<html redacted>,https://github.com/dateutil/dateutil/issues/640,,"['bug', 'parser']"
+dateutil/dateutil,Unpickle datetime with tzutc returns a new (different) instance of tzutc,<html redacted>,https://github.com/dateutil/dateutil/issues/1051,,[]
+dateutil/dateutil,Offset-naive and offset-aware datetime components allowed in rrulestr construction.,<html redacted>,https://github.com/dateutil/dateutil/issues/341,,['rrule']
+dateutil/dateutil,Parsing datetime with +0000 results in tzlocal and not tzutc on some systems.,<html redacted>,https://github.com/dateutil/dateutil/issues/1183,,[]
+dateutil/dateutil,example about Computing of relative deltas between two given date and/or datetime objects;,<html redacted>,https://github.com/dateutil/dateutil/issues/1297,,[]
+dateutil/dateutil,Be more explicit in the documentation that passing non-datetime strings has undefined behavior,<html redacted>,https://github.com/dateutil/dateutil/issues/1270,,"['documentation', 'parser', 'low-difficulty', 'good first issue']"
+dateutil/dateutil,"fuzzy_with_tokens parse should return datetime, skipped tokens, date tokens. (Added date tokens)",<html redacted>,https://github.com/dateutil/dateutil/issues/998,,[]
+dateutil/dateutil,"rrule's UNTIL dates automatically converted into datetime, fails between() calculation and RRULE string generation",<html redacted>,https://github.com/dateutil/dateutil/issues/938,,['rrule']
+dateutil/dateutil,It's costsly to find the min/max datetime from an rrrule as it expands the set,<html redacted>,https://github.com/dateutil/dateutil/issues/1004,,"['enhancement', 'documentation', 'rrule']"
+dateutil/dateutil,Confusing error message: RRULE UNTIL values must be specified in UTC when DTSTART is timezone-aware  ,<html redacted>,https://github.com/dateutil/dateutil/issues/851,,[]
+Emsu/prophet,"Cannot compare tz-naive and tz-aware "" ""datetime-like objects",<html redacted>,https://github.com/Emsu/prophet/issues/29,,[]
+tracim/tracim,Folder created with public upload feature are dated with utc datetime,<html redacted>,https://github.com/tracim/tracim/issues/2410,,"['frontend', 'backend', 'to sort', 'draft', 'integration 2.4']"
+tracim/tracim,replace mockapi time zones with a valid file,<html redacted>,https://github.com/tracim/tracim/issues/580,,[]
+tracim/tracim,public share: rename `disabled_datetime` (and `created_datetime` ?) ,<html redacted>,https://github.com/tracim/tracim/issues/2171,,"['backend', 'technical debt', 'to sort', 'draft']"
+tracim/tracim,Misc: datetime management in the API,<html redacted>,https://github.com/tracim/tracim/issues/4277,,"['frontend', 'backend', 'technical debt', 'to sort']"
+tracim/tracim,Consistant usage of utcnow() instead of now() in order to avoid datetime issue,<html redacted>,https://github.com/tracim/tracim/issues/3226,,"['technical debt', 'to sort']"
+codalab/codalab-worksheets,Support time zones consistently and comprehensively,<html redacted>,https://github.com/codalab/codalab-worksheets/issues/542,,"['bug', 'backend', 'p3']"
+carpentries/amy,Add Time & Time Zone to WRF,<html redacted>,https://github.com/carpentries/amy/issues/1722,,"['priority: defer', 'type: new feature', 'component: forms']"
+carpentries/amy,"Add  fields for start time, end time, and time zone to all events",<html redacted>,https://github.com/carpentries/amy/issues/2255,,['Getting started']
+carpentries/amy,Use local time or explicit UTC throughout UI,<html redacted>,https://github.com/carpentries/amy/issues/2457,,['type: enhancement']
+blaze/odo,"feature: enforce a path like convert(src, dst_0, dst_1, dst_final)",<html redacted>,https://github.com/blaze/odo/issues/599,,[]
+blaze/odo,Cannot import timezone aware datetimes from pandas into SQL,<html redacted>,https://github.com/blaze/odo/issues/524,,[]
+blaze/odo,odo can not read back datetime column from sqlite generated by itself,<html redacted>,https://github.com/blaze/odo/issues/392,,[]
+web2py/pydal,as_dict datetime.timedelta,<html redacted>,https://github.com/web2py/pydal/issues/541,,[]
+web2py/pydal,"Feature Request: add feature to use Postgres ""timestamp with time zone"" data type",<html redacted>,https://github.com/web2py/pydal/issues/344,,['feature request']
+web2py/pydal,Cannot update table containing null Datetime field ,<html redacted>,https://github.com/web2py/pydal/issues/511,,[]
+web2py/pydal,"OracleRepresenter does not support ""None"" for date/datetime objects",<html redacted>,https://github.com/web2py/pydal/issues/550,,[]
+klen/peewee_migrate,Bug report: migration datetime field not get default,<html redacted>,https://github.com/klen/peewee_migrate/issues/210,,[]
+suminb/finance,Make a datetime utility function,<html redacted>,https://github.com/suminb/finance/issues/26,,['enhancement']
+pyexcel/pyexcel-xlsx,"datetime(1899, 12, 30, 0, 0) is returned when '0' is typed in time formatted cell.",<html redacted>,https://github.com/pyexcel/pyexcel-xlsx/issues/23,,[]
+dask/dask,dataframe.read_sql_query does not work with datetime index,<html redacted>,https://github.com/dask/dask/issues/9383,,"['dataframe', 'needs attention', 'bug']"
+dask/dask,"to_parquet on datetime.date objects works on 2022.5.2, fails on 2022.6.0",<html redacted>,https://github.com/dask/dask/issues/9211,,"['discussion', 'parquet', 'needs attention', 'regression']"
+dask/dask,"`numeric_only` compatibility with `pandas>=2.0`, handling datetime and timedelta",<html redacted>,https://github.com/dask/dask/issues/9913,,"['dataframe', 'needs attention']"
+dask/dask,"Some datetime-properties (e.g., `tz`, `freq`, `freqstr`) not working",<html redacted>,https://github.com/dask/dask/issues/9123,,"['dataframe', 'needs attention', 'bug']"
+dask/dask,`.dt.tz` method fails on a timezone-aware datetime column,<html redacted>,https://github.com/dask/dask/issues/9007,,"['dataframe', 'bug']"
+xonsh/xonsh,History datetime parsing could be more friendly,<html redacted>,https://github.com/xonsh/xonsh/issues/5178,,['history']
+jorgebastida/awslogs,TypeError: can't subtract offset-naive and offset-aware datetimes,<html redacted>,https://github.com/jorgebastida/awslogs/issues/97,,[]
+pydata/pandas-datareader,Propose more robust datetime to unix time conversion in yahoo/daily.py,<html redacted>,https://github.com/pydata/pandas-datareader/issues/378,,['yahoo-finance']
+pydata/pandas-datareader,"FutureWarning: The argument 'date_parser' is deprecated and will be removed in a future version. Please use 'date_format' instead, or read your data in as 'object' dtype and then call 'to_datetime'",<html redacted>,https://github.com/pydata/pandas-datareader/issues/972,,[]
+aio-libs/aiomysql,DateTime with milliseconds,<html redacted>,https://github.com/aio-libs/aiomysql/issues/389,,['bug']
+aio-libs/aiomysql,Reading date '0000-00-00' from db does not result in python datetime.date objet but is converted to string,<html redacted>,https://github.com/aio-libs/aiomysql/issues/607,,['bug']
+nikharris0/probemon,Iso timestamp gives type object 'datetime.datetime' has no attribute 'datetime',<html redacted>,https://github.com/nikharris0/probemon/issues/7,,[]
+18F/tock,Make datetime formats consistent re: timecard submission,<html redacted>,https://github.com/18F/tock/issues/1300,,[]
+Kinto/kinto,Invalid last_modified value on a timezone other than UTC,<html redacted>,https://github.com/Kinto/kinto/issues/3419,,[]
+O365/python-o365,Time Zone Problem,<html redacted>,https://github.com/O365/python-o365/issues/368,,['bug']
+O365/python-o365,AttributeError: 'datetime.timezone' object has no attribute 'key,<html redacted>,https://github.com/O365/python-o365/issues/1077,,[]
+pvlib/pvlib-python,"Clearsky functions handling tz-aware datetimes as tz-naive, contrary to user guide",<html redacted>,https://github.com/pvlib/pvlib-python/issues/2054,,[]
+weewx/weewx,`wee_import` incorrectly assumes numeric data mapped to the field `dateTime` must be a unix epoch timestamp,<html redacted>,https://github.com/weewx/weewx/issues/856,,"['bug', 'stale']"
+gawel/aiocron,DST causing tasks to run twice.,<html redacted>,https://github.com/gawel/aiocron/issues/28,,[]
+gawel/aiocron,Incorrect cron calculation in croniter when DST changed,<html redacted>,https://github.com/gawel/aiocron/issues/7,,[]
+bparzella/secsgem,Can not get datetime using examples/gem_equipment.py,<html redacted>,https://github.com/bparzella/secsgem/issues/62,,[]
+kobotoolbox/kpi,How should time zones be handled?,<html redacted>,https://github.com/kobotoolbox/kpi/issues/3943,,"['question', 'UI & UX']"
+TailorDev/Watson,Ability to use a time zone other than the local time zone.,<html redacted>,https://github.com/TailorDev/Watson/issues/391,,['question']
+pimutils/todoman,Datetime difference failure with `list`,<html redacted>,https://github.com/pimutils/todoman/issues/370,,['bug']
+pimutils/todoman,"Expected datetime, date, or time, got: '%s'"" % ical",<html redacted>,https://github.com/pimutils/todoman/issues/336,,[]
+pimutils/todoman,"Test fails, if TZ=UTC is not set",<html redacted>,https://github.com/pimutils/todoman/issues/320,,['bug']
+pimutils/todoman,"3.8.0: test_default_due2, test_parse_datetime and test_list_due_date fail",<html redacted>,https://github.com/pimutils/todoman/issues/404,,[]
+ibmdb/python-ibmdb,Db2 z/OS: TIMESTAMP AT TIME ZONE not supported,<html redacted>,https://github.com/ibmdb/python-ibmdb/issues/875,,[]
+core-api/python-client,"TypeError  datetime.date(2017, 3, 28) is not JSON serializable",<html redacted>,https://github.com/core-api/python-client/issues/133,,[]
+avakar/pytoml,datetime issue,<html redacted>,https://github.com/avakar/pytoml/issues/14,,[]
+BingAds/BingAds-Python-SDK,Hourly aggregation in CampaignPerformanceReportRequest will disable the time zone setting,<html redacted>,https://github.com/BingAds/BingAds-Python-SDK/issues/272,,[]
+JamesRitchie/django-rest-framework-expiring-tokens,[Advice] Returns expired datetime in response,<html redacted>,https://github.com/JamesRitchie/django-rest-framework-expiring-tokens/issues/9,,[]
+plotly/dash,Feature request: implement formating for type='datetime' in dash-table,<html redacted>,https://github.com/plotly/dash/issues/2410,,[]
+plotly/dash,[BUG] Datetime axes don't work in dash when using datashader rasterize on a holoviews quadmesh/rasterplot ,<html redacted>,https://github.com/plotly/dash/issues/1678,,[]
+Brobin/django-seed,Seeding datetime objects fails due to Django 5.0 deprecating the `is_dst` argument to `timezone.make_aware`,<html redacted>,https://github.com/Brobin/django-seed/issues/119,,[]
+ipython/ipykernel,"ValueError: Can't clean for JSON: datetime.time(10, 0)",<html redacted>,https://github.com/ipython/ipykernel/issues/546,,[]
+marshmallow-code/marshmallow-sqlalchemy,Use AwareDateTime when generating field from DateTime(timezone=True),<html redacted>,https://github.com/marshmallow-code/marshmallow-sqlalchemy/issues/407,,[]
+astropy/astroplan,LocalTimeConstraint does not consider local time-zone,<html redacted>,https://github.com/astropy/astroplan/issues/466,,[]
+mishbahr/djangocms-forms,"Form submissions ""sent on"" does not respect settings.TIME_ZONE",<html redacted>,https://github.com/mishbahr/djangocms-forms/issues/70,,[]
+cowrie/cowrie,How do I set dst_ip field to be logged into the json?,<html redacted>,https://github.com/cowrie/cowrie/issues/1168,,[]
+spec-first/connexion,datetime.timeinterval support,<html redacted>,https://github.com/spec-first/connexion/issues/326,,['enhancement']
+man-group/arctic,[TickStore] Issue with daylight saving,<html redacted>,https://github.com/man-group/arctic/issues/635,,[]
+man-group/arctic,Impossible to asignate  datetime index,<html redacted>,https://github.com/man-group/arctic/issues/1006,,[]
+sdispater/orator,Option to use timestamps with time zone,<html redacted>,https://github.com/sdispater/orator/issues/185,,[]
+sdispater/orator,Datetime not working,<html redacted>,https://github.com/sdispater/orator/issues/405,,[]
+opendatacube/datacube-core,Single product matcher error fails if dataset document contains `datetime` content,<html redacted>,https://github.com/opendatacube/datacube-core/issues/1582,,[]
+orcasgit/django-fernet-fields,fernet_fields.EncryptedDateTimeField doesn’t save datetime timezone,<html redacted>,https://github.com/orcasgit/django-fernet-fields/issues/29,,[]
+garywiz/chaperone,Chaperone with cron job got crazy on DST change,<html redacted>,https://github.com/garywiz/chaperone/issues/18,,[]
+google/google-visualization-python,datetime timezone not applied correctly to js date object,<html redacted>,https://github.com/google/google-visualization-python/issues/6,,"['Priority-Medium', 'Type-Defect', 'auto-migrated']"
+tqdm/tqdm,Use of `datetime.datetime.utcfromtimestamp` shows `DeprecationWarning` in Python 3.12,<html redacted>,https://github.com/tqdm/tqdm/issues/1517,,[]
+pytest-dev/pytest,Timestamp in Pytest JUnit XML test report doesn't have time zone infomation,<html redacted>,https://github.com/pytest-dev/pytest/issues/7662,,"['type: enhancement', 'plugin: junitxml']"
+pytest-dev/pytest,datetime and timedelta suport for approx,<html redacted>,https://github.com/pytest-dev/pytest/issues/8395,,"['type: proposal', 'topic: approx']"
+healthchecks/healthchecks,Let users specify their preferred time zone either in account settings or project settings,<html redacted>,https://github.com/healthchecks/healthchecks/issues/365,,['feature']
+graphistry/pygraphistry,Default src/dst/node names for igraph/networkx,<html redacted>,https://github.com/graphistry/pygraphistry/issues/45,,['enhancement']
+Koed00/django-q,Schedules with 'schedule_type=DAILY' do not account for DST changes,<html redacted>,https://github.com/Koed00/django-q/issues/630,,[]
+Koed00/django-q,Can't pass a datetime as task arg in Scheduled,<html redacted>,https://github.com/Koed00/django-q/issues/328,,[]
+Koed00/django-q,Scheduler process sets next_run to UTC but loops over local time,<html redacted>,https://github.com/Koed00/django-q/issues/501,,[]
+django-tenants/django-tenants,Time Zone issue ,<html redacted>,https://github.com/django-tenants/django-tenants/issues/1055,,[]
+dropbox/dropbox-sdk-python,Include UTC timezone with returned datetimes,<html redacted>,https://github.com/dropbox/dropbox-sdk-python/issues/482,,['enhancement']
+OpenBazaar/OpenBazaar-Server,"Expiration_date in Contracts API appends UTC, conflicts with documentation",<html redacted>,https://github.com/OpenBazaar/OpenBazaar-Server/issues/439,,[]
+microsoft/Qcodes,Driver: USB phase shifters Pulsar microwave DST-10-480/1S,<html redacted>,https://github.com/microsoft/Qcodes/issues/702,,['driver']
+planetlabs/planet-client-python,create helper function for converting datetime string from API descriptions into datetime,<html redacted>,https://github.com/planetlabs/planet-client-python/issues/593,,[]
+planetlabs/planet-client-python,"""Not a date-time"" error on search when using datetimes with timezones ",<html redacted>,https://github.com/planetlabs/planet-client-python/issues/904,,['bug']
+praekeltfoundation/junebug,Use ISO datetimes in logs.,<html redacted>,https://github.com/praekeltfoundation/junebug/issues/102,,[]
+geex-arts/django-jet,datetime picker does not work correctly when used in inlines (tabular or stacked),<html redacted>,https://github.com/geex-arts/django-jet/issues/68,,[]
+jmcarp/flask-apispec,use_kwargs with fields.DateTime is parsed as string,<html redacted>,https://github.com/jmcarp/flask-apispec/issues/227,,[]
+zrnsm/pyculiarity,more datetime conversion issues,<html redacted>,https://github.com/zrnsm/pyculiarity/issues/9,,[]
+Azure/azure-storage-python,Include millisecond component (%f) in datetime serialization,<html redacted>,https://github.com/Azure/azure-storage-python/issues/708,,[]
+Azure/azure-storage-python,generate_blob_shared_access_signature produces SAS incompatible with Azure when time format strings are not formatted correctly or datetime objects are not timezone aware,<html redacted>,https://github.com/Azure/azure-storage-python/issues/598,,[]
+sk1project/sk1-wx,"Embroidery file formats DST, PES, EXP, PCS",<html redacted>,https://github.com/sk1project/sk1-wx/issues/196,,['UC2']
+gwu-libraries/sfm-ui,Email notification when collection end datetime is approaching / has occurred,<html redacted>,https://github.com/gwu-libraries/sfm-ui/issues/1041,,['enhancement']
+EnterpriseDB/barman,Barman commands fail with EXCEPTION: can't compare datetime.datetime to NoneType,<html redacted>,https://github.com/EnterpriseDB/barman/issues/590,,['triage']
+EnterpriseDB/barman,Convert datetime output into isoformat,<html redacted>,https://github.com/EnterpriseDB/barman/issues/533,,['enhancement']
+google/capirca,port group optimization for same src/dst rules,<html redacted>,https://github.com/google/capirca/issues/254,,['generator: cisco']
+kyper-data/python-highcharts,UTC time highstock,<html redacted>,https://github.com/kyper-data/python-highcharts/issues/50,,[]
+miki725/django-url-filter,UTC datetimes in the database queried against the ,<html redacted>,https://github.com/miki725/django-url-filter/issues/88,,[]
+miki725/django-url-filter,Error when trying to filter by a date range of a datetime field,<html redacted>,https://github.com/miki725/django-url-filter/issues/96,,[]
+lionheart/openradar-mirror,29788075: Calendar.nextDate does not respect provided time zone,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/16600,,"['reproducible:always', 'status:open', 'classification:other bug']"
+lionheart/openradar-mirror,20436138: ANCS should provide time/date with time zone information,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/1568,,"['classification:enhancement', 'status:open', 'reproducible:n/a']"
+lionheart/openradar-mirror,19024376: WKInterfaceDate Time Zones Do Not Have Second Level Accuracy,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/2698,,"['reproducible:always', 'status:open', 'classification:ui/usability']"
+lionheart/openradar-mirror,20436138: ANCS should provide time/date with time zone information,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/10484,,"['classification:enhancement', 'status:open', 'reproducible:n/a']"
+lionheart/openradar-mirror,19024376: WKInterfaceDate Time Zones Do Not Have Second Level Accuracy,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/11540,,"['reproducible:always', 'status:open', 'classification:ui/usability']"
+lionheart/openradar-mirror,32561365: Allow changing the time zone for the iOS Simulator,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/17483,,"['status:open', 'classification:feature request']"
+lionheart/openradar-mirror,30456155: Impossible to type St. Louis to choose a time zone.,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/16882,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,20119392: Spotlight should be able to show time in different time zones.,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/10678,,"['classification:enhancement', 'status:open', 'reproducible:n/a']"
+lionheart/openradar-mirror,42111647: iOS 12 automatic birthday call reminders should handle different time zones,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/20080,,['status:open']
+lionheart/openradar-mirror,20119392: Spotlight should be able to show time in different time zones.,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/1767,,"['classification:enhancement', 'status:open', 'reproducible:n/a']"
+lionheart/openradar-mirror,19437207: Apple Store App: Time zone dropped when adding Genius Bar appointment to calendar,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/2322,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,19437207: Apple Store App: Time zone dropped when adding Genius Bar appointment to calendar,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/11221,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,25133123: Time is automatically adjusted in non-DST countries,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/15161,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,20800235: Not obvious how to set a time zone in World Clock glance on Apple Watch,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/1318,,"['reproducible:always', 'status:open', 'classification:ui/usability']"
+lionheart/openradar-mirror,19274432: EKEventStore: all day events are created for the wrong day after changing the time zone,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/2456,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,20800235: Not obvious how to set a time zone in World Clock glance on Apple Watch,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/10246,,"['reproducible:always', 'status:open', 'classification:ui/usability']"
+lionheart/openradar-mirror,19274432: EKEventStore: all day events are created for the wrong day after changing the time zone,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/11348,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,34594717: class/static methods of NSTimeZone/TimeZone still return system time zone after changing NSTimeZone.default,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/18447,,"['reproducible:always', 'classification:serious bug', 'status:duplicate of 34507729']"
+lionheart/openradar-mirror,39027154: iOS Simulator showing UTC time only,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/19552,,"['classification:serious bug', 'reproducible:sometimes', 'status:closed - duplicate of 32944081']"
+lionheart/openradar-mirror,13110886: iPhoto: Setting photo date via Applescript off by an hour on DST switch days,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/5331,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+lionheart/openradar-mirror,13110886: iPhoto: Setting photo date via Applescript off by an hour on DST switch days,<html redacted>,https://github.com/lionheart/openradar-mirror/issues/14116,,"['reproducible:always', 'status:open', 'classification:serious bug']"
+sobolevn/python-code-disasters,"import datetime as date; [print(i) for i in sorted([i.rstrip() for i in lines.splitlines() if i and i[0]=='['],key=lambda x: date.datetime.strptime(x[-9:-1], ""%b %Y""), reverse=True)]",<html redacted>,https://github.com/sobolevn/python-code-disasters/issues/4,,[]
+zulip/zulip,Automatically detect the user’s time zone,<html redacted>,https://github.com/zulip/zulip/issues/16957,,"['help wanted', 'area: settings (user)', 'in progress', 'priority: high']"
+zulip/zulip,Display settings → Time zone is not used for display,<html redacted>,https://github.com/zulip/zulip/issues/16958,,['area: settings (user)']
+zulip/zulip,Add option to add a mentioned <time zone aware time> to Google Calendar.,<html redacted>,https://github.com/zulip/zulip/issues/17274,,"['help wanted', 'area: message feed (UI)']"
+zulip/zulip,Add UTC Offset in Timezone dropdown,<html redacted>,https://github.com/zulip/zulip/issues/20988,,"['help wanted', 'area: settings (user)', 'area: settings UI']"
+vega/altair,Adding `datetime.date` Support,<html redacted>,https://github.com/vega/altair/issues/2199,,['enhancement']
+graphql-python/graphene,Failed to print schema with InputObjectType with DateTime field with default_value,<html redacted>,https://github.com/graphql-python/graphene/issues/1293,,['🐛 bug']
+jupyter-incubator/sparkmagic,Why %%sql outputs timestamp in UTC instead of local format?,<html redacted>,https://github.com/jupyter-incubator/sparkmagic/issues/446,,[]
+jmathai/elodie,Timezone -- UTC offset,<html redacted>,https://github.com/jmathai/elodie/issues/293,,['enhancement']
+jmathai/elodie,ISO 8601 datetime without capitalising the rest of the filename?,<html redacted>,https://github.com/jmathai/elodie/issues/451,,[]
+OneDrive/onedrive-sdk-python,Failed to parse datetime of FileSystemInfo facet,<html redacted>,https://github.com/OneDrive/onedrive-sdk-python/issues/89,,[]
+OneDrive/onedrive-sdk-python,Suggestion: Explicit tzinfo in datetimes returned by SDK,<html redacted>,https://github.com/OneDrive/onedrive-sdk-python/issues/90,,[]
+swapniljariwala/nsepy,Date index is not a Datetime index,<html redacted>,https://github.com/swapniljariwala/nsepy/issues/67,,[]
+nipy/heudiconv,reproin: might want to change logic for dups to actually use datetime not seq number,<html redacted>,https://github.com/nipy/heudiconv/issues/740,,[]
+guyskk/validr,Feature: use ciso8601 to implement datetime validator ,<html redacted>,https://github.com/guyskk/validr/issues/55,,['enhancement']
+mesosphere/marathon-lb,[Question] What are all the available options for expressions like %[dst_port] or %[req.hdr(host)],<html redacted>,https://github.com/mesosphere/marathon-lb/issues/671,,[]
+common-workflow-language/cwltool,"OSError: [Errno 18] Invalid cross-device link error in move os.rename(src, real_dst) ",<html redacted>,https://github.com/common-workflow-language/cwltool/issues/1645,,[]
+MacHu-GWU/uszipcode-project,Time zones returned are not pytz compatible,<html redacted>,https://github.com/MacHu-GWU/uszipcode-project/issues/31,,['enhancement']
+JBKahn/django-sharding,Add mysql/utc implimentation of the sharded field,<html redacted>,https://github.com/JBKahn/django-sharding/issues/61,,[]
+ladybug-tools/ladybug,Add a method to HourlyContinuousCollection set data in EPW datetime range,<html redacted>,https://github.com/ladybug-tools/ladybug/issues/490,,['enhancement']
+Open-Power-System-Data/time_series,Datetime formats inconsistent with the data,<html redacted>,https://github.com/Open-Power-System-Data/time_series/issues/28,,[]
+nasa/apod-api,At which UTC time does it update the picture?,<html redacted>,https://github.com/nasa/apod-api/issues/116,,[]
+panzarino/mlbgame,Changing time zone to Pacific,<html redacted>,https://github.com/panzarino/mlbgame/issues/132,,['question']
+projecthamster/hamster-gtk,Localize datetime representation,<html redacted>,https://github.com/projecthamster/hamster-gtk/issues/41,,"['Enhancement', 'Ready']"
+chubin/wttr.in,Daylight Saving Time switched early,<html redacted>,https://github.com/chubin/wttr.in/issues/588,,[]
+chubin/wttr.in,Time zones appear to be broken in the moon phase display,<html redacted>,https://github.com/chubin/wttr.in/issues/816,,[]
+TranscryptOrg/Transcrypt,datetime error in --tconv option,<html redacted>,https://github.com/TranscryptOrg/Transcrypt/issues/677,,"['NEED: info', 'IS: could not reproduce']"
+stratosphereips/StratosphereLinuxIPS,"sometimes we report connection to blacklisted ipx from ip x , same ip as src and dst. this is probably coming from the p2p blacklisted ip evidence, or the urlhause set_Evidence",<html redacted>,https://github.com/stratosphereips/StratosphereLinuxIPS/issues/549,,[]
+stratosphereips/StratosphereLinuxIPS,Fix the timezone that is broken inside Docker. Now is UTC. Best to share the volume /etc/timezone when running docker,<html redacted>,https://github.com/stratosphereips/StratosphereLinuxIPS/issues/321,,[]
+DimaKudosh/pydfs-lineup-optimizer,"Forcing a 5 man game stack - not allowing a 6th, or DST to trickle in",<html redacted>,https://github.com/DimaKudosh/pydfs-lineup-optimizer/issues/309,,[]
+andreasgrill/auto-selfcontrol,Time zone not changing,<html redacted>,https://github.com/andreasgrill/auto-selfcontrol/issues/61,,[]
+ydataai/ydata-profiling,Comparing datetime and str columns crashes with TypeError,<html redacted>,https://github.com/ydataai/ydata-profiling/issues/1378,,['information requested ❔']
+inkstitch/inkstitch,Save as dst,<html redacted>,https://github.com/inkstitch/inkstitch/issues/3014,,[]
+inkstitch/inkstitch,Reading dst file on tajima embroidery machine,<html redacted>,https://github.com/inkstitch/inkstitch/issues/2673,,['file format']
+inkstitch/inkstitch,DST file not being read by a Tajima embroidery machine,<html redacted>,https://github.com/inkstitch/inkstitch/issues/2388,,['file format']
+inkstitch/inkstitch,Export embroidery file to DST Tajima is not working with machine Butterfly JX550L-W,<html redacted>,https://github.com/inkstitch/inkstitch/issues/1296,,['file format']
+pennersr/django-trackstats,Always use UTC when getting the current time,<html redacted>,https://github.com/pennersr/django-trackstats/issues/11,,[]
+betcode-org/betfair,Timezone aware fields in JSON response lose their timezone on conversion to datetime,<html redacted>,https://github.com/betcode-org/betfair/issues/199,,['help wanted']
+skarim/vobject,Should support datetime.datetime.utc,<html redacted>,https://github.com/skarim/vobject/issues/154,,[]
+skarim/vobject,TypeError: can't compare offset-naive and offset-aware datetimes in getrruleset,<html redacted>,https://github.com/skarim/vobject/issues/139,,[]
+skarim/vobject,parsing date and datetime: vobject rejects valid ISO8601 date strings.,<html redacted>,https://github.com/skarim/vobject/issues/110,,[]
+uclnlp/pycodesuggest,Can't get attribute 'UTC',<html redacted>,https://github.com/uclnlp/pycodesuggest/issues/27,,[]
+mvantellingen/python-zeep,Error(s) with invalid DateTime ,<html redacted>,https://github.com/mvantellingen/python-zeep/issues/522,,['design-decision-needed']
+mvantellingen/python-zeep,Extending datatypes (ex xsd.DateTime),<html redacted>,https://github.com/mvantellingen/python-zeep/issues/242,,['enhancement']
+mvantellingen/python-zeep,DateTime Formatting Issues with ZEEP,<html redacted>,https://github.com/mvantellingen/python-zeep/issues/601,,[]
+mvantellingen/python-zeep,[QUESTION] Can i pass string to datetime parameter,<html redacted>,https://github.com/mvantellingen/python-zeep/issues/642,,[]
+mvantellingen/python-zeep,ValueError: The DateTime type doesn't accept collections as value,<html redacted>,https://github.com/mvantellingen/python-zeep/issues/361,,[]
+pymedusa/Medusa,[APP SUBMITTED]: TypeError: '<' not supported between instances of 'NoneType' and 'datetime.datetime',<html redacted>,https://github.com/pymedusa/Medusa/issues/11596,,[]
+pytroll/satpy,Replacement of deprecated `datetime.datetime.utcnow()`,<html redacted>,https://github.com/pytroll/satpy/issues/2752,,[]
+pytroll/satpy,Support timezone-aware datetime objects in `find_files_and_readers`,<html redacted>,https://github.com/pytroll/satpy/issues/1166,,[]
+MISP/misp-modules,OpenIOC importer: hostname recongnized as ip-dst,<html redacted>,https://github.com/MISP/misp-modules/issues/128,,[]
+yutiansut/QUANTAXIS,Both dates must have the same UTC offse,<html redacted>,https://github.com/yutiansut/QUANTAXIS/issues/1723,,[]
+yutiansut/QUANTAXIS,上午收盘分钟数据的datetime有些是13:00，有些是11:30，不统一,<html redacted>,https://github.com/yutiansut/QUANTAXIS/issues/1488,,[]
+agronholm/apscheduler,Feature request: well-defined behaviour around DST thresholds,<html redacted>,https://github.com/agronholm/apscheduler/issues/120,,['enhancement']
+agronholm/apscheduler,DST transitions cause APScheduler to incorrectly calculate next trigger times,<html redacted>,https://github.com/agronholm/apscheduler/issues/529,,['bug']
+owocki/pytrader,All timezones in UTC,<html redacted>,https://github.com/owocki/pytrader/issues/9,,['bug']
+oduwsdl/ipwb,Refactor datetime conversion and parsing for replay,<html redacted>,https://github.com/oduwsdl/ipwb/issues/394,,"['enhancement', 'Code/Project quality', 'ipwb replay']"
+oduwsdl/ipwb,Support Datetime other than those specified as 14-digits,<html redacted>,https://github.com/oduwsdl/ipwb/issues/283,,"['Memento 🕣', 'i/o', 'pending']"
+indiejoseph/cnn-text-classification-tf-chinese,InternalError: Dst tensor is not initialized.,<html redacted>,https://github.com/indiejoseph/cnn-text-classification-tf-chinese/issues/8,,[]
+janpipek/physt,Datetime / calendar histograms,<html redacted>,https://github.com/janpipek/physt/issues/31,,['enhancement']
+holoviz/geoviews,Geoviews does not support NaT with time zone aware datetimes,<html redacted>,https://github.com/holoviz/geoviews/issues/617,,['type: bug']
+jasonrollins/shareplum,Shareplum query does not consider datetime,<html redacted>,https://github.com/jasonrollins/shareplum/issues/156,,[]
+Redjumpman/Jumper-Plugins,[Raffle] Option to Show End Time in a Chosen Timezone Instead of UTC,<html redacted>,https://github.com/Redjumpman/Jumper-Plugins/issues/192,,['Feature Request']
+decalage2/olefile,Overflow exception when converting from FILETIME to DateTime(Python),<html redacted>,https://github.com/decalage2/olefile/issues/62,,"['bug', 'major']"
+Weasyl/weasyl,Moderator tools should use UTC for everything,<html redacted>,https://github.com/Weasyl/weasyl/issues/145,,"['new dev friendly', 'ui', 'moderation']"
+splewis/get5-web,Python is using UTC timezone not local timezone,<html redacted>,https://github.com/splewis/get5-web/issues/148,,['enhancement']
+sdispater/pendulum,IsADirectoryError in datetime.py,<html redacted>,https://github.com/sdispater/pendulum/issues/829,,[]
+sdispater/pendulum,"tests/tz/test_timezone.py::test_dst, tests/datetime/test_behavior.py::test_proper_dst tests fail",<html redacted>,https://github.com/sdispater/pendulum/issues/644,,[]
+sdispater/pendulum,test_setting_timezone fails on day of daylight saving time change,<html redacted>,https://github.com/sdispater/pendulum/issues/541,,[]
+sdispater/pendulum,Add DateTime to typing for diff(),<html redacted>,https://github.com/sdispater/pendulum/issues/823,,[]
+sdispater/pendulum,DeprecationWarning about datetime.utcfromtimestamp in Python-3.12,<html redacted>,https://github.com/sdispater/pendulum/issues/830,,[]
+sdispater/pendulum,timedelta additions to pendulum.DateTime,<html redacted>,https://github.com/sdispater/pendulum/issues/817,,[]
+sdispater/pendulum,How do I type hint pendulum.datetime.DateTime?,<html redacted>,https://github.com/sdispater/pendulum/issues/558,,"['Code Quality', 'Typing']"
+sdispater/pendulum,Default datetime string format changed in 3.0 release,<html redacted>,https://github.com/sdispater/pendulum/issues/800,,[]
+sdispater/pendulum,Incorrect comparison at DST transition and Interval fail,<html redacted>,https://github.com/sdispater/pendulum/issues/351,,[]
+sdispater/pendulum,DateTime.replace incorrectly changes the time of a naive datetime,<html redacted>,https://github.com/sdispater/pendulum/issues/697,,[]
+sdispater/pendulum,instance() fails for datetimes with pytz.FixedOffsets,<html redacted>,https://github.com/sdispater/pendulum/issues/807,,[]
+sdispater/pendulum,Regression - Inconsistent DBAPI serialization of pendulum datetimes,<html redacted>,https://github.com/sdispater/pendulum/issues/798,,[]
+sdispater/pendulum,is_utc() returns False when parsing from a UTC date,<html redacted>,https://github.com/sdispater/pendulum/issues/293,,[]
+sdispater/pendulum,BUG - datetime parsing substracts 1 day,<html redacted>,https://github.com/sdispater/pendulum/issues/612,,[]
+sdispater/pendulum,Difference from stdlib `datetime` re: types?,<html redacted>,https://github.com/sdispater/pendulum/issues/495,,[]
+sdispater/pendulum,unexpected behavior comparing date with datetime,<html redacted>,https://github.com/sdispater/pendulum/issues/423,,[]
+sdispater/pendulum,to_rfc3339_string with naive datetime,<html redacted>,https://github.com/sdispater/pendulum/issues/311,,[]
+sdispater/pendulum,Accept dst_rule parameter in pendulum.parse und from_format,<html redacted>,https://github.com/sdispater/pendulum/issues/224,,[]
+sdispater/pendulum,pendulum.now() type hint doesn't allow datetime.timezone,<html redacted>,https://github.com/sdispater/pendulum/issues/783,,[]
+sdispater/pendulum,Zero datetime could not change timezone correctly,<html redacted>,https://github.com/sdispater/pendulum/issues/472,,[]
+sdispater/pendulum,dst_rule not implemented in 3.x? Has it in documentation but examples don't work.,<html redacted>,https://github.com/sdispater/pendulum/issues/789,,[]
+sdispater/pendulum,DateTime().set(tz=...) tz keyword return wrong value,<html redacted>,https://github.com/sdispater/pendulum/issues/407,,[]
+sdispater/pendulum,AttributeError: 'DateTime' object has no attribute 'add_timedelta',<html redacted>,https://github.com/sdispater/pendulum/issues/331,,[]
+sdispater/pendulum,Wrong day for parsed datetime only in python 3,<html redacted>,https://github.com/sdispater/pendulum/issues/493,,[]
+sdispater/pendulum,Add utc variant now for factory use,<html redacted>,https://github.com/sdispater/pendulum/issues/486,,[]
+sdispater/pendulum,Add subscripting to Period in order to specify Date or DateTime,<html redacted>,https://github.com/sdispater/pendulum/issues/605,,[]
+sdispater/pendulum,Cannot pickle TZFixedOffset (and therefore datetimes with fixed offsets using C extensions),<html redacted>,https://github.com/sdispater/pendulum/issues/305,,[]
+sdispater/pendulum,arithmetic calculation of datetime is not correct if a month has 31 days,<html redacted>,https://github.com/sdispater/pendulum/issues/671,,[]
+sdispater/pendulum,"pendulum.instance() incorrectly converts timezone to ""+00:00"" instead of ""UTC""",<html redacted>,https://github.com/sdispater/pendulum/issues/555,,[]
+sdispater/pendulum,[DOC] trick for unpickle pendulum v2 DateTime from v3; fix ModuleNotFoundError: No module named 'pendulum.tz.zoneinfo',<html redacted>,https://github.com/sdispater/pendulum/issues/723,,[]
+sdispater/pendulum,"If you have the /etc/timezone file set to a timezone string, pendulum.UTC has that timezone's utcoffset instead of None",<html redacted>,https://github.com/sdispater/pendulum/issues/814,,[]
+taspinar/twitterscraper,[Feature] Datetime support,<html redacted>,https://github.com/taspinar/twitterscraper/issues/246,,[]
+nithinmurali/pygsheets,Datetime formatting when importing from dataframe,<html redacted>,https://github.com/nithinmurali/pygsheets/issues/391,,[]
+silentsokolov/django-admin-rangefilter,Feature request : condensed layout for datetime filter,<html redacted>,https://github.com/silentsokolov/django-admin-rangefilter/issues/101,,[]
+tableau/server-client-python,Replace custom time handling with datetime/timedelta,<html redacted>,https://github.com/tableau/server-client-python/issues/1336,,['enhancement']
+snowflakedb/snowflake-connector-python,SNOW-1444940: Write to pandas with datetime with timezone has no timezone in the resulting dataframe,<html redacted>,https://github.com/snowflakedb/snowflake-connector-python/issues/1952,,"['bug', 'status-triage_done']"
+snowflakedb/snowflake-sqlalchemy,SNOW-219884: Pandas datetime with timezone converts to `timestamp_ntz` in snowflake,<html redacted>,https://github.com/snowflakedb/snowflake-sqlalchemy/issues/199,,"['bug', 'status-triage_done']"
+MagicStack/asyncpg,"DEFAULT NOW() WITH TIME ZONE 'UTC' is getting ignored, thus returning a naive datetime when queried.",<html redacted>,https://github.com/MagicStack/asyncpg/issues/1002,,[]
+MagicStack/asyncpg,Cannot use datetimes before UNIX epoch on Windows,<html redacted>,https://github.com/MagicStack/asyncpg/issues/1115,,[]
+MagicStack/asyncpg,invalid input for query argument (can't subtract offset-naive and offset-aware datetimes),<html redacted>,https://github.com/MagicStack/asyncpg/issues/1139,,[]
+MagicStack/asyncpg,set value to datetime.time for TIME type is not working,<html redacted>,https://github.com/MagicStack/asyncpg/issues/920,,[]
+kayak/pypika,MSSQLQuery insert datetime error,<html redacted>,https://github.com/kayak/pypika/issues/653,,[]
+pallets-eco/flask-caching,Add support for datetime.timedelta when specifying timeout,<html redacted>,https://github.com/pallets-eco/flask-caching/issues/266,,['enhancement']
+AppDaemon/appdaemon,Getting 'Object of type datetime is not JSON serializable' error on 4.4.2,<html redacted>,https://github.com/AppDaemon/appdaemon/issues/1757,,['bug']
+pingcap/docs,TiDB Docs Dash | 2024 Jan 9 - Jan 12 (UTC) | Participation Introduction,<html redacted>,https://github.com/pingcap/docs/issues/15479,,['2024-tidb-docs-dash']
+juliotrigo/sqlalchemy-filters,filter on DateTime and Time sqlalchemy column types,<html redacted>,https://github.com/juliotrigo/sqlalchemy-filters/issues/37,,['question']
+freach/udatetime,Fix POSIX only support for _get_local_utc_offset(),<html redacted>,https://github.com/freach/udatetime/issues/1,,[]
+freach/udatetime,datetimes cannot be pickled: attribute lookup FixedOffset_type on rfc3339 failed,<html redacted>,https://github.com/freach/udatetime/issues/29,,[]
+celery/django-celery-beat,Cronjob stops running under specific time zone setting,<html redacted>,https://github.com/celery/django-celery-beat/issues/629,,[]
+celery/django-celery-beat,Why does Clocked Time have no time zone information,<html redacted>,https://github.com/celery/django-celery-beat/issues/456,,[]
+celery/django-celery-beat,expires tz problem: expires timedelta with datetime is naive on beat when as utc on worker,<html redacted>,https://github.com/celery/django-celery-beat/issues/381,,[]
+celery/django-celery-beat,"The last_run_at time is always in UTC, which differs from my local configuration time.",<html redacted>,https://github.com/celery/django-celery-beat/issues/759,,[]
+cuemacro/findatapy,Time zone of series,<html redacted>,https://github.com/cuemacro/findatapy/issues/44,,[]
+celery/django-celery-results,Display the seconds of the datetime fields in the django admin,<html redacted>,https://github.com/celery/django-celery-results/issues/403,,[]
+liuliqiang/redisbeat,jsonpickle issues parsing datetime ,<html redacted>,https://github.com/liuliqiang/redisbeat/issues/42,,[]
+vrcmarcos/elasticmock,FakeQueryCondition._evaluate_for_range_query_type tries to isoparse a datetime object,<html redacted>,https://github.com/vrcmarcos/elasticmock/issues/84,,[]
+aruhier/virt-backup,UTC or locale timezone,<html redacted>,https://github.com/aruhier/virt-backup/issues/5,,['enhancement']
+graphql-python/graphene-django,Cannot Serialize the datetime ,<html redacted>,https://github.com/graphql-python/graphene-django/issues/1075,,['🐛bug']
+graphql-python/graphene-django,Converters cannot convert datetime.timedelta to float.,<html redacted>,https://github.com/graphql-python/graphene-django/issues/348,,"['✨enhancement', 'help wanted']"
+python-social-auth/social-app-django,Incorrect datetime value error applying migrations from v3.2.0,<html redacted>,https://github.com/python-social-auth/social-app-django/issues/268,,[]
+ivandokov/phockup, [WARNING] - unsupported operand type(s) for +: 'NoneType' and 'datetime.timedelta',<html redacted>,https://github.com/ivandokov/phockup/issues/220,,[]
+sassoftware/python-swat,read_excel can't read datetime values,<html redacted>,https://github.com/sassoftware/python-swat/issues/116,,[]
+tobi-wan-kenobi/bumblebee-status,"Sun module throws error into the bar : ""error: can't compare offset-naive and offset-aware datetimes""",<html redacted>,https://github.com/tobi-wan-kenobi/bumblebee-status/issues/1014,,[]
+soynatan/django-easy-audit,Add index for CRUDEvent.datetime,<html redacted>,https://github.com/soynatan/django-easy-audit/issues/250,,[]
+Parsl/parsl,monitoring timestamps should be in UTC,<html redacted>,https://github.com/Parsl/parsl/issues/2194,,"['bug', 'monitoring']"
+chenjr0719/Facebook-Page-Crawler,AttributeError: 'datetime.datetime' object has no attribute 'timestamp',<html redacted>,https://github.com/chenjr0719/Facebook-Page-Crawler/issues/4,,[]
+facebook/prophet,"Loading META Prophet model gives a tz, datetime error",<html redacted>,https://github.com/facebook/prophet/issues/2581,,[]
+liangliangyy/DjangoBlog,按照说明操作，显示页面报错：数据库返回了无效的datetime值。是否安装了数据库的时区定义？,<html redacted>,https://github.com/liangliangyy/DjangoBlog/issues/594,,[]
+althonos/InstaLooter,New install creating duplicates because of datetime issue,<html redacted>,https://github.com/althonos/InstaLooter/issues/243,,['question']
+chovanecm/sacredboard,Displaying datetime objects,<html redacted>,https://github.com/chovanecm/sacredboard/issues/109,,[]
+chovanecm/sacredboard,Sacredboard shows UTC times instead of local times,<html redacted>,https://github.com/chovanecm/sacredboard/issues/27,,['bug']
+betcode-org/flumine,datetime.utcnow() deprecated in Python 3.12,<html redacted>,https://github.com/betcode-org/flumine/issues/751,,[]
+betcode-org/flumine,datetime patching bug,<html redacted>,https://github.com/betcode-org/flumine/issues/584,,['bug']
+wagtail/wagtail-personalisation,Rules should use timezone-aware datetimes,<html redacted>,https://github.com/wagtail/wagtail-personalisation/issues/196,,[]
+kennethreitz/maya,Iterator for continuos datetimes,<html redacted>,https://github.com/kennethreitz/maya/issues/115,,['enhancement']
+kennethreitz/maya,Inconsistency between date and datetime,<html redacted>,https://github.com/kennethreitz/maya/issues/176,,[]
+danfengcao/binlog2sql,在解析datetime时错误,<html redacted>,https://github.com/danfengcao/binlog2sql/issues/60,,[]
+teamclairvoyant/airflow-maintenance-dags,Naive datetime is disallowed in db cleanup dag,<html redacted>,https://github.com/teamclairvoyant/airflow-maintenance-dags/issues/108,,[]
+rsheftel/pandas_market_calendars,Inconsistent use of time zones ,<html redacted>,https://github.com/rsheftel/pandas_market_calendars/issues/260,,[]
+thejeffreystone/home-assistant-configuration,Move all time based automations to datetime inputs,<html redacted>,https://github.com/thejeffreystone/home-assistant-configuration/issues/11,,['refactor']
+cloudflare/sqlalchemy-clickhouse,Datetime not handled,<html redacted>,https://github.com/cloudflare/sqlalchemy-clickhouse/issues/36,,[]
+da4089/simplefix,Python 3.12: datetime changes,<html redacted>,https://github.com/da4089/simplefix/issues/59,,[]
+multimeric/PandasSchema,get_errors allow_empty=True fails with datetime types,<html redacted>,https://github.com/multimeric/PandasSchema/issues/43,,[]
+Netflix-Skunkworks/stethoscope,Replace code that assumes US/Pacific time zone,<html redacted>,https://github.com/Netflix-Skunkworks/stethoscope/issues/74,,"['bug', 'help wanted', 'difficulty: newcomer']"
+thingsboard/thingsboard-gateway,[FEATURE] DateTime Format As User Parameter,<html redacted>,https://github.com/thingsboard/thingsboard-gateway/issues/1216,,['feature']
+glutanimate/review-heatmap,Review Heatmap adding today's reviews to yesterday after DST time change,<html redacted>,https://github.com/glutanimate/review-heatmap/issues/99,,['bug']
+chaoss/augur,We should use Timestamp With Time Zone,<html redacted>,https://github.com/chaoss/augur/issues/1370,,"['server', 'workers', 'database', 'devops']"
+chaoss/augur,Convert datetime fields to datetimetz where github returns data in that format,<html redacted>,https://github.com/chaoss/augur/issues/2437,,"['feature-request', 'database', 'add-feature']"
+capless/warrant,Unable to get expires_in or expires_datetime after authenticate,<html redacted>,https://github.com/capless/warrant/issues/89,,[]
+rytilahti/python-eq3bt,Time zone awareness,<html redacted>,https://github.com/rytilahti/python-eq3bt/issues/25,,"['enhancement', 'help wanted']"
+datadotworld/data.world-py,Support date/datetime and RDF types generally as query parameters,<html redacted>,https://github.com/datadotworld/data.world-py/issues/70,,[]
+snipsco/snips-nlu,Number not identified as datetime,<html redacted>,https://github.com/snipsco/snips-nlu/issues/852,,['bug']
+snipsco/snips-nlu,Datetime does not recognize 24h format,<html redacted>,https://github.com/snipsco/snips-nlu/issues/874,,['bug']
+snipsco/snips-nlu,Snips-nlu country and datetime not picking up,<html redacted>,https://github.com/snipsco/snips-nlu/issues/860,,['bug']
+snipsco/snips-nlu,Very slow runtimes when datetime is in a certain format,<html redacted>,https://github.com/snipsco/snips-nlu/issues/888,,['bug']
+googleapis/python-bigquery-pandas,append to table with DATETIME column with generated schema,<html redacted>,https://github.com/googleapis/python-bigquery-pandas/issues/450,,"['type: feature request', 'api: bigquery']"
+avrae/avrae,"AFR-640 Add `datetime.datetime` and `datetime.timedelta` to aliasing context,",<html redacted>,https://github.com/avrae/avrae/issues/1277,,"['featurereq', 'P4: Low', '+10']"
+oasis-open/cti-python-stix2,Cannot accept timestamps more precise than microseconds because of datetime module limitation,<html redacted>,https://github.com/oasis-open/cti-python-stix2/issues/578,,[]
+plone/guillotina,[Question] Datetime deserialization format,<html redacted>,https://github.com/plone/guillotina/issues/974,,[]
+xmikos/soapy_power,UTC Time Stamp Flag Request,<html redacted>,https://github.com/xmikos/soapy_power/issues/30,,[]
+arraylabs/pymyq,`last_state_update` is a naive datetime,<html redacted>,https://github.com/arraylabs/pymyq/issues/179,,[]
+arraylabs/pymyq,`state_update` is documented in the README to be a `datetime` but it's usually `None`,<html redacted>,https://github.com/arraylabs/pymyq/issues/178,,[]
+lbl-srg/MPCPy,DST in exodata from csv,<html redacted>,https://github.com/lbl-srg/MPCPy/issues/48,,['bug']
+jupyter-on-openshift/jupyterhub-quickstart,TypeError: '<' not supported between instances of 'datetime.datetime' and 'float',<html redacted>,https://github.com/jupyter-on-openshift/jupyterhub-quickstart/issues/33,,[]
+robinhood/faust,Wrong time zone parameter name in user guide for crontab,<html redacted>,https://github.com/robinhood/faust/issues/739,,[]
+robinhood/faust,When relative_to_field is used with a datetime field delta windows are always empty,<html redacted>,https://github.com/robinhood/faust/issues/223,,[]
+inventree/InvenTree,[FR] Backup filenames should contain the instance name the datetime (UTC) and the inventree version ,<html redacted>,https://github.com/inventree/InvenTree/issues/5713,,['enhancement']
+absent1706/sqlalchemy-mixins,Datetime or Time Format,<html redacted>,https://github.com/absent1706/sqlalchemy-mixins/issues/86,,[]
+xzkostyan/clickhouse-sqlalchemy,Table reflection fails for bare DateTime,<html redacted>,https://github.com/xzkostyan/clickhouse-sqlalchemy/issues/272,,[]
+xzkostyan/clickhouse-sqlalchemy,Support for timezone=True for types.DateTime,<html redacted>,https://github.com/xzkostyan/clickhouse-sqlalchemy/issues/115,,['feature request']
+webrecorder/warcio,DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version,<html redacted>,https://github.com/webrecorder/warcio/issues/163,,[]
+zim-desktop-wiki/zim-desktop-wiki,Feature: Locale-specific datetime formats,<html redacted>,https://github.com/zim-desktop-wiki/zim-desktop-wiki/issues/1165,,"['enhancement', 'good first issue']"
+domoinc/domo-python-sdk,DOMO-401387: Datetime transformation during upload to domo,<html redacted>,https://github.com/domoinc/domo-python-sdk/issues/98,,[]
+pydantic/pydantic,Allow datetime with hour only UTC offset,<html redacted>,https://github.com/pydantic/pydantic/issues/8609,,"['feature request', 'help wanted']"
+pydantic/pydantic,Constrainted datetime based on timezone offset / UTCDateTime ,<html redacted>,https://github.com/pydantic/pydantic/issues/8088,,"['feature request', 'help wanted', 'good first issue']"
+pydantic/pydantic,json dumped datetime behaviour change,<html redacted>,https://github.com/pydantic/pydantic/issues/7035,,"['unconfirmed', 'bug V2']"
+pydantic/pydantic,Cannot validate datetime without timezone minute,<html redacted>,https://github.com/pydantic/pydantic/issues/6576,,[]
+pydantic/pydantic,Performance issues with parsed datetime comparisons `pydantic_core.TzInfo`,<html redacted>,https://github.com/pydantic/pydantic/issues/7897,,"['help wanted', 'performance']"
+pydantic/pydantic,`GenerateSchema.match_type` does not work for union types or `datetime` types,<html redacted>,https://github.com/pydantic/pydantic/issues/8783,,"['bug V2', 'pending']"
+pydantic/pydantic,Behaviour change in datetime parsing for timestamps exactly at midnight,<html redacted>,https://github.com/pydantic/pydantic/issues/7039,,['bug V2']
+ansible/awx,add last used datetime/user to unified_job_templates endpoint,<html redacted>,https://github.com/ansible/awx/issues/640,,"['type:enhancement', 'component:ui']"
+ansible/awx,Hide local/utc toggle on schedule page,<html redacted>,https://github.com/ansible/awx/issues/12071,,['type:enhancement']
+ranaroussi/yfinance,`Tz-aware datetime.datetime cannot be converted to datetime64 unless utc=True` when `ignore_tz=False`,<html redacted>,https://github.com/ranaroussi/yfinance/issues/1820,,[]
+ranaroussi/yfinance,"""DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated"" in the yfinance.download function",<html redacted>,https://github.com/ranaroussi/yfinance/issues/1801,,[]
+mymarilyn/clickhouse-driver,Feature Request: support specifying time zone (neither server nor client time zone) when query datetime column,<html redacted>,https://github.com/mymarilyn/clickhouse-driver/issues/260,,['feature request']
+mymarilyn/clickhouse-driver,Select datetime accurate to millisecond,<html redacted>,https://github.com/mymarilyn/clickhouse-driver/issues/306,,[]
+mymarilyn/clickhouse-driver,DateTime('some timezone') type column can't convert to datetime correctly in query_dataframe method,<html redacted>,https://github.com/mymarilyn/clickhouse-driver/issues/257,,['bug']
+mymarilyn/clickhouse-driver,Incorrect timezone handling when escaping a datetime-aware object,<html redacted>,https://github.com/mymarilyn/clickhouse-driver/issues/388,,[]
+mymarilyn/clickhouse-driver,Pandas DateTime column timezone incorrectly converted at insertion,<html redacted>,https://github.com/mymarilyn/clickhouse-driver/issues/380,,[]
+mymarilyn/clickhouse-driver,Insert dataframe writes max datetime (2106-02-07) when its None in df,<html redacted>,https://github.com/mymarilyn/clickhouse-driver/issues/329,,[]
+IntelPython/sdc,datetime.date needs tests,<html redacted>,https://github.com/IntelPython/sdc/issues/23,,[]
+CATIA-Systems/FMPy,[Feature Request] Allow to manually set the generation datetime of the container FMU,<html redacted>,https://github.com/CATIA-Systems/FMPy/issues/452,,[]
+kszucs/pandahouse,Added quotes to the dataframe at push mess up DateTime columns,<html redacted>,https://github.com/kszucs/pandahouse/issues/30,,[]
+TileDB-Inc/TileDB-Py,DATETIME_HR datatype not understood,<html redacted>,https://github.com/TileDB-Inc/TileDB-Py/issues/707,,[]
+twintproject/twint,Time zone issue - all results give the same time zone,<html redacted>,https://github.com/twintproject/twint/issues/1184,,[]
+twintproject/twint,How can I specify the time zone?,<html redacted>,https://github.com/twintproject/twint/issues/695,,[]
+twintproject/twint,What is the time zone for 'join_date'? and 'join_time'?,<html redacted>,https://github.com/twintproject/twint/issues/835,,[]
+dask/dask-ml,Datetime index errors in DummyEncoder and OrdinalEncoder,<html redacted>,https://github.com/dask/dask-ml/issues/362,,[]
+maxim5/time-series-machine-learning,TypeError: dtype '<type 'datetime.datetime'>' not understood,<html redacted>,https://github.com/maxim5/time-series-machine-learning/issues/11,,[]
+casact/chainladder-python,[ENH] Suggestion: Alternative parameter name for format argument in _to_datetime method,<html redacted>,https://github.com/casact/chainladder-python/issues/526,,['Enhancement']
+johnwmillr/LyricsGenius,"Album.release_date should be a datetime object, not Album.release_date_components",<html redacted>,https://github.com/johnwmillr/LyricsGenius/issues/207,,[]
+kensho-technologies/graphql-compiler,Add a timezone-aware datetime GraphQL scalar type: DateTimeTz,<html redacted>,https://github.com/kensho-technologies/graphql-compiler/issues/829,,['enhancement']
+kensho-technologies/graphql-compiler,Standardize return format of dates and datetimes for SQL,<html redacted>,https://github.com/kensho-technologies/graphql-compiler/issues/732,,[]
+kensho-technologies/graphql-compiler,The error message for parsing datetime values is hard to understand ,<html redacted>,https://github.com/kensho-technologies/graphql-compiler/issues/623,,['documentation']
+encode/typesystem,Timezones for `DateTime` fields,<html redacted>,https://github.com/encode/typesystem/issues/33,,[]
+encode/typesystem,Precision for Time/Date/DateTime,<html redacted>,https://github.com/encode/typesystem/issues/6,,[]
+encode/typesystem,datetime incompatibility with JSON schema and OpenAPI specification,<html redacted>,https://github.com/encode/typesystem/issues/92,,[]
+jazzband/icalevents,Exception is thrown: can't compare offset-naive and offset-aware datetimes,<html redacted>,https://github.com/jazzband/icalevents/issues/69,,[]
+sammchardy/python-binance,get_historical_klines generates time zone error,<html redacted>,https://github.com/sammchardy/python-binance/issues/965,,[]
+sammchardy/python-binance,inconsistent output of get_historical_klines (utc+?),<html redacted>,https://github.com/sammchardy/python-binance/issues/1270,,[]
+NeurodataWithoutBorders/pynwb,ObjectMapper datetime override fails ,<html redacted>,https://github.com/NeurodataWithoutBorders/pynwb/issues/1333,,['category: bug']
+FoglyOgly/Meowth,Meowth! Change Time Due To DST,<html redacted>,https://github.com/FoglyOgly/Meowth/issues/243,,[]
+great-expectations/great_expectations,Validating datetime strings with timezone produces an error,<html redacted>,https://github.com/great-expectations/great_expectations/issues/9203,,[]
+alteryx/featuretools,Datetime Variables as Cyclical Features,<html redacted>,https://github.com/alteryx/featuretools/issues/2643,,['new feature']
+alteryx/featuretools,Handle timezones in datetime indexes,<html redacted>,https://github.com/alteryx/featuretools/issues/498,,[]
+alteryx/featuretools,Support Datetime Feature +/- pd.Timedelta,<html redacted>,https://github.com/alteryx/featuretools/issues/629,,['good first issue']
+alteryx/featuretools,Improve tests for primitives that use Datetime inputs,<html redacted>,https://github.com/alteryx/featuretools/issues/2057,,[]
+alteryx/featuretools,Consider adding new scalar comparison primitives for Datetime and Ordinal column types,<html redacted>,https://github.com/alteryx/featuretools/issues/2435,,[]
+alteryx/featuretools,"Update primitives that use datetime inputs to handle timezone aware, timezone naive and date only types properly.",<html redacted>,https://github.com/alteryx/featuretools/issues/2196,,[]
+CryptoSignal/Crypto-Signal,datetime.timedelta not supporting timedelta_values,<html redacted>,https://github.com/CryptoSignal/Crypto-Signal/issues/390,,[]
+expectocode/telegram-export,Wrong datetime description in config.ini.example,<html redacted>,https://github.com/expectocode/telegram-export/issues/121,,[]
+expectocode/telegram-export,downloader.py - '<' not supported between instances of 'NoneType' and 'dateime.datetime',<html redacted>,https://github.com/expectocode/telegram-export/issues/106,,[]
+aliyun/django-oss-storage,还是在django高版本用不了的问题cannot import name 'utc' from 'django.utils.timezone',<html redacted>,https://github.com/aliyun/django-oss-storage/issues/45,,[]
+ynqa/pandavro,Datetime-like values errors,<html redacted>,https://github.com/ynqa/pandavro/issues/20,,[]
+cuuupid/console-logging,Datetime,<html redacted>,https://github.com/cuuupid/console-logging/issues/3,,[]
+SatAgro/suntime,get_local_sunrise_time() returns UTC sunrise time.,<html redacted>,https://github.com/SatAgro/suntime/issues/23,,[]
+SatAgro/suntime,Local Sunset time wrong when UTC sunset is in following day,<html redacted>,https://github.com/SatAgro/suntime/issues/12,,[]
+babybuddy/babybuddy,Daylight Saving time change breaks daily feeding sum,<html redacted>,https://github.com/babybuddy/babybuddy/issues/612,,['bug']
+babybuddy/babybuddy,Automatically adjust for time zone display during travel,<html redacted>,https://github.com/babybuddy/babybuddy/issues/611,,['enhancement']
+JECSand/yahoofinancials,unsupported operand type(s) for -: 'datetime.datetime' and 'str',<html redacted>,https://github.com/JECSand/yahoofinancials/issues/180,,[]
+zewelor/bt-mqtt-gateway,wrong time on eq3 thermostat (wrong time zone?),<html redacted>,https://github.com/zewelor/bt-mqtt-gateway/issues/239,,[]
+rucio/rucio,Replace uses of `datetime.datetime.utcnow()`,<html redacted>,https://github.com/rucio/rucio/issues/6476,,"['enhancement', 'Core & Internals', 'Discussion needed']"
+rucio/rucio,sorting of column of type datetime in datatable broken,<html redacted>,https://github.com/rucio/rucio/issues/1771,,"['bug', 'patch', 'WebUI']"
+pyrogram/pyrogram,Setting the DATETIME filter gives me a flood problem,<html redacted>,https://github.com/pyrogram/pyrogram/issues/1334,,[]
+proplot-dev/proplot,Hide datetime minorticks?,<html redacted>,https://github.com/proplot-dev/proplot/issues/422,,['enhancement']
+proplot-dev/proplot,proplot can't plot string like datetime,<html redacted>,https://github.com/proplot-dev/proplot/issues/436,,[]
+proplot-dev/proplot,datetime locator doesn't work with cftime,<html redacted>,https://github.com/proplot-dev/proplot/issues/126,,"['good first issue', 'feature']"
+proplot-dev/proplot,Major ticks location is wrong for Datetime axes,<html redacted>,https://github.com/proplot-dev/proplot/issues/340,,['enhancement']
+Dawnnnnnn/bilibili-live-tools,在UTC+8 0:00的时候脚本经常会挂掉,<html redacted>,https://github.com/Dawnnnnnn/bilibili-live-tools/issues/319,,[]
+GetTogetherComm/GetTogether,iCal lacks time zone information,<html redacted>,https://github.com/GetTogetherComm/GetTogether/issues/294,,[]
+tommikaikkonen/prettyprinter,Incorrect handling of subtypes of datetime types,<html redacted>,https://github.com/tommikaikkonen/prettyprinter/issues/92,,[]
+IAMconsortium/pyam,Include tutorial and docs for `datetime` time format,<html redacted>,https://github.com/IAMconsortium/pyam/issues/169,,"['good first issue', 'datetime']"
+IAMconsortium/pyam,Parse data from datetime-args and list of values,<html redacted>,https://github.com/IAMconsortium/pyam/issues/569,,[]
+Kartones/flask-calendar,Render time of event in viewer's time zone?,<html redacted>,https://github.com/Kartones/flask-calendar/issues/32,,['enhancement']
+boltgolt/howdy,Deprecation Warning: datetime.datetime.utcnow,<html redacted>,https://github.com/boltgolt/howdy/issues/908,,[]
+httprunner/HttpRunnerManager,Flower的tasks页面中的received和started时间始终为UTC时间,<html redacted>,https://github.com/httprunner/HttpRunnerManager/issues/133,,[]
+profusion/sgqlc,datetime.datetime cannot be passed to `non_null`,<html redacted>,https://github.com/profusion/sgqlc/issues/177,,[]
+sdv-dev/RDT,Add enforce_min_max_datetimes parameter to datetime transformers,<html redacted>,https://github.com/sdv-dev/RDT/issues/538,,['feature request']
+python-discord/bot,TypeError: can't subtract offset-naive and offset-aware datetimes,<html redacted>,https://github.com/python-discord/bot/issues/2003,,"['t: bug', 'p: 2 - normal']"
+geopython/pygeoapi,Set begin/end datetime via admin api,<html redacted>,https://github.com/geopython/pygeoapi/issues/1638,,['enhancement']
+getsentry/snuba,snuba (?) requires ClickHouse to run in UTC timezone.,<html redacted>,https://github.com/getsentry/snuba/issues/965,,[]
+monim67/django-bootstrap-datepicker-plus,Unable to open time picker from datetime picker in bootstrap,<html redacted>,https://github.com/monim67/django-bootstrap-datepicker-plus/issues/93,,[]
+Peter-Slump/django-keycloak,TypeError at / '>' not supported between instances of 'NoneType' and 'datetime.datetime',<html redacted>,https://github.com/Peter-Slump/django-keycloak/issues/26,,[]
+tortoise/tortoise-orm,How tortoise sets time zone in FastAPI,<html redacted>,https://github.com/tortoise/tortoise-orm/issues/564,,[]
+tortoise/tortoise-orm, Can't set timezone-naive datetimes,<html redacted>,https://github.com/tortoise/tortoise-orm/issues/631,,[]
+tortoise/tortoise-orm,SQlite: filter on aggregate uses invalid datetime serialization,<html redacted>,https://github.com/tortoise/tortoise-orm/issues/572,,[]
+tortoise/tortoise-orm,An offset-aware datetime makes a crash (postgresql),<html redacted>,https://github.com/tortoise/tortoise-orm/issues/465,,[]
+tortoise/tortoise-orm,Version 0.19.1 is not fetching datetime field,<html redacted>,https://github.com/tortoise/tortoise-orm/issues/1171,,[]
+tortoise/tortoise-orm,The process of datetime and MySQL interaction is described implicitly,<html redacted>,https://github.com/tortoise/tortoise-orm/issues/1182,,[]
+tortoise/tortoise-orm,pydantic_model_creator won't expose any fields with fields.DateTime in the schema in the swagger docs.,<html redacted>,https://github.com/tortoise/tortoise-orm/issues/1482,,[]
+tortoise/tortoise-orm,"fields.TimeDeltaField in pydantic_model_creator raise Input should be None [type=none_required, input_value=datetime.timedelta(second...104, microseconds=48382), input_type=timedelta]",<html redacted>,https://github.com/tortoise/tortoise-orm/issues/1462,,[]
+skrub-data/skrub,"Add ""to_datetime"" to the narrative documentation",<html redacted>,https://github.com/skrub-data/skrub/issues/858,,"['documentation', 'no changelog needed']"
+holoviz/hvplot,Stacking plots with a datetime Index and plotly not showing data,<html redacted>,https://github.com/holoviz/hvplot/issues/1295,,[]
+holoviz/hvplot,Cannot create plotly histogram from datetime data,<html redacted>,https://github.com/holoviz/hvplot/issues/1001,,['TRIAGE']
+holoviz/hvplot,Add datetime axis capability to categorical plots,<html redacted>,https://github.com/holoviz/hvplot/issues/483,,['type: enhancement']
+holoviz/hvplot,Make it very clear that `hist` only support numerical or datetime fields,<html redacted>,https://github.com/holoviz/hvplot/issues/906,,['type: bug']
+basler/pypylon,How to set UTC time to the camera,<html redacted>,https://github.com/basler/pypylon/issues/505,,[]
+dagster-io/dagster,Problem finding datetime_ambiguous on EMR ,<html redacted>,https://github.com/dagster-io/dagster/issues/22586,,['type: bug']
+dagster-io/dagster,Add datetime metadata type,<html redacted>,https://github.com/dagster-io/dagster/issues/13344,,['type: feature-request']
+dagster-io/dagster,Support datetime in AssetMaterialization with JsonMetadataEntryData,<html redacted>,https://github.com/dagster-io/dagster/issues/3480,,"['type: good first issue', 'type: feature-request']"
+dagster-io/dagster,PyYAML parser parses date-like strings as datetime objects,<html redacted>,https://github.com/dagster-io/dagster/issues/6465,,['type: bug']
+dagster-io/dagster,[Content Gap] change schedule testing example to use a pendulum datetime,<html redacted>,https://github.com/dagster-io/dagster/issues/4886,,"['area: docs', 'type: content-gap']"
+lidatong/dataclasses-json,Issue customizing datetime encoding/decoding,<html redacted>,https://github.com/lidatong/dataclasses-json/issues/254,,[]
+lidatong/dataclasses-json,Overriding field type (datetime.dataetime) encoding per class,<html redacted>,https://github.com/lidatong/dataclasses-json/issues/332,,[]
+dmarx/psaw,Make sure `created_utc` is forced into the fields list even if not explicitly provided with the `fields` parameter,<html redacted>,https://github.com/dmarx/psaw/issues/54,,['bug']
+xcube-dev/xcube,"Avoid numpy ""parsing timezone aware datetimes is deprecated"" warning in tile server",<html redacted>,https://github.com/xcube-dev/xcube/issues/807,,['bug']
+openfun/marsha,What should we show to the student when the starting datetime is not set?,<html redacted>,https://github.com/openfun/marsha/issues/1385,,[]
+sdv-dev/SDV,PAR Diagnostic is not 1.0 for datetime context columns,<html redacted>,https://github.com/sdv-dev/SDV/issues/2018,,"['bug', 'data:sequential']"
+sdv-dev/SDV,Metadata should auto-detect datetimes that are represented with numbers only,<html redacted>,https://github.com/sdv-dev/SDV/issues/1860,,"['feature request', 'feature:metadata']"
+sdv-dev/SDV,In `PARSynthesizer` I cannot pass in datetime context (`InvalidDataError` during fitting),<html redacted>,https://github.com/sdv-dev/SDV/issues/1485,,"['bug', 'data:sequential', 'feature:sampling']"
+sdv-dev/SDV,Datetime column detected as unknown when using unusual format,<html redacted>,https://github.com/sdv-dev/SDV/issues/1587,,['bug']
+sdv-dev/SDV,PAR model cannot fit if sequence index is type `date` instead of `datetime`,<html redacted>,https://github.com/sdv-dev/SDV/issues/465,,"['bug', 'data:sequential', 'feature:data-connectors']"
+sdv-dev/SDV,Constraints should ignore the time when comparing a datetime vs. date,<html redacted>,https://github.com/sdv-dev/SDV/issues/658,,['feature request']
+roclark/sportsipy,MLB Boxscores(datetime.today()) does not return list of todays games,<html redacted>,https://github.com/roclark/sportsipy/issues/461,,[]
+PrefectHQ/prefect,Date Picker Issue in UI When Using datetime.now() Without Timezone,<html redacted>,https://github.com/PrefectHQ/prefect/issues/14002,,"['bug', 'from:sales']"
+PrefectHQ/prefect,UTC vs Etc/UTC in deployment schedules,<html redacted>,https://github.com/PrefectHQ/prefect/issues/12031,,"['bug', 'ui']"
+PrefectHQ/prefect,Flow runs duplicated when DST ends (v2),<html redacted>,https://github.com/PrefectHQ/prefect/issues/7381,,"['bug', 'status:accepted']"
+PrefectHQ/prefect,add possibility to choose the timezone in the UI for the datetime flow parameters,<html redacted>,https://github.com/PrefectHQ/prefect/issues/12256,,"['enhancement', 'ui']"
+PrefectHQ/prefect,[UI] Add datetime format as a configuration setting,<html redacted>,https://github.com/PrefectHQ/prefect/issues/8748,,"['enhancement', 'status:accepted']"
+modin-project/modin,Improve performance of `groupby.mean` for case datetime columns contain `NaT` values,<html redacted>,https://github.com/modin-project/modin/issues/4626,,"['Performance 🚀', 'P2']"
+shinnytech/tqsdk-python,sim中的最新行情时间_current_datetime应该按不同交易所分别保存,<html redacted>,https://github.com/shinnytech/tqsdk-python/issues/277,,[]
+Ouranosinc/xclim,Grouper limited to datetime properties and coordinates,<html redacted>,https://github.com/Ouranosinc/xclim/issues/1736,,"['bug', 'enhancement', 'help wanted', 'sdba']"
+holoviz/panel,Allow DatePicker to accept `datetime.datetime` instead of just `datetime.date`?,<html redacted>,https://github.com/holoviz/panel/issues/2179,,['type: enhancement']
+holoviz/panel,DateRangeSlider returns datetimes once used,<html redacted>,https://github.com/holoviz/panel/issues/2337,,['type: bug']
+holoviz/panel,TypeError when patching on Datetime column and the patch value is of Datetime data type.,<html redacted>,https://github.com/holoviz/panel/issues/4144,,"['type: bug', 'component: tabulator']"
+holoviz/panel,Add support for client-side `header_filters` on datetime columns,<html redacted>,https://github.com/holoviz/panel/issues/3655,,"['type: bug', 'component: tabulator']"
+holoviz/panel,Patching a datetime value in Tabulator raises a TypeError,<html redacted>,https://github.com/holoviz/panel/issues/5287,,"['type: bug', 'component: tabulator']"
+holoviz/panel,pn.widgets.DatetimePicker:  Allow specification of enabled datetimes as iterables with datetime64   ,<html redacted>,https://github.com/holoviz/panel/issues/6273,,[]
+holoviz/panel,Updating data on plotly figure breaks datetime formatting in PyScript,<html redacted>,https://github.com/holoviz/panel/issues/4850,,[]
+holoviz/panel,DataFrame & Tabulator display timezone aware pd.Series in UTC,<html redacted>,https://github.com/holoviz/panel/issues/3012,,"['type: bug', 'component: tabulator']"
+holoviz/panel,panel convert with datetime fails: Can't find a pure Python 3 wheel for 'zope-interface'.,<html redacted>,https://github.com/holoviz/panel/issues/5765,,['type: bug']
+EmbroidePy/pyembroidery,Dst Reader Thread values,<html redacted>,https://github.com/EmbroidePy/pyembroidery/issues/149,,[]
+EmbroidePy/pyembroidery,DST Tajima Butterfly JX550L-W inkstitch/inkstitch#1296,<html redacted>,https://github.com/EmbroidePy/pyembroidery/issues/130,,[]
+omry/omegaconf,Need `datetime`-typed field support,<html redacted>,https://github.com/omry/omegaconf/issues/851,,['enhancement']
+reagento/adaptix,No provider for timestamp datetime,<html redacted>,https://github.com/reagento/adaptix/issues/281,,"['type: feature', 'domain: loading & dumping']"
+reagento/adaptix,No public api for datetime format provider,<html redacted>,https://github.com/reagento/adaptix/issues/286,,"['type: feature', 'domain: conversion']"
+cloudevents/sdk-python,`.json()` unable to serialize datetime elements in `data` payload,<html redacted>,https://github.com/cloudevents/sdk-python/issues/213,,[]
+RDFLib/pySHACL,Validating xsd:date and xsd:dateTime,<html redacted>,https://github.com/RDFLib/pySHACL/issues/151,,[]
+RDFLib/pySHACL,Fails on xsd:dateTimeStamp rdfs:subClassOf xsd:dateTime. Howto enforce inheritance?,<html redacted>,https://github.com/RDFLib/pySHACL/issues/167,,[]
+betodealmeida/gsheets-db-api,"Couldn't parse date string 'datetime.date(2022, 3, 25)' with SQLAlchemy",<html redacted>,https://github.com/betodealmeida/gsheets-db-api/issues/22,,[]
+DOI-USGS/dataretrieval-python,Allow user to work in timezones besides UTC,<html redacted>,https://github.com/DOI-USGS/dataretrieval-python/issues/3,,['bug']
+kitzeslab/opensoundscape,Audio.trim with datetime,<html redacted>,https://github.com/kitzeslab/opensoundscape/issues/926,,[]
+kitzeslab/opensoundscape,Consider adding/changing SpatialEvent attributes to contain a datetime timestamp ,<html redacted>,https://github.com/kitzeslab/opensoundscape/issues/761,,['module:localization']
+unionai-oss/pandera,infer_schema - TypeError: '<=' not supported between instances of 'float' and 'datetime.datetime',<html redacted>,https://github.com/unionai-oss/pandera/issues/1331,,['bug']
+unionai-oss/pandera,Pandera timezone-agnostic datetime type,<html redacted>,https://github.com/unionai-oss/pandera/issues/1352,,['enhancement']
+unionai-oss/pandera,Multi index dataframes with datetime level cannot drop invalid rows,<html redacted>,https://github.com/unionai-oss/pandera/issues/1469,,['bug']
+unionai-oss/pandera,Pandera's handling of datetime coersion is inconsistent between series and index,<html redacted>,https://github.com/unionai-oss/pandera/issues/1246,,['bug']
+unionai-oss/pandera,Deprecated call to `astype` in schema.example() for timezone-aware datetime conversions,<html redacted>,https://github.com/unionai-oss/pandera/issues/1038,,['bug']
+unionai-oss/pandera,An element_wise Check on a datetime column of an empty DataFrame fails since 0.14,<html redacted>,https://github.com/unionai-oss/pandera/issues/1404,,['bug']
+vespene-io/_old_vespene,"raise AssertionError(""database connection isn't set to UTC"")",<html redacted>,https://github.com/vespene-io/_old_vespene/issues/90,,[]
+python-discord/sir-lancebot,TypeError: can't compare offset-naive and offset-aware datetimes,<html redacted>,https://github.com/python-discord/sir-lancebot/issues/1513,,[]
+jamalex/notion-py,NotionDate to datetime.datetime,<html redacted>,https://github.com/jamalex/notion-py/issues/286,,[]
+alvarobartt/investpy,time_zone problème ,<html redacted>,https://github.com/alvarobartt/investpy/issues/629,,[]
+alvarobartt/investpy,"Ability to pull indices, commodity, and currency-pair data in local time zone",<html redacted>,https://github.com/alvarobartt/investpy/issues/439,,[]
+alvarobartt/investpy,economic_calendar - wrong UTC time shift,<html redacted>,https://github.com/alvarobartt/investpy/issues/552,,[]
+krateng/maloja,Issue with Daylight Saving Time,<html redacted>,https://github.com/krateng/maloja/issues/346,,[]
+krateng/maloja,[Feature request] Support location-based time zones to be able to account for DST,<html redacted>,https://github.com/krateng/maloja/issues/289,,[]
+krateng/maloja,Indian time-zone is not valid,<html redacted>,https://github.com/krateng/maloja/issues/247,,[]
+krateng/maloja,Pulse and /scrobbles are set to UTC by default despite system and docker time-zones and without user-visible zone info,<html redacted>,https://github.com/krateng/maloja/issues/317,,[]
+SAP/python-pyodata,Document FIX_SCREWED_UP_MINIMAL_DATETIME_VALUE/FIX_SCREWED_UP_MAXIMUM_DATETIME_VALUE,<html redacted>,https://github.com/SAP/python-pyodata/issues/178,,['missing_docs']
+dfurtado/dataclass-csv,datetime: support a formatter function in addition to the existing dateformat string,<html redacted>,https://github.com/dfurtado/dataclass-csv/issues/17,,['enhancement']
+feast-dev/feast,Retire/update the datetime.utcnow() function,<html redacted>,https://github.com/feast-dev/feast/issues/4240,,"['kind/bug', 'priority/p2']"
+feast-dev/feast,get datetime when features ingested,<html redacted>,https://github.com/feast-dev/feast/issues/1579,,"['kind/feature', 'priority/p2', 'keep-open']"
+feature-engine/feature_engine,Add semi_month to Datetime Features,<html redacted>,https://github.com/feature-engine/feature_engine/issues/685,,[]
+onnx/sklearn-onnx,Convert ISO 8601 datetime format to a numeric,<html redacted>,https://github.com/onnx/sklearn-onnx/issues/999,,[]
+rpy2/rpy2,date column in tibble not converted to datetime/date column in pd.DataFrame via rpy2py,<html redacted>,https://github.com/rpy2/rpy2/issues/758,,['bug']
+rpy2/rpy2,Importing rpy2.robjects.pandas2ri resets python local timezone to UTC,<html redacted>,https://github.com/rpy2/rpy2/issues/778,,['bug']
+rpy2/rpy2,"Update documentation to explain how to specify that Pandas data frame date/time columns contain UTC dates, not local timezone dates",<html redacted>,https://github.com/rpy2/rpy2/issues/878,,['bug']
+johanmeijer/grott,Influxdb timestamps not properly reflecting timezone offset from UTC,<html redacted>,https://github.com/johanmeijer/grott/issues/466,,[]
+whoosh-community/whoosh,<type 'exceptions.AttributeError'>: 'DATETIME' object has no attribute 'numtype',<html redacted>,https://github.com/whoosh-community/whoosh/issues/359,,"['bug', 'major', 'Indexing']"
+CedricFR/dataenforce,Can not interpret np.datetime types,<html redacted>,https://github.com/CedricFR/dataenforce/issues/11,,['bug']
+blakeblackshear/frigate,Dynamic zones based on time / camera preset,<html redacted>,https://github.com/blakeblackshear/frigate/issues/3621,,"['enhancement', 'pinned']"
+FederatedAI/FATE,Time Zone Can NOT be set when using federatedai/fataboard  image,<html redacted>,https://github.com/FederatedAI/FATE/issues/2794,,[]
+databricks/koalas,Support datetime for std,<html redacted>,https://github.com/databricks/koalas/issues/2032,,['enhancement']
+databricks/koalas,groupby.diff with datetime column,<html redacted>,https://github.com/databricks/koalas/issues/965,,['enhancement']
+databricks/koalas,Timezone-aware datetimes are no longer supported,<html redacted>,https://github.com/databricks/koalas/issues/2175,,['enhancement']
+databricks/koalas,to_datetime() throws a warning about UDFs,<html redacted>,https://github.com/databricks/koalas/issues/2197,,[]
+koaning/scikit-lego,[FEATURE] Contribution: DateTime Periodicity Encoder,<html redacted>,https://github.com/koaning/scikit-lego/issues/415,,['enhancement']
+koaning/scikit-lego,Datetime Index support for sklego.pandas_utils.add_lags [FEATURE],<html redacted>,https://github.com/koaning/scikit-lego/issues/428,,['enhancement']
+twrecked/hass-aarlo,False motion detection related to aarlo_request_snapshot (+ time_zone old settings problem),<html redacted>,https://github.com/twrecked/hass-aarlo/issues/312,,['to investigate']
+Iceloof/GoogleNews,Datetime not available,<html redacted>,https://github.com/Iceloof/GoogleNews/issues/146,,[]
+Iceloof/GoogleNews,I want to get datetime in Japanese news.,<html redacted>,https://github.com/Iceloof/GoogleNews/issues/58,,[]
+spedas/pyspedas,sts_to_tplot uses datetime objects with timezones,<html redacted>,https://github.com/spedas/pyspedas/issues/844,,"['enhancement', 'pytplot', 'refactoring', 'deprecated']"
+spedas/pyspedas,Converting CDF epoch values to datetimes is slow,<html redacted>,https://github.com/spedas/pyspedas/issues/733,,"['pytplot', 'Performance', 'CDF']"
+niccokunzmann/open-web-calendar,Is it possible to have a starting_hour_utc ?,<html redacted>,https://github.com/niccokunzmann/open-web-calendar/issues/383,,[]
+yuanxiao1/Python-Quantitative-Trading,wxPython的DateTime.Now()函数获取年份,<html redacted>,https://github.com/yuanxiao1/Python-Quantitative-Trading/issues/2,,[]
+garethdmm/gryphon,SQL Operational Error on datetime ?,<html redacted>,https://github.com/garethdmm/gryphon/issues/44,,[]
+gangly/datafaker,"createtime||datetime||datetime(1,%Y-%m-%d %H:%M)  datetime(1) 没有生成当前时间",<html redacted>,https://github.com/gangly/datafaker/issues/100,,[]
+gangly/datafaker,fake_datetime_between这个有问题,<html redacted>,https://github.com/gangly/datafaker/issues/44,,[]
+gangly/datafaker,mysql 的 datetime 插入数据显示语法错误，,<html redacted>,https://github.com/gangly/datafaker/issues/13,,[]
+gangly/datafaker,datetime_between类型 生成sql 是 多了一对单引号导致插入数据失败: 例如  ''2021-01-01 00:00:00'',<html redacted>,https://github.com/gangly/datafaker/issues/98,,[]
+abe-winter/automigrate,datetime type doesn't parse correctly,<html redacted>,https://github.com/abe-winter/automigrate/issues/15,,['bug']
+cheran-senthil/TLE,Add server time zone,<html redacted>,https://github.com/cheran-senthil/TLE/issues/332,,['good first issue']
+Bears-R-Us/arkouda,deprecate tests/datetime_test,<html redacted>,https://github.com/Bears-R-Us/arkouda/issues/3269,,[]
+Bears-R-Us/arkouda,Update `datetime_test`,<html redacted>,https://github.com/Bears-R-Us/arkouda/issues/3127,,[]
+Bears-R-Us/arkouda,`Datetime.floor` not handling `NaT` values properly,<html redacted>,https://github.com/Bears-R-Us/arkouda/issues/2634,,"['bug', 'User Reported']"
+Bears-R-Us/arkouda,`ak.DateTime` property returns match pandas format?,<html redacted>,https://github.com/Bears-R-Us/arkouda/issues/1641,,['question']
+Bears-R-Us/arkouda,Port `Datetime` and `Timedelta` to server-side objects,<html redacted>,https://github.com/Bears-R-Us/arkouda/issues/1013,,['enhancement']
+claytonjn/hass-circadian_lighting,No longer adjusting for time zone.,<html redacted>,https://github.com/claytonjn/hass-circadian_lighting/issues/159,,[]
+scikit-mobility/scikit-mobility,Unexpected leaving_datetime in detection.stay_locations,<html redacted>,https://github.com/scikit-mobility/scikit-mobility/issues/263,,[]
+BittyTax/BittyTax,bscscan has changed its datetime format,<html redacted>,https://github.com/BittyTax/BittyTax/issues/343,,['data file update']
+koxudaxi/datamodel-code-generator,Add use of pendulum for date/datetime management,<html redacted>,https://github.com/koxudaxi/datamodel-code-generator/issues/643,,"['enhancement', 'polar']"
+JDASoftwareGroup/kartothek,Out of bounds datetime exception in index tests,<html redacted>,https://github.com/JDASoftwareGroup/kartothek/issues/178,,[]
+JDASoftwareGroup/kartothek,read_dataset_as_ddf does not return stored datetime index,<html redacted>,https://github.com/JDASoftwareGroup/kartothek/issues/129,,['enhancement']
+influxdata/influxdb-client-python,Replace deprecated call to `datetime.utcfromtimestamp`,<html redacted>,https://github.com/influxdata/influxdb-client-python/issues/603,,['bug']
+elastic/eland,datetime time zone attention,<html redacted>,https://github.com/elastic/eland/issues/399,,[]
+elastic/eland,Implement datetime range filters,<html redacted>,https://github.com/elastic/eland/issues/265,,"['enhancement', 'help wanted', 'good first issue', 'topic:series', 'topic:dataframe']"
+ottowayi/pycomm3,[BUG] - get_plc_time does not account for timezones when converting to datetime,<html redacted>,https://github.com/ottowayi/pycomm3/issues/276,,['bug']
+votingworks/arlo,Ensure Postgresql timezone is UTC,<html redacted>,https://github.com/votingworks/arlo/issues/1461,,"['tech-improvement', 'proj:self-host']"
+autogluon/autogluon,Improve datetime feature handling,<html redacted>,https://github.com/autogluon/autogluon/issues/1436,,"['enhancement', 'help wanted', 'good first issue', 'module: tabular']"
+GhostManager/Ghostwriter,Error generating the document Invalid date string (12 Déc 2022) passed into 'format_datetime()' filter,<html redacted>,https://github.com/GhostManager/Ghostwriter/issues/282,,"['bug', 'stale']"
+alteryx/evalml,Data check actions: infer missing datetime values,<html redacted>,https://github.com/alteryx/evalml/issues/2022,,['enhancement']
+allegro/bigflow,UTC datetime as default runtime,<html redacted>,https://github.com/allegro/bigflow/issues/215,,['airflow']
+streamlit/streamlit,Add datetime input,<html redacted>,https://github.com/streamlit/streamlit/issues/6089,,"['type:enhancement', 'feature:st.date_input', 'feature:st.time_input', 'status:likely']"
+streamlit/streamlit,Limiting maximum and minimum of st.date_input's selectable dates to the maximum/minimum of datetime.datetime,<html redacted>,https://github.com/streamlit/streamlit/issues/7427,,"['type:enhancement', 'feature:st.date_input']"
+streamlit/streamlit,st.altair_chart shows blank axis and chart when provided a datetime domain ,<html redacted>,https://github.com/streamlit/streamlit/issues/5733,,"['type:bug', 'type:regression', 'status:confirmed', 'priority:P3', 'feature:st.altair_chart']"
+AIStream-Peelout/flow-forecast,Fix datetime,<html redacted>,https://github.com/AIStream-Peelout/flow-forecast/issues/227,,"['bug', 'good first issue']"
+AIStream-Peelout/flow-forecast,Datetime support hours,<html redacted>,https://github.com/AIStream-Peelout/flow-forecast/issues/317,,['bug']
+scikit-hep/awkward,Promote Python datetime and timedelta objects to relevant types in broadcasting,<html redacted>,https://github.com/scikit-hep/awkward/issues/3109,,['bug']
+custom-components/nordpool,Daylight saving time,<html redacted>,https://github.com/custom-components/nordpool/issues/129,,['bug']
+bj80heyue/One_Shot_Face_Reenactment,why we need to sub 64 for src and dst image?,<html redacted>,https://github.com/bj80heyue/One_Shot_Face_Reenactment/issues/8,,[]
+astanin/python-tabulate,Feature Request: Date and datetime column formatting,<html redacted>,https://github.com/astanin/python-tabulate/issues/67,,['enhancement']
+opendp/smartnoise-sdk,Add support for upper and lower bounds on datetimes,<html redacted>,https://github.com/opendp/smartnoise-sdk/issues/506,,[]
+piccolomo/plotext,_date.py string_to_time can make time zone error,<html redacted>,https://github.com/piccolomo/plotext/issues/210,,[]
+piccolomo/plotext,Feature Request: plot directly datetime objects,<html redacted>,https://github.com/piccolomo/plotext/issues/154,,[]
+danielgtaylor/python-betterproto,datetime support in .from_dict(),<html redacted>,https://github.com/danielgtaylor/python-betterproto/issues/33,,"['bug', 'good first issue', 'small', 'low priority']"
+danielgtaylor/python-betterproto,Allow mapping google.protobuf.duration to Optional datetime.timedelta,<html redacted>,https://github.com/danielgtaylor/python-betterproto/issues/246,,[]
+mchaput/whoosh,reader.field_terms raises OverflowError for DATETIME fields,<html redacted>,https://github.com/mchaput/whoosh/issues/24,,[]
+danielfernau/unifi-protect-video-downloader,Recording output file name can have wrong time zone,<html redacted>,https://github.com/danielfernau/unifi-protect-video-downloader/issues/305,,['bug']
+winedarksea/AutoTS,allow Index to be other datetime not just DatetimeIndex for `wide` data,<html redacted>,https://github.com/winedarksea/AutoTS/issues/41,,[]
+Forichok/TelegramOnlineSpy,Change The Time UTC,<html redacted>,https://github.com/Forichok/TelegramOnlineSpy/issues/32,,[]
+trinodb/trino-python-client,Fix handling of ambiguous datetime instances,<html redacted>,https://github.com/trinodb/trino-python-client/issues/449,,[]
+carlomazzaferro/scikit-hts,[ENHANCEMENT] Add warning step when dealing with string index instead of int / datetime,<html redacted>,https://github.com/carlomazzaferro/scikit-hts/issues/20,,['enhancement']
+timvink/mkdocs-git-revision-date-localized-plugin,Feature Request: Show datetime on hover when using timeago,<html redacted>,https://github.com/timvink/mkdocs-git-revision-date-localized-plugin/issues/131,,[]
+dpguthrie/yahooquery,"Since about 8pm UTC yesterday, it started only returning 404 Errors",<html redacted>,https://github.com/dpguthrie/yahooquery/issues/192,,[]
+dpguthrie/yahooquery,Why is the last indice of daily price data a datetime and all the rest are date!!! ANSWERED...,<html redacted>,https://github.com/dpguthrie/yahooquery/issues/176,,[]
+googleapis/python-bigquery,Support julian day timestamp value conversion to datetime.datetime,<html redacted>,https://github.com/googleapis/python-bigquery/issues/1948,,['api: bigquery']
+googleapis/python-bigquery,timestamp / datetime / date / time dtype conversion logic not present in `to_dataframe_iterable`,<html redacted>,https://github.com/googleapis/python-bigquery/issues/1042,,"['api: bigquery', 'type: cleanup', 'semver: major']"
+abrignoni/iLEAPP,Datetime Import,<html redacted>,https://github.com/abrignoni/iLEAPP/issues/576,,[]
+Bluefog-Lib/bluefog,Add dst_weight for hierarchical neighbor allreduce,<html redacted>,https://github.com/Bluefog-Lib/bluefog/issues/81,,[]
+Bluefog-Lib/bluefog,"Symmetrical argument for self_weight, src_weights, dst_weights",<html redacted>,https://github.com/Bluefog-Lib/bluefog/issues/82,,[]
+Bluefog-Lib/bluefog,test_neighbor_allreduce_dst_weight_fusion failed with MPI CUDA Aware case,<html redacted>,https://github.com/Bluefog-Lib/bluefog/issues/102,,[]
+sebr/bhyve-home-assistant,"Zone Turned Off time is not correct, actually reflects program end time rather than zone end time",<html redacted>,https://github.com/sebr/bhyve-home-assistant/issues/41,,[]
+googleapis/python-firestore,JWT Token issue when datetimes are mocked (used to work earlier),<html redacted>,https://github.com/googleapis/python-firestore/issues/924,,['api: firestore']
+dylan-profiler/visions,DateTime Inference Package Review,<html redacted>,https://github.com/dylan-profiler/visions/issues/146,,['enhancement']
+sshell/reddit-analyzer,Handle missing 'created_utc',<html redacted>,https://github.com/sshell/reddit-analyzer/issues/6,,[]
+PostHog/posthog,hover modal on trend insights shows UTC for date buckets despite respecting project timezone settings in underlying data,<html redacted>,https://github.com/PostHog/posthog/issues/16616,,"['bug', 'team/product-analytics', 'feature/insights']"
+python-restx/flask-restx,@api.expect decorator does not validate DateTime fields,<html redacted>,https://github.com/python-restx/flask-restx/issues/344,,['bug']
+python-restx/flask-restx,datetime_from_rfc822 not properly working,<html redacted>,https://github.com/python-restx/flask-restx/issues/296,,[]
+iommirocks/iommi,Auto filter for datetime should filter on date by default,<html redacted>,https://github.com/iommirocks/iommi/issues/531,,[]
+iommirocks/iommi,filters on date/datetime/time should be ranges,<html redacted>,https://github.com/iommirocks/iommi/issues/412,,['enhancement']
+openapi-generators/openapi-python-client,"Union[Unset, datetime.date] is not allowed in header",<html redacted>,https://github.com/openapi-generators/openapi-python-client/issues/881,,['🐞bug']
+bridgecrewio/AirIAM,🐛 Bug Report: AttributeError: type object 'datetime.datetime' has no attribute 'fromisoformat',<html redacted>,https://github.com/bridgecrewio/AirIAM/issues/121,,['bug']
+ansible-collections/amazon.aws,datetime objects in hostvars break ansible dictionary lookups and filters,<html redacted>,https://github.com/ansible-collections/amazon.aws/issues/1779,,['needs_verified']
+MyEMS/myems,Daylight Saving Time Change,<html redacted>,https://github.com/MyEMS/myems/issues/351,,[]
+magico13/ha-emporia-vue,Time zone is off since BST clock change,<html redacted>,https://github.com/magico13/ha-emporia-vue/issues/35,,[]
+jdemaeyer/brightsky,Block parsing of 10-minutes data before 9 UTC,<html redacted>,https://github.com/jdemaeyer/brightsky/issues/150,,[]
+geopandas/pyogrio,Support timezones when reading and writing datetime columns,<html redacted>,https://github.com/geopandas/pyogrio/issues/123,,[]
+geopandas/pyogrio,BUG: Error reading datetimes outside of nanosecond bounds,<html redacted>,https://github.com/geopandas/pyogrio/issues/142,,[]
+sdv-dev/SDMetrics,Datetime columns set to Object pandas dtype breaks LSTMDetection,<html redacted>,https://github.com/sdv-dev/SDMetrics/issues/584,,"['bug', 'data:sequential']"
+sdv-dev/SDMetrics,Semantic error in transforming datetime columns using HyperTransformer,<html redacted>,https://github.com/sdv-dev/SDMetrics/issues/299,,"['bug', 'new']"
+bradbase/xlcalculator,function DATE returns a datetime but should return a number (serial),<html redacted>,https://github.com/bradbase/xlcalculator/issues/26,,['bug']
+bradbase/xlcalculator,Function TODAY returns a datetime but should return a serial number of date.,<html redacted>,https://github.com/bradbase/xlcalculator/issues/25,,['bug']
+voxel51/fiftyone,[BUG] Sample import from_dict does not work with exported datetime fields,<html redacted>,https://github.com/voxel51/fiftyone/issues/2899,,['bug']
+art049/odmantic,Option to store all datetime as UTC instead of naive datetimes,<html redacted>,https://github.com/art049/odmantic/issues/118,,['enhancement']
+art049/odmantic,Cannot support motor time zone problem,<html redacted>,https://github.com/art049/odmantic/issues/311,,['bug']
+art049/odmantic,Datetime not updating and not updating frequently,<html redacted>,https://github.com/art049/odmantic/issues/420,,['bug']
+art049/odmantic,Can't store datetime.timedelta,<html redacted>,https://github.com/art049/odmantic/issues/120,,['bug']
+art049/odmantic,Model.update not detecting datetime change in FastAPI,<html redacted>,https://github.com/art049/odmantic/issues/265,,['bug']
+adamchainz/time-machine,subclasses of `datetime` return `datetime` rather than `Self` while time is mocked,<html redacted>,https://github.com/adamchainz/time-machine/issues/446,,[]
+adamchainz/time-machine,freeze numpy datetimes,<html redacted>,https://github.com/adamchainz/time-machine/issues/294,,[]
+adamchainz/time-machine,2.14.1: pytest fails in `tests/test_time_machine.py::test_destination_datetime_tzinfo_non_zoneinfo` unit,<html redacted>,https://github.com/adamchainz/time-machine/issues/450,,[]
+adamchainz/time-machine,Interpret naive datetimes as local time,<html redacted>,https://github.com/adamchainz/time-machine/issues/257,,[]
+GoogleCloudPlatform/professional-services-data-validator,Oracle DATE/BigQuery DATETIME primary key row validations fail,<html redacted>,https://github.com/GoogleCloudPlatform/professional-services-data-validator/issues/1153,,"['type: bug', 'priority: p3']"
+GoogleCloudPlatform/professional-services-data-validator,validate row: TIMESTAMP WITH TIME ZONE fails for SQL Server and Teradata validations,<html redacted>,https://github.com/GoogleCloudPlatform/professional-services-data-validator/issues/929,,"['type: bug', 'priority: p2']"
+GoogleCloudPlatform/professional-services-data-validator,column validation: --sum of time zoned timestamp on BigQuery has side effect on other engines,<html redacted>,https://github.com/GoogleCloudPlatform/professional-services-data-validator/issues/938,,"['type: bug', 'priority: p2']"
+GoogleCloudPlatform/professional-services-data-validator,tests: Spanner DATE and DATETIME fail for row hash validation against BQ,<html redacted>,https://github.com/GoogleCloudPlatform/professional-services-data-validator/issues/1061,,"['type: bug', 'priority: p1']"
+vitalik/django-ninja,Decoded datetime objects doesn't honor django timezone setting.,<html redacted>,https://github.com/vitalik/django-ninja/issues/759,,[]
+vitalik/django-ninja,[BUG] datetime.timedelta broken with ModelSchema,<html redacted>,https://github.com/vitalik/django-ninja/issues/793,,[]
+vitalik/django-ninja,Django custom fields and datetime.time format,<html redacted>,https://github.com/vitalik/django-ninja/issues/343,,[]
+h2oai/wave,Datetime picker,<html redacted>,https://github.com/h2oai/wave/issues/2000,,"['ui', 'feature']"
+ourownstory/neural_prophet,create dataframe format after tabularize_univariate_datetime,<html redacted>,https://github.com/ourownstory/neural_prophet/issues/1232,,['feature request']
+tiangolo/pydantic-sqlalchemy,Error with MySQL DateTime! str type expected (type=type_error.str),<html redacted>,https://github.com/tiangolo/pydantic-sqlalchemy/issues/35,,[]
+Couchers-org/couchers,RangeError: invalid time zone in DateTimeFormat(): ,<html redacted>,https://github.com/Couchers-org/couchers/issues/4361,,"['bug', 'priority: low', 'web']"
+jeroenterheerdt/HAsmartirrigation,[REQ] Change approach so ET is calculated in real-time for each sensor group and applied to zones daily or whenever ,<html redacted>,https://github.com/jeroenterheerdt/HAsmartirrigation/issues/370,,"['enhancement', 'do-not-auto-close']"
+soxoj/maigret,Invalid result https://music.yandex.ru/users/Angeil_dst/playlists,<html redacted>,https://github.com/soxoj/maigret/issues/1399,,[]
+replicate/keepsake,Add datetime type to param.Value,<html redacted>,https://github.com/replicate/keepsake/issues/341,,"['help wanted', 'type/enhancement']"
+linouk23/youtube_uploader_selenium,Scheduling fails since datetime format changed?,<html redacted>,https://github.com/linouk23/youtube_uploader_selenium/issues/83,,[]
+stac-utils/stac-fastapi,Simple search returns items onlly with properties.datetime field,<html redacted>,https://github.com/stac-utils/stac-fastapi/issues/642,,[]
+stac-utils/stac-fastapi,Error during item insert depending on properties datetime value,<html redacted>,https://github.com/stac-utils/stac-fastapi/issues/604,,['pgstac']
+stac-utils/stac-fastapi,/collections/{collectionId}/items endpoint only does not apply bbox or datetime parameters to results,<html redacted>,https://github.com/stac-utils/stac-fastapi/issues/380,,"['spec', 'api layer']"
+airbytehq/airbyte,[connector-builder] add support for specifying timezone for Start Datetime and End Datetime in Incremental Sync,<html redacted>,https://github.com/airbytehq/airbyte/issues/38081,,"['type/enhancement', 'community', 'team/extensibility', 'area/connector-builder']"
+airbytehq/airbyte,Datetime column format changes between source and destination,<html redacted>,https://github.com/airbytehq/airbyte/issues/29367,,"['area/connectors', 'community', 'connectors/destination/postgres', 'team/destinations', 'releaseStage/alpha', 'frozen']"
+airbytehq/airbyte,Destination GCP: Bucket path set in UTC timezone,<html redacted>,https://github.com/airbytehq/airbyte/issues/32295,,"['type/enhancement', 'area/connectors', 'community', 'connectors/destination/gcs', 'team/destinations', 'team/use', 'frozen']"
+airbytehq/airbyte,Custom connector: query parameters do not correctly accept datetime inputs,<html redacted>,https://github.com/airbytehq/airbyte/issues/30687,,"['type/bug', 'area/connectors', 'community', 'team/extensibility', 'autoteam', 'team/use', 'frozen']"
+airbytehq/airbyte,"Handle empty string values for `datetime`, `date`, and `time` types",<html redacted>,https://github.com/airbytehq/airbyte/issues/27895,,"['team/destinations', '1-stream~1-table', 'destinations-v2-bugs', 'good-first-issue', 'frozen']"
+airbytehq/airbyte,Source Smartsheets: remove the start_datetime option or hide it,<html redacted>,https://github.com/airbytehq/airbyte/issues/12497,,"['type/enhancement', 'connectors/source/smartsheets', 'team/connectors-python', 'frozen']"
+airbytehq/airbyte,"Source netsuite - Current netsuite datetime format does not supported by netsuite Restlet APIs, New format: dd.mm.yy",<html redacted>,https://github.com/airbytehq/airbyte/issues/21871,,"['type/bug', 'community', 'team/tse', 'connectors/source/netsuite', 'team/critical-connectors']"
+airbytehq/airbyte,"Source MSSQL: datetime fields with millisecond precision are being rounded down to the second, causing rows to keep incrementally syncing when they shouldn't and replicating incorrect precision to destination",<html redacted>,https://github.com/airbytehq/airbyte/issues/10262,,"['type/bug', 'area/connectors', 'community', 'area/databases', 'connectors/destination/mssql', 'team/db-dw-sources', 'frozen']"
+subzeroid/instagrapi,Input should be a valid datetime issue[BUG],<html redacted>,https://github.com/subzeroid/instagrapi/issues/1736,,['bug']
+subzeroid/instagrapi,"[BUG] Pydantic fails to parse microseconds as datetime, fix by dividing by a million.",<html redacted>,https://github.com/subzeroid/instagrapi/issues/1735,,['bug']
+xenova/chat-downloader,[FEATURE] [Twitch] Add `{datetime}` in ouput operation,<html redacted>,https://github.com/xenova/chat-downloader/issues/232,,['enhancement']
+custom-components/pyscript,Service call to Input_datetime not working,<html redacted>,https://github.com/custom-components/pyscript/issues/543,,[]
+custom-components/pyscript,Attributes with type datetime casts to str after reboot on persistent sensors,<html redacted>,https://github.com/custom-components/pyscript/issues/460,,[]
+IndominusByte/fastapi-jwt-auth,issued_at is not in UTC,<html redacted>,https://github.com/IndominusByte/fastapi-jwt-auth/issues/86,,[]
+g-battaglia/kerykeion,AmbiguousTimeError with some datetimes,<html redacted>,https://github.com/g-battaglia/kerykeion/issues/96,,[]
+salesforce/simpletod,dst evaluation,<html redacted>,https://github.com/salesforce/simpletod/issues/8,,[]
+salesforce/simpletod,issues on dst,<html redacted>,https://github.com/salesforce/simpletod/issues/5,,[]
+salesforce/simpletod,About the DST training script,<html redacted>,https://github.com/salesforce/simpletod/issues/6,,[]
+wjohnson/pyapacheatlas,Excel Reader should more gracefully handle datetime,<html redacted>,https://github.com/wjohnson/pyapacheatlas/issues/230,,['enhancement']
+collerek/ormar,`DateTime` field ignores timezone parameter,<html redacted>,https://github.com/collerek/ormar/issues/817,,['bug']
+binance/binance-public-data,Why first date stamp started from 2 am (UTC +2) ? How to get from 00:00 a.m (UTC +0)?,<html redacted>,https://github.com/binance/binance-public-data/issues/277,,[]
+dask-contrib/dask-sql,[ENH] Add handling for differently formatted datetimes,<html redacted>,https://github.com/dask-contrib/dask-sql/issues/1151,,"['enhancement', 'SQL grammar', 'datafusion']"
+dask-contrib/dask-sql,[ENH] Add support for non-UTC timezone-aware scalars,<html redacted>,https://github.com/dask-contrib/dask-sql/issues/1193,,"['enhancement', 'needs triage']"
+alteryx/woodwork,Include datetime.date in Datetime logical type inference,<html redacted>,https://github.com/alteryx/woodwork/issues/1341,,['new feature']
+alteryx/woodwork,Improve datetime inference to recognize different types of datetime values,<html redacted>,https://github.com/alteryx/woodwork/issues/1478,,['new feature']
+alteryx/woodwork,Check whether a column is a Datetime without relying on default Datetime LogicalType,<html redacted>,https://github.com/alteryx/woodwork/issues/506,,['bug']
+alteryx/woodwork,OutOfBoundsDatetime with datetime columns MM/DD,<html redacted>,https://github.com/alteryx/woodwork/issues/427,,"['bug', 'evalml']"
+alteryx/woodwork,Spike: Investigate ways to improve datetime format inference,<html redacted>,https://github.com/alteryx/woodwork/issues/1167,,[]
+alteryx/woodwork,Add support for multiple timezones in Datetime Logical Type,<html redacted>,https://github.com/alteryx/woodwork/issues/1417,,[]
+alteryx/woodwork,Datetime format inference may not recognize day/month/year format,<html redacted>,https://github.com/alteryx/woodwork/issues/1165,,['bug']
+alteryx/woodwork,Woodwork should not strip timezone information from datetime values upon initialization.,<html redacted>,https://github.com/alteryx/woodwork/issues/1477,,[]
+alteryx/woodwork,"ColumnSchema `is_numeric`, `is_datetime`, etc properties hidden and not fully explained",<html redacted>,https://github.com/alteryx/woodwork/issues/1111,,['documentation']
+miguelgrinberg/APIFairy,Problem with loading datetime in Marshmallow Schema.,<html redacted>,https://github.com/miguelgrinberg/APIFairy/issues/87,,['question']
+morlandi/django-ajax-datatable,date filters on DateTime,<html redacted>,https://github.com/morlandi/django-ajax-datatable/issues/125,,[]
+ericaltendorf/plotman,Lock tmp and dst together,<html redacted>,https://github.com/ericaltendorf/plotman/issues/616,,['enhancement']
+ericaltendorf/plotman,Same drive tmp and dst,<html redacted>,https://github.com/ericaltendorf/plotman/issues/466,,['enhancement']
+ericaltendorf/plotman,Crash on unexpected datetime format,<html redacted>,https://github.com/ericaltendorf/plotman/issues/29,,['bug']
+ericaltendorf/plotman,0.3.1 over commits DST,<html redacted>,https://github.com/ericaltendorf/plotman/issues/613,,['bug']
+ericaltendorf/plotman,Plotman interactive crash on DST disconnect,<html redacted>,https://github.com/ericaltendorf/plotman/issues/685,,[]
+ericaltendorf/plotman,Copying not complete (103.4GB) to dst but removed from tmp drive due to dst full.,<html redacted>,https://github.com/ericaltendorf/plotman/issues/767,,[]
+ericaltendorf/plotman,K34 Plots not showing in dst drives,<html redacted>,https://github.com/ericaltendorf/plotman/issues/769,,['enhancement']
+ericaltendorf/plotman,adjust 'free space' thresholds on dst and archives.,<html redacted>,https://github.com/ericaltendorf/plotman/issues/617,,['enhancement']
+ericaltendorf/plotman,Add support of the same tmp and dst dirs,<html redacted>,https://github.com/ericaltendorf/plotman/issues/358,,[]
+ericaltendorf/plotman,"finding unused dst dirs fails because of trailing slash ""/"" mismatch",<html redacted>,https://github.com/ericaltendorf/plotman/issues/919,,[]
+ericaltendorf/plotman,Add option to stop creating new plots as dst becomes full,<html redacted>,https://github.com/ericaltendorf/plotman/issues/121,,['question']
+ericaltendorf/plotman,allow option to stop scheduling plots if dst dir is full,<html redacted>,https://github.com/ericaltendorf/plotman/issues/34,,['enhancement']
+ericaltendorf/plotman,Automatically suspend jobs on stage 3:6 if not enought space in dst disk,<html redacted>,https://github.com/ericaltendorf/plotman/issues/677,,['enhancement']
+microsoft/mssql-django,Datetime conversion issue with USE_TZ and settings.TIME_ZONE != 'UTC'?,<html redacted>,https://github.com/microsoft/mssql-django/issues/371,,[]
+bremor/bureau_of_meteorology,Time zone issue,<html redacted>,https://github.com/bremor/bureau_of_meteorology/issues/226,,[]
+hacf-fr/renault-api,HVAC start time local timezone or UTC?,<html redacted>,https://github.com/hacf-fr/renault-api/issues/466,,[]
+zenml-io/zenml,Schedules don't work well with time zones,<html redacted>,https://github.com/zenml-io/zenml/issues/2209,,"['enhancement', 'good first issue']"
+capitalone/DataProfiler,Datetime Profiler cannot current detect dates with days which have suffixes,<html redacted>,https://github.com/capitalone/DataProfiler/issues/441,,"['Bug', 'Medium Priority']"
+memgraph/gqlalchemy,[BUG] CSVLocalFileSystemImporter can't load datetime from csv,<html redacted>,https://github.com/memgraph/gqlalchemy/issues/300,,"['Severity - S3', 'Effort - Low', 'bug', 'community', 'Priority - Now', 'Frequency - EveryTime', 'Reach - Most']"
+almarklein/timetagger,Daylight saving time breaks targets,<html redacted>,https://github.com/almarklein/timetagger/issues/441,,['bug']
+p-lambda/wilds,fmow and Pandas 2.0.0 datetime conversion,<html redacted>,https://github.com/p-lambda/wilds/issues/146,,[]
+FlexMeasures/flexmeasures,Ability to close DST mismatch warning,<html redacted>,https://github.com/FlexMeasures/flexmeasures/issues/1069,,"['good first issue', 'UI']"
+FlexMeasures/flexmeasures,Compute `last_value_datetime` using multiple output sensors,<html redacted>,https://github.com/FlexMeasures/flexmeasures/issues/792,,"['CLI', 'Reporting']"
+FlexMeasures/flexmeasures,API usage with datetimes that aren't at midnight or a multiple of the sensor resolution afterwards,<html redacted>,https://github.com/FlexMeasures/flexmeasures/issues/10,,['API']
+jcrist/msgspec,Callbacks to `Encoder`/`Decoder` are not respected in `datetime` objects,<html redacted>,https://github.com/jcrist/msgspec/issues/669,,[]
+jcrist/msgspec,"Allow `date`, `datetime`, `time` for `ge`, `gt`, `le`, `lt`",<html redacted>,https://github.com/jcrist/msgspec/issues/482,,[]
+fal-ai/dbt-fal,How to write dates and datetimes to database with write_to_source / write_to_model functions,<html redacted>,https://github.com/fal-ai/dbt-fal/issues/255,,['question']
+rgc99/irrigation_unlimited,Schedule change after zone time adjustment,<html redacted>,https://github.com/rgc99/irrigation_unlimited/issues/121,,[]
+rgc99/irrigation_unlimited,zones with adjusted time doesn't work in a sequence,<html redacted>,https://github.com/rgc99/irrigation_unlimited/issues/111,,[]
+mattpodolak/pmaw,"Sort = ""created_utc"" didnt sort results properly",<html redacted>,https://github.com/mattpodolak/pmaw/issues/63,,[]
+AI4Finance-Foundation/FinRL-Meta,calc_time_zone() doesnt take into consideration tickers from different markets/different timezones,<html redacted>,https://github.com/AI4Finance-Foundation/FinRL-Meta/issues/179,,['bug']
+AI4Finance-Foundation/FinRL-Meta,ValueError: Parameter `start` received with timezone defined as 'UTC' although a Date must be timezone naive.,<html redacted>,https://github.com/AI4Finance-Foundation/FinRL-Meta/issues/297,,['bug']
+AI4Finance-Foundation/FinRL-Meta,This error appears while training: -ValueError: Parameter `start` received with timezone defined as 'UTC' although a Date must be timezone naive.,<html redacted>,https://github.com/AI4Finance-Foundation/FinRL-Meta/issues/295,,['bug']
+AI4Finance-Foundation/FinRL-Meta,This error appears while training: ( ValueError: Parameter `start` received with timezone defined as 'UTC' although a Date must be timezone naive.),<html redacted>,https://github.com/AI4Finance-Foundation/FinRL-Meta/issues/296,,['bug']
+nautobot/nautobot,Scheduled Jobs do not respect Time Zones after first run.,<html redacted>,https://github.com/nautobot/nautobot/issues/5591,,['type: bug']
+nautobot/nautobot,Add User to override the UI view for Time Zone,<html redacted>,https://github.com/nautobot/nautobot/issues/3263,,"['type: feature', 'ms']"
+nautobot/nautobot,New custom field type: timestamp/datetime,<html redacted>,https://github.com/nautobot/nautobot/issues/1702,,"['good first issue', 'type: feature']"
+krahabb/meross_lan,"MSS315 Last daily value introduced during daily reset since Daylight Saving Time change at Sun, Mar 31, 2024",<html redacted>,https://github.com/krahabb/meross_lan/issues/420,,"['bug', 'todo']"
+mathesar-foundation/mathesar,Time Zones are inconsistent in Data Explorer,<html redacted>,https://github.com/mathesar-foundation/mathesar/issues/3184,,"['type: bug', 'work: backend', 'work: frontend', 'ready', 'restricted: maintainers']"
+mathesar-foundation/mathesar,"Add in-app documentation for ""Support Time Zones"" DB option",<html redacted>,https://github.com/mathesar-foundation/mathesar/issues/1414,,"['type: enhancement', 'help wanted', 'work: frontend', 'ready']"
+mathesar-foundation/mathesar,Entering 'now' on a datetime column without timezone support shows different time from what user expects,<html redacted>,https://github.com/mathesar-foundation/mathesar/issues/1694,,"['type: bug', 'work: frontend', 'needs: implementation specs']"
+israel-dryer/ttkbootstrap,Datetime error when use ttkbootstrap,<html redacted>,https://github.com/israel-dryer/ttkbootstrap/issues/481,,['bug']
+israel-dryer/ttkbootstrap,Apparent namespace collision with the datetime package,<html redacted>,https://github.com/israel-dryer/ttkbootstrap/issues/443,,['bug']
+swar/Swar-Chia-Plot-Manager,Various errors caused by time zone issues.,<html redacted>,https://github.com/swar/Swar-Chia-Plot-Manager/issues/961,,[]
+ProtonVPN/linux-cli,Unable to generate logs: can't compare offset-naive and offset-aware datetimes,<html redacted>,https://github.com/ProtonVPN/linux-cli/issues/94,,[]
+linkml/linkml,linkml:Time and xsd:dateTime,<html redacted>,https://github.com/linkml/linkml/issues/1786,,"['bug', 'community-generated']"
+linkml/linkml,`linkml-(jsonschema-)validate` fails to handle/recognize `datetime` ,<html redacted>,https://github.com/linkml/linkml/issues/1806,,"['bug', 'linkml-validate', 'community-generated']"
+linkml/linkml,metamodelcore DateTime implementation does not fully support ISO-8601 (throws error with Zs),<html redacted>,https://github.com/linkml/linkml/issues/629,,"['bug', 'metamodel']"
+linkml/linkml,Validation error for datetime/date data in YAML,<html redacted>,https://github.com/linkml/linkml/issues/1532,,"['bug', 'documentation', 'linkml-validate', 'community-generated', 'developer-days']"
+linkml/linkml,linkml-sqldb dump doesn't want to instantiate datetimes from TSV from Postgres into SQLite,<html redacted>,https://github.com/linkml/linkml/issues/816,,['generator-SQL']
+gjoseph92/stackstac,Pandas UserWarning: The argument 'infer_datetime_format' is deprecated,<html redacted>,https://github.com/gjoseph92/stackstac/issues/213,,[]
+gjoseph92/stackstac,stackstac.stack to support one time coordinate per unique datetime?,<html redacted>,https://github.com/gjoseph92/stackstac/issues/66,,[]
+cryptosharks131/lndg,Sortable datetime columns,<html redacted>,https://github.com/cryptosharks131/lndg/issues/284,,['enhancement']
+AIT-Assistive-Autonomous-Systems/ros2bag_tools,datetime to rostime,<html redacted>,https://github.com/AIT-Assistive-Autonomous-Systems/ros2bag_tools/issues/31,,[]
+argilla-io/argilla,[FEATURE] Support for `datetime` metadata properties,<html redacted>,https://github.com/argilla-io/argilla/issues/4365,,"['type: enhancement', 'area: server', 'area: api', 'type: community request', 'team: backend', 'area: python sdk']"
+NVIDIA-Merlin/Transformers4Rec,[BUG] examples/tutorial/01-preprocess.ipynb: Convert timestamp from datetime - NotImplementedError: cuDF does not yet support timezone-aware datetimes,<html redacted>,https://github.com/NVIDIA-Merlin/Transformers4Rec/issues/777,,"['bug', 'status/needs-triage']"
+taigaio/taiga-back,"[BUG] docker-compose AssertionError(""database connection isn't set to UTC"")",<html redacted>,https://github.com/taigaio/taiga-back/issues/91,,['bug']
+Hyundai-Kia-Connect/kia_uvo,IONIQ 5 (EUR): Scheduled departure as datetime object,<html redacted>,https://github.com/Hyundai-Kia-Connect/kia_uvo/issues/720,,[]
+snowflakedb/snowpark-python,SNOW-1368516: Creating a dataframe from pandas dataframe with datetime objects fail to set the right column type,<html redacted>,https://github.com/snowflakedb/snowpark-python/issues/1522,,"['bug', 'local testing', 'status-triage_done']"
+meltano/meltano,Consider adding datetime environment variables to Project env,<html redacted>,https://github.com/meltano/meltano/issues/3347,,"['kind/Feature', 'valuestream/Meltano', 'migrated from gitlab', 'env var', 'evergreen']"
+MegEngine/YOLOX,RuntimeError: assertion `dtype == dst.dtype && dst.is_contiguous()',<html redacted>,https://github.com/MegEngine/YOLOX/issues/4,,[]
+tiangolo/sqlmodel,Dose there any better way to write timezone aware datetime field without using the SQLAlchemy ?,<html redacted>,https://github.com/tiangolo/sqlmodel/issues/539,,['question']
+redis/redis-om-python,Find operation on datetime field raises error --> argument of type 'datetime.datetime' is not iterable,<html redacted>,https://github.com/redis/redis-om-python/issues/199,,[]
+redis/redis-om-python,"`datetime` fields are indexed as `TAG`, sortable queries fail silently",<html redacted>,https://github.com/redis/redis-om-python/issues/467,,['bug']
+wills106/homeassistant-solax-modbus,"[FR] - Implement time, datetime etc",<html redacted>,https://github.com/wills106/homeassistant-solax-modbus/issues/432,,['enhancement']
+rnag/dataclass-wizard,Datetime default sql value cant be parsed,<html redacted>,https://github.com/rnag/dataclass-wizard/issues/72,,[]
+rnag/dataclass-wizard,Allow for arbitrary ISO8601 datetime strings to parse by using dateutil.,<html redacted>,https://github.com/rnag/dataclass-wizard/issues/65,,"['enhancement', 'good first issue', 'acknowledged']"
+CJNE/ha-myenergi,No adjustment for DST,<html redacted>,https://github.com/CJNE/ha-myenergi/issues/347,,[]
+davidusb-geek/emhass,Bug related to upcoming DST change? ,<html redacted>,https://github.com/davidusb-geek/emhass/issues/248,,[]
+davidusb-geek/emhass,Use time_zone (or new param) to calculate local currency symbol,<html redacted>,https://github.com/davidusb-geek/emhass/issues/155,,['enhancement']
+travisghansen/hass-opnsense,ValueError: Invalid STD format in b'<Local time zone must be set--use tzsetup>0' <- HA core in XigmaNAS(FreeBSD) jail ,<html redacted>,https://github.com/travisghansen/hass-opnsense/issues/61,,[]
+litestar-org/litestar,"Tests: AssertionError: assert datetime.date(2023, 8, 30) == datetime.date(2023, 8, 31)",<html redacted>,https://github.com/litestar-org/litestar/issues/2293,,"['Bug :bug:', 'tests-issue']"
+monosidev/monosi,Inconsistent usage of UTC & local timezones for timestamps,<html redacted>,https://github.com/monosidev/monosi/issues/136,,"['bug', 'good first issue', 'python']"
+13Bytes/eInkCalendar,datetime: offset-naive and offset-aware,<html redacted>,https://github.com/13Bytes/eInkCalendar/issues/2,,[]
+samuelcolvin/dirty-equals,test_is_datetime fails on alpine linux edge x86_64,<html redacted>,https://github.com/samuelcolvin/dirty-equals/issues/97,,[]
+samuelcolvin/dirty-equals,DeprecationWarning for datetime.utcfromtimestamp() in Python 3.12,<html redacted>,https://github.com/samuelcolvin/dirty-equals/issues/71,,[]
+temporalio/sdk-python,[Bug] Fix explanation of Pydantic datetime issue,<html redacted>,https://github.com/temporalio/sdk-python/issues/496,,['bug']
+Avaiga/taipy,BUG-Date control time jumps forward with DST,<html redacted>,https://github.com/Avaiga/taipy/issues/563,,"['🖰 GUI', '💥Malfunction', '🆘 Help wanted', '🟨 Priority: Medium', 'Gui: Back-End']"
+Avaiga/taipy,Better way to handle time zone (charts),<html redacted>,https://github.com/Avaiga/taipy/issues/554,,"['💥Malfunction', '🟩 Priority: Low', 'GUI: Front-End']"
+ietf-tools/datatracker,Calendar entries for virtual interims in different time zones,<html redacted>,https://github.com/ietf-tools/datatracker/issues/2924,,"['medium', 'accepted', 'component: meeting/']"
+ietf-tools/datatracker,Upcoming meeting ics includes unused time zone data when filters applied,<html redacted>,https://github.com/ietf-tools/datatracker/issues/4821,,"['bug', 'medium', 'accepted', 'component: meeting/']"
+ietf-tools/datatracker,Represent deadlines / expiration dates as datetimes,<html redacted>,https://github.com/ietf-tools/datatracker/issues/4647,,"['enhancement', 'major', 'accepted']"
+ietf-tools/datatracker,datatracker shows times in PDT: use UTC instead,<html redacted>,https://github.com/ietf-tools/datatracker/issues/6490,,"['bug', 'medium', 'accepted', 'component: submit/']"
+ietf-tools/datatracker,utc_from_string() method replicates Python library code,<html redacted>,https://github.com/ietf-tools/datatracker/issues/4388,,"['bug', 'minor', 'accepted', 'component: ipr/']"
+ietf-tools/datatracker,Interim view calls ajax_get_utc() with empty timezone,<html redacted>,https://github.com/ietf-tools/datatracker/issues/4884,,"['bug', 'medium', 'accepted', 'component: meeting/']"
+ietf-tools/datatracker,Unexpected results from model_to_timeline_data() after midnight UTC,<html redacted>,https://github.com/ietf-tools/datatracker/issues/4758,,"['bug', 'medium', 'accepted', 'component: doc/']"
+ietf-tools/datatracker,Change draft expirations and other deadline based transitions to happen at 0000 UTC,<html redacted>,https://github.com/ietf-tools/datatracker/issues/2671,,"['medium', 'accepted', 'component: doc/', 'component: submit/']"
+ietf-tools/datatracker,The agenda/agenda-utc tabs on the agenda page should preserve the current queryset,<html redacted>,https://github.com/ietf-tools/datatracker/issues/3112,,"['medium', 'accepted', 'component: meeting/']"
+ietf-tools/datatracker,"Draft reminder emails need to show UTC times, and show draft submission tool closures if relevant",<html redacted>,https://github.com/ietf-tools/datatracker/issues/1825,,"['minor', 'accepted', 'component: doc/', 'contrib-easy']"
+python-humanize/humanize,naturaldate() gives the wrong answer for tz-aware datetimes,<html redacted>,https://github.com/python-humanize/humanize/issues/152,,[]
+python-humanize/humanize,"Accept ISO 8601 string, in addition to datetime/date/time object ",<html redacted>,https://github.com/python-humanize/humanize/issues/129,,[]
+Altinity/clickhouse-sink-connector,Connection to MySQL can fail if the server time zone is not recognized by the JDBC driver,<html redacted>,https://github.com/Altinity/clickhouse-sink-connector/issues/331,,['bug']
+Altinity/clickhouse-sink-connector,Loss of milliseconds in datetime(6) and time(6) replication from MySQL to ClickHouse,<html redacted>,https://github.com/Altinity/clickhouse-sink-connector/issues/8,,['bug']
+oracle/python-oracledb,Timezone missing from TIMESTAMP WITH TIME ZONE,<html redacted>,https://github.com/oracle/python-oracledb/issues/274,,['enhancement']
+oracle/python-oracledb,Add support for named time zones in thin mode,<html redacted>,https://github.com/oracle/python-oracledb/issues/20,,['enhancement']
+kolonialno/patito,Add support for enums with `date`/`datetime`/`timedelta` values,<html redacted>,https://github.com/kolonialno/patito/issues/25,,[]
+kolonialno/patito,Handle validation of `datetime` fields for pandas data frames,<html redacted>,https://github.com/kolonialno/patito/issues/7,,[]
+mage-ai/mage-ai,[BUG] IndexError on OracleDB yaml data exporter when key column or only datetime as column type is assigned,<html redacted>,https://github.com/mage-ai/mage-ai/issues/4587,,['bug']
+mage-ai/mage-ai,Geopandas : Loading value from Postgis return a Shapefile error related to Datetime field,<html redacted>,https://github.com/mage-ai/mage-ai/issues/4054,,['bug']
+grafana/oncall,refer to UTC instead of GMT,<html redacted>,https://github.com/grafana/oncall/issues/2689,,"['bug', 'more info needed', 'needs triage']"
+grafana/oncall,[API] Oncall daily shifts on timezones != UTC don't work,<html redacted>,https://github.com/grafana/oncall/issues/4197,,"['bug', 'part:schedules', 'needs triage']"
+posit-dev/great-tables,ISO-formatted date strings don't work with `.fmt_datetime()`,<html redacted>,https://github.com/posit-dev/great-tables/issues/222,,"['Difficulty: [2] Intermediate', 'Effort: [2] Medium', 'Priority: [3] High', 'Type: ☹︎ Bug']"
+jowilf/starlette-admin,"DateTime does not display in browser's timezone, but instead in server timezone, without making that clear",<html redacted>,https://github.com/jowilf/starlette-admin/issues/288,,['bug']
+opsmill/infrahub,feature: DateTime Attribute Format Methods,<html redacted>,https://github.com/opsmill/infrahub/issues/3626,,['type/feature']
+opsmill/infrahub,"task: DateTime type is defined as an Infrahub ""String"" and as such lacks verification",<html redacted>,https://github.com/opsmill/infrahub/issues/3337,,"['group/backend', 'type/task']"
+ultralytics/ultralytics,partially initialized module 'pandas' has no attribute '_pandas_datetime_CAPI' (most likely due to a circular import),<html redacted>,https://github.com/ultralytics/ultralytics/issues/12980,,"['bug', 'Stale']"
+aerleon/aerleon,[LEGACY ISSUE 254] port group optimization for same src/dst rules,<html redacted>,https://github.com/aerleon/aerleon/issues/47,,['enhancement']
+jonasbkarlsson/ev_smart_charging,Use `input_datetime` for completion time,<html redacted>,https://github.com/jonasbkarlsson/ev_smart_charging/issues/226,,['feature request']
+pathwaycom/pathway,support datetime + formatting in connectors,<html redacted>,https://github.com/pathwaycom/pathway/issues/45,,['enhancement']
+pathwaycom/pathway,Deprecating `pw.DATE_TIME_UTC`,<html redacted>,https://github.com/pathwaycom/pathway/issues/10,,"['enhancement', 'priority:low']"
+buildarr/buildarr,Improve zulu datetime handling in plugins,<html redacted>,https://github.com/buildarr/buildarr/issues/122,,"['enhancement', 'refactor', 'plugins', 'config']"
+LAION-AI/Open-Assistant,"Next Iteration Meeting (Friday, May 5, 2023  7:00pm UTC)",<html redacted>,https://github.com/LAION-AI/Open-Assistant/issues/3007,,['meeting']
+humbertogontijo/homeassistant-roborock,DnD end and start not converting to users time zone,<html redacted>,https://github.com/humbertogontijo/homeassistant-roborock/issues/67,,[]
+google/temporian,Automatic Conversion of Pandas Object to Datetime for Timestamps in Eventset Creation,<html redacted>,https://github.com/google/temporian/issues/330,,[]
+keephq/keep,[🐛 Bug] `workflowexecution` result fails when result contains datetime,<html redacted>,https://github.com/keephq/keep/issues/1255,,"['Bug', 'API']"
+keephq/keep,"bug: if lastRec is not in utc than ""self assign"" doesn't work",<html redacted>,https://github.com/keephq/keep/issues/1053,,[]
+dagster-io/fake-star-detector,TypeError: Cannot compare Timestamp with datetime.date,<html redacted>,https://github.com/dagster-io/fake-star-detector/issues/7,,[]
+long2ice/meilisync,Not support datetime Type,<html redacted>,https://github.com/long2ice/meilisync/issues/31,,[]
+trevorhobenshield/twitter-api-client,backports-datetime-fromisoformat fails on ARM machines,<html redacted>,https://github.com/trevorhobenshield/twitter-api-client/issues/190,,[]
+celebi-pkg/flight-analysis,Datetime formatting Value Error,<html redacted>,https://github.com/celebi-pkg/flight-analysis/issues/15,,[]
+tconbeer/harlequin,Harlequin can crash when loading the datetime `1-1-1`,<html redacted>,https://github.com/tconbeer/harlequin/issues/568,,['bug']
+RUC-GSAI/YuLan-Rec,_pickle.PicklingError: Can't pickle <class 'datetime.datetime'>: it's not the same object as datetime.datetime,<html redacted>,https://github.com/RUC-GSAI/YuLan-Rec/issues/16,,[]
+ptmcg/logmerger,"TODO: how to handle UTC timestamps, and UTC display?",<html redacted>,https://github.com/ptmcg/logmerger/issues/23,,[]
+haikerapples/timetask,默认时区为UTC时间，无法修改为北京时间,<html redacted>,https://github.com/haikerapples/timetask/issues/57,,[]
+langchain-ai/langgraph,"Shouldn't thread_ts be set to a datetime object instead of checkpoint[""id""]?",<html redacted>,https://github.com/langchain-ai/langgraph/issues/634,,[]
+pydantic/FastUI,Initial value on form doesn't work with datetime,<html redacted>,https://github.com/pydantic/FastUI/issues/333,,[]
+pydantic/FastUI,Display `pretty_datetime`,<html redacted>,https://github.com/pydantic/FastUI/issues/187,,[]
+joaomdmoura/crewAI,crewAI/src/crewai/utilities/logger.py file need import datetime,<html redacted>,https://github.com/joaomdmoura/crewAI/issues/729,,[]
+cpacker/MemGPT,query_date fails with 'operator does not exist: timestamp with time zone >= character varying',<html redacted>,https://github.com/cpacker/MemGPT/issues/1343,,[]
+jekalmin/extended_openai_conversation,DateTime format is invalid while creating automation,<html redacted>,https://github.com/jekalmin/extended_openai_conversation/issues/232,,[]
+ariebovenberg/whenever,Improving the `[Date|Time|DateTime]Delta` API,<html redacted>,https://github.com/ariebovenberg/whenever/issues/110,,['discussion']
+ariebovenberg/whenever,Handle invalidation of zoned datetimes due to changes to timezone definition,<html redacted>,https://github.com/ariebovenberg/whenever/issues/39,,['discussion']
+Autumn-27/ScopeSentry,Windows运行1.3版本ScopeSentry-scan报错Error loading time zone,<html redacted>,https://github.com/Autumn-27/ScopeSentry/issues/20,,[]
