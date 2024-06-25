@@ -26,10 +26,10 @@ def run_command(command):
 
 def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF_FACTOR):
     repo_path = f"{repo_owner}:{repo_name}"
-    
+
     if os.path.exists(os.path.join(CLONE_REPOS_DIR, repo_path)):
         return "Repository already exists, skipping clone.", "", True
-    
+
     for attempt in range(retries):
         stdout, stderr = run_command(f"git clone --depth 1 https://github.com/{repo_owner}/{repo_name} {os.path.join(CLONE_REPOS_DIR, repo_path)}")
         if "fatal" not in stderr:
@@ -84,17 +84,25 @@ def process_repos(df, logger):
 
 def main():
     print("STARTING REPO FILTERING")
+
     df = pd.read_csv(REPOS_PATH)
     if not os.path.exists(CLONE_REPOS_DIR):
         os.makedirs(CLONE_REPOS_DIR)
 
-    from_index = 0 if (len(sys.argv) == 1) else int(sys.argv[1])
-    to_index = len(df) if (len(sys.argv) == 1) else int(sys.argv[2])
+    if len(sys.argv) == 1:
+        from_index = 0
+        to_index = len(df)
+        ret_path = SEPARATED_FILTERED_REPOS_PATH
+    elif len(sys.argv) == 3:
+        from_index = int(sys.argv[1])
+        to_index = int(sys.argv[2])
+        ret_path = f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
+    else:
+        raise RuntimeError(f"Expected 0 or 2 commandline arguments, found {len(sys.argv)-1}")
 
     logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
     df_ret = process_repos(df[from_index:to_index], logger)
 
-    ret_path = SEPARATED_FILTERED_REPOS_PATH if len(sys.argv) == 1 else f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
     df_ret.to_csv(ret_path, index=False)
 
     exit(0)
