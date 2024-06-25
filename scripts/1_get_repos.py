@@ -12,9 +12,6 @@ from __global_paths import *
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2
 
-if not os.path.exists(CLONE_REPOS_DIR):
-    os.makedirs(CLONE_REPOS_DIR)
-
 def setup_logger(name, log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))

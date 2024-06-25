@@ -27,8 +27,8 @@ Run the data-gathering scripts:
 ```sh
 python3 0_find_repos.py
 python3 1_get_repos.py
-python3 2_get_issues.py
-python3 3_get_issues_statistics.py
+python3 2_get_bugs.py
+python3 3_get_bug_statistics.py
 ```
 
 ## Command-Line Checks
