@@ -6,12 +6,21 @@ import csv
 import pandas as pd
 import subprocess
 import time
+import sys
 
 from __global_paths import *
 
-open_or_closed      = "closed" if (len(sys.argv) == 1) else "open"
-WRITE_ISSUES_PATH   = ISSUES_PATH if (len(sys.argv) == 1) else OPEN_ISSUES_PATH
-WRITE_BUGS_PATH     = BUGS_PATH if (len(sys.argv) == 1) else OPEN_BUGS_PATH
+
+if len(sys.argv) == 1:
+    open_or_closed = "closed"
+elif len(sys.argv) == 2:
+    assert sys.argv[1] == "open" or sys.argv[1] == "closed"
+    open_or_closed = sys.argv[1]
+else:
+    raise RuntimeError(f"Expected 0 or 1 commandline arguments, found {len(sys.argv)-1}")
+
+WRITE_ISSUES_PATH   = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
+WRITE_BUGS_PATH     = BUGS_PATH if open_or_closed == "closed" else OPEN_BUGS_PATH
 
 with open(GH_ACCESS_TOKEN, "r") as file:
   gh_access_token = file.read().strip()
@@ -33,19 +42,19 @@ query($q: String!, $cursor: String) {
     }
     nodes {
       ... on Issue {
-        
+
         title
         bodyHTML
         url
         activeLockReason
-        
-        
+
+
         labels (first:100) {
           nodes {
             name
           }
         }
-        
+
       }
     }
   }
@@ -54,7 +63,7 @@ query($q: String!, $cursor: String) {
 
 with open(WRITE_ISSUES_PATH, "w") as file:
   writer = csv.writer(file, lineterminator="\n")
-  
+
   row = ["repoName", "title", "url", "lockReason", "labels"]
   writer.writerow(row)
 
@@ -68,14 +77,14 @@ def search_issues(nameWithOwner):
   while (True):
     json = {"query": gh_query, "variables": {"q": q, "cursor": cursor}}
     response = requests.post(url, json=json, headers=headers)
-    
+
     if (response.status_code != 200):
       print(f"Response code: {response.status_code}")
       time.sleep(20)
       continue
-    
+
     response = response.json()
-    
+
     if ("errors" in response):
       cont = False
       for error in response["errors"]:
@@ -90,7 +99,7 @@ def search_issues(nameWithOwner):
 
     response = response["data"]
     rateLimit = response["rateLimit"]
-    
+
     hasNextPage = response["search"]["pageInfo"]["hasNextPage"]
     issues = response["search"]["nodes"]
 
