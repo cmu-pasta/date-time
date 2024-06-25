@@ -98,7 +98,7 @@ def main():
         to_index = int(sys.argv[2])
         ret_path = f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
     else:
-        raise RuntimeError(f"Expected 0 or 2 commandline arguments, found {len(sys.argv)-1}")
+        raise RuntimeError(f"Usage: {sys.argv[0]} [from_index to_index]")
 
     logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
     df_ret = process_repos(df[from_index:to_index], logger)

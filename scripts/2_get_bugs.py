@@ -13,11 +13,10 @@ from __global_paths import *
 
 if len(sys.argv) == 1:
     open_or_closed = "closed"
-elif len(sys.argv) == 2:
-    assert sys.argv[1] == "open" or sys.argv[1] == "closed"
+elif len(sys.argv) == 2 and (sys.argv[1] == "open" or sys.argv[1] == "closed"):
     open_or_closed = sys.argv[1]
 else:
-    raise RuntimeError(f"Expected 0 or 1 commandline arguments, found {len(sys.argv)-1}")
+    raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed]")
 
 WRITE_ISSUES_PATH   = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
 WRITE_BUGS_PATH     = BUGS_PATH if open_or_closed == "closed" else OPEN_BUGS_PATH
