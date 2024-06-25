@@ -9,8 +9,13 @@ import time
 
 from __global_paths import *
 
+open_or_closed      = "closed" if (len(sys.argv) == 1) else "open"
+WRITE_ISSUES_PATH   = ISSUES_PATH if (len(sys.argv) == 1) else OPEN_ISSUES_PATH
+WRITE_BUGS_PATH     = BUGS_PATH if (len(sys.argv) == 1) else OPEN_BUGS_PATH
+
 with open(GH_ACCESS_TOKEN, "r") as file:
   gh_access_token = file.read().strip()
+
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
 
@@ -47,7 +52,7 @@ query($q: String!, $cursor: String) {
 }
 """
 
-with open(ISSUES_PATH, "w") as file:
+with open(WRITE_ISSUES_PATH, "w") as file:
   writer = csv.writer(file, lineterminator="\n")
   
   row = ["repoName", "title", "bodyHtml", "url", "lockReason", "labels"]
@@ -58,7 +63,7 @@ headers = {"Authorization": f"Bearer {gh_access_token}"}
 
 def search_issues(nameWithOwner):
   count = 0
-  q = f"repo:{nameWithOwner} is:issue is:closed in:title \"datetime\" OR \"DST\" OR \"daylight saving\" OR \"utc\" OR \"time zone\""
+  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title \"datetime\" OR \"DST\" OR \"daylight saving\" OR \"utc\" OR \"time zone\""
   cursor = None
   while (True):
     json = {"query": gh_query, "variables": {"q": q, "cursor": cursor}}
@@ -89,7 +94,7 @@ def search_issues(nameWithOwner):
     hasNextPage = response["search"]["pageInfo"]["hasNextPage"]
     issues = response["search"]["nodes"]
 
-    with open(ISSUES_PATH, "a") as file:
+    with open(WRITE_ISSUES_PATH, "a") as file:
       writer = csv.writer(file, lineterminator="\n")
 
       for issue in issues:
@@ -112,5 +117,5 @@ for index, row in df.iterrows():
   if (index % 100 == 0):
     print(f"{nameWithOwner} completed")
 
-subprocess.run(f"head -n 1 {ISSUES_PATH} > {BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-subprocess.run(f"grep -E '(bug|fix|wrong)' {ISSUES_PATH} >> {BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
