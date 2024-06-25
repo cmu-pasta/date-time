@@ -3,6 +3,7 @@ import json
 import csv
 import pandas as pd
 import subprocess
+import time
 
 from __global_paths import *
 
@@ -47,8 +48,6 @@ with open(OPEN_ISSUES_PATH, "w") as file:
   
   row = ["repoName", "title", "bodyHtml", "url", "lockReason", "labels"]
   writer.writerow(row)
-
-import time
 
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}

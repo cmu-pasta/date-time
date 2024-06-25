@@ -4,7 +4,7 @@ GH_ACCESS_TOKEN = "access_tokens/gh_access_token"
 SG_ACCESS_TOKEN = "access_tokens/sg_access_token"
 
 LOG_DIR = DATA_DIR + "logs/"
-CLONE_REPOS_DIR = DATA_DIR + "cloned_repos4/"
+CLONE_REPOS_DIR = DATA_DIR + "cloned_repos/"
 
 REPOS_PATH = DATA_DIR + "repos.csv"
 SEPARATED_FILTERED_REPOS_PATH = DATA_DIR + "repos_with_separated_grep.csv"
