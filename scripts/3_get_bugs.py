@@ -8,17 +8,39 @@ import sys
 
 from __global_paths import *
 
+keywords = [
+  "datetime OR timestamp OR date OR time OR tzinfo OR calendar",
+  "pytz OR dateutil OR arrow OR whenever OR pendulum OR heliclockter",
+  "leap OR DST OR daylight OR year OR localtime OR epoch",
+  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT OR UTC",
+  "interval OR duration OR elapsed OR timedelta OR fold",
+  "microsecond OR nanosecond OR millisecond OR second"
+]
+
 if len(sys.argv) == 1:
     open_or_closed = "closed"
-elif len(sys.argv) == 2 and (sys.argv[1] == "open" or sys.argv[1] == "closed"):
+elif sys.argv[1] == "open" or sys.argv[1] == "closed":
     open_or_closed = sys.argv[1]
 else:
-    raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed]")
+    raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
 
-WRITE_ISSUES_PATH   = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
-WRITE_BUGS_PATH     = BUGS_PATH if open_or_closed == "closed" else OPEN_BUGS_PATH
+key = 0
 
-with open(GH_ACCESS_TOKEN, "r") as file:
+if len(sys.argv) == 3:
+    try:
+        key = int(sys.argv[2])
+    except:
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
+    if key < 0 or key > 5:
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
+
+WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
+WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
+
+WRITE_ISSUES_PATH += f"_{key}"
+WRITE_BUGS_PATH += f"_{key}"
+
+with open(GH_ACCESS_TOKEN + f"_{key}", "r") as file:
   gh_access_token = file.read().strip()
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
@@ -60,7 +82,7 @@ headers = {"Authorization": f"Bearer {gh_access_token}"}
 
 def search_issues(nameWithOwner):
   count = 0
-  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title \"datetime\" OR \"DST\" OR \"daylight saving\" OR \"utc\" OR \"time zone\""
+  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title {keywords[key]}"
   cursor = None
   while (True):
     json = {"query": gh_query, "variables": {"q": q, "cursor": cursor}}
@@ -110,6 +132,7 @@ def search_issues(nameWithOwner):
 def main():
 
   print("STARTING GET_ISSUES")
+  print(f"KEY: {key}. KEYWORDS: {keywords[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
