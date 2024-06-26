@@ -39,11 +39,11 @@ def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF
 
 def grep_repo(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    stdout0, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+datetime' {repo_path}")
-    stdout1, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+arrow' {repo_path}")
-    stdout2, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+pendulum' {repo_path}")
-    stdout3, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+whenever' {repo_path}")
-    stdout4, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter' {repo_path}")
+    stdout0, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+datetime(\s|,|$)' {repo_path}")
+    stdout1, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+arrow(\s|,|$)' {repo_path}")
+    stdout2, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+pendulum(\s|,|$)' {repo_path}")
+    stdout3, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+whenever(\s|,|$)' {repo_path}")
+    stdout4, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter(\s|,|$)' {repo_path}")
     return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0, 1 if stdout4 else 0)
 
 def count_python_lines(repo_owner, repo_name):

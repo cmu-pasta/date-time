@@ -41,6 +41,9 @@ gh_query = """
                     bodyHTML
                     url
                     activeLockReason
+                    comments {
+                        totalCount
+                    }
                     labels (first:100) {
                     nodes {
                         name
@@ -96,9 +99,7 @@ def search_issues(nameWithOwner):
         for l in issue["labels"]["nodes"]:
           labels.append(l["name"])
 
-        row = [nameWithOwner, issue["title"], issue["url"],
-               issue["activeLockReason"], labels
-        ]
+        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["comments"]["totalCount"], labels]
         writer.writerow(row)
 
     cursor = response["search"]["pageInfo"]["endCursor"]
@@ -112,7 +113,7 @@ def main():
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
-    row = ["repoName", "title", "url", "lockReason", "labels"]
+    row = ["repoName", "title", "url", "lockReason", "commentsCount", "labels"]
     writer.writerow(row)
 
   for index, row in df.iterrows():
