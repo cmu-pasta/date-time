@@ -1,5 +1,3 @@
-print("STARTING GET_ISSUES")
-
 import requests
 import json
 import csv
@@ -17,7 +15,7 @@ with open(GH_ACCESS_TOKEN, "r") as file:
   gh_access_token = file.read().strip()
 
 
-df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
+df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
 
 gh_query = """
 query($q: String!, $cursor: String) {
@@ -111,11 +109,18 @@ def search_issues(nameWithOwner):
     if (not hasNextPage):
       break
 
-for index, row in df.iterrows():
-  nameWithOwner = row["owner"] + "/" + row["name"]
-  search_issues(nameWithOwner)
-  if (index % 100 == 0):
-    print(f"{nameWithOwner} completed")
 
-subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+def main():
+  print("STARTING GET_ISSUES")
+  for index, row in df.iterrows():
+    nameWithOwner = row["owner"] + "/" + row["name"]
+    search_issues(nameWithOwner)
+    if (index % 100 == 0):
+      print(f"{nameWithOwner} completed")
+
+  subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+
+if __name__ == "__main__":
+  main()

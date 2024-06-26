@@ -39,11 +39,12 @@ def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF
 
 def grep_repo(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    stdout0, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)datetime' {repo_path}")
-    stdout1, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)arrow' {repo_path}")
-    stdout2, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)pendulum' {repo_path}")
-    stdout3, _ = run_command(f"timeout 10s grep --include=\*.py -rE '^\s*(import.*|from\s*)whenever' {repo_path}")
-    return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0)
+    stdout0, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+datetime' {repo_path}")
+    stdout1, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+arrow' {repo_path}")
+    stdout2, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+pendulum' {repo_path}")
+    stdout3, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+whenever' {repo_path}")
+    stdout4, _ = run_command(f"grep --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter' {repo_path}")
+    return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0, 1 if stdout4 else 0)
 
 def count_python_lines(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
@@ -52,14 +53,14 @@ def count_python_lines(repo_owner, repo_name):
     return total_lines
 
 def process_repo(repo_owner, repo_name, logger):
-    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
-    if not success:
-        logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
-        return pd.DataFrame()
+#    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
+#    clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
+#    if not success:
+#        logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
+#        return pd.DataFrame()
 
     grep_result = grep_repo(repo_owner, repo_name)
-    loc = count_python_lines(repo_owner, repo_name)
+    # loc = count_python_lines(repo_owner, repo_name)
 
     return pd.DataFrame({
         "nameWithOwner": [repo_owner + "/" + repo_name],
@@ -69,7 +70,8 @@ def process_repo(repo_owner, repo_name, logger):
         "grep_results1": [grep_result[1]],
         "grep_results2": [grep_result[2]],
         "grep_results3": [grep_result[3]],
-        "loc": [loc]
+        "grep_results4": [grep_result[4]]
+        # "loc": [loc]
     })
 
 def process_repos(df, logger):
@@ -96,8 +98,9 @@ def main():
 
     ret_path = SEPARATED_FILTERED_REPOS_PATH if len(sys.argv) == 1 else f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
     df_ret.to_csv(ret_path, index=False)
-
-    exit(0)
-
+    
+    run_command(f"head -n 1 {ret_path} > {ret_path[:-4] + '_filtered.csv'}")
+    run_command(f"grep ',1,' {ret_path} >> {ret_path[:-4] + '_filtered.csv'}")
+    
 if __name__ == "__main__":
     main()
