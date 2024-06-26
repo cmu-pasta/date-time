@@ -636,7 +636,6 @@ shantnu/Webcam-Face-Detect,shantnu,Webcam-Face-Detect,1,0,0,0,0
 lionheart/pinboard.py,lionheart,pinboard.py,1,0,0,0,0
 volatilityfoundation/community,volatilityfoundation,community,1,0,0,0,0
 cortex-lab/phy,cortex-lab,phy,1,0,0,0,0
-xdanaux/fontawesome-latex,xdanaux,fontawesome-latex,1,0,0,0,0
 XaF/TraktForVLC,XaF,TraktForVLC,1,0,0,0,0
 prahladyeri/hotspotd,prahladyeri,hotspotd,1,0,0,0,0
 iOSForensics/pymobiledevice,iOSForensics,pymobiledevice,1,0,0,0,0
@@ -1307,7 +1306,7 @@ pvlib/pvlib-python,pvlib,pvlib-python,1,0,0,0,0
 andrea-cuttone/geoplotlib,andrea-cuttone,geoplotlib,1,0,0,0,0
 myhdl/myhdl,myhdl,myhdl,1,0,0,0,0
 weewx/weewx,weewx,weewx,1,0,0,0,0
-baidu/CUP,baidu,CUP,1,1,0,0,0
+baidu/CUP,baidu,CUP,1,0,0,0,0
 tarpas/pytest-testmon,tarpas,pytest-testmon,1,0,0,0,0
 n8henrie/pycookiecheat,n8henrie,pycookiecheat,1,0,0,0,0
 PowerScript/KatanaFramework,PowerScript,KatanaFramework,1,0,0,0,0
@@ -2589,7 +2588,6 @@ yijingping/unicrawler,yijingping,unicrawler,1,0,0,0,0
 Lazza/RecuperaBit,Lazza,RecuperaBit,1,0,0,0,0
 amazon-archives/aws-waf-sample,amazon-archives,aws-waf-sample,1,0,0,0,0
 golemhq/golem,golemhq,golem,1,0,0,0,0
-VinF/deer,VinF,deer,0,0,1,0,0
 Miserlou/django-zappa,Miserlou,django-zappa,1,0,0,0,0
 qiime2/qiime2,qiime2,qiime2,1,0,0,0,0
 tencia/stocks_rnn,tencia,stocks_rnn,1,0,0,0,0
@@ -3760,7 +3758,7 @@ kneufeld/alkali,kneufeld,alkali,1,0,0,0,0
 SINTEF/Splipy,SINTEF,Splipy,1,0,0,0,0
 swisskyrepo/PayloadsAllTheThings,swisskyrepo,PayloadsAllTheThings,1,0,0,0,0
 localstack/localstack,localstack,localstack,1,0,0,0,0
-ray-project/ray,ray-project,ray,1,1,0,0,0
+ray-project/ray,ray-project,ray,1,0,0,0,0
 kovidgoyal/kitty,kovidgoyal,kitty,1,0,0,0,0
 RasaHQ/rasa,RasaHQ,rasa,1,0,0,0,0
 apache/tvm,apache,tvm,1,0,0,0,0
@@ -3769,7 +3767,6 @@ cupy/cupy,cupy,cupy,1,0,0,0,0
 saulpw/visidata,saulpw,visidata,1,0,0,0,0
 kubernetes-client/python,kubernetes-client,python,1,0,0,0,0
 NicolasHug/Surprise,NicolasHug,Surprise,1,0,0,0,0
-pyqt/examples,pyqt,examples,1,0,0,0,0
 python-security/pyt,python-security,pyt,1,0,0,0,0
 PyFilesystem/pyfilesystem2,PyFilesystem,pyfilesystem2,1,0,0,0,0
 arsaboo/homeassistant-config,arsaboo,homeassistant-config,1,0,0,0,0
@@ -3848,7 +3845,6 @@ openmm/openmmforcefields,openmm,openmmforcefields,1,0,0,0,0
 lucasjinreal/LSTM_learn,lucasjinreal,LSTM_learn,1,0,0,0,0
 galeone/dynamic-training-bench,galeone,dynamic-training-bench,1,0,0,0,0
 tchellomello/python-amcrest,tchellomello,python-amcrest,1,0,0,0,0
-charcoal-lang/Charcoal,charcoal-lang,Charcoal,0,1,0,0,0
 Wh1t3Rh1n0/air-hammer,Wh1t3Rh1n0,air-hammer,1,0,0,0,0
 Wildog/douban-exporter,Wildog,douban-exporter,1,0,0,0,0
 renatahodovan/fuzzinator,renatahodovan,fuzzinator,1,0,0,0,0
@@ -5841,7 +5837,7 @@ conda/conda-pack,conda,conda-pack,1,0,0,0,0
 mnemosyne-proj/mnemosyne,mnemosyne-proj,mnemosyne,1,0,0,0,0
 cogeotiff/rio-tiler,cogeotiff,rio-tiler,1,0,0,0,0
 hanzhanggit/StackGAN-Pytorch,hanzhanggit,StackGAN-Pytorch,1,0,0,0,0
-erwincoumans/pybullet_robots,erwincoumans,pybullet_robots,1,0,1,0,0
+erwincoumans/pybullet_robots,erwincoumans,pybullet_robots,1,0,0,0,0
 crocs-muni/roca,crocs-muni,roca,1,0,0,0,0
 google/upvote_py2,google,upvote_py2,1,0,0,0,0
 asanakoy/kaggle_carvana_segmentation,asanakoy,kaggle_carvana_segmentation,1,0,0,0,0
@@ -7818,7 +7814,6 @@ wechaty/python-wechaty,wechaty,python-wechaty,1,0,0,0,0
 Bashfuscator/Bashfuscator,Bashfuscator,Bashfuscator,1,0,0,0,0
 facebookresearch/UnsupervisedMT,facebookresearch,UnsupervisedMT,1,0,0,0,0
 corpnewt/GenSMBIOS,corpnewt,GenSMBIOS,1,0,0,0,0
-KMKfw/kmk_firmware,KMKfw,kmk_firmware,0,1,0,0,0
 stacklens/django_blog_tutorial,stacklens,django_blog_tutorial,1,0,0,0,0
 kkyon/botflow,kkyon,botflow,1,0,0,0,0
 intel/scikit-learn-intelex,intel,scikit-learn-intelex,1,0,0,0,0
@@ -10398,7 +10393,7 @@ astrofrog/pypi-timemachine,astrofrog,pypi-timemachine,1,0,0,0,0
 anzhizh/2019-taida-jdata-top3,anzhizh,2019-taida-jdata-top3,1,0,0,0,0
 yymysql/mysql-clickhouse-replication,yymysql,mysql-clickhouse-replication,1,0,0,0,0
 medianetlab/katana-slice_manager,medianetlab,katana-slice_manager,1,0,0,0,0
-streamlit/streamlit,streamlit,streamlit,1,1,0,0,0
+streamlit/streamlit,streamlit,streamlit,1,0,0,0,0
 tgbot-collection/YYeTsBot,tgbot-collection,YYeTsBot,1,0,0,0,0
 NVIDIA/NeMo,NVIDIA,NeMo,1,0,0,0,0
 rougier/scientific-visualization-book,rougier,scientific-visualization-book,1,0,0,0,0
@@ -10671,7 +10666,7 @@ lavis-nlp/spert,lavis-nlp,spert,1,0,0,0,0
 vcheckzen/FODI,vcheckzen,FODI,1,0,0,0,0
 HA6Bots/Automatic-Youtube-Reddit-Text-To-Speech-Video-Generator-and-Uploader,HA6Bots,Automatic-Youtube-Reddit-Text-To-Speech-Video-Generator-and-Uploader,1,0,0,0,0
 ghmagazine/kagglebook,ghmagazine,kagglebook,1,0,0,0,0
-yuudi/yobot,yuudi,yobot,1,1,0,0,0
+yuudi/yobot,yuudi,yobot,1,0,0,0,0
 HazyResearch/hgcn,HazyResearch,hgcn,1,0,0,0,0
 fwestenberg/reolink_dev,fwestenberg,reolink_dev,1,0,0,0,0
 joelbarmettlerUZH/auto-tinder,joelbarmettlerUZH,auto-tinder,1,0,0,0,0
@@ -15769,7 +15764,7 @@ salesforce/Merlion,salesforce,Merlion,1,0,0,0,0
 google-research/scenic,google-research,scenic,1,0,0,0,0
 ndleah/python-mini-project,ndleah,python-mini-project,1,0,0,0,0
 BlinkDL/AI-Writer,BlinkDL,AI-Writer,1,0,0,0,0
-opendilab/DI-engine,opendilab,DI-engine,1,0,1,0,0
+opendilab/DI-engine,opendilab,DI-engine,1,0,0,0,0
 bkerler/mtkclient,bkerler,mtkclient,1,0,0,0,0
 tianqiraf/DouZero_For_HappyDouDiZhu,tianqiraf,DouZero_For_HappyDouDiZhu,1,0,0,0,0
 iterativv/NostalgiaForInfinity,iterativv,NostalgiaForInfinity,1,0,0,0,0
@@ -15812,7 +15807,6 @@ liuyuan-pal/NeuRay,liuyuan-pal,NeuRay,1,0,0,0,0
 ZhugeKongan/Attention-mechanism-implementation,ZhugeKongan,Attention-mechanism-implementation,1,0,0,0,0
 SlongLiu/query2labels,SlongLiu,query2labels,1,0,0,0,0
 predict-idlab/tsflex,predict-idlab,tsflex,1,0,0,0,0
-JizhiziLi/AIM,JizhiziLi,AIM,1,0,0,0,0
 microsoft/MeshGraphormer,microsoft,MeshGraphormer,1,0,0,0,0
 LukasMasuch/streamlit-pydantic,LukasMasuch,streamlit-pydantic,1,0,0,0,0
 tappi287/openvr_fsr_app,tappi287,openvr_fsr_app,1,0,0,0,0
@@ -21025,7 +21019,7 @@ chengzeyi/stable-fast,chengzeyi,stable-fast,1,0,0,0,0
 xlang-ai/OSWorld,xlang-ai,OSWorld,1,0,0,0,0
 hotshotco/Hotshot-XL,hotshotco,Hotshot-XL,1,0,0,0,0
 Kedreamix/Linly-Talker,Kedreamix,Linly-Talker,1,0,0,0,0
-stanford-oval/WikiChat,stanford-oval,WikiChat,1,1,0,0,0
+stanford-oval/WikiChat,stanford-oval,WikiChat,1,0,0,0,0
 shadowcz007/comfyui-mixlab-nodes,shadowcz007,comfyui-mixlab-nodes,1,0,0,0,0
 eric-ai-lab/MiniGPT-5,eric-ai-lab,MiniGPT-5,1,0,0,0,0
 jekalmin/extended_openai_conversation,jekalmin,extended_openai_conversation,1,0,0,0,0
@@ -21506,7 +21500,7 @@ ymmmmmmmm/getgrass_bot,ymmmmmmmm,getgrass_bot,1,0,0,0,0
 River-Zhang/SIFU,River-Zhang,SIFU,1,0,0,0,0
 EQ-bench/EQ-Bench,EQ-bench,EQ-Bench,1,0,0,0,0
 u2seg/U2Seg,u2seg,U2Seg,1,0,0,0,0
-google/space,google,space,1,1,0,0,0
+google/space,google,space,1,0,0,0,0
 rivenmedia/riven,rivenmedia,riven,1,0,0,0,0
 utilmeta/utilmeta-py,utilmeta,utilmeta-py,1,0,0,0,0
 WithSecureLabs/damn-vulnerable-llm-agent,WithSecureLabs,damn-vulnerable-llm-agent,1,0,0,0,0
