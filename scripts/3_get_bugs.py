@@ -40,7 +40,7 @@ WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PAT
 WRITE_ISSUES_PATH += f"_{key}"
 WRITE_BUGS_PATH += f"_{key}"
 
-with open(GH_ACCESS_TOKEN + f"_{key}", "r") as file:
+with open(GH_ACCESS_TOKEN + f"_{key%4}", "r") as file:
   gh_access_token = file.read().strip()
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
