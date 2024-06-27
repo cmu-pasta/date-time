@@ -5,6 +5,7 @@ import pandas as pd
 import subprocess
 import time
 import sys
+import re
 
 from __global_paths import *
 
@@ -63,8 +64,11 @@ gh_query = """
                     bodyHTML
                     url
                     activeLockReason
-                    comments {
+                    comments (first:100) {
                         totalCount
+                        nodes {
+                            bodyText
+                        }
                     }
                     labels (first:100) {
                     nodes {
@@ -79,6 +83,7 @@ gh_query = """
  
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
+pattern = r'https?://[^\\"]*pull[^\\"]*'
 
 def search_issues(nameWithOwner):
   count = 0
@@ -118,10 +123,21 @@ def search_issues(nameWithOwner):
 
       for issue in issues:
         labels = []
+        fixURL = ""
         for l in issue["labels"]["nodes"]:
           labels.append(l["name"])
+        for comment in issue["comments"]["nodes"]:
+          html = comment["bodyText"]
+          fixURL += html
+          if "/pull/" in html:
+              fixURL += "FOUND!"
+          matches = re.findall(pattern, html)
+         # if matches:
+         #   fixURL = matches[0]
+         #   break
 
-        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["comments"]["totalCount"], labels]
+        row = ["", "", "", "", "", "", fixURL]
+        #row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["comments"]["totalCount"], labels, fixURL]
         writer.writerow(row)
 
     cursor = response["search"]["pageInfo"]["endCursor"]
@@ -136,7 +152,7 @@ def main():
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
-    row = ["repoName", "title", "url", "lockReason", "commentsCount", "labels"]
+    row = ["repoName", "title", "url", "lockReason", "commentsCount", "labels", "fixURL"]
     writer.writerow(row)
 
   for index, row in df.iterrows():
