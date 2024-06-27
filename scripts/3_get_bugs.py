@@ -18,22 +18,18 @@ keywords = [
   "microsecond OR nanosecond OR millisecond OR second"
 ]
 
-if len(sys.argv) == 1:
-    open_or_closed = "closed"
-elif sys.argv[1] == "open" or sys.argv[1] == "closed":
-    open_or_closed = sys.argv[1]
-else:
-    raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
-
+open_or_closed = "closed"
 key = 0
 
-if len(sys.argv) == 3:
+if len(sys.argv) >= 2:
+    open_or_closed = sys.argv[1]
+if len(sys.argv) >= 3:
     try:
         key = int(sys.argv[2])
     except:
         raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
-    if key < 0 or key > 5:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
+if key < 0 or key > 5 or (open_or_closed != "open" and open_or_closed != "closed"):
+   raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
 
 WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
 WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
@@ -159,7 +155,8 @@ def main():
     nameWithOwner = row["owner"] + "/" + row["name"]
     search_issues(nameWithOwner)
     if (index % 100 == 0):
-      print(f"{nameWithOwner} completed")
+      print(f"Finished row {index} ({round(100*index/df.shape[0], 2)}% Done)")
+      # print(f"{nameWithOwner} completed")
 
   subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
   subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
