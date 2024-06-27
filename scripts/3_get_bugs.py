@@ -60,26 +60,32 @@ gh_query = """
                     bodyHTML
                     url
                     activeLockReason
-                    comments (first:100) {
-                        totalCount
+                    labels (first:100) {
                         nodes {
-                            bodyText
+                            name
                         }
                     }
-                    labels (first:100) {
-                    nodes {
-                        name
+                    timelineItems(first:100){
+                        totalCount
+                        nodes {
+                            ... on CrossReferencedEvent {
+                                source{
+                                    ... on PullRequest{
+                                        permalink
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
-}
 """
  
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
-pattern = r'https?://[^\\"]*pull[^\\"]*'
+pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
 def search_issues(nameWithOwner):
   count = 0
@@ -122,18 +128,15 @@ def search_issues(nameWithOwner):
         fixURL = ""
         for l in issue["labels"]["nodes"]:
           labels.append(l["name"])
-        for comment in issue["comments"]["nodes"]:
-          html = comment["bodyText"]
-          fixURL += html
-          if "/pull/" in html:
-              fixURL += "FOUND!"
-          matches = re.findall(pattern, html)
-         # if matches:
-         #   fixURL = matches[0]
-         #   break
+        for tl_item in issue["timelineItems"]["nodes"]:
+          if tl_item is None: continue
+          if "source" in tl_item and "permalink" in tl_item["source"]:
+            if "pull" in tl_item["source"]["permalink"]:
+                fixURL = tl_item["source"]["permalink"]
+                break
 
-        row = ["", "", "", "", "", "", fixURL]
-        #row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["comments"]["totalCount"], labels, fixURL]
+        # row = ["", "", "", "", "", "", fixURL]
+        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["timelineItems"]["totalCount"], labels, fixURL]
         writer.writerow(row)
 
     cursor = response["search"]["pageInfo"]["endCursor"]
@@ -148,7 +151,7 @@ def main():
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
-    row = ["repoName", "title", "url", "lockReason", "commentsCount", "labels", "fixURL"]
+    row = ["repoName", "title", "url", "lockReason", "timelineCount", "labels", "fixURL"]
     writer.writerow(row)
 
   for index, row in df.iterrows():
