@@ -4,17 +4,17 @@ import subprocess
 
 keyword_lines_len = 6
 
-#issue_dfs = []
+issue_dfs = []
 bug_dfs = []
 
 for i in range(keyword_lines_len):
-#    issue_dfs.append(pd.read_csv(ISSUES_PATH + f"_{i}"))
+    issue_dfs.append(pd.read_csv(ISSUES_PATH + f"_{i}"))
     bug_dfs.append(pd.read_csv(BUGS_PATH + f"_{i}"))
 
-#issues_df = pd.concat(issue_dfs).drop_duplicates()
+issues_df = pd.concat(issue_dfs).drop_duplicates()
 bugs_df = pd.concat(bug_dfs).drop_duplicates()
 
-#issues_df.to_csv(CONCAT_ISSUES_PATH)
+issues_df.to_csv(CONCAT_ISSUES_PATH)
 bugs_df.to_csv(CONCAT_BUGS_PATH)
 
 repos_df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
