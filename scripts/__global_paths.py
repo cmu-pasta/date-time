@@ -13,3 +13,6 @@ ISSUES_PATH = DATA_DIR + "issues.csv"
 BUGS_PATH = DATA_DIR + "bugs.csv"
 OPEN_ISSUES_PATH = DATA_DIR + "open_issues.csv"
 OPEN_BUGS_PATH = DATA_DIR + "open_bugs.csv"
+
+CONCAT_ISSUES_PATH = DATA_DIR + "concat_issues.csv"
+CONCAT_BUGS_PATH = DATA_DIR + "concat_bugs.csv"
