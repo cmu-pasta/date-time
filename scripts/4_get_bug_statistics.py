@@ -13,9 +13,11 @@ for i in range(keyword_lines_len):
 
 issues_df = pd.concat(issue_dfs).drop_duplicates()
 bugs_df = pd.concat(bug_dfs).drop_duplicates()
+bugs_fixed_df = bugs_df[pd.notna(bugs_df["fixURL"])]
 
 issues_df.to_csv(CONCAT_ISSUES_PATH, index=False)
 bugs_df.to_csv(CONCAT_BUGS_PATH, index=False)
+bugs_fixed_df.to_csv(FILTERED_BUGS_PATH, index = False)
 
 repos_df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
 repos_df["nameWithOwner"] = repos_df["owner"] + "/" + repos_df["name"]
