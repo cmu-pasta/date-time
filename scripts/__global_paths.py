@@ -16,3 +16,5 @@ OPEN_BUGS_PATH = DATA_DIR + "open_bugs.csv"
 
 CONCAT_ISSUES_PATH = DATA_DIR + "concat_issues.csv"
 CONCAT_BUGS_PATH = DATA_DIR + "concat_bugs.csv"
+
+FILTERED_BUGS_PATH = DATA_DIR + "filtered_bugs.csv"
