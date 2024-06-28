@@ -10,12 +10,11 @@ import re
 from __global_paths import *
 
 keywords = [
-  "datetime OR timestamp OR date OR time OR tzinfo OR calendar",
-  "pytz OR dateutil OR arrow OR whenever OR pendulum OR heliclockter",
-  "leap OR DST OR daylight OR year OR localtime OR epoch",
-  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT OR UTC",
-  "interval OR duration OR elapsed OR timedelta OR fold",
-  "microsecond OR nanosecond OR millisecond OR second"
+  "datetime OR timestamp OR tzinfo OR epoch OR timedelta OR fold",
+  "pytz OR dateutil OR arrow OR pendulum OR UTC OR elapsed",
+  "leap OR DST OR daylight OR year OR localtime OR duration",
+  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT",
+  "microsecond OR nanosecond OR millisecond OR timezone OR interval",
 ]
 
 open_or_closed = "closed"
@@ -27,9 +26,9 @@ if len(sys.argv) >= 3:
     try:
         key = int(sys.argv[2])
     except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
-if key < 0 or key > 5 or (open_or_closed != "open" and open_or_closed != "closed"):
-   raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-5]")
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-4]")
+if key < 0 or key > 4 or (open_or_closed != "open" and open_or_closed != "closed"):
+   raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-4]")
 
 WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
 WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
