@@ -160,7 +160,8 @@ def main():
       print(f"Finished row {index} ({round(100*index/df.shape[0], 2)}% Done)")
       # print(f"{nameWithOwner} completed")
 
-  subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  # No longer needed as "fix" now appears in the header
+  # subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
   subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
 
