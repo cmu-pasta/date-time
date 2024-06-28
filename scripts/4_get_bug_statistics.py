@@ -24,7 +24,7 @@ counts["nameWithOwner"] = counts["repoName"]
 
 result = pd.merge(repos_df, counts, on='nameWithOwner', how='left')
 
-print(f"NUM_UNIQUE_BUGS: {len(bugs_df)}")
+print(f"NUM_BUGS: {len(bugs_df)}")
 print({
     'datetime': int(result[result['grep_results0'] > 0]['count'].sum()),
     'arrow': int(result[result['grep_results1'] > 0]['count'].sum()),
@@ -32,7 +32,7 @@ print({
     'whenever': int(result[result['grep_results3'] > 0]['count'].sum())
 })
 
-print(f"NUM_UNIQUE_BUGS: {bugs_df['repoName'].nunique()}")
+print(f"NUM_BUGGY_REPOS: {bugs_df['repoName'].nunique()}")
 print({
     'datetime': (result[result['grep_results0'] > 0]['count'] > 0).sum(),
     'arrow': (result[result['grep_results1'] > 0]['count'] > 0).sum(),
