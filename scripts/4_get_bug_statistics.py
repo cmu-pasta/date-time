@@ -41,12 +41,12 @@ print({
 })
 
 words="""
-datetime    pytz    leap    strptime    interval    microsecond
-timestamp   dateutil    DST strftime    duration    nanosecond
-    arrow   daylight    utcnow  elapsed millisecond
-        whenever    year    fromtimestamp   timedelta   second
-        tzinfo  pendulum    localtime   GMT fold    timezone
-        calendar    heliclockter    epoch   UTC     date time
+datetime    pytz    leap    strptime    microsecond
+timestamp   dateutil    DST strftime    nanosecond
+tzinfo  arrow   daylight    utcnow  millisecond
+epoch   pendulum    year    fromtimestamp   timezone
+timedelta   UTC localtime   GMT interval
+fold    elapsed duration        
 """.split()
 
 print(f"NUM_WORDS: {len(words)}")
