@@ -19,16 +19,16 @@ keywords = [
 
 open_or_closed = "closed"
 key = 0
+num_gh_keys = 1
 
-if len(sys.argv) >= 2:
-    open_or_closed = sys.argv[1]
-if len(sys.argv) >= 3:
+if len(sys.argv) == 4:
     try:
         key = int(sys.argv[2])
+        num_gh_keys = int(sys.argv[3])
     except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-4]")
-if key < 0 or key > 4 or (open_or_closed != "open" and open_or_closed != "closed"):
-   raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] [0-4]")
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+    if key < 0 or key >= len(keywords):
+        raise RuntimeError(f"key must be between 0 and {len(keywords)}")
 
 WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
 WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
@@ -36,7 +36,7 @@ WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PAT
 WRITE_ISSUES_PATH += f"_{key}"
 WRITE_BUGS_PATH += f"_{key}"
 
-with open(GH_ACCESS_TOKEN + f"_{key%4}", "r") as file:
+with open(GH_ACCESS_TOKEN + f"_{key%num_gh_keys}", "r") as file:
   gh_access_token = file.read().strip()
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
@@ -180,9 +180,8 @@ def search_issues(nameWithOwner):
 
 
 def main():
-
   print("STARTING GET_ISSUES")
-  print(f"KEY: {key}. KEYWORDS: {keywords[key]}")
+  print(f"NUM_GH_KEYS: {num_gh_keys}. KEY: {key}. KEYWORDS: {keywords[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
