@@ -42,9 +42,20 @@ def grep_repo(repo_owner, repo_name):
     stdout0, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+datetime(\s|,|$)' {repo_path}")
     stdout1, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+arrow(\s|,|$)' {repo_path}")
     stdout2, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+pendulum(\s|,|$)' {repo_path}")
-    stdout3, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+whenever(\s|,|$)' {repo_path}")
-    stdout4, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter(\s|,|$)' {repo_path}")
-    return (1 if stdout0 else 0, 1 if stdout1 else 0, 1 if stdout2 else 0, 1 if stdout3 else 0, 1 if stdout4 else 0)
+    stdout3, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+maya(\s|,|$)' {repo_path}")
+    stdout4, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+delorean(\s|,|$)' {repo_path}")
+    stdout5, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+moment(\s|,|$)' {repo_path}")
+    stdout6, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+whenever(\s|,|$)' {repo_path}")
+    stdout7, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter(\s|,|$)' {repo_path}")
+    return (1 if stdout0 else 0,
+            1 if stdout1 else 0,
+            1 if stdout2 else 0,
+            1 if stdout3 else 0,
+            1 if stdout4 else 0,
+            1 if stdout5 else 0,
+            1 if stdout6 else 0,
+            1 if stdout7 else 0
+            )
 
 def count_python_lines(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
@@ -70,7 +81,10 @@ def process_repo(repo_owner, repo_name, logger):
         "grep_results1": [grep_result[1]],
         "grep_results2": [grep_result[2]],
         "grep_results3": [grep_result[3]],
-        "grep_results4": [grep_result[4]]
+        "grep_results4": [grep_result[4]],
+        "grep_results5": [grep_result[5]],
+        "grep_results6": [grep_result[6]],
+        "grep_results7": [grep_result[7]]
         # "loc": [loc]
     })
 

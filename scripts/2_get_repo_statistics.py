@@ -10,7 +10,10 @@ print(f"""
 Datetime:     {counts[cols[0]]}
 Arrow:        {counts[cols[1]]}
 Pendulum:     {counts[cols[2]]}
-Whenever:     {counts[cols[3]]}
-Heliclockter: {counts[cols[4]]}
+Maya:         {counts[cols[3]]}
+Delorean:     {counts[cols[4]]}
+Moment:       {counts[cols[5]]}
+Whenever:     {counts[cols[6]]}
+Heliclockter: {counts[cols[7]]}
 """
 )
