@@ -3,7 +3,15 @@ from __global_paths import *
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
 
-cols = ['grep_results0', 'grep_results1', 'grep_results2', 'grep_results3', 'grep_results4']
+cols = ['grep_results0',
+        'grep_results1',
+        'grep_results2',
+        'grep_results3',
+        'grep_results4',
+        'grep_results5',
+        'grep_results6',
+        'grep_results7'
+        ]
 counts = df[cols].sum()
 
 print(f"""
