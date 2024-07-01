@@ -1,4 +1,4 @@
-DATA_DIR = "/data/sjoukov/date-time/data/"
+DATA_DIR = "/data/petervan/date-time/data/"
 
 GH_ACCESS_TOKEN = "access_tokens/gh_access_token"
 SG_ACCESS_TOKEN = "access_tokens/sg_access_token"
