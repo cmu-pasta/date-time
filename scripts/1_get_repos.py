@@ -47,6 +47,7 @@ def grep_repo(repo_owner, repo_name):
     stdout5, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+moment(\s|,|$)' {repo_path}")
     stdout6, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+whenever(\s|,|$)' {repo_path}")
     stdout7, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter(\s|,|$)' {repo_path}")
+    stdout8, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+chronyk(\s|,|$)' {repo_path}")
     return (1 if stdout0 else 0,
             1 if stdout1 else 0,
             1 if stdout2 else 0,
@@ -54,7 +55,8 @@ def grep_repo(repo_owner, repo_name):
             1 if stdout4 else 0,
             1 if stdout5 else 0,
             1 if stdout6 else 0,
-            1 if stdout7 else 0
+            1 if stdout7 else 0,
+            1 if stdout8 else 0
             )
 
 def count_python_lines(repo_owner, repo_name):
@@ -85,6 +87,7 @@ def process_repo(repo_owner, repo_name, logger):
         "grep_results5": [grep_result[5]],
         "grep_results6": [grep_result[6]],
         "grep_results7": [grep_result[7]]
+        "grep_results8": [grep_result[8]]
         # "loc": [loc]
     })
 
