@@ -53,16 +53,10 @@ fold	elapsed	duration
 
 print(f"NUM_WORDS: {len(words)}")
 
-#issue_word_counts = {}
-bug_word_counts = dict()
-
 for word in words:
-    bug_word_counts[word] = 0
-    #issue_count = int(subprocess.run(f"grep -cE '{word}' {CONCAT_ISSUES_PATH}", shell=True, check=True).stdout)
-    bug_count = int(subprocess.run(f"grep -cE '\\b{word}\\b' {CONCAT_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True).stdout)
+    #issue_count = int(subprocess.run(f"grep -icE '{word}' {CONCAT_ISSUES_PATH}", shell=True, check=True).stdout)
+    bug_count = int(subprocess.run(f"grep -icE '{word}' {CONCAT_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True).stdout)
     #issue_word_counts[word] += issue_count
-    bug_word_counts[word] += bug_count
+    # bug_word_counts[word] += bug_count
+    print(word+"\t"+str(bug_count))
 
-#print(issue_word_counts)
-print(bug_word_counts)
-    
