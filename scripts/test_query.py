@@ -31,11 +31,28 @@ gh_query = """
                     timelineItems(first:100){
                         totalCount
                         nodes {
+                            __typename
                             ... on CrossReferencedEvent {
                                 source{
                                     ... on PullRequest{
                                         permalink
                                     }
+                                }
+                            }
+                            ... on ReferencedEvent {
+                                commit{
+                                    commitUrl
+                                }
+                            }
+                            ... on ClosedEvent {
+                                closer{
+                                    ... on Commit {
+                                        commitUrl
+                                    }
+                                    ... on PullRequest {
+                                        permalink
+                                    }
+                                    __typename
                                 }
                             }
                         }
@@ -52,7 +69,10 @@ headers = {"Authorization": f"Bearer {gh_access_token}"}
 pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
 query_words = "SERVER_TIMESTAMP"
-q = f"repo:googleapis/google-cloud-python is:issue is:closed in:title {query_words}"
+# q = f"repo:googleapis/google-cloud-python is:issue is:closed in:title {query_words}"
+# q = "repo:sdispater/pendulum type:issue \"difference in days is incorrect across daylight savings\""
+q = "repo:sdispater/pendulum type:issue \"provide wheel for python3.11-windows\""
+
 json = {"query": gh_query, "variables": {"q": q, "cursor": None}}
 response = requests.post(url, json=json, headers=headers)
 if (response.status_code != 200):
