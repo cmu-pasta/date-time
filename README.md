@@ -25,13 +25,44 @@ This repository focuses on the first research thrust, which seeks to systematica
 
 ## Repository Structure
 This repository will be organized to facilitate the development and evaluation of the DATE-SMELLS and DATE-COP components:
-- assignments:
-- benchmarks: 
+- assignments: This folder contains the solutions from all REU students to assignments created on various important topics. 
+- benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. 
 - documentation: This folder will provide documentation for the project, including a detailed description of the DATE-SMELLS taxonomy, the implementation details of DATE-COP, and the evaluation methodology.
-- scripts: 
-- DATE-SMELLS:
-- DATE-COP: This folder will contain the source code for the DATE-COP GitHub bot, including its static and dynamic analysis components.
+- scripts: This directory contains the scripts used for data mining, cleaning, and visualization.
+- date-cop: This folder will contain the source code for the DATE-COP GitHub bot, including its static and dynamic analysis components.
 
+## Prerequisites
+
+- [Git][]
+- [Python][]
+- [Poetry][]
+
+## Installing Dependencies
+
+```sh
+poetry install
+```
+
+## Development
+We use [Black][] and [isort][] to format our Python code. You can manually run these formatting tools on the CLI by using the commands:
+
+```sh
+poetry run black .
+poetry run isort .
+```
+
+To automate the formatting process, we have added a pre-commit hook to git. To enable this, you need to run the following commands:
+
+```sh
+pre-commit install
+```
+
+[black]: https://black.readthedocs.io/en/stable/
+[git]: https://git-scm.com/downloads
+[humaneval]: https://github.com/openai/human-eval
+[isort]: https://pycqa.github.io/isort/
+[poetry]: https://python-poetry.org/docs/
+[python]: https://www.python.org/downloads/
 
 ## Contributions
 We welcome contributions from the community to help us achieve our goal of strengthening date and time logic correctness in software systems. Here are some ways you can contribute:
