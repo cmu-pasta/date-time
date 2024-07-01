@@ -74,6 +74,21 @@ gh_query = """
                                     }
                                 }
                             }
+                            ... on ReferencedEvent {
+                                commit{
+                                    commitUrl
+                                }
+                            }
+                            ... on ClosedEvent {
+                                closer{
+                                    ... on Commit {
+                                        commitUrl
+                                    }
+                                    ... on PullRequest {
+                                        permalink
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -81,7 +96,14 @@ gh_query = """
         }
     }
 """
- 
+
+timeline_checks = [
+  ["source", "permalink"],
+  ["commit", "commitUrl"],
+  ["closer", "commitUrl"],
+  ["closer", "permalink"],
+]
+
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
 pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
@@ -125,17 +147,31 @@ def search_issues(nameWithOwner):
       for issue in issues:
         labels = []
         fixURL = ""
+        fixURLcount = 0
         for l in issue["labels"]["nodes"]:
           labels.append(l["name"])
         for tl_item in issue["timelineItems"]["nodes"]:
           if tl_item is None: continue
-          if "source" in tl_item and "permalink" in tl_item["source"]:
-            if "pull" in tl_item["source"]["permalink"]:
-                fixURL = tl_item["source"]["permalink"]
+          # walk down the paths
+          for tl_path in timeline_checks:
+            tl_curr = tl_item
+            good = True
+            for obj_name in tl_path:
+              if obj_name in tl_curr:
+                tl_curr = tl_curr[obj_name]
+                if tl_curr is None:
+                  good = False
+                  break
+              else:
+                good = False
                 break
+            if good:
+                if fixURL == "":
+                  fixURL = tl_curr
+                fixURLcount += 1
 
-        # row = ["", "", "", "", "", "", fixURL]
-        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["timelineItems"]["totalCount"], labels, fixURL]
+        # row = ["", "", "", "", "", "", fixURL, fixURLcount]
+        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["timelineItems"]["totalCount"], labels, fixURL, fixURLcount]
         writer.writerow(row)
 
     cursor = response["search"]["pageInfo"]["endCursor"]
@@ -150,7 +186,7 @@ def main():
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
-    row = ["repoName", "title", "url", "lockReason", "timelineCount", "labels", "fixURL"]
+    row = ["repoName", "title", "url", "lockReason", "timelineCount", "labels", "fixUrl", "fixUrlCount"]
     writer.writerow(row)
 
   for index, row in df.iterrows():
