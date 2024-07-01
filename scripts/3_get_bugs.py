@@ -162,7 +162,7 @@ def main():
 
   # No longer needed as "fix" now appears in the header
   # subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-  subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"grep -iE '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
 
 if __name__ == "__main__":
