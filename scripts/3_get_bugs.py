@@ -29,6 +29,9 @@ if len(sys.argv) == 4:
         raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
     if key < 0 or key >= len(keywords):
         raise RuntimeError(f"key must be between 0 and {len(keywords)}")
+    if (open_or_closed != "open" and open_or_closed != "closed"):
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+
 
 WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
 WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
