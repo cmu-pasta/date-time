@@ -48,7 +48,7 @@ timestamp	dateutil	DST	strftime	nanosecond
 tzinfo	arrow	daylight	utcnow	millisecond
 epoch	pendulum	year	fromtimestamp	timezone
 timedelta	UTC	localtime	GMT	interval
-fold	elapsed	duration	
+fold	elapsed	duration	month
 """.split()
 
 print(f"NUM_WORDS: {len(words)}")
