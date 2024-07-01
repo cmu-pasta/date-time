@@ -13,7 +13,7 @@ keywords = [
   "datetime OR timestamp OR tzinfo OR epoch OR timedelta OR fold",
   "pytz OR dateutil OR arrow OR pendulum OR UTC OR elapsed",
   "leap OR DST OR daylight OR year OR localtime OR duration",
-  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT",
+  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT OR month",
   "microsecond OR nanosecond OR millisecond OR timezone OR interval",
 ]
 
