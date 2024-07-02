@@ -1,5 +1,25 @@
 DATA_DIR = "/data/sjoukov/date-time/data/"
 
+KEYWORDS_RAW = """
+datetime    nanosecond  strptime    timezone    elapsed
+pytz    millisecond strftime    timezones   interval
+dateutil    microsecond timestamp   GMT intervals
+arrow   second  utcnow  UTC duration
+pendulum    seconds fromtimestamp   DST 
+tzinfo  day localtime   daylight    
+days    timedelta   fold    
+week        leap    
+weeks
+month
+months
+year
+years
+epoch
+""".split()
+KEYWORDS = []
+for start in range(0, len(KEYWORDS_RAW), 6):
+    KEYWORDS.append(KEYWORDS_RAW[start:start+6])
+
 GH_ACCESS_TOKEN = "access_tokens/gh_access_token"
 SG_ACCESS_TOKEN = "access_tokens/sg_access_token"
 
