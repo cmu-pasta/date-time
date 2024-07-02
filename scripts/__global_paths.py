@@ -13,3 +13,11 @@ ISSUES_PATH = DATA_DIR + "issues.csv"
 BUGS_PATH = DATA_DIR + "bugs.csv"
 OPEN_ISSUES_PATH = DATA_DIR + "open_issues.csv"
 OPEN_BUGS_PATH = DATA_DIR + "open_bugs.csv"
+COMMENTS_DIR = DATA_DIR + "comments/"
+
+CONCAT_ISSUES_PATH = DATA_DIR + "concat_issues.csv"
+CONCAT_BUGS_PATH = DATA_DIR + "concat_bugs.csv"
+
+FILTERED_BUGS_PATH = DATA_DIR + "filtered_bugs.csv"
+
+TF_IDF_BUGS_PATH = DATA_DIR + "tf_idf_bugs.csv"
