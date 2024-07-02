@@ -1,6 +1,7 @@
 from __global_paths import *
 import pandas as pd
 import math
+import re
 
 bugs_df = pd.read_csv(FILTERED_BUGS_PATH)
 
@@ -23,17 +24,19 @@ def compute_idf(comments):
     return idf
 
 def compute_tf(comment):
-    words = comment.split()
+    words = re.split(r'[^a-zA-Z]+', comment)
+    # words = comment.split()
     word_count = len(words)
     if word_count == 0:
+        print("word count is zero!!!")
         return [0] * len(keywords)
-    tf = [words.count(keyword) / word_count for keyword in keywords]
+    tf = [(len([word for word in words if word.startswith(keyword)])) / word_count for keyword in keywords]
     return tf
 
 for i, row in bugs_df.iterrows():
     index = row["id"]
     with open(f"{COMMENTS_DIR}{index}", "r") as file:
-        comments = file.read()
+        comments = file.read() + " " + row["title"]
         bugs_df.at[i, "comments"] = comments
         tf = compute_tf(comments)
         for j, keyword in enumerate(keywords):

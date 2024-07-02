@@ -1,7 +1,7 @@
 #!/bin/bash
 
 num_keys=5
-num_gh_keys=4
+num_gh_keys=6
 
 for (( start_key=0; start_key<=num_keys; start_key+=num_gh_keys ));
 do
