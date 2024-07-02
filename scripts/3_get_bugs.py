@@ -9,7 +9,7 @@ import re
 
 from __global_paths import *
 
-KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(KEYWORDS_LIST_LEN))]
+KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(KEYWORDS_LIST_LEN)]
 
 key = 0
 open_or_closed = "closed"
@@ -19,7 +19,7 @@ if len(sys.argv) > 1:
         key = int(sys.argv[1])
     except:
         raise RuntimeError(f"Usage: {sys.argv[0]} key [open/closed]")
-    if key < 0 or key >= KEYWORDS_LIST_LEN):
+    if key < 0 or key >= KEYWORDS_LIST_LEN:
         raise RuntimeError(f"key must be between 0 and {KEYWORDS_LIST_LEN}")
 
 if len(sys.argv) > 2:
@@ -191,8 +191,7 @@ def search_issues(owner, name):
 def main():
   subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
-  print("STARTING GET_ISSUES")
-  print(f"NUM_GH_ACCESS_TOKENS: {NUM_GH_ACCESS_TOKENS}. KEY: {key}. KEYWORDS: {KEYWORDS_WITH_OR[key]}")
+  print(f"STARTING. NUM_GH_ACCESS_TOKENS: {NUM_GH_ACCESS_TOKENS}. KEY: {key}. KEYWORDS: {KEYWORDS_WITH_OR[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
