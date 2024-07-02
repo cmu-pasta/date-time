@@ -9,21 +9,23 @@ import re
 
 from __global_paths import *
 
-KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(len(KEYWORDS))]
-print(KEYWORDS_WITH_OR)
+KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(KEYWORDS_LIST_LEN))]
 
-open_or_closed = "closed"
 key = 0
+open_or_closed = "closed"
 
-if len(sys.argv) == 3:
+if len(sys.argv) > 1:
     try:
-        key = int(sys.argv[2])
+        key = int(sys.argv[1])
     except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key")
-    if key < 0 or key >= len(KEYWORDS_WITH_OR):
-        raise RuntimeError(f"key must be between 0 and {len(KEYWORDS_WITH_OR)}")
-    if (open_or_closed != "open" and open_or_closed != "closed"):
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key")
+        raise RuntimeError(f"Usage: {sys.argv[0]} key [open/closed]")
+    if key < 0 or key >= KEYWORDS_LIST_LEN):
+        raise RuntimeError(f"key must be between 0 and {KEYWORDS_LIST_LEN}")
+
+if len(sys.argv) > 2:
+    open_or_closed = sys.argv[2]
+    if (open_or_closed not in ["open", "closed"]):
+        raise RuntimeError(f"Usage: {sys.argv[0]} key [open/closed]")
 
 
 WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH

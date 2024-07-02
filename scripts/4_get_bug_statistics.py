@@ -2,12 +2,10 @@ from __global_paths import *
 import pandas as pd
 import subprocess
 
-keyword_lines_len = len(KEYWORDS)
-
 issue_dfs = []
 bug_dfs = []
 
-for i in range(keyword_lines_len):
+for i in range(KEYWORDS_LIST_LEN):
     issue_dfs.append(pd.read_csv(ISSUES_PATH + f"_{i}"))
     bug_dfs.append(pd.read_csv(BUGS_PATH + f"_{i}"))
 
