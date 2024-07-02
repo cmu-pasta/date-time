@@ -11,6 +11,9 @@ black = "^24.3.0"
 isort = "^5.13.2"
 pytest = "^8.1.1"
 pre-commit = "^3.6.2"
+requests = "^2.32.2"
+pandas = "^2.2.1"
+hypothesis = "^6.100.1"
 
 [build-system]
 requires = ["poetry-core"]

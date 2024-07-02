@@ -20,6 +20,7 @@ bugs_df.to_csv(CONCAT_BUGS_PATH, index=False)
 bugs_fixed_df.to_csv(FILTERED_BUGS_PATH, index = False)
 
 repos_df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + f"_filtered.csv")
+
 repos_df["nameWithOwner"] = repos_df["owner"] + "/" + repos_df["name"]
 counts = bugs_df['repoName'].value_counts().reset_index()
 counts["nameWithOwner"] = counts["repoName"]
