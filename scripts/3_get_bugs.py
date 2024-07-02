@@ -127,7 +127,7 @@ def search_issues(owner, name):
     response = requests.post(url, json=json, headers=headers)
 
     if (response.status_code != 200):
-      print(f"Response code: {response.status_code}")
+      print(f"Key: {key}. Response code: {response.status_code}")
       time.sleep(20)
       continue
 
@@ -139,7 +139,7 @@ def search_issues(owner, name):
         if (error["type"] == "RATE_LIMITED"):
           cont = True
       if cont:
-        print("Rate limited. Sleeping...")
+        print("Key: {key}. Rate limited. Sleeping...")
         time.sleep(20)
         continue
       else:

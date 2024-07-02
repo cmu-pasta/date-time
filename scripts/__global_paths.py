@@ -20,3 +20,4 @@ CONCAT_BUGS_PATH = DATA_DIR + "concat_bugs.csv"
 
 FILTERED_BUGS_PATH = DATA_DIR + "filtered_bugs.csv"
 
+TF_IDF_BUGS_PATH = DATA_DIR + "tf_idf_bugs.csv"
