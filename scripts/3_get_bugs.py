@@ -134,7 +134,7 @@ def search_issues(owner, name):
         if (error["type"] == "RATE_LIMITED"):
           cont = True
       if cont:
-        print("Key: {key}. Rate limited. Sleeping...")
+        print(f"Key: {key}. Rate limited. Sleeping...")
         time.sleep(20)
         continue
       else:
