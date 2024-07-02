@@ -5,20 +5,41 @@ import pandas as pd
 import subprocess
 import time
 import sys
+import re
 
 from __global_paths import *
 
-if len(sys.argv) == 1:
-    open_or_closed = "closed"
-elif len(sys.argv) == 2 and (sys.argv[1] == "open" or sys.argv[1] == "closed"):
-    open_or_closed = sys.argv[1]
-else:
-    raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed]")
+keywords = [
+  "datetime OR timestamp OR tzinfo OR epoch OR timedelta OR fold",
+  "pytz OR dateutil OR arrow OR pendulum OR UTC OR elapsed",
+  "leap OR DST OR daylight OR year OR localtime OR duration",
+  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT OR month",
+  "microsecond OR nanosecond OR millisecond OR timezone OR interval",
+]
 
-WRITE_ISSUES_PATH   = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
-WRITE_BUGS_PATH     = BUGS_PATH if open_or_closed == "closed" else OPEN_BUGS_PATH
+open_or_closed = "closed"
+key = 0
+num_gh_keys = 1
 
-with open(GH_ACCESS_TOKEN, "r") as file:
+if len(sys.argv) == 4:
+    try:
+        key = int(sys.argv[2])
+        num_gh_keys = int(sys.argv[3])
+    except:
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+    if key < 0 or key >= len(keywords):
+        raise RuntimeError(f"key must be between 0 and {len(keywords)}")
+    if (open_or_closed != "open" and open_or_closed != "closed"):
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+
+
+WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
+WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
+
+WRITE_ISSUES_PATH += f"_{key}"
+WRITE_BUGS_PATH += f"_{key}"
+
+with open(GH_ACCESS_TOKEN + f"_{key%num_gh_keys}", "r") as file:
   gh_access_token = file.read().strip()
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
@@ -37,37 +58,76 @@ gh_query = """
             }
             nodes {
                 ... on Issue {
+                    id
                     title
                     bodyHTML
                     url
                     activeLockReason
-                    comments {
-                        totalCount
-                    }
                     labels (first:100) {
-                    nodes {
-                        name
+                        nodes {
+                            name
+                        }
+                    }
+                    comments (first:100) {
+                        nodes {
+                            bodyText
+                        }
+                    }
+                    timelineItems(first:100){
+                        totalCount
+                        nodes {
+                            ... on CrossReferencedEvent {
+                                source{
+                                    ... on PullRequest{
+                                        permalink
+                                    }
+                                }
+                            }
+                            ... on ReferencedEvent {
+                                commit{
+                                    commitUrl
+                                }
+                            }
+                            ... on ClosedEvent {
+                                closer{
+                                    ... on Commit {
+                                        commitUrl
+                                    }
+                                    ... on PullRequest {
+                                        permalink
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
-}
 """
- 
+
+timeline_checks = [
+  ["source", "permalink"],
+  ["commit", "commitUrl"],
+  ["closer", "commitUrl"],
+  ["closer", "permalink"],
+]
+
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
+pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
-def search_issues(nameWithOwner):
+def search_issues(owner, name):
+  nameWithOwner = owner + "/" + name
   count = 0
-  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title \"datetime\" OR \"DST\" OR \"daylight saving\" OR \"utc\" OR \"time zone\""
+  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title {keywords[key]}"
   cursor = None
   while (True):
     json = {"query": gh_query, "variables": {"q": q, "cursor": cursor}}
     response = requests.post(url, json=json, headers=headers)
 
     if (response.status_code != 200):
-      print(f"Response code: {response.status_code}")
+      print(f"Key: {key}. Response code: {response.status_code}")
       time.sleep(20)
       continue
 
@@ -79,7 +139,7 @@ def search_issues(nameWithOwner):
         if (error["type"] == "RATE_LIMITED"):
           cont = True
       if cont:
-        print("Rate limited. Sleeping...")
+        print("Key: {key}. Rate limited. Sleeping...")
         time.sleep(20)
         continue
       else:
@@ -92,38 +152,67 @@ def search_issues(nameWithOwner):
     issues = response["search"]["nodes"]
 
     with open(WRITE_ISSUES_PATH, "a") as file:
-      writer = csv.writer(file, lineterminator="\n")
+        writer = csv.writer(file, lineterminator="\n")
 
-      for issue in issues:
-        labels = []
-        for l in issue["labels"]["nodes"]:
-          labels.append(l["name"])
+        for issue in issues:
+            labels = []
+            comments = []
+            fixURL = ""
+            fixURLcount = 0
+            for l in issue["labels"]["nodes"]:
+                labels.append(l["name"])
+            with open(f"{COMMENTS_DIR}{issue['id']}", "w") as cfile:
+                for c in issue["comments"]["nodes"]:
+                    cfile.write(c["bodyText"] + "\n")
+            for tl_item in issue["timelineItems"]["nodes"]:
+                if tl_item is None: continue
+                # walk down the paths
+                for tl_path in timeline_checks:
+                    tl_curr = tl_item
+                    good = True
+                    for obj_name in tl_path:
+                        if obj_name in tl_curr:
+                            tl_curr = tl_curr[obj_name]
+                            if tl_curr is None:
+                                good = False
+                                break
+                        else:
+                            good = False
+                            break
+                    if good:
+                        if fixURL == "":
+                            fixURL = tl_curr
+                        fixURLcount += 1
 
-        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["comments"]["totalCount"], labels]
-        writer.writerow(row)
+            # row = ["", "", "", "", "", "", fixURL, fixURLcount]
+            row = [nameWithOwner, issue["id"], issue["title"], issue["url"], issue["activeLockReason"], issue["timelineItems"]["totalCount"], labels, fixURL, fixURLcount]
+            writer.writerow(row)
 
     cursor = response["search"]["pageInfo"]["endCursor"]
     if (not hasNextPage):
-      break
+        break
 
 
 def main():
+  subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
   print("STARTING GET_ISSUES")
+  print(f"NUM_GH_KEYS: {num_gh_keys}. KEY: {key}. KEYWORDS: {keywords[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
-    row = ["repoName", "title", "url", "lockReason", "commentsCount", "labels"]
+    row = ["repoName", "id", "title", "url", "lockReason", "timelineCount", "labels", "fixUrl", "fixUrlCount"]
     writer.writerow(row)
 
   for index, row in df.iterrows():
-    nameWithOwner = row["owner"] + "/" + row["name"]
-    search_issues(nameWithOwner)
+    search_issues(row["owner"], row["name"])
     if (index % 100 == 0):
-      print(f"{nameWithOwner} completed")
+        print(f"Key: {key}. Row: {index}. ({round(100*index/df.shape[0], 2)}% Done)")
+      # print(f"{nameWithOwner} completed")
 
-  subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-  subprocess.run(f"grep -E '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  # No longer needed as "fix" now appears in the header
+  # subprocess.run(f"head -n 1 {WRITE_ISSUES_PATH} > {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"grep -iE '(bug|fix|wrong)' {WRITE_ISSUES_PATH} >> {WRITE_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
 
 if __name__ == "__main__":

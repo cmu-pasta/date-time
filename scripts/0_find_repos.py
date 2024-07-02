@@ -61,7 +61,7 @@ with open(REPOS_PATH, "w") as file:
   writer.writerow(row)
 
 url = "https://api.github.com/graphql"
-headers = {"Authorization": f"Bearer {access_token}"}
+headers = {"Authorization": f"Bearer {gh_access_token}"}
 
 def get_repos_between_dates(min_date_str=None, max_date_str=None):
   count = 0
