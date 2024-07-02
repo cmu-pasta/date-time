@@ -58,6 +58,7 @@ gh_query = """
             }
             nodes {
                 ... on Issue {
+                    id
                     title
                     bodyHTML
                     url
@@ -65,6 +66,11 @@ gh_query = """
                     labels (first:100) {
                         nodes {
                             name
+                        }
+                    }
+                    comments (first:100) {
+                        nodes {
+                            bodyText
                         }
                     }
                     timelineItems(first:100){
@@ -111,7 +117,8 @@ url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
 pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
-def search_issues(nameWithOwner):
+def search_issues(owner, name):
+  nameWithOwner = owner + "/" + name
   count = 0
   q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title {keywords[key]}"
   cursor = None
@@ -145,57 +152,62 @@ def search_issues(nameWithOwner):
     issues = response["search"]["nodes"]
 
     with open(WRITE_ISSUES_PATH, "a") as file:
-      writer = csv.writer(file, lineterminator="\n")
+        writer = csv.writer(file, lineterminator="\n")
 
-      for issue in issues:
-        labels = []
-        fixURL = ""
-        fixURLcount = 0
-        for l in issue["labels"]["nodes"]:
-          labels.append(l["name"])
-        for tl_item in issue["timelineItems"]["nodes"]:
-          if tl_item is None: continue
-          # walk down the paths
-          for tl_path in timeline_checks:
-            tl_curr = tl_item
-            good = True
-            for obj_name in tl_path:
-              if obj_name in tl_curr:
-                tl_curr = tl_curr[obj_name]
-                if tl_curr is None:
-                  good = False
-                  break
-              else:
-                good = False
-                break
-            if good:
-                if fixURL == "":
-                  fixURL = tl_curr
-                fixURLcount += 1
+        for issue in issues:
+            labels = []
+            comments = []
+            fixURL = ""
+            fixURLcount = 0
+            for l in issue["labels"]["nodes"]:
+                labels.append(l["name"])
+            with open(f"{COMMENTS_DIR}{issue['id']}", "w") as cfile:
+                for c in issue["comments"]["nodes"]:
+                    cfile.write(c["bodyText"] + "\n")
+            for tl_item in issue["timelineItems"]["nodes"]:
+                if tl_item is None: continue
+                # walk down the paths
+                for tl_path in timeline_checks:
+                    tl_curr = tl_item
+                    good = True
+                    for obj_name in tl_path:
+                        if obj_name in tl_curr:
+                            tl_curr = tl_curr[obj_name]
+                            if tl_curr is None:
+                                good = False
+                                break
+                        else:
+                            good = False
+                            break
+                    if good:
+                        if fixURL == "":
+                            fixURL = tl_curr
+                        fixURLcount += 1
 
-        # row = ["", "", "", "", "", "", fixURL, fixURLcount]
-        row = [nameWithOwner, issue["title"], issue["url"], issue["activeLockReason"], issue["timelineItems"]["totalCount"], labels, fixURL, fixURLcount]
-        writer.writerow(row)
+            # row = ["", "", "", "", "", "", fixURL, fixURLcount]
+            row = [nameWithOwner, issue["id"], issue["title"], issue["url"], issue["activeLockReason"], issue["timelineItems"]["totalCount"], labels, fixURL, fixURLcount]
+            writer.writerow(row)
 
     cursor = response["search"]["pageInfo"]["endCursor"]
     if (not hasNextPage):
-      break
+        break
 
 
 def main():
+  subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
   print("STARTING GET_ISSUES")
   print(f"NUM_GH_KEYS: {num_gh_keys}. KEY: {key}. KEYWORDS: {keywords[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")
-    row = ["repoName", "title", "url", "lockReason", "timelineCount", "labels", "fixUrl", "fixUrlCount"]
+    row = ["repoName", "id", "title", "url", "lockReason", "timelineCount", "labels", "fixUrl", "fixUrlCount"]
     writer.writerow(row)
 
   for index, row in df.iterrows():
-    nameWithOwner = row["owner"] + "/" + row["name"]
-    search_issues(nameWithOwner)
+    search_issues(row["owner"], row["name"])
     if (index % 100 == 0):
-      print(f"Finished row {index} ({round(100*index/df.shape[0], 2)}% Done)")
+        print(f"Key: {key}. Row: {index}. ({round(100*index/df.shape[0], 2)}% Done)")
       # print(f"{nameWithOwner} completed")
 
   # No longer needed as "fix" now appears in the header
