@@ -2,20 +2,6 @@
 
 This directory contains the scripts used to generate our dataset.
 
-## Requirements
-
-- python3
-- pandas
-- requests
-- json
-- csv
-
-## Usage
-
-First, create a GitHub access token. Copy its contents into the file `access_tokens/gh_access_token`.
-
-Run the data-gathering scripts:
-
 ## Our computed data
 
  - all\_repos\_with\_stats.csv: contains all repos gathered from 0\_find\_repos.py and statistics about them from GitHub.
@@ -24,18 +10,19 @@ Run the data-gathering scripts:
  - issues.csv: contains all the issues found by searching for specific key-words among only the repositories containing a datetime import (see repos\_with\_separated\_grep.csv)
  - bugs.csv: contains all issues.csv lines that contain the keyword "bug", "fix", or similar.
 
+## Usage
+
+First, create at least one GitHub access token. Copy each access token into `access_tokens` and title the files `gh_access_token_[0 .. #number of access tokens]`.
+
+Modify `num_gh_keys` in `3_get_bugs.sh` to match the number of GitHub access tokens you added in the previous step.
+
+Run the data-gathering scripts:
+
 ```sh
 python3 0_find_repos.py
 python3 1_get_repos.py
 python3 2_get_repo_statistics.py
-python3 3_get_bugs.py
+./3_get_bugs.sh
 python3 4_get_bug_statistics.py
-```
-
-## Command-Line Checks
-
-Check that all repos are cloned:
-
-```sh
-find . -type d -empty | wc -l
+python3 5_get_tf_idf.py
 ```
