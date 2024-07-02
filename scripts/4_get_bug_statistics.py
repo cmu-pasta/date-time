@@ -13,7 +13,7 @@ for i in range(keyword_lines_len):
 
 issues_df = pd.concat(issue_dfs).drop_duplicates()
 bugs_df = pd.concat(bug_dfs).drop_duplicates()
-bugs_fixed_df = bugs_df[pd.notna(bugs_df["fixURL"])]
+bugs_fixed_df = bugs_df[pd.notna(bugs_df["fixUrl"])]
 
 issues_df.to_csv(CONCAT_ISSUES_PATH, index=False)
 bugs_df.to_csv(CONCAT_BUGS_PATH, index=False)
@@ -31,7 +31,12 @@ print({
     'datetime': int(result[result['grep_results0'] > 0]['count'].sum()),
     'arrow': int(result[result['grep_results1'] > 0]['count'].sum()),
     'pendulum': int(result[result['grep_results2'] > 0]['count'].sum()),
-    'whenever': int(result[result['grep_results3'] > 0]['count'].sum())
+    'maya': int(result[result['grep_results3'] > 0]['count'].sum()),
+    'delorean': int(result[result['grep_results4'] > 0]['count'].sum()),
+    'moment': int(result[result['grep_results5'] > 0]['count'].sum()),
+    'whenever': int(result[result['grep_results6'] > 0]['count'].sum()),
+    'heliclockter': int(result[result['grep_results7'] > 0]['count'].sum()),
+    'chronyk': int(result[result['grep_results8'] > 0]['count'].sum())
 })
 
 print(f"NUM_BUGGY_REPOS: {bugs_df['repoName'].nunique()}")
@@ -39,7 +44,12 @@ print({
     'datetime': (result[result['grep_results0'] > 0]['count'] > 0).sum(),
     'arrow': (result[result['grep_results1'] > 0]['count'] > 0).sum(),
     'pendulum': (result[result['grep_results2'] > 0]['count'] > 0).sum(),
-    'whenever': (result[result['grep_results3'] > 0]['count'] > 0).sum()
+    'maya': (result[result['grep_results3'] > 0]['count'] > 0).sum(),
+    'delorean': (result[result['grep_results4'] > 0]['count'] > 0).sum(),
+    'moment': (result[result['grep_results5'] > 0]['count'] > 0).sum(),
+    'whenever': (result[result['grep_results6'] > 0]['count'] > 0).sum(),
+    'heliclockter': (result[result['grep_results7'] > 0]['count'] > 0).sum(),
+    'chronyk': (result[result['grep_results8'] > 0]['count'] > 0).sum()
 })
 
 words="""
@@ -58,5 +68,5 @@ for word in words:
     bug_count = int(subprocess.run(f"grep -icE '{word}' {CONCAT_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True).stdout)
     #issue_word_counts[word] += issue_count
     # bug_word_counts[word] += bug_count
-    print(word+"\t"+str(bug_count))
+    print(word.ljust(14)+str(bug_count))
 
