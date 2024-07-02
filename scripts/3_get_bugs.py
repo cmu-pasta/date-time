@@ -14,18 +14,16 @@ print(KEYWORDS_WITH_OR)
 
 open_or_closed = "closed"
 key = 0
-num_gh_keys = 1
 
-if len(sys.argv) == 4:
+if len(sys.argv) == 3:
     try:
         key = int(sys.argv[2])
-        num_gh_keys = int(sys.argv[3])
     except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key")
     if key < 0 or key >= len(KEYWORDS_WITH_OR):
         raise RuntimeError(f"key must be between 0 and {len(KEYWORDS_WITH_OR)}")
     if (open_or_closed != "open" and open_or_closed != "closed"):
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key")
 
 
 WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
@@ -34,7 +32,7 @@ WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PAT
 WRITE_ISSUES_PATH += f"_{key}"
 WRITE_BUGS_PATH += f"_{key}"
 
-with open(GH_ACCESS_TOKEN + f"_{key%num_gh_keys}", "r") as file:
+with open(GH_ACCESS_TOKEN + f"_{key%NUM_GH_ACCESS_TOKENS}", "r") as file:
   gh_access_token = file.read().strip()
 
 df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
@@ -192,7 +190,7 @@ def main():
   subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
   print("STARTING GET_ISSUES")
-  print(f"NUM_GH_KEYS: {num_gh_keys}. KEY: {key}. KEYWORDS: {KEYWORDS_WITH_OR[key]}")
+  print(f"NUM_GH_ACCESS_TOKENS: {NUM_GH_ACCESS_TOKENS}. KEY: {key}. KEYWORDS: {KEYWORDS_WITH_OR[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")

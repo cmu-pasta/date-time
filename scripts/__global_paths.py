@@ -20,6 +20,8 @@ KEYWORDS = []
 for start in range(0, len(KEYWORDS_RAW), 6):
     KEYWORDS.append(KEYWORDS_RAW[start:start+6])
 
+NUM_GH_ACCESS_TOKENS = 7
+
 GH_ACCESS_TOKEN = "access_tokens/gh_access_token"
 SG_ACCESS_TOKEN = "access_tokens/sg_access_token"
 
