@@ -53,7 +53,9 @@ bugs_df["tf_idf"] = bugs_df[keywords].dot(idf_series)
 
 bugs_df.drop(columns=keywords, axis=1, inplace=True)
 
-print(bugs_df)
+# print(bugs_df)
+
+bugs_df.to_csv(CONCAT_TF_IDF_BUGS_PATH, index=False)
 
 # tf_scores = []
 
