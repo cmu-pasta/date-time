@@ -1,8 +1,7 @@
 from __global_paths import *
 import pandas as pd
+import numpy as np
 import math
-
-bugs_df = pd.read_csv(FILTERED_BUGS_PATH)
 
 keywords = """
 datetime        pytz    leap    strptime        microsecond
@@ -26,24 +25,32 @@ def compute_tf(comment):
     words = comment.split()
     word_count = len(words)
     if word_count == 0:
-        return [0] * len(keywords)
-    tf = [words.count(keyword) / word_count for keyword in keywords]
+        return np.zeros(len(keywords))
+    tf = np.array([words.count(keyword) / word_count for keyword in keywords])
     return tf
 
+# calculate IDF
+repr_df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
+keyword_counts = np.zeros(len(keywords))
+issuecount = 0
+for i, row in repr_df.iterrows():
+    index = row["id"]
+    with open(f"{COMMENTS_DIR}{index}", "r") as file:
+        comments = file.read()
+        for j in range(len(keywords)):
+            if keywords[j].lower() in comments.lower():
+                keyword_counts[j]+=1
+
+idf = np.log(keyword_counts / repr_df.shape[0])
+
+# calculate tf-idf
+bugs_df = pd.read_csv(FILTERED_BUGS_PATH)
 for i, row in bugs_df.iterrows():
     index = row["id"]
     with open(f"{COMMENTS_DIR}{index}", "r") as file:
         comments = file.read()
-        bugs_df.at[i, "comments"] = comments
         tf = compute_tf(comments)
-        for j, keyword in enumerate(keywords):
-            bugs_df.at[i, keyword] = tf[j]
-
-idf_scores = compute_idf(bugs_df["comments"])
-idf_series = pd.Series(idf_scores, index=keywords)
-
-bugs_df["tf_idf"] = bugs_df[keywords].dot(idf_series)
-
-bugs_df.drop(columns=keywords + ["comments"], axis=1, inplace=True)
+        tf_idf = tf.dot(idf)
+        bugs_df.at[i, "tf_idf"] = tf_idf
 
 bugs_df.to_csv(TF_IDF_BUGS_PATH, index=False)
