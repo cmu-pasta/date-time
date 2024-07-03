@@ -12,6 +12,7 @@ for i in range(KEYWORDS_LIST_LEN):
 issues_df = pd.concat(issue_dfs).drop_duplicates()
 bugs_df = pd.concat(bug_dfs).drop_duplicates()
 bugs_fixed_df = bugs_df[pd.notna(bugs_df["fixUrl"])]
+bugs_fixed_df = bugs_fixed_df[bugs_fixed_df.iloc[:, -1] != "fixUrlCount"]
 
 issues_df.to_csv(CONCAT_ISSUES_PATH, index=False)
 bugs_df.to_csv(CONCAT_BUGS_PATH, index=False)
