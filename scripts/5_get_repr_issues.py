@@ -169,5 +169,5 @@ def get_keyword_counts():
 
 
 if __name__ == "__main__":
-    # find_repr_issues()
+    find_repr_issues()
     get_keyword_counts()
