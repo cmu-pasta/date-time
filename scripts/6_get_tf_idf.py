@@ -15,7 +15,7 @@ def compute_tf(comment):
 
 # calculate IDF
 repr_df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
-keyword_counts = np.zeros(len(KEYWORDS_RAW))
+keyword_counts = np.ones(len(KEYWORDS_RAW))
 issuecount = 0
 for i, row in repr_df.iterrows():
     index = row["id"]
@@ -37,7 +37,7 @@ for i, row in bugs_df.iterrows():
     index = row["id"]
     with open(f"{COMMENTS_DIR}{index}", "r") as file:
         comments = file.read()
-        bugs_df.at[i, "comments"] = comments
+        # bugs_df.at[i, "comments"] = comments
         tf = compute_tf(comments)
         tf_idf = tf.dot(idf)
         bugs_df.at[i, "tf_idf"] = tf_idf

@@ -66,7 +66,7 @@ def search_issues(owner, name):
     response = requests.post(url, json=json, headers=headers)
 
     if (response.status_code != 200):
-      print(f"Key: {key}. Response code: {response.status_code}")
+      print(f"Response code: {response.status_code}")
       time.sleep(20)
       continue
 
