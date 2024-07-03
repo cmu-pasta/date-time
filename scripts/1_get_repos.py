@@ -90,7 +90,7 @@ def main():
     if not os.path.exists(CLONE_REPOS_DIR):
         os.makedirs(CLONE_REPOS_DIR)
 
-    logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
+    logger = setup_logger("get_repos", LOG_PATH)
     df_ret = process_repos(df, logger)
 
     df_ret.to_csv(REPOS_WITH_GREP_PATH, index=False)
