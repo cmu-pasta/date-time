@@ -60,7 +60,6 @@ gh_query = """
                 ... on Issue {
                     id
                     title
-                    bodyHTML
                     url
                     activeLockReason
                     labels (first:100) {

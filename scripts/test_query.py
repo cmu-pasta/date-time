@@ -20,7 +20,7 @@ gh_query = """
             nodes {
                 ... on Issue {
                     title
-                    bodyHTML
+                    body
                     url
                     activeLockReason
                     labels (first:100) {
@@ -70,8 +70,9 @@ pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
 query_words = "SERVER_TIMESTAMP"
 # q = f"repo:googleapis/google-cloud-python is:issue is:closed in:title {query_words}"
-# q = "repo:sdispater/pendulum type:issue \"difference in days is incorrect across daylight savings\""
-q = "repo:sdispater/pendulum type:issue \"provide wheel for python3.11-windows\""
+q = "repo:sdispater/pendulum type:issue \"difference in days is incorrect across daylight savings\""
+# q = "repo:sdispater/pendulum type:issue \"provide wheel for python3.11-windows\""
+# q = "repo:googleapis/google-cloud-python datetime OR timestamp OR tzinfo OR epoch OR timedelta OR fold OR year OR month"
 
 json = {"query": gh_query, "variables": {"q": q, "cursor": None}}
 response = requests.post(url, json=json, headers=headers)
