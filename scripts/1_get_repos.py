@@ -42,21 +42,9 @@ def grep_repo(repo_owner, repo_name):
     stdout0, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+datetime(\s|,|$)' {repo_path}")
     stdout1, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+arrow(\s|,|$)' {repo_path}")
     stdout2, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+pendulum(\s|,|$)' {repo_path}")
-    stdout3, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+maya(\s|,|$)' {repo_path}")
-    stdout4, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+delorean(\s|,|$)' {repo_path}")
-    stdout5, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+moment(\s|,|$)' {repo_path}")
-    stdout6, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+whenever(\s|,|$)' {repo_path}")
-    stdout7, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+heliclockter(\s|,|$)' {repo_path}")
-    stdout8, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+chronyk(\s|,|$)' {repo_path}")
     return (1 if stdout0 else 0,
             1 if stdout1 else 0,
-            1 if stdout2 else 0,
-            1 if stdout3 else 0,
-            1 if stdout4 else 0,
-            1 if stdout5 else 0,
-            1 if stdout6 else 0,
-            1 if stdout7 else 0,
-            1 if stdout8 else 0
+            1 if stdout2 else 0
             )
 
 def count_python_lines(repo_owner, repo_name):
@@ -81,13 +69,7 @@ def process_repo(repo_owner, repo_name, logger):
         "name": [repo_name],
         "grep_results0": [grep_result[0]],
         "grep_results1": [grep_result[1]],
-        "grep_results2": [grep_result[2]],
-        "grep_results3": [grep_result[3]],
-        "grep_results4": [grep_result[4]],
-        "grep_results5": [grep_result[5]],
-        "grep_results6": [grep_result[6]],
-        "grep_results7": [grep_result[7]],
-        "grep_results8": [grep_result[8]]
+        "grep_results2": [grep_result[2]]
         # "loc": [loc]
     })
 
@@ -108,24 +90,13 @@ def main():
     if not os.path.exists(CLONE_REPOS_DIR):
         os.makedirs(CLONE_REPOS_DIR)
 
-    if len(sys.argv) == 1:
-        from_index = 0
-        to_index = len(df)
-        ret_path = SEPARATED_FILTERED_REPOS_PATH
-    elif len(sys.argv) == 3:
-        from_index = int(sys.argv[1])
-        to_index = int(sys.argv[2])
-        ret_path = f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
-    else:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [from_index to_index]")
-
     logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
-    df_ret = process_repos(df[from_index:to_index], logger)
+    df_ret = process_repos(df, logger)
 
-    df_ret.to_csv(ret_path, index=False)
+    df_ret.to_csv(REPOS_WITH_GREP_PATH, index=False)
     
-    run_command(f"head -n 1 {ret_path} > {ret_path[:-4] + '_filtered.csv'}")
-    run_command(f"grep ',1,' {ret_path} >> {ret_path[:-4] + '_filtered.csv'}")
+    run_command(f"head -n 1 {REPOS_WITH_GREP_PATH} > {DT_REPOS_PATH}")
+    run_command(f"grep ',1,' {REPOS_WITH_GREP_PATH} >> {DT_REPOS_PATH}")
     
 if __name__ == "__main__":
     main()
