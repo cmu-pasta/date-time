@@ -2,12 +2,10 @@ from __global_paths import *
 import pandas as pd
 import subprocess
 
-keyword_lines_len = 5
-
 issue_dfs = []
 bug_dfs = []
 
-for i in range(keyword_lines_len):
+for i in range(KEYWORDS_LIST_LEN):
     issue_dfs.append(pd.read_csv(ISSUES_PATH + f"_{i}"))
     bug_dfs.append(pd.read_csv(BUGS_PATH + f"_{i}"))
 
@@ -31,40 +29,19 @@ print(f"NUM_BUGS: {len(bugs_df)}")
 print({
     'datetime': int(result[result['grep_results0'] > 0]['count'].sum()),
     'arrow': int(result[result['grep_results1'] > 0]['count'].sum()),
-    'pendulum': int(result[result['grep_results2'] > 0]['count'].sum()),
-    'maya': int(result[result['grep_results3'] > 0]['count'].sum()),
-    'delorean': int(result[result['grep_results4'] > 0]['count'].sum()),
-    'moment': int(result[result['grep_results5'] > 0]['count'].sum()),
-    'whenever': int(result[result['grep_results6'] > 0]['count'].sum()),
-    'heliclockter': int(result[result['grep_results7'] > 0]['count'].sum()),
-    'chronyk': int(result[result['grep_results8'] > 0]['count'].sum())
+    'pendulum': int(result[result['grep_results2'] > 0]['count'].sum())
 })
 
 print(f"NUM_BUGGY_REPOS: {bugs_df['repoName'].nunique()}")
 print({
     'datetime': (result[result['grep_results0'] > 0]['count'] > 0).sum(),
     'arrow': (result[result['grep_results1'] > 0]['count'] > 0).sum(),
-    'pendulum': (result[result['grep_results2'] > 0]['count'] > 0).sum(),
-    'maya': (result[result['grep_results3'] > 0]['count'] > 0).sum(),
-    'delorean': (result[result['grep_results4'] > 0]['count'] > 0).sum(),
-    'moment': (result[result['grep_results5'] > 0]['count'] > 0).sum(),
-    'whenever': (result[result['grep_results6'] > 0]['count'] > 0).sum(),
-    'heliclockter': (result[result['grep_results7'] > 0]['count'] > 0).sum(),
-    'chronyk': (result[result['grep_results8'] > 0]['count'] > 0).sum()
+    'pendulum': (result[result['grep_results2'] > 0]['count'] > 0).sum()
 })
 
-words="""
-datetime	pytz	leap	strptime	microsecond
-timestamp	dateutil	DST	strftime	nanosecond
-tzinfo	arrow	daylight	utcnow	millisecond
-epoch	pendulum	year	fromtimestamp	timezone
-timedelta	UTC	localtime	GMT	interval
-fold	elapsed	duration	month
-""".split()
+print(f"NUM_WORDS: {len(KEYWORDS_RAW)}")
 
-print(f"NUM_WORDS: {len(words)}")
-
-for word in words:
+for word in KEYWORDS_RAW:
     #issue_count = int(subprocess.run(f"grep -icE '{word}' {CONCAT_ISSUES_PATH}", shell=True, check=True).stdout)
     bug_count = int(subprocess.run(f"grep -icE '{word}' {CONCAT_BUGS_PATH}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True).stdout)
     #issue_word_counts[word] += issue_count
