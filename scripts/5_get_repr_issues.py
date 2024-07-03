@@ -129,21 +129,21 @@ def find_repr_issues():
 
 def get_keyword_counts():
     df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
-    keyword_counts = [0 for j in range(len(KEYWORDS_RAW))]
+    keyword_counts = [0 for j in range(len(KEYWORDS_SINGULAR))]
     for i, row in df.iterrows():
         index = row["id"]
         with open(f"{COMMENTS_DIR}{index}", "r") as file:
             comment = file.read()
             words = re.split(r'[^a-zA-Z]+', comment)
             # print(comments)
-            appearances = [(len([word for word in words if word.lower().startswith(keyword.lower())])) for keyword in KEYWORDS_RAW]
-            for j in range(len(KEYWORDS_RAW)):
+            appearances = [(len([word for word in words if word.lower().startswith(keyword.lower())])) for keyword in KEYWORDS_SINGULAR]
+            for j in range(len(KEYWORDS_SINGULAR)):
                 if appearances[j] != 0:
                     keyword_counts[j]+=1
     
     zipped = []
-    for j in range(len(KEYWORDS_RAW)):
-        zipped.append((keyword_counts[j], KEYWORDS_RAW[j]))
+    for j in range(len(KEYWORDS_SINGULAR)):
+        zipped.append((keyword_counts[j], KEYWORDS_SINGULAR[j]))
     zipped.sort()
     for z in zipped:
        print(z[1].ljust(20), z[0])
