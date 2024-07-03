@@ -28,6 +28,11 @@ gh_query = """
                             name
                         }
                     }
+                    comments (first:100) {
+                        nodes {
+                            bodyText
+                        }
+                    }
                     timelineItems(first:100){
                         totalCount
                         nodes {
