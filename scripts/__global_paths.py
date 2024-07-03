@@ -50,5 +50,7 @@ BUGS_WITH_FIXES_PATH = DATA_DIR + "bugs_w_fixes.csv"
 BUGS_WITH_TF_IDF_PATH = DATA_DIR + "bugs_w_tf_idf.csv"
 BUGS_WITH_STATS_PATH = DATA_DIR + "bugs_w_stats.csv"
 
+BUGS_TOP_PATH = DATA_DIR + "bugs_top.csv"
+
 ISSUE_REPR_SAMPLE_PATH = DATA_DIR + "issue_repr_sample.csv"
 IDFS_PATH = DATA_DIR + "idfs.csv"
