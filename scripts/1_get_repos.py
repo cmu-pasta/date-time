@@ -90,24 +90,13 @@ def main():
     if not os.path.exists(CLONE_REPOS_DIR):
         os.makedirs(CLONE_REPOS_DIR)
 
-    if len(sys.argv) == 1:
-        from_index = 0
-        to_index = len(df)
-        ret_path = SEPARATED_FILTERED_REPOS_PATH
-    elif len(sys.argv) == 3:
-        from_index = int(sys.argv[1])
-        to_index = int(sys.argv[2])
-        ret_path = f"{SEPARATED_FILTERED_REPOS_PATH[:-4]}_multigrep_{from_index}_{to_index}.csv"
-    else:
-        raise RuntimeError(f"Usage: {sys.argv[0]} from_index to_index")
-
     logger = setup_logger(f"thread_{from_index}_{to_index}", CLONE_REPOS_DIR + f"thread_{from_index}_{to_index}")
-    df_ret = process_repos(df[from_index:to_index], logger)
+    df_ret = process_repos(df, logger)
 
-    df_ret.to_csv(ret_path, index=False)
+    df_ret.to_csv(REPOS_WITH_GREP_PATH, index=False)
     
-    run_command(f"head -n 1 {ret_path} > {ret_path[:-4] + '_filtered.csv'}")
-    run_command(f"grep ',1,' {ret_path} >> {ret_path[:-4] + '_filtered.csv'}")
+    run_command(f"head -n 1 {REPOS_WITH_GREP_PATH} > {DT_REPOS_PATH}")
+    run_command(f"grep ',1,' {REPOS_WITH_GREP_PATH} >> {DT_REPOS_PATH}")
     
 if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 import pandas as pd
 from __global_paths import *
 
-df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH)
+df = pd.read_csv(DT_REPOS_PATH)
 
 cols = ['grep_results0',
         'grep_results1',

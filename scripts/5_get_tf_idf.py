@@ -3,7 +3,7 @@ import pandas as pd
 import math
 import re
 
-bugs_df = pd.read_csv(FILTERED_BUGS_PATH)
+bugs_df = pd.read_csv(BUGS_WITH_TF_IDF_PATH)
 
 def compute_idf(comments):
     num_documents = len(comments)
@@ -40,4 +40,4 @@ bugs_df["tf_idf"] = bugs_df[KEYWORDS_RAW].dot(idf_series)
 
 bugs_df.drop(columns=KEYWORDS_RAW + ["comments"], axis=1, inplace=True)
 
-bugs_df.to_csv(TF_IDF_BUGS_PATH, index=False)
+bugs_df.to_csv(BUGS_WITH_TF_IDF_PATH, index=False)
