@@ -17,8 +17,8 @@ def tokenize(comment):
     return tokens
 
 def count_matches(tokens):
-    ans = np.zeros(len(KEYWORDS_RAW))
-    for i,keyword in enumerate(KEYWORDS_RAW):
+    ans = np.zeros(len(KEYWORDS_SINGULAR))
+    for i,keyword in enumerate(KEYWORDS_SINGULAR):
         for word in tokens:
             if word.lower().startswith(keyword.lower()):
                 ans[i] += 1
@@ -29,12 +29,12 @@ def compute_tf(comment):
     # words = comment.split()
     word_count = len(words)
     if word_count == 0:
-        return np.zeros(len(KEYWORDS_RAW))
+        return np.zeros(len(KEYWORDS_SINGULAR))
     return count_matches(words) / word_count
 
 # calculate IDF
 repr_df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
-keyword_counts = np.ones(len(KEYWORDS_RAW))
+keyword_counts = np.ones(len(KEYWORDS_SINGULAR))
 issuecount = 0
 for i, row in repr_df.iterrows():
     index = row["id"]
@@ -42,7 +42,7 @@ for i, row in repr_df.iterrows():
         comment = file.read()
         words = tokenize(comment)
         appearances = count_matches(words)
-        for j in range(len(KEYWORDS_RAW)):
+        for j in range(len(KEYWORDS_SINGULAR)):
             if appearances[j] != 0:
                 keyword_counts[j]+=1
     
