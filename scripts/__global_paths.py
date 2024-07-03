@@ -31,7 +31,7 @@ dateutil    microsecond timestamp   GMT
 arrow   second  utcnow  UTC duration
 pendulum     fromtimestamp   DST 
 tzinfo  day localtime   daylight    
-days    timedelta   fold    
+   timedelta   fold    
 week        leap    
 month
 year
