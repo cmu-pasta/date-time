@@ -9,36 +9,16 @@ import sys
 
 from __global_paths import *
 
-keywords = """
-datetime	nanosecond	strptime	timezone	elapsed
-pytz	millisecond	strftime	timezones	interval
-dateutil	microsecond	timestamp	GMT	intervals
-arrow	seconds	utcnow	UTC	duration
-pendulum	day	fromtimestamp	DST	durations
-tzinfo	days	localtime	daylight	
-	week	timedelta	fold	
-	weeks	utcfromtimestamp	leap	
-	month			
-	months			
-	year			
-	years			
-	epoch when second time date			
-""".split()
+NUM_REPOS = 1000
+ISSUES_PER_REPO = 100
 
-key = 1
-num_gh_keys = 1
-num_repos = 1000
-issues_per_repo = 100
-
-if len(sys.argv) == 4:
+if len(sys.argv) == 2:
     try:
-        num_repos   = int(sys.argv[1])
-        key         = int(sys.argv[2])
-        num_gh_keys = int(sys.argv[3])
+        NUM_REPOS = int(sys.argv[1])
     except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} num_repos key num_gh_keys")
+        raise RuntimeError(f"Usage: {sys.argv[0]} num_repos")
 
-with open(GH_ACCESS_TOKEN + f"_{key%num_gh_keys}", "r") as file:
+with open(GH_ACCESS_TOKEN + f"_0", "r") as file:
   gh_access_token = file.read().strip()
 
 gh_query = """
@@ -72,14 +52,13 @@ gh_query = """
 
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
-pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
 def search_issues(owner, name):
   nameWithOwner = owner + "/" + name
   count = 0
   q = f"repo:{nameWithOwner} is:issue"
   cursor = None
-  remaining_issues = issues_per_repo
+  remaining_issues = ISSUES_PER_REPO
   while (True):
     issuecount = remaining_issues if remaining_issues<100 else 100
     json = {"query": gh_query, "variables": {"q": q, "cursor": cursor, "issuecount": issuecount}}
@@ -142,7 +121,7 @@ def find_repr_issues():
         row = ["repoName", "id", "title", "url"]
         writer.writerow(row)
 
-    jumpsize = df.shape[0]//num_repos
+    jumpsize = df.shape[0]//NUM_REPOS
     for index, row in df[df.index % jumpsize == 0].iterrows():
         search_issues(row["owner"], row["name"])
         if (index//jumpsize)%100 == 0:
