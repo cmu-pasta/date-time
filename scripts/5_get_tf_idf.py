@@ -3,7 +3,7 @@ import pandas as pd
 import math
 import re
 
-bugs_df = pd.read_csv(BUGS_WITH_TF_IDF_PATH)
+bugs_df = pd.read_csv(BUGS_WITH_FIXES_PATH)
 
 def compute_idf(comments):
     num_documents = len(comments)
