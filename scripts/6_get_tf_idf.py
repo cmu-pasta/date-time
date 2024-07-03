@@ -29,7 +29,7 @@ for i, row in repr_df.iterrows():
     
 
 idf = np.log(repr_df.shape[0] / keyword_counts)
-pd.DataFrame(idf).to_csv(IDFS_PATH, index=False)
+pd.DataFrame(idf, columns=["idf"]).to_csv(IDFS_PATH, index=False)
 exit(0)
 
 # calculate tf-idf
