@@ -9,8 +9,6 @@ import re
 
 from __global_paths import *
 
-KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(KEYWORDS_LIST_LEN)]
-
 key = 0
 open_or_closed = "closed"
 
@@ -28,16 +26,16 @@ if len(sys.argv) > 2:
         raise RuntimeError(f"Usage: {sys.argv[0]} key [open/closed]")
 
 
-WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
-WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
+WRITE_ISSUES_PATH = PARTIAL_ISSUES_DIR if open_or_closed == "closed" else PARTIAL_OPEN_ISSUES_DIR
+WRITE_BUGS_PATH   = PARTIAL_BUGS_DIR   if open_or_closed == "closed" else PARTIAL_OPEN_BUGS_DIR
 
-WRITE_ISSUES_PATH += f"_{key}"
-WRITE_BUGS_PATH += f"_{key}"
+WRITE_ISSUES_PATH += f"{key}"
+WRITE_BUGS_PATH += f"{key}"
 
 with open(GH_ACCESS_TOKEN + f"_{key%NUM_GH_ACCESS_TOKENS}", "r") as file:
   gh_access_token = file.read().strip()
 
-df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
+df = pd.read_csv(DT_REPOS_PATH)
 
 gh_query = """
     query($q: String!, $cursor: String) {
@@ -110,7 +108,6 @@ timeline_checks = [
 
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
-pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
 def search_issues(owner, name):
   nameWithOwner = owner + "/" + name
@@ -190,6 +187,10 @@ def search_issues(owner, name):
 
 def main():
   subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_ISSUES_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_BUGS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_OPEN_ISSUES_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_OPEN_BUGS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
   print(f"STARTING. NUM_GH_ACCESS_TOKENS: {NUM_GH_ACCESS_TOKENS}. KEY: {key}. KEYWORDS: {KEYWORDS_WITH_OR[key]}")
 
