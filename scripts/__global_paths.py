@@ -1,5 +1,7 @@
 DATA_DIR = "/data/sjoukov/date-time/data/"
 
+LOG_PATH = DATA_DIR + "log"
+
 KEYWORDS_RAW = """
 datetime    nanosecond  strptime    timezone    elapsed
 pytz    millisecond strftime    timezones   interval
@@ -20,7 +22,7 @@ KEYWORDS_LIST_LEN = 7
 
 KEYWORDS = []
 for start in range(0, len(KEYWORDS_RAW), 6): KEYWORDS.append(KEYWORDS_RAW[start:start+6])
-KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(KEYWORDS_LIST_LEN)]
+KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(len(KEYWORDS))]
 
 NUM_GH_ACCESS_TOKENS = 7
 
@@ -49,3 +51,6 @@ BUGS_WITH_TF_IDF_PATH = DATA_DIR + "bugs_w_tf_idf.csv"
 BUGS_WITH_STATS_PATH = DATA_DIR + "bugs_w_stats.csv"
 
 BUGS_TOP_PATH = DATA_DIR + "bugs_top.csv"
+
+ISSUE_REPR_SAMPLE_PATH = DATA_DIR + "issue_repr_sample.csv"
+IDFS_PATH = DATA_DIR + "idfs.csv"
