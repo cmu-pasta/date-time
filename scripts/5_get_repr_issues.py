@@ -115,7 +115,6 @@ def find_repr_issues():
     subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     print("STARTING GET DOC FREQUENCY")
-    print(f"NUM_GH_KEYS: {num_gh_keys}. KEY: {key}")
 
     with open(ISSUE_REPR_SAMPLE_PATH, "w") as file:
         writer = csv.writer(file, lineterminator="\n")
@@ -126,7 +125,7 @@ def find_repr_issues():
     for index, row in df[df.index % jumpsize == 0].iterrows():
         search_issues(row["owner"], row["name"])
         if (index//jumpsize)%100 == 0:
-            print(f"Key: {key}. Row: {index}. ({round(100*index/df.shape[0], 2)}% Done)")
+            print(f"Row: {index}. ({round(100*index/df.shape[0], 2)}% Done)")
 
 def get_keyword_counts():
     df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
