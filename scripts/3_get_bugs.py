@@ -54,6 +54,7 @@ gh_query = """
                     id
                     title
                     url
+                    body
                     activeLockReason
                     labels (first:100) {
                         nodes {
@@ -153,6 +154,8 @@ def search_issues(owner, name):
             for l in issue["labels"]["nodes"]:
                 labels.append(l["name"])
             with open(f"{COMMENTS_DIR}{issue['id']}", "w") as cfile:
+                cfile.write(issue["title"] + "\n")
+                cfile.write(issue["body"] + "\n")
                 for c in issue["comments"]["nodes"]:
                     cfile.write(c["bodyText"] + "\n")
             for tl_item in issue["timelineItems"]["nodes"]:

@@ -6,24 +6,9 @@ import pandas as pd
 import subprocess
 import time
 import sys
+import re
 
 from __global_paths import *
-
-keywords = """
-datetime	nanosecond	strptime	timezone	elapsed
-pytz	millisecond	strftime	timezones	interval
-dateutil	microsecond	timestamp	GMT	intervals
-arrow	seconds	utcnow	UTC	duration
-pendulum	day	fromtimestamp	DST	durations
-tzinfo	days	localtime	daylight	
-	week	timedelta	fold	
-	weeks	utcfromtimestamp	leap	
-	month			
-	months			
-	year			
-	years			
-	epoch when second time date			
-""".split()
 
 key = 1
 num_gh_keys = 1
@@ -150,19 +135,21 @@ def find_repr_issues():
 
 def get_keyword_counts():
     df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
-    keyword_counts = [0 for j in range(len(keywords))]
+    keyword_counts = [0 for j in range(len(KEYWORDS_RAW))]
     for i, row in df.iterrows():
         index = row["id"]
         with open(f"{COMMENTS_DIR}{index}", "r") as file:
-            comments = file.read()
+            comment = file.read()
+            words = re.split(r'[^a-zA-Z]+', comment)
             # print(comments)
-            for j in range(len(keywords)):
-                if keywords[j].lower() in comments.lower():
+            appearances = [(len([word for word in words if word.lower().startswith(keyword.lower())])) for keyword in KEYWORDS_RAW]
+            for j in range(len(KEYWORDS_RAW)):
+                if appearances[j] != 0:
                     keyword_counts[j]+=1
     
     zipped = []
-    for j in range(len(keywords)):
-        zipped.append((keyword_counts[j], keywords[j]))
+    for j in range(len(KEYWORDS_RAW)):
+        zipped.append((keyword_counts[j], KEYWORDS_RAW[j]))
     zipped.sort()
     for z in zipped:
        print(z[1].ljust(20), z[0])
