@@ -30,7 +30,6 @@ for i, row in repr_df.iterrows():
 
 idf = np.log(repr_df.shape[0] / keyword_counts)
 pd.DataFrame(idf, columns=["idf"]).to_csv(IDFS_PATH, index=False)
-exit(0)
 
 # calculate tf-idf
 bugs_df = pd.read_csv(BUGS_WITH_FIXES_PATH)
