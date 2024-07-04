@@ -12,3 +12,5 @@ python run_benchmarks.py
 The script will iterate through each benchmark file in the `benchmarks` directory, executing them and providing output based on any date-time bugs or smells detected.
 
 TODO: Explain the testing framework (any fuzzing logic, always false assertions, any generators involved, date/time freezing/manipulation techniques used via monkey patching, executing individual benchmark files, running static/dynamic analysis on the tests)
+
+# python -W ignore::DeprecationWarning your_test_script.py

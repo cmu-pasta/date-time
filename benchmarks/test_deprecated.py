@@ -15,18 +15,20 @@ from hypothesis.strategies import integers, timezones
 
 
 class TestDeprecatedAPIUsage(unittest.TestCase):
-    def test_deprecated_api_usage_0(self):
+
+    # Test that calls the deprecated datetime.utcnow() method.
+    def test_deprecated_api_usage_0(self) -> None:
         dt_utcnow = datetime.utcnow()
         dt_now = datetime.now(tz=timezone.utc)
         self.assertEqual(dt_utcnow, dt_now)
 
+    # Test that calls the deprecated datetime.utcfromtimestamp() method.
     @given(integers(min_value=0, max_value=4294967296), timezones())
-    def test_deprecated_api_usage_1(self, timestamp: int, timezone: timezone):
+    def test_deprecated_api_usage_1(self, timestamp: int, timezone: timezone) -> None:
         dt = datetime.utcfromtimestamp(timestamp)
         ts_new = dt.astimezone(tz=timezone).timestamp()
         self.assertEqual(ts_new, timestamp)
 
 
-# python -W ignore::DeprecationWarning your_test_script.py
 if __name__ == "__main__":
     unittest.main()

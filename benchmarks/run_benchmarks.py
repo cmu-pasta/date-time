@@ -55,7 +55,6 @@ if __name__ == '__main__':
 
 
 def test_runner():
-
     # Register and load custom testing profile with max_examples set to 1000
     settings.register_profile("testing_profile", max_examples=1000)
     settings.load_profile("testing_profile")

@@ -59,7 +59,6 @@ pre-commit install
 
 [black]: https://black.readthedocs.io/en/stable/
 [git]: https://git-scm.com/downloads
-[humaneval]: https://github.com/openai/human-eval
 [isort]: https://pycqa.github.io/isort/
 [poetry]: https://python-poetry.org/docs/
 [python]: https://www.python.org/downloads/
