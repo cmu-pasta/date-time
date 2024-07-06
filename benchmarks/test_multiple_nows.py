@@ -58,7 +58,7 @@ def run_tests():
     with freeze_time("2012-01-14") as freezer:
         original_now = datetime.now
 
-        # Decrease the time by 1 second on each call to dateime.datetime.now()
+        # Decrease the time by 1 second on each call to datetime.now()
         def monkey_patched_now():
             freezer.tick(delta=timedelta(seconds=-1))
             return original_now()

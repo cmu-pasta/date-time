@@ -1,5 +1,5 @@
 """
-Description: This file contains code snippets that call the replace() method on datetime objects. It tests the behavior of the method is incorrectly used.
+Description: This file contains code snippets that call the replace() method on datetime objects. It tests the behavior of the method when used incorrectly.
 
 Links:
 - https://stackoverflow.com/questions/39759041/replace-tzinfo-and-print-with-localtime-amends-six-minutes
