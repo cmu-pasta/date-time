@@ -5,11 +5,13 @@ import warnings
 from freezegun import freeze_time
 from hypothesis import settings
 
+length = 70
+
 
 def pretty_print(string: str):
-    print("\n" + "=" * 50)
+    print("\n" + "=" * length)
     print(string)
-    print("-" * 50)
+    print("-" * length)
 
 
 def get_test_suites():
@@ -60,7 +62,7 @@ def test_runner():
     for suite in suites:
         pretty_print(f"Running test suite: {suite}")
         print("Test cases found: ", suite.countTestCases())
-        print("-" * 20)
+        print("-" * length)
 
         runner = unittest.TextTestRunner(verbosity=2)
         with warnings.catch_warnings():
