@@ -2,8 +2,15 @@ from __global_paths import *
 import pandas as pd
 import numpy as np
 import math
+import sys
 import re
 from nltk.tokenize import word_tokenize
+
+IDF_SOURCE = "repr"
+if len(sys.argv) == 2:
+    if sys.argv[1] not in ["repr", "filtered"]:
+        raise RuntimeError(f"Usage: {sys.argv[0]} [repr/filtered]")
+    IDF_SOURCE = sys.argv[1]
 
 # By default, nltk doesn't come with all the data it needs to run, so we need to run this download command
 # to grab the rest of the data
@@ -37,11 +44,14 @@ def compute_tf(comment):
         return np.zeros(len(KEYWORDS_SINGULAR))
     return count_matches(words) / word_count
 
-# calculate IDF
 repr_df = pd.read_csv(ISSUE_REPR_SAMPLE_PATH)
+bugs_df = pd.read_csv(BUGS_WITH_FIXES_PATH)
+
+# calculate IDF
+idf_df = repr_df if IDF_SOURCE == "repr" else bugs_df
 keyword_counts = np.ones(len(KEYWORDS_SINGULAR))
 issuecount = 0
-for i, row in repr_df.iterrows():
+for i, row in idf_df.iterrows():
     index = row["id"]
     with open(f"{COMMENTS_DIR}{index}", "r") as file:
         comment = file.read()
@@ -57,7 +67,6 @@ idf = np.log(repr_df.shape[0] / keyword_counts)
 pd.DataFrame(idf, columns=["idf"]).to_csv(IDFS_PATH, index=False)
 
 # calculate tf-idf
-bugs_df = pd.read_csv(BUGS_WITH_FIXES_PATH)
 for i, row in bugs_df.iterrows():
     index = row["id"]
     with open(f"{COMMENTS_DIR}{index}", "r") as file:
