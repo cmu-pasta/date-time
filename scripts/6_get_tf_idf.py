@@ -20,8 +20,8 @@ except:
     import nltk
     nltk.download('punkt')
 
-def tokenize(comment):
-    tokens = word_tokenize(comment)
+def tokenize(text):
+    tokens = word_tokenize(text)
     # only include tokens that contain a letter
     # this will also include things like the "'s" in it's -> ["it", "'s"]
     tokens = [t for t in tokens if re.search("[a-zA-Z]", t) is not None]
@@ -37,8 +37,8 @@ def count_matches(tokens):
                 ans[i] += 1
     return ans
 
-def compute_tf(comment):
-    words = tokenize(comment)
+def compute_tf(comments):
+    words = tokenize(comments)
     word_count = len(words)
     if word_count == 0:
         return np.zeros(len(KEYWORDS_SINGULAR))
@@ -54,8 +54,8 @@ issuecount = 0
 for i, row in idf_df.iterrows():
     index = row["id"]
     with open(f"{COMMENTS_DIR}{index}", "r") as file:
-        comment = file.read()
-        words = tokenize(comment)
+        comments = file.read()
+        words = tokenize(comments)
         appearances = count_matches(words)
         for j in range(len(KEYWORDS_SINGULAR)):
             if appearances[j] != 0:
