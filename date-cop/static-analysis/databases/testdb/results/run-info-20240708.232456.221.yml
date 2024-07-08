@@ -1,0 +1,54 @@
+---
+queries:
+ -
+  pack: date-cop#1
+  relativeQueryPath: deprecated_method.ql
+  relativeBqrsPath: date-cop/deprecated_method.bqrs
+  metadata:
+    name: deprecated method
+    description: Deprecated methods are dangerous and can cause silent failures.
+    kind: problem
+    tags: ""
+    problem.severity: recommendation
+    sub-severity: high
+    precision: high
+    id: py/deprecated-method
+  queryHelp: null
+extensionPacks: []
+packs:
+  date-cop#1:
+    name: date-cop
+    version: 0.0.1
+    isLibrary: false
+    isExtensionPack: false
+    localPath: file:///D:/Temp/date_time/date-cop/static-analysis/
+    localPackDefinitionFile: file:///D:/Temp/date_time/date-cop/static-analysis/qlpack.yml
+    headSha: null
+    runDataExtensions:
+     -
+      pack: codeql/python-all#0
+      relativePath: semmle/python/frameworks/Asyncpg.model.yml
+      index: 0
+      firstRowId: 0
+      rowCount: 5
+     -
+      pack: codeql/python-all#0
+      relativePath: semmle/python/frameworks/Asyncpg.model.yml
+      index: 1
+      firstRowId: 5
+      rowCount: 6
+     -
+      pack: codeql/python-all#0
+      relativePath: semmle/python/frameworks/data/internal/empty.model.yml
+      index: 0
+      firstRowId: 11
+      rowCount: 0
+  codeql/python-all#0:
+    name: codeql/python-all
+    version: 1.0.3
+    isLibrary: true
+    isExtensionPack: false
+    localPath: file:///D:/Temp/codeql/qlpacks/codeql/python-all/1.0.3/
+    localPackDefinitionFile: file:///D:/Temp/codeql/qlpacks/codeql/python-all/1.0.3/qlpack.yml
+    headSha: dc20b0d19e9144624668a30d61855e709276bea2
+    runDataExtensions: []
