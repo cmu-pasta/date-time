@@ -1,0 +1,2 @@
+"deprecated method","Deprecated methods are dangerous and can cause silent failures.","recommendation","Functions utcnow and utcfromtimestamp use non-timestamped UTC and should not be used","/test_deprecated.py","19","21","19","37"
+"deprecated method","Deprecated methods are dangerous and can cause silent failures.","recommendation","Functions utcnow and utcfromtimestamp use non-timestamped UTC and should not be used","/test_deprecated.py","25","14","25","49"

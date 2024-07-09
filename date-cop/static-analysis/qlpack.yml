@@ -1,0 +1,5 @@
+name: date-cop
+version: 0.0.1
+dependencies:
+  codeql/python-queries: "*"
+  codeql/python-all: "*"
