@@ -7,7 +7,7 @@ bugs_with_stats_df = pd.merge(pd.read_csv(BUGS_WITH_TF_IDF_PATH), pd.read_csv(RE
 bugs_with_stats_df.to_csv(BUGS_WITH_STATS_PATH, index=False)
 
 bugs_with_good_tf_idf_df = bugs_with_stats_df.sort_values(by="tf_idf", ascending=False).head(int(len(bugs_with_stats_df) * 0.2))
-bugs_with_good_size_df = bugs_with_good_tf_idf_df.sort_values(by="size", ascending=False).head(int(len(bugs_with_stats_df) * 0.8))
+bugs_with_good_size_df = bugs_with_good_tf_idf_df.sort_values(by="size", ascending=False).head(int(len(bugs_with_good_tf_idf_df) * 0.5))
 
 top_k_dfs = []
 
