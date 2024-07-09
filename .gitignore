@@ -1,3 +1,6 @@
+#.vscode
+*.vscode
+
 # data_ln
 *data_ln*
 
