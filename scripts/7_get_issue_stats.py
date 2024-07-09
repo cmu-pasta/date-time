@@ -27,3 +27,4 @@ for category in categories:
 
 bugs_from_top_in_categories = pd.concat(top_k_dfs).drop_duplicates()
 bugs_from_top_in_categories.to_csv(BUGS_TOP_PATH, index=False)
+bugs_from_top_in_categories[new_column_order[:5]].to_csv(BUGS_TOP_PATH[:-4]+".tsv", sep="\t", index=False)
