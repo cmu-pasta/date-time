@@ -11,6 +11,7 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import pendulum
+import arrow
 from dateutil import tz
 from hypothesis import example, given
 from hypothesis.strategies import datetimes, timezones
@@ -34,10 +35,14 @@ class TestArithmetic(unittest.TestCase):
         pendulum_dt1 = pendulum.instance(dt1, tz_info)
         pendulum_dt2 = pendulum.instance(dt2, tz_info)
 
+        arrow_dt1 = arrow.get(dt1).to(tz_info)
+        arrow_dt2 = arrow.get(dt2).to(tz_info)
+
         default_diff = (default_dt1 - default_dt2).total_seconds()
         pendulum_diff = (pendulum_dt1 - pendulum_dt2).total_seconds()
+        arrow_diff = (arrow_dt1 - arrow_dt2).total_seconds()
 
-        assert default_diff == pendulum_diff
+        assert default_diff == pendulum_diff == arrow_diff
 
     # Test: Disambiguation of ambiguous datetime objects breaks equality.
     @given(datetimes(), timezones())
@@ -56,8 +61,19 @@ class TestArithmetic(unittest.TestCase):
 
         d_utc = d.astimezone(timezone.utc)
 
+        pendulum_d = pendulum.instance(d, tz_info)
+        pendulum_d_utc = pendulum_d.in_timezone('UTC')
+
+        arrow_d = arrow.get(d)
+        arrow_d_utc = arrow_d.to('UTC')
+
         assert d.timestamp() == d_utc.timestamp()
+        assert pendulum_d.timestamp() == pendulum_d_utc.timestamp()
+        assert arrow_d.timestamp() == arrow_d_utc.timestamp()
+        
         assert d == d_utc
+        assert pendulum_d == pendulum_d_utc
+        assert arrow_d == arrow_d_utc
 
     # Test: Inconsistent equality within timezone.
     @given(datetimes(), timezones())
@@ -84,8 +100,17 @@ class TestArithmetic(unittest.TestCase):
             fold=1,
         )
 
+        pendulum_earlier = pendulum.instance(earlier, tz_info)
+        pendulum_later = pendulum.instance(later, tz_info)
+        arrow_earlier = arrow.get(earlier).to(tz_info)
+        arrow_later = arrow.get(later).to(tz_info)
+
         assert earlier.timestamp() != later.timestamp()
+        assert pendulum_earlier.timestamp() != pendulum_later.timestamp()
+        assert arrow_earlier.timestamp() != arrow_later.timestamp()
         assert earlier != later
+        assert pendulum_earlier != pendulum_later
+        assert arrow_earlier != arrow_later
 
     # Test: Arithmetic operations on datetime objects are DST unaware.
     @given(datetimes(), timezones())
@@ -99,8 +124,12 @@ class TestArithmetic(unittest.TestCase):
         pendulum_now = pendulum.instance(default_now, tz_info)
         pendulum_tomorrow = pendulum_now.add(days=1)
 
+        arrow_now = arrow.get(default_now).to(tz_info)
+        arrow_tomorrow = arrow_now.shift(days=1)
+
         assert default_now.hour == default_tomorrow.hour
         assert pendulum_now.hour == pendulum_tomorrow.hour
+        assert arrow_now.datetime.hour == arrow_tomorrow.datetime.hour
 
         # TODO: Add a example where the total time added is 1 day but 24hrs instead.
 

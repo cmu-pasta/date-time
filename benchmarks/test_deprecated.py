@@ -9,6 +9,8 @@ Links:
 
 import unittest
 from datetime import datetime, timezone
+import arrow
+import pendulum
 
 from hypothesis import given
 from hypothesis.strategies import integers, timezones
@@ -16,18 +18,26 @@ from hypothesis.strategies import integers, timezones
 
 class TestDeprecatedAPIUsage(unittest.TestCase):
 
-    # Test that calls the deprecated datetime.utcnow() method.
     def test_deprecated_api_usage_0(self) -> None:
         dt_utcnow = datetime.utcnow()
         dt_now = datetime.now(tz=timezone.utc)
         self.assertEqual(dt_utcnow, dt_now)
 
-    # Test that calls the deprecated datetime.utcfromtimestamp() method.
     @given(integers(min_value=0, max_value=4294967296), timezones())
     def test_deprecated_api_usage_1(self, timestamp: int, timezone: timezone) -> None:
         dt = datetime.utcfromtimestamp(timestamp)
         ts_new = dt.astimezone(tz=timezone).timestamp()
         self.assertEqual(ts_new, timestamp)
+
+    def test_deprecated_api_usage_arrow(self) -> None:
+        dt_local = arrow.now('local')
+        dt_now = arrow.now().to('local')
+        self.assertEqual(dt_local, dt_now)
+
+    def test_deprecated_api_usage_pendulum(self) -> None:
+        dt_parsed = pendulum.parse('2023-07-08T12:34:56', tz='UTC')
+        dt_parsed_in_tz = pendulum.parse('2023-07-08T12:34:56').in_timezone('UTC')
+        self.assertEqual(dt_parsed, dt_parsed_in_tz)
 
 
 if __name__ == "__main__":
