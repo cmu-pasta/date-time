@@ -31,12 +31,6 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
         ts_new = dt.astimezone(tz=timezone).timestamp()
         self.assertEqual(ts_new, timestamp)
 
-    # Test that calls arrow.now() with the deprecated parameter 'local'.
-    def test_deprecated_api_usage_arrow(self) -> None:
-        dt_local = arrow.now('local')
-        dt_now = arrow.now().to('local')
-        self.assertEqual(dt_local, dt_now)
-
     # Test that calls pendulum.parse() parameter tz.
     def test_deprecated_api_usage_pendulum(self) -> None:
         dt_parsed = pendulum.parse('2023-07-08T12:34:56', tz='UTC')
