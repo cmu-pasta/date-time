@@ -6,6 +6,15 @@ K = 200
 bugs_with_stats_df = pd.merge(pd.read_csv(BUGS_WITH_TF_IDF_PATH), pd.read_csv(REPOS_PATH), left_on='repoName', right_on='nameWithOwner', how='left')
 bugs_with_stats_df.to_csv(BUGS_WITH_STATS_PATH, index=False)
 
+new_column_order = [
+            "repoName", "title", "url_x", "fixUrl", "stars", "tf_idf", "size", "lockReason",
+                "timelineCount", "labels", "fixUrlCount", "nameWithOwner", "owner", "name", 
+                    "url_y", "description", "primaryLanguage", "updatedAt", "createdAt", "issuesCount",
+                        "forkCount", "watchersCount", "discussionsCount", "id"
+                        ]
+
+bugs_with_stats_df = bugs_with_stats_df[new_column_order]
+
 bugs_with_good_tf_idf_df = bugs_with_stats_df.sort_values(by="tf_idf", ascending=False).head(int(len(bugs_with_stats_df) * 0.2))
 bugs_with_good_size_df = bugs_with_good_tf_idf_df.sort_values(by="size", ascending=False).head(int(len(bugs_with_good_tf_idf_df) * 0.5))
 
