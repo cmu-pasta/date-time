@@ -25,6 +25,7 @@ for category in categories:
     sorted_category_df = bugs_with_good_size_df.sort_values(by=category, ascending=False)
     top_k_dfs.append(sorted_category_df.head(K))
 
+# bugs_top.tsv only includes the first 5 columns since that's what we use in the spreadsheet
 bugs_from_top_in_categories = pd.concat(top_k_dfs).drop_duplicates()
 bugs_from_top_in_categories.to_csv(BUGS_TOP_PATH, index=False)
 bugs_from_top_in_categories[new_column_order[:5]].to_csv(BUGS_TOP_PATH[:-4]+".tsv", sep="\t", index=False)
