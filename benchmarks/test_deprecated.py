@@ -18,22 +18,26 @@ from hypothesis.strategies import integers, timezones
 
 class TestDeprecatedAPIUsage(unittest.TestCase):
 
+    # Test that calls the deprecated datetime.utcnow() method.
     def test_deprecated_api_usage_0(self) -> None:
         dt_utcnow = datetime.utcnow()
         dt_now = datetime.now(tz=timezone.utc)
         self.assertEqual(dt_utcnow, dt_now)
 
+    # Test that calls the deprecated datetime.utcfromtimestamp() method.
     @given(integers(min_value=0, max_value=4294967296), timezones())
     def test_deprecated_api_usage_1(self, timestamp: int, timezone: timezone) -> None:
         dt = datetime.utcfromtimestamp(timestamp)
         ts_new = dt.astimezone(tz=timezone).timestamp()
         self.assertEqual(ts_new, timestamp)
 
+    # Test that calls arrow.now() with the deprecated parameter 'local'.
     def test_deprecated_api_usage_arrow(self) -> None:
         dt_local = arrow.now('local')
         dt_now = arrow.now().to('local')
         self.assertEqual(dt_local, dt_now)
 
+    # Test that calls pendulum.parse() parameter tz.
     def test_deprecated_api_usage_pendulum(self) -> None:
         dt_parsed = pendulum.parse('2023-07-08T12:34:56', tz='UTC')
         dt_parsed_in_tz = pendulum.parse('2023-07-08T12:34:56').in_timezone('UTC')
