@@ -19,7 +19,7 @@ if len(sys.argv) == 2:
     except:
         raise RuntimeError(f"Usage: {sys.argv[0]} num_repos")
 
-with open(GH_ACCESS_TOKEN + f"_0", "r") as file:
+with open(GH_ACCESS_TOKEN + f"_1", "r") as file:
   gh_access_token = file.read().strip()
 
 gh_query = """
