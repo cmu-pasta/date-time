@@ -7,8 +7,8 @@ bugs_with_stats_df = pd.merge(pd.read_csv(BUGS_WITH_TF_IDF_PATH), pd.read_csv(RE
 bugs_with_stats_df.to_csv(BUGS_WITH_STATS_PATH, index=False)
 
 new_column_order = [
-            "repoName", "title", "url_x", "fixUrl", "stars", "tf_idf", "size", "lockReason",
-                "timelineCount", "labels", "fixUrlCount", "nameWithOwner", "owner", "name", 
+            "owner", "name", "title", "url_x", "fixUrl", "stars", "tf_idf", "size", "lockReason",
+                "timelineCount", "labels", "fixUrlCount", "nameWithOwner", "repoName", 
                     "url_y", "description", "primaryLanguage", "updatedAt", "createdAt", "issuesCount",
                         "forkCount", "watchersCount", "discussionsCount", "id"
                         ]
