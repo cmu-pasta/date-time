@@ -2,26 +2,16 @@
 Description: This file contains code snippets that do not follow the best coding practices when it comes to timezones.
 
 Links:
-<<<<<<< HEAD
 - https://dev.arie.bovenberg.net/blog/python-datetime-pitfalls/
-=======
->>>>>>> 0e90048 (resolving merge conflicts)
 """
 
 import unittest
 from datetime import datetime, timedelta, timezone
-<<<<<<< HEAD
 from zoneinfo import ZoneInfo
 
 from dateutil import tz
 from hypothesis import example, given
 from hypothesis.strategies import datetimes, integers, text, timezones
-=======
-
-from dateutil import tz
-from hypothesis import example, given
-from hypothesis.strategies import datetimes, integers, text
->>>>>>> 0e90048 (resolving merge conflicts)
 
 
 class TestTimeZones(unittest.TestCase):
@@ -41,7 +31,6 @@ class TestTimeZones(unittest.TestCase):
         assert silent_failure == False
 
     # Test: Creation of fixed offset timezones is bad
-<<<<<<< HEAD
     @given(integers(min_value=-12, max_value=14), timezones())
     def test_timezones_1(self, offset: int, tz_info: timezone) -> None:
         fixed_timezone = tz.gettz("EST")
@@ -80,27 +69,6 @@ class TestTimeZones(unittest.TestCase):
     # Test: Assigning specific timezones to datetime objects will succeeded even when it should not.
     @given(datetimes())
     @example(datetime(2024, 3, 9, 12, 0, 0))  # DST transition for Eastern timezone
-=======
-    @given(integers(min_value=-12, max_value=14))
-    def test_timezones_1(self, offset: int) -> None:
-        fixed_timezone = tz.gettz("EST")
-        now = datetime.now()
-
-        fixed_offset_timezone = True
-        offset = now.astimezone(fixed_timezone).utcoffset().total_seconds() / 3600
-
-        # Iterate over all possible months to check if offset ever changes
-        for month in range(1, 13):
-            new_date = now.replace(month=month).astimezone(fixed_timezone)
-            new_offset = new_date.utcoffset().total_seconds() / 3600
-            if new_offset != offset:
-                fixed_offset_timezone = False
-        assert fixed_offset_timezone == False
-
-    # Test: Assigning specific timezones to datetime objects will succeeded even when it should not
-    @given(datetimes())
-    @example(datetime(2024, 3, 9, 12, 0, 0))  # DST transition for New York timezone
->>>>>>> 0e90048 (resolving merge conflicts)
     def test_timezones_2(self, dt1: datetime) -> None:
         # Simulating DST transition
         temp = dt1 + timedelta(days=1)
@@ -122,7 +90,6 @@ class TestTimeZones(unittest.TestCase):
         assert dt1.tzname() != dt3.tzname()
         assert dt2.tzname() == dt3.tzname()
 
-<<<<<<< HEAD
     # Test: Non-existent datetimes will pass silently
     @given(datetimes(), timezones())
     @example(
@@ -136,8 +103,6 @@ class TestTimeZones(unittest.TestCase):
 
         assert datetime.fromtimestamp(t, tz_info) == d
 
-=======
->>>>>>> 0e90048 (resolving merge conflicts)
 
 if __name__ == "__main__":
     unittest.main()
