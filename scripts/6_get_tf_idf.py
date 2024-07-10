@@ -77,4 +77,6 @@ for i, row in bugs_df.iterrows():
             bugs_df.at[i, "td_idf_"+word] = indivivdual_tf_idf[j]
         tf_idf = tf.dot(idf)
         bugs_df.at[i, "tf_idf"] = tf_idf
+        bugs_df.at[i, "size"] = len(comments)
+
 bugs_df.to_csv(BUGS_WITH_TF_IDF_PATH, index=False)
