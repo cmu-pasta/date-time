@@ -11,6 +11,16 @@ bugs_df = pd.read_csv(BUGS_WITH_TF_IDF_PATH)
 repos_df = pd.read_csv(REPOS_PATH)
 grep_results_df = pd.read_csv(REPOS_WITH_GREP_PATH)
 
+# filter out enchancements
+mask = []
+for i,row in bugs_df.iterrows():
+    if "enhancement" in str(row):
+        mask.append(False)
+    mask.append(True)
+
+print("Removing", sum([0 if e else 1 for e in mask]), "enhancements")
+bugs_df = bugs_df[mask]
+
 # Merge the first two DataFrames
 bugs_with_stats_df = pd.merge(bugs_df, repos_df, left_on='repoName', right_on='nameWithOwner', how='left')
 bugs_with_stats_df = pd.merge(bugs_with_stats_df, grep_results_df, on='nameWithOwner', how='left')
