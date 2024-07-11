@@ -16,7 +16,8 @@ mask = []
 for i,row in bugs_df.iterrows():
     if "enhancement" in str(row):
         mask.append(False)
-    mask.append(True)
+    else:
+        mask.append(True)
 
 print("Removing", sum([0 if e else 1 for e in mask]), "enhancements")
 bugs_df = bugs_df[mask]
