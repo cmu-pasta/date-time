@@ -36,6 +36,7 @@ bugs_with_stats_df = bugs_with_stats_df[new_column_order]
 bugs_with_good_size_df = bugs_with_stats_df[bugs_with_stats_df["size"] >= SIZE_MIN]
 bugs_with_good_tf_idf_df = bugs_with_good_size_df.sort_values(by="tf_idf", ascending=False).head(int(len(bugs_with_good_size_df) * 0.2))
 
+bugs_with_good_tf_idf_df = bugs_with_good_tf_idf_df.drop_duplicates()
 top_k_dfs = []
 
 #categories = ["tf_idf", "stars", "size"]
