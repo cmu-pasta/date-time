@@ -1,7 +1,7 @@
 from __global_paths import *
 import pandas as pd
 
-K = 500
+K = 502
 SIZE_MIN = 1000
 
 # bugs_with_stats_df = pd.merge(pd.read_csv(BUGS_WITH_TF_IDF_PATH), pd.read_csv(REPOS_PATH), left_on='repoName', right_on='nameWithOwner', how='left')
