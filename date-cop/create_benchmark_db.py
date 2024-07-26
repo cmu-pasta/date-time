@@ -39,7 +39,7 @@ if __name__ == "__main__":
         print(f"failed to find folder {DB_dir}, make sure you're in the /date-time folder.")
         exit(1)
 
-    DB_path = DB_dir / DB_name # note that this variable is reassigned
+    DB_path = DB_dir / DB_name
 
     if not DB_path.exists():
         DB_path.mkdir()
