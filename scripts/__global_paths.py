@@ -68,3 +68,5 @@ BUGS_TOP_PATH = DATA_DIR + "bugs_top.csv"
 
 ISSUE_REPR_SAMPLE_PATH = DATA_DIR + "issue_repr_sample.csv"
 IDFS_PATH = DATA_DIR + "idfs.csv"
+
+CODEQL_DBS_DIR = DATA_DIR + "codeql_databases/"
