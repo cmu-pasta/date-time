@@ -89,7 +89,7 @@ class TestArithmetic(unittest.TestCase):
 
     # Test: Arithmetic operations on datetime objects are DST unaware.
     @given(datetimes(), timezones())
-    @example(datetime(2024, 3, 9, 1, 30, 0), ZoneInfo("America/New_York"))
+    @example(datetime(2024, 3, 9, 2, 30, 0), ZoneInfo("America/New_York"))
     def test_arithmetic_3(self, dt: datetime, tz_info: timezone) -> None:
         default_now = datetime(
             dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, tzinfo=tz_info
@@ -102,7 +102,11 @@ class TestArithmetic(unittest.TestCase):
         assert default_now.hour == default_tomorrow.hour
         assert pendulum_now.hour == pendulum_tomorrow.hour
 
-        # TODO: Add a example where the total time added is 1 day but 24hrs instead.
+        default_24h = default_now + timedelta(hours = 24)
+        pendulum_24h = pendulum_now.add(hours = 24)
+
+        assert default_now.hour == default_24h.hour
+        assert pendulum_now.hour == pendulum_24h.hour
 
 
 if __name__ == "__main__":
