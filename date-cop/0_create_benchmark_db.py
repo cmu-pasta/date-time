@@ -12,13 +12,23 @@ def run_command(command):
 def create_db(codeql_path, db_path, source_path):
     run_command(f"{codeql_path} database create {db_path} --language=python --source-root={source_path} --overwrite")
 
+def assert_path(path, error_hint = ""):
+    if not path.exists():
+        error_msg = f"Failed to find path {path}."
+        if len(error_hint) != 0:
+            error_msg += " " + error_hint
+        print(error_msg)
+        exit(1)
 
 ## main ##
 if __name__ == "__main__":
     # get codeql path
-    if "CODEQL_PATH" not in os.environ:
+    if "CODEQL_PATH" in os.environ:
         print("Failed to find environment variable \"CODEQL_PATH\"")
         exit(1)
+    CodeQL_dir = Path(os.environ["CODEQL_PATH"])
+    CodeQL_path = CodeQL_dir / "codeql"
+    assert_path(CodeQL_path)
     
     # get command line args
     if len(sys.argv) == 1:
@@ -32,23 +42,34 @@ if __name__ == "__main__":
             print("If no flag is provided, default to --benchmarks")
             exit(1)
 
-    CodeQL_dir = Path(os.environ["CODEQL_PATH"])
-    CodeQL_path = CodeQL_dir / "codeql"
-    benchmark_path = Path("./benchmarks")
-    DB_dir = Path("./date-cop/static-analysis/databases")
-    DB_name = "benchmark-db"
-    if not benchmark_path.exists():
-        print(f"failed to find folder {benchmark_path}, make sure you're in the /date-time folder.")
-        exit(1)
+    # benchmarks
+    if generate_benchmarks:
+        print("Creating Benchmarks")
+        benchmark_path = Path("./benchmarks")
+        DB_dir = Path("./date-cop/static-analysis/databases")
+        DB_name = "benchmark-db"
+        DB_path = DB_dir / DB_name
 
-    if not DB_dir.exists():
-        print(f"failed to find folder {DB_dir}, make sure you're in the /date-time folder.")
-        exit(1)
-
-    DB_path = DB_dir / DB_name
-
-    if not DB_path.exists():
-        DB_path.mkdir()
+        assert_path(benchmark_path, "Make sure you're in the /date-time folder.")
+        assert_path(DB_dir, "Make sure you're in the /date-time folder.")
+        if not DB_path.exists():
+            DB_path.mkdir()
+        
+        # run the command
+        create_db(CodeQL_path, DB_path, benchmark_path)
     
-    # run the command
-    run_command_verbose(f"{CodeQL_path} database create {DB_path} --language=python --source-root={benchmark_path} --overwrite")
+    # repos
+    if generate_repos:
+        sys.path.append('../scripts')
+        from __global_paths import *
+
+        assert_path(DT_REPOS_PATH)
+        assert_path(CODEQL_DBS_DIR)
+        assert_path(CLONE_REPOS_DIR)
+
+        df = pd.read_csv(DT_REPOS_PATH)
+        for i, row in df.iterrows():
+            path = CLONE_REPOS_DIR + row["owner"] + "+" + row["name"]
+            db_path = CODEQL_DBS_DIR + row["owner"] + "+" + row["name"]
+            create_db(codeql, db_path, path)
+            print(f"{i}: {path}")
