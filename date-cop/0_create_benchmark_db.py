@@ -10,7 +10,7 @@ def run_command(command):
     return result.stdout, result.stderr
 
 def create_db(codeql_path, db_path, source_path):
-    run_command(f"{codeql_path} database create {db_path} --language=python --source-root={source_path} --overwrite")
+    run_command(f"\"{codeql_path}\" database create {db_path} --language=python --source-root={source_path} --overwrite")
 
 def assert_path(path, error_hint = ""):
     if not path.exists():
@@ -24,11 +24,19 @@ def assert_path(path, error_hint = ""):
 if __name__ == "__main__":
     # get codeql path
     if "CODEQL_PATH" in os.environ:
-        print("Failed to find environment variable \"CODEQL_PATH\"")
+        CodeQL_dir = Path(os.environ["CODEQL_PATH"])
+        print("tesion1", CodeQL_dir.exists())
+        CodeQL_path = CodeQL_dir / "codeql"
+        assert_path(CodeQL_path)
+    else:
+        CodeQL_path = "codeql"
+    
+    # test if codeql path works
+    shell_test = subprocess.run(f"\"{CodeQL_path}\" version -v", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    if shell_test.returncode != 0:
+        print("failed to run codeql")
+        print(f"ERR: {shell_test.stderr}")
         exit(1)
-    CodeQL_dir = Path(os.environ["CODEQL_PATH"])
-    CodeQL_path = CodeQL_dir / "codeql"
-    assert_path(CodeQL_path)
     
     # get command line args
     if len(sys.argv) == 1:
@@ -71,5 +79,5 @@ if __name__ == "__main__":
         for i, row in df.iterrows():
             path = CLONE_REPOS_DIR + row["owner"] + "+" + row["name"]
             db_path = CODEQL_DBS_DIR + row["owner"] + "+" + row["name"]
-            create_db(codeql, db_path, path)
+            create_db(CodeQL_path, db_path, path)
             print(f"{i}: {path}")
