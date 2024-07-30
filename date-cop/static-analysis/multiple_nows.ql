@@ -11,23 +11,22 @@
 
 import python
 
+predicate isNowOrGetTimestamp(Call call) {
+	call.getFunc().toString() = "now"
+	or
+	(call.getFunc() instanceof Attribute and
+	((Attribute)call.getFunc()).getName() = "now")
+	or
+	call.getFunc().toString() = "get_timestamp"
+	or
+	(call.getFunc() instanceof Attribute and
+	((Attribute)call.getFunc()).getName() = "get_timestamp")
+}
+
 from Call now1, Call now2, AstNode scope
 where
-
-	(
-		now1.getFunc().toString() = "now"
-		or
-		(now1.getFunc() instanceof Attribute and
-		((Attribute)now1.getFunc()).getName() = "now")
-	) and
-
-	(
-		now2.getFunc().toString() = "now"
-		or
-		(now2.getFunc() instanceof Attribute and
-		((Attribute)now2.getFunc()).getName() = "now")
-	) and
-
+	isNowOrGetTimestamp(now1) and
+	isNowOrGetTimestamp(now2) and
 	now1 != now2 and
 
 // This will fail to detect nows that aren't \
