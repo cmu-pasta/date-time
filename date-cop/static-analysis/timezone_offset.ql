@@ -11,16 +11,33 @@
 
 import python
 
-from Call td, Call tz
+from Call td, Call tz, StringLiteral str
 where
   // creates timedelta
-	td.getFunc() instanceof Attribute and
-	((Attribute)td.getFunc()).getName() = "timedelta" and
+	(
+		td.getFunc().toString() = "timedelta"
+		or
+		(td.getFunc() instanceof Attribute and
+		((Attribute)td.getFunc()).getName() = "timedelta")
+	) and
 
   // creates timezone
-	tz.getFunc() instanceof Attribute and
-	((Attribute)tz.getFunc()).getName() = "timezone" and
+	(
+		tz.getFunc().toString() = "timezone"
+		or
+		(tz.getFunc() instanceof Attribute and (
+			((Attribute)tz.getFunc()).getName() = "timezone" or	
+			((Attribute)tz.getFunc()).getName() = "ZoneInfo" or
+		((Attribute)tz.getFunc()).getName() = "gettz"))
+	) and
 
-	tz.getArg(0) = td
+	// THESE TAKE A VERY LONG TIME!!!
+	// UTC is okay
+	// str.getText() != "UTC" and
+	// E.g., "America/New York" is okay but "EST" is not.
+	// Better to actually create a list of bad tzs.
+	// str.getText().length() < 4 and
+
+	((tz.getArg(0) = td) or (tz.getArg(0) = str))
 
 select tz, "Timezone with a fixed offset." 
