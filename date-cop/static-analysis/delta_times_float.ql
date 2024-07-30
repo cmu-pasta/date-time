@@ -1,5 +1,5 @@
 /**
- * @name deprecated method
+ * @name delta times float
  * @description Multiplying deltas by floats can result in unintended behavior.
  * @kind problem
  * @tags

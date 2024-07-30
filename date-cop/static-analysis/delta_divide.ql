@@ -1,18 +1,18 @@
 /**
- * @name deprecated method
- * @description Multiplying deltas by floats can result in unintended behavior.
+ * @name delta divide
+ * @description Dividing deltas can result in unintended behavior.
  * @kind problem
  * @tags
  * @problem.severity recommendation
  * @sub-severity high
  * @precision high
- * @id py/delta-times-float
+ * @id py/delta-divide
  */
 
 
 import python
 
-from BinaryExpr div, Call td, FloatLiteral fl, Attribute attr
+from BinaryExpr div, Call td, Attribute attr
 where
 	div.getOp() instanceof Div and
 
