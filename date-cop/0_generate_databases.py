@@ -53,13 +53,14 @@ if __name__ == "__main__":
     # benchmarks
     if generate_benchmarks:
         print("Creating Benchmarks")
-        benchmark_path = Path("./benchmarks")
-        DB_dir = Path("./date-cop/static-analysis/databases")
+        benchmark_path = Path("../benchmarks")
+        DB_dir = Path("./static-analysis/databases")
+        print(DB_dir)
         DB_name = "benchmark-db"
         DB_path = DB_dir / DB_name
 
-        assert_path(benchmark_path, "Make sure you're in the /date-time folder.")
-        assert_path(DB_dir, "Make sure you're in the /date-time folder.")
+        assert_path(benchmark_path, "Make sure you're in the date-time/date-cop folder.")
+        assert_path(DB_dir, "Make sure you're in the date-time/date-cop folder.")
         if not DB_path.exists():
             DB_path.mkdir()
         
