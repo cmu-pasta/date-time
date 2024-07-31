@@ -72,13 +72,13 @@ if __name__ == "__main__":
         sys.path.append('../scripts')
         from __global_paths import *
 
-        assert_path(DT_REPOS_PATH)
-        assert_path(CODEQL_DBS_DIR)
-        assert_path(CLONE_REPOS_DIR)
+        assert_path(Path(DT_REPOS_PATH))
+        assert_path(Path(CODEQL_DBS_DIR))
+        assert_path(Path(CLONE_REPOS_DIR))
 
         df = pd.read_csv(DT_REPOS_PATH)
         for i, row in df.iterrows():
             path = CLONE_REPOS_DIR + row["owner"] + "+" + row["name"]
+            print(f"{i}: {path}")
             db_path = CODEQL_DBS_DIR + row["owner"] + "+" + row["name"]
             create_db(CodeQL_path, db_path, path)
-            print(f"{i}: {path}")
