@@ -8,8 +8,9 @@ Links:
 
 import datetime
 import unittest
+from unittest import expectedFailure
 
-import dateutil
+from dateutil import tz as dutz
 import pytz
 from hypothesis import given
 from hypothesis.strategies import datetimes
@@ -18,13 +19,14 @@ from tzlocal import get_localzone
 
 class TestReplace(unittest.TestCase):
 
-    # Test that calls the replace() method on a datetime object.
+    # Test that replaces a naive time with a pytz timezone. Note that constructing a time with a naive timezone has similar behavior.
+    @unittest.expectedFailure
     @given(datetimes())
     def test_replace_0(self, dt: datetime) -> None:
         now = datetime.datetime.now()
         local_tz = get_localzone()
         tz1 = pytz.timezone(str(local_tz))
-        tz2 = dateutil.tz.gettz(str(local_tz))
+        tz2 = dutz.gettz(str(local_tz))
         shifted1 = now.replace(tzinfo=tz1)
         shifted2 = now.replace(tzinfo=tz2)
         assert shifted1.timestamp() == shifted2.timestamp()

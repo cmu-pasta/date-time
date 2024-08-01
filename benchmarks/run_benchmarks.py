@@ -1,6 +1,11 @@
 import os
 import unittest
 import warnings
+import io
+import sys
+import argparse
+
+from datetime import datetime, timedelta
 
 from freezegun import freeze_time
 from hypothesis import settings
@@ -13,8 +18,26 @@ def pretty_print(string: str):
     print(string)
     print("-" * length)
 
+def print_result(result: unittest.TestResult):
+    print("Tests run:", result.testsRun)
+    if len(result.skipped) != 0:
+        print("Skipped: ", len(result.skipped))
+    if len(result.expectedFailures) != 0:
+        print("Expected failures: ", len(result.expectedFailures))
+    if len(result.unexpectedSuccesses) != 0:
+        print("Unexpected successes: ")
+        for us in result.unexpectedSuccesses:
+            print("-", us.id())
+    fails = result.errors + result.failures
+    if len(fails) != 0:
+        print("Failures: ")
+        for fail in fails:
+            print("-", fail[0].id())
+    if result.wasSuccessful():
+        print("All tests executed as expected")
+    print("-" * length)
 
-def get_test_suites():
+def get_test_suites() -> list[tuple[str, unittest.TestSuite]]:
     loader = unittest.TestLoader()
     suites = []
 
@@ -24,54 +47,60 @@ def get_test_suites():
         if file.startswith("test_") and file.endswith(".py"):
             print(f"Found test file: {file}")
             suite = loader.discover(start_dir=".", pattern=file)
-            suites.append(suite)
+            if suite.countTestCases() != 0:
+                suites.append((file, suite))
     return suites
 
 
-def run_test_suite(suite, control_time=False):
-    runner = unittest.TextTestRunner(verbosity=2)
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore")
-        if control_time:
-            with freeze_time("2012-01-14") as freezer:
-                import sys
+def run_test_suite(suite, control_time=False, verbose=False):
+    if verbose:
+        stream = sys.stdout
+    else:
+        stream = io.StringIO()
+    runner = unittest.TextTestRunner(stream=stream, verbosity=2)
 
-                sys.modules["_datetime"] = None
+    if control_time:
+        with freeze_time("2012-01-14") as freezer:
+            sys.modules["_datetime"] = None
 
-                from datetime import datetime, timedelta
+            original_now = datetime.now
 
-                original_now = datetime.now
+            # Decrease the time by 1 second on each call to dateime.datetime.now()
+            def monkey_patched_now():
+                freezer.tick(delta=timedelta(seconds=-1))
+                return original_now()
 
-                # Decrease the time by 1 second on each call to dateime.datetime.now()
-                def monkey_patched_now():
-                    freezer.tick(delta=timedelta(seconds=-1))
-                    return original_now()
-
-                datetime.now = monkey_patched_now
-                runner.run(suite)
-        else:
-            runner.run(suite)
+            datetime.now = monkey_patched_now
+            result = runner.run(suite)
+    else:
+        result = runner.run(suite)
+    
+    print_result(result)
 
 
-def test_runner():
+def test_runner(verbose=False):
     # Register and load custom testing profile with max_examples set to 1000
     settings.register_profile("testing_profile", max_examples=1000)
     settings.load_profile("testing_profile")
 
     suites = get_test_suites()
     for suite in suites:
-        pretty_print(f"Running test suite: {suite}")
-        print("Test cases found: ", suite.countTestCases())
-        print("-" * length)
+        pretty_print(f"Running test suite: {suite[0]}")
 
-        runner = unittest.TextTestRunner(verbosity=2)
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            if "test_multiple_nows" in str(suite):
-                run_test_suite(suite, control_time=True)
-            else:
-                run_test_suite(suite)
+        if suite[0] == "test_multiple_nows.py":
+            run_test_suite(suite[1], control_time=True, verbose=verbose)
+        else:
+            run_test_suite(suite[1], verbose=verbose)
 
 
 if __name__ == "__main__":
-    test_runner()
+    # parser
+    parser = argparse.ArgumentParser(
+        prog="run_benchmarks.py",
+        description="Run all tests \"test_*.py\" in this folder."
+    )
+    parser.add_argument("-v", "--verbose", action="store_true")
+    args = parser.parse_args()
+
+    test_runner(verbose=args.verbose)
+

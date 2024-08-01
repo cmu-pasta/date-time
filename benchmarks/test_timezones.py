@@ -8,8 +8,9 @@ Links:
 import unittest
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
+import pytz
 
-from dateutil import tz
+from dateutil import tz as dutz
 from hypothesis import example, given
 from hypothesis.strategies import datetimes, integers, text, timezones
 
@@ -17,11 +18,12 @@ from hypothesis.strategies import datetimes, integers, text, timezones
 class TestTimeZones(unittest.TestCase):
 
     # Test: Creation of a non existent timezone passes silently
+    @unittest.expectedFailure
     @given(datetimes(), text())
     def test_timezones_0(self, dt: datetime, tz_name: str) -> None:
         silent_failure = True
         try:
-            nonexistent_tz = tz.gettz(tz_name)
+            nonexistent_tz = dutz.gettz(tz_name)
             nonexistent_dt = dt.replace(tzinfo=nonexistent_tz)
             # raise Exception("Should not reach here")
         except Exception as e:
@@ -31,9 +33,10 @@ class TestTimeZones(unittest.TestCase):
         assert silent_failure == False
 
     # Test: Creation of fixed offset timezones is bad
+    @unittest.expectedFailure
     @given(integers(min_value=-12, max_value=14), timezones())
     def test_timezones_1(self, offset: int, tz_info: timezone) -> None:
-        fixed_timezone = tz.gettz("EST")
+        fixed_timezone = dutz.gettz("EST")
         custom_timezone = timezone(timedelta(hours=offset))
         builtin_timezone = tz_info
         now = datetime.now()
@@ -67,6 +70,7 @@ class TestTimeZones(unittest.TestCase):
         assert is_bad_timezone3 == False
 
     # Test: Assigning specific timezones to datetime objects will succeeded even when it should not.
+    @unittest.expectedFailure
     @given(datetimes())
     @example(datetime(2024, 3, 9, 12, 0, 0))  # DST transition for Eastern timezone
     def test_timezones_2(self, dt1: datetime) -> None:
@@ -91,6 +95,7 @@ class TestTimeZones(unittest.TestCase):
         assert dt2.tzname() == dt3.tzname()
 
     # Test: Non-existent datetimes will pass silently
+    @unittest.expectedFailure
     @given(datetimes(), timezones())
     @example(
         datetime(2023, 3, 26, 2, 30, 0), ZoneInfo("Europe/Paris")
@@ -102,6 +107,18 @@ class TestTimeZones(unittest.TestCase):
         t = d.timestamp()
 
         assert datetime.fromtimestamp(t, tz_info) == d
+
+    # Test: passing pytz timezones to the tzinfo field of a datetime is bad
+    @unittest.expectedFailure
+    @given(datetimes(), timezones())
+    def test_timezones_4(self, dt: datetime, tz_info: timezone) -> None:
+        tz1 = pytz.timezone(str(tz_info))
+        tz2 = dutz.gettz(str(tz_info))
+        dt1 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
+                       tzinfo=tz1)
+        dt2 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
+                       tzinfo=tz2)
+        assert tz1.timestamp() == tz2.timestamp()
 
 
 if __name__ == "__main__":
