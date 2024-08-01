@@ -18,7 +18,7 @@ from tzlocal import get_localzone
 
 class TestReplace(unittest.TestCase):
 
-    # Test that calls the replace() method on a datetime object.
+    # Test that replaces a naive time with a pytz timezone. Note that constructing a time with a naive timezone has similar behavior.
     @given(datetimes())
     def test_replace_0(self, dt: datetime) -> None:
         now = datetime.datetime.now()
