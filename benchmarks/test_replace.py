@@ -20,6 +20,7 @@ from tzlocal import get_localzone
 class TestReplace(unittest.TestCase):
 
     # Test that replaces a naive time with a pytz timezone. Note that constructing a time with a naive timezone has similar behavior.
+    @unittest.expectedFailure
     @given(datetimes())
     def test_replace_0(self, dt: datetime) -> None:
         now = datetime.datetime.now()

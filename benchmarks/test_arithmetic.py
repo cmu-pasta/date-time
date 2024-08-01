@@ -19,6 +19,7 @@ from hypothesis.strategies import datetimes, timezones
 class TestArithmetic(unittest.TestCase):
 
     # Test: Arithmetic operations on datetime objects are DST unaware.
+    @unittest.expectedFailure
     @given(datetimes(), datetimes(), timezones())
     @example(
         datetime(2023, 3, 25, 22, 0, 0),
@@ -40,6 +41,7 @@ class TestArithmetic(unittest.TestCase):
         assert default_diff == pendulum_diff
 
     # Test: Disambiguation of ambiguous datetime objects breaks equality.
+    @unittest.expectedFailure
     @given(datetimes(), timezones())
     @example(datetime(2023, 10, 29, 2, 30, 0), ZoneInfo("Europe/Paris"))
     def test_arithmetic_1(self, dt: datetime, tz_info: timezone) -> None:
@@ -60,6 +62,7 @@ class TestArithmetic(unittest.TestCase):
         assert d == d_utc
 
     # Test: Inconsistent equality within timezone.
+    @unittest.expectedFailure
     @given(datetimes(), timezones())
     @example(datetime(2023, 10, 29, 2, 30, 0), ZoneInfo("Europe/Paris"))
     def test_arithmetic_2(self, dt: datetime, tz_info: timezone) -> None:
@@ -88,6 +91,7 @@ class TestArithmetic(unittest.TestCase):
         assert earlier != later
 
     # Test: Arithmetic operations on datetime objects are DST unaware.
+    @unittest.expectedFailure
     @given(datetimes(), timezones())
     @example(datetime(2024, 3, 9, 2, 30, 0), ZoneInfo("America/New_York"))
     def test_arithmetic_3(self, dt: datetime, tz_info: timezone) -> None:

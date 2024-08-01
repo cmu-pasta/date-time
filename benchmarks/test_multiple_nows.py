@@ -29,24 +29,28 @@ def cannot_pass_le_zero(duration: int) -> bool:
 class TestMultipleNows(unittest.TestCase):
 
     # Test that calls datetime.now() multiple times within the same function.
+    @unittest.expectedFailure
     def test_multiple_nows_0(self) -> None:
         timestamp1 = datetime.now()
         timestamp2 = datetime.now()
         assert timestamp1 <= timestamp2
 
     # Test that calls datetime.now() multiple times within the same function via a helper.
+    @unittest.expectedFailure
     def test_multiple_nows_1(self) -> None:
         timestamp1 = get_timestamp()
         timestamp2 = get_timestamp()
         assert timestamp1 <= timestamp2
 
     # Test that calls datetime.now() multiple times within the same function via a helper.
+    @unittest.expectedFailure
     def test_multiple_nows_2(self) -> None:
         timestamp1 = datetime.now()
         timestamp2 = get_timestamp()
         assert timestamp1 <= timestamp2
 
     # Test that times the execution of a function but does not perform <= 0 check.
+    @unittest.expectedFailure
     def test_multiple_nows_3(self) -> None:
         start_time = datetime.now()
         # perform some computation
