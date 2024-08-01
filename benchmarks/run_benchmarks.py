@@ -36,7 +36,7 @@ def print_result(result: unittest.TestResult):
         print("All tests passed")
     print("-" * length)
 
-def get_test_suites():
+def get_test_suites() -> list[unittest.TestSuite]:
     loader = unittest.TestLoader()
     suites = []
 
@@ -46,7 +46,8 @@ def get_test_suites():
         if file.startswith("test_") and file.endswith(".py"):
             print(f"Found test file: {file}")
             suite = loader.discover(start_dir=".", pattern=file)
-            suites.append(suite)
+            if suite.countTestCases() != 0:
+                suites.append(suite)
     return suites
 
 
