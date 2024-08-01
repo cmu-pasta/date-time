@@ -7,10 +7,10 @@ import pandas as pd
 ## helper functions ##
 def run_command(command):
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    return result.stdout, result.stderr
+    return result.stdout, result.stderr, result.returncode
 
 def create_db(codeql_path, db_path, source_path):
-    run_command(f"\"{codeql_path}\" database create {db_path} --language=python --source-root={source_path} --overwrite")
+    return run_command(f"\"{codeql_path}\" database create {db_path} --language=python --source-root={source_path} --overwrite")
 
 def assert_path(path, error_hint = ""):
     if not path.exists():
@@ -20,9 +20,7 @@ def assert_path(path, error_hint = ""):
         print(error_msg)
         exit(1)
 
-## main ##
-if __name__ == "__main__":
-    # get codeql path
+def get_codeql_path():
     if "CODEQL_PATH" in os.environ:
         CodeQL_dir = Path(os.environ["CODEQL_PATH"])
         print("tesion1", CodeQL_dir.exists())
@@ -30,15 +28,15 @@ if __name__ == "__main__":
         assert_path(CodeQL_path)
     else:
         CodeQL_path = "codeql"
-    
-    # test if codeql path works
-    shell_test = subprocess.run(f"\"{CodeQL_path}\" version -v", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    if shell_test.returncode != 0:
-        print("failed to run codeql")
-        print(f"ERR: {shell_test.stderr}")
+
+    shell_test = run_command(f"\"{CodeQL_path}\" version -v")
+    if shell_test[2] != 0:
+        print("Failed to run codeql")
+        print(f"ERR: {shell_test[1]}")
         exit(1)
-    
-    # get command line args
+    return CodeQL_path
+ 
+def get_flags():
     if len(sys.argv) == 1:
         generate_benchmarks = True
         generate_repos = False
@@ -49,10 +47,16 @@ if __name__ == "__main__":
             print(f"Usage: {sys.argv[0]} [--benchmarks] [--repos]")
             print("If no flag is provided, default to --benchmarks")
             exit(1)
+    return generate_benchmarks, generate_repos 
+
+## main ##
+if __name__ == "__main__":
+    CodeQL_path = get_codeql_path()
+    generate_benchmarks, generate_repos = get_flags()
 
     # benchmarks
     if generate_benchmarks:
-        print("Creating Benchmarks")
+        print("Creating benchmark database")
         benchmark_path = Path("../benchmarks")
         DB_dir = Path("./static-analysis/databases")
         print(DB_dir)
@@ -69,6 +73,7 @@ if __name__ == "__main__":
     
     # repos
     if generate_repos:
+        print("Creating repo databases")
         sys.path.append('../scripts')
         from __global_paths import *
 
@@ -78,6 +83,8 @@ if __name__ == "__main__":
 
         df = pd.read_csv(DT_REPOS_PATH)
         for i, row in df.iterrows():
+            if (i < 14855): continue
+
             path = CLONE_REPOS_DIR + row["owner"] + "+" + row["name"]
             print(f"{i}: {path}")
             db_path = CODEQL_DBS_DIR + row["owner"] + "+" + row["name"]
