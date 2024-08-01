@@ -8,8 +8,9 @@ Links:
 
 import datetime
 import unittest
+from unittest import expectedFailure
 
-import dateutil
+from dateutil import tz as dutz
 import pytz
 from hypothesis import given
 from hypothesis.strategies import datetimes
@@ -24,7 +25,7 @@ class TestReplace(unittest.TestCase):
         now = datetime.datetime.now()
         local_tz = get_localzone()
         tz1 = pytz.timezone(str(local_tz))
-        tz2 = dateutil.tz.gettz(str(local_tz))
+        tz2 = dutz.gettz(str(local_tz))
         shifted1 = now.replace(tzinfo=tz1)
         shifted2 = now.replace(tzinfo=tz2)
         assert shifted1.timestamp() == shifted2.timestamp()

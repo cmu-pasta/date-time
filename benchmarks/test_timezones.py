@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 import pytz
 
-import dateutil
+from dateutil import tz as dutz
 from hypothesis import example, given
 from hypothesis.strategies import datetimes, integers, text, timezones
 
@@ -22,7 +22,7 @@ class TestTimeZones(unittest.TestCase):
     def test_timezones_0(self, dt: datetime, tz_name: str) -> None:
         silent_failure = True
         try:
-            nonexistent_tz = dateutil.tz.gettz(tz_name)
+            nonexistent_tz = dutz.gettz(tz_name)
             nonexistent_dt = dt.replace(tzinfo=nonexistent_tz)
             # raise Exception("Should not reach here")
         except Exception as e:
@@ -34,7 +34,7 @@ class TestTimeZones(unittest.TestCase):
     # Test: Creation of fixed offset timezones is bad
     @given(integers(min_value=-12, max_value=14), timezones())
     def test_timezones_1(self, offset: int, tz_info: timezone) -> None:
-        fixed_timezone = dateutil.tz.gettz("EST")
+        fixed_timezone = dutz.gettz("EST")
         custom_timezone = timezone(timedelta(hours=offset))
         builtin_timezone = tz_info
         now = datetime.now()
@@ -108,7 +108,7 @@ class TestTimeZones(unittest.TestCase):
     @given(datetimes(), timezones())
     def test_timezones_4(self, dt: datetime, tz_info: timezone) -> None:
         tz1 = pytz.timezone(str(tz_info))
-        tz2 = dateutil.tz.gettz(str(tz_info))
+        tz2 = dutz.gettz(str(tz_info))
         dt1 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
                        tzinfo=tz1)
         dt2 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
