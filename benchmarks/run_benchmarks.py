@@ -36,7 +36,7 @@ def print_result(result: unittest.TestResult):
         print("All tests passed")
     print("-" * length)
 
-def get_test_suites() -> list[unittest.TestSuite]:
+def get_test_suites() -> list[tuple[str, unittest.TestSuite]]:
     loader = unittest.TestLoader()
     suites = []
 
@@ -47,7 +47,7 @@ def get_test_suites() -> list[unittest.TestSuite]:
             print(f"Found test file: {file}")
             suite = loader.discover(start_dir=".", pattern=file)
             if suite.countTestCases() != 0:
-                suites.append(suite)
+                suites.append((file, suite))
     return suites
 
 
@@ -84,13 +84,12 @@ def test_runner():
 
     suites = get_test_suites()
     for suite in suites:
-        pretty_print(f"Running test suite: {suite}")
-        print("Test cases found: ", suite.countTestCases())
+        pretty_print(f"Running test suite: {suite[0]}")
 
-        if "test_multiple_nows" in str(suite):
-            run_test_suite(suite, control_time=True)
+        if suite[0] == "test_multiple_nows.py":
+            run_test_suite(suite[1], control_time=True)
         else:
-            run_test_suite(suite)
+            run_test_suite(suite[1])
 
 
 if __name__ == "__main__":
