@@ -6,25 +6,42 @@ import subprocess
 import time
 import sys
 import re
+import argparse
 
 from __global_paths import *
 
-key = 0
-open_or_closed = "closed"
+# parse command line args
 
-if len(sys.argv) > 1:
-    try:
-        key = int(sys.argv[1])
-    except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} key [open/closed]")
-    if key < 0 or key >= KEYWORDS_LIST_LEN:
-        raise RuntimeError(f"key must be between 0 and {KEYWORDS_LIST_LEN}")
+parser = argparse.ArgumentParser(
+    prog="get_bugs",
+    description="Get bugs from github GraphQL"
+)
+parser.add_argument(
+   "key",
+    type=int,
+    default=0,
+    help="Which github key to use (default 0)"
+)
+parser.add_argument(
+   "--open",
+    action="store_const",
+    const="open",
+    default="closed",
+    dest="clopen",
+    help="Get open issues instead of closed issues"
+)
+parser.add_argument(
+   "--closed",
+    action="store_const",
+    const="closed",
+    default="closed",
+    dest="clopen",
+    help="Get closed issues only (default behavior)"
+)
+args = parser.parse_args()
 
-if len(sys.argv) > 2:
-    open_or_closed = sys.argv[2]
-    if (open_or_closed not in ["open", "closed"]):
-        raise RuntimeError(f"Usage: {sys.argv[0]} key [open/closed]")
-
+key = args.key
+open_or_closed = args.clopen
 
 WRITE_ISSUES_PATH = PARTIAL_ISSUES_DIR if open_or_closed == "closed" else PARTIAL_OPEN_ISSUES_DIR
 WRITE_BUGS_PATH   = PARTIAL_BUGS_DIR   if open_or_closed == "closed" else PARTIAL_OPEN_BUGS_DIR

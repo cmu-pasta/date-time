@@ -99,7 +99,7 @@ if __name__ == "__main__":
         prog="run_benchmarks.py",
         description="Run all tests \"test_*.py\" in this folder."
     )
-    parser.add_argument("-v", "--verbose", action="store_true")
+    parser.add_argument("-v", "--verbose",action="store_true", help="Output individual test results")
     args = parser.parse_args()
 
     test_runner(verbose=args.verbose)

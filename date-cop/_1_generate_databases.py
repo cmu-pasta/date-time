@@ -3,6 +3,7 @@ import sys
 import subprocess
 from pathlib import Path
 import pandas as pd
+import argparse
 
 ## helper functions ##
 def run_command(command):
@@ -51,8 +52,34 @@ def get_flags():
 
 ## main ##
 if __name__ == "__main__":
+    # parse flags
+    parser = argparse.ArgumentParser(
+        prog="generate_databases.py",
+        description="Generate databases from the benchmarks or repos folder"
+    )
+    parser.add_argument(
+        "-b", "--benchmarks",
+        action="store_true",
+        default=False,
+        help="Generate benchmark db"
+    )
+    parser.add_argument(
+        "-r", "--repos",
+        action="store_true",
+        default=False,
+        help="Generate repo dbs"
+    )
+    args = parser.parse_args()
+
+    # not sure if there's a better way to handle this behavior
+    if not (args.benchmarks or args.repos):
+        generate_benchmarks = True
+        generate_repos = False
+    else:
+        generate_benchmarks = args.benchmarks
+        generate_repos = args.repos
+
     CodeQL_path = get_codeql_path()
-    generate_benchmarks, generate_repos = get_flags()
 
     # benchmarks
     if generate_benchmarks:
