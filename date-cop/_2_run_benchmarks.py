@@ -30,6 +30,15 @@ def run_all_queries(CodeQL_path, DB_path):
             print(f"Error found with database {DB_path} and query {q_path}:\n{ret}")
             exit(1)
 
+def test_query(CodeQL_path, DB_path):
+    run_query(CodeQL_path, DB_path)
+ 
+    assert_path(Path("results/test_query.csv"))
+    stdout, _, _ = run_command("grep -c '' results/test_query.csv")
+
+    if (stdout == "0\n"):
+        print("Error: No results!")
+        exit(1)
 
 if __name__ == "__main__":
     CodeQL_path = get_codeql_path()
@@ -37,22 +46,8 @@ if __name__ == "__main__":
 
     if run_benchmarks:
         DB_path = Path("./static-analysis/databases/benchmark-db")
-
-        ## test query ##
-        print("Running test query...")
-        run_query(CodeQL_path, DB_path)
-
-        ## test that something was found ##
-        stdout, _, _ = run_command("grep -c '' results/test_query.csv")
-        print(f"{stdout[:-1]} calls found")
-        if (stdout == "0"):
-            print("Error: No results!")
-            exit(1)
-
-        print("Passed!")
-
+        test_query(CodeQL_path, DB_path)
         run_all_queries(CodeQL_path, DB_path)
-
         
     if run_repos:
         print("running repos")
