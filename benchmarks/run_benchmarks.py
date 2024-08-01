@@ -3,6 +3,7 @@ import unittest
 import warnings
 import io
 import sys
+import argparse
 
 from datetime import datetime, timedelta
 
@@ -33,7 +34,7 @@ def print_result(result: unittest.TestResult):
         for fail in fails:
             print("-", fail[0].id())
     if result.wasSuccessful():
-        print("All tests passed")
+        print("All tests executed as expected")
     print("-" * length)
 
 def get_test_suites() -> list[tuple[str, unittest.TestSuite]]:
@@ -77,7 +78,7 @@ def run_test_suite(suite, control_time=False, verbose=False):
     print_result(result)
 
 
-def test_runner():
+def test_runner(verbose=False):
     # Register and load custom testing profile with max_examples set to 1000
     settings.register_profile("testing_profile", max_examples=1000)
     settings.load_profile("testing_profile")
@@ -87,10 +88,19 @@ def test_runner():
         pretty_print(f"Running test suite: {suite[0]}")
 
         if suite[0] == "test_multiple_nows.py":
-            run_test_suite(suite[1], control_time=True)
+            run_test_suite(suite[1], control_time=True, verbose=verbose)
         else:
-            run_test_suite(suite[1])
+            run_test_suite(suite[1], verbose=verbose)
 
 
 if __name__ == "__main__":
-    test_runner()
+    # parser
+    parser = argparse.ArgumentParser(
+        prog="run_benchmarks.py",
+        description="Run all tests \"test_*.py\" in this folder."
+    )
+    parser.add_argument("-v", "--verbose", action="store_true")
+    args = parser.parse_args()
+
+    test_runner(verbose=args.verbose)
+
