@@ -30,13 +30,23 @@ Before using Date-Cop, ensure you have the following:
 To create a CodeQL database for the Python benchmarks, run the following command:
 
 ```bash
-codeql database create ./date-cop/static-analysis/databases/<name of your db> --language=python --source-root=./benchmarks/
+python3 1_generate_databases.py
 ```
+
+<!--
+codeql database create ./date-cop/static-analysis/databases/<name of your db> \-\-language=python \-\-source-root=./benchmarks/
+-->
 
 ### Running the Analysis
 
 To run the CodeQL analysis using the Date-Cop query, use this command:
 
 ```bash
-codeql database analyze ./date-cop/static-analysis/databases/<name of your db> ./date-cop/static-analysis/<name of your query>.ql --output=results.csv --format=csv --verbose --no-rerun=false
+python3 _2_run_benchmarks.py
 ```
+
+<!--
+codeql database analyze ./date-cop/static-analysis/databases/<name of your db> ./date-cop/static-analysis/<name of your query>.ql \-\-output=results.csv \-\-format=csv \-\-verbose \-\-no-rerun=false
+-->
+
+
