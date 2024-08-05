@@ -21,16 +21,16 @@ def pretty_print(string: str):
 def print_result(result: unittest.TestResult, print_examples: bool = False):
     print("Tests run:", result.testsRun)
     if len(result.skipped) != 0:
-        print("Skipped: ", len(result.skipped))
+        print("Skipped:", len(result.skipped))
     if len(result.expectedFailures) != 0:
-        print("Expected failures: ", len(result.expectedFailures))
+        print("Expected failures:", len(result.expectedFailures))
     if len(result.unexpectedSuccesses) != 0:
-        print("Unexpected successes: ")
+        print("Unexpected successes:")
         for us in result.unexpectedSuccesses:
             print("-", us.id())
     fails = result.errors + result.failures
     if len(fails) != 0:
-        print("Failures: ")
+        print("Failures:")
         for fail in fails:
             print("-", fail[0].id())
 
