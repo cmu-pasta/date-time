@@ -1,10 +1,17 @@
 """
-Description: This file contains code snippets that make use of deprecated date-time library API methods. 
+Associated Category: 
+    Deprecated
 
-Links:
-- https://blog.ganssle.io/articles/2019/11/utcnow.html
-- https://discuss.python.org/t/deprecating-utcnow-and-utcfromtimestamp/26221
-- https://blog.miguelgrinberg.com/post/it-s-time-for-a-change-datetime-utcnow-is-now-deprecated#:~:text=The%20problem%20that%20the%20Python,is%20already%20known%20in%20advance.
+Description:
+    Tests which make use of deprecated datetime APIs.
+
+Notes: 
+    This file only focuses on utcnow and utcfromtimestamp. Other deprecations such as datetime.datetime.timetuple() may be added later.
+
+Further Reading:
+  - https://blog.ganssle.io/articles/2019/11/utcnow.html
+  - https://discuss.python.org/t/deprecating-utcnow-and-utcfromtimestamp/26221
+  - https://blog.miguelgrinberg.com/post/it-s-time-for-a-change-datetime-utcnow-is-now-deprecated
 """
 
 import unittest
@@ -15,15 +22,37 @@ from hypothesis.strategies import integers, timezones
 
 
 class TestDeprecatedAPIUsage(unittest.TestCase):
-
-    # Test that calls the deprecated datetime.utcnow() method.
+    """
+    Description:
+        Test which calls datetime.utcnow()
+    Failure Reason: 
+        datetime.utcnow() is a deprecated function and will raise a warning when called.
+    Examples:
+      - https://github.com/python-poetry/tomlkit/issues/297
+      - https://github.com/requests-cache/aiohttp-client-cache/issues/237
+    Failing Input:
+        N/A
+    Notes:
+        Test will only fail if you are in a non-utc timezone.
+    """
     @unittest.expectedFailure
     def test_deprecated_api_usage_0(self) -> None:
         dt_utcnow = datetime.utcnow()
         dt_now = datetime.now(tz=timezone.utc)
         self.assertEqual(dt_utcnow, dt_now)
 
-    # Test that calls the deprecated datetime.utcfromtimestamp() method.
+    """
+    Description:
+        Test which calls datetime.utcfromtimestamp()
+    Failure Reason: 
+        datetime.utcfromtimestamp() is a deprecated function and will raise a warning when called.
+    Examples:
+      - https://github.com/timvink/mkdocs-git-revision-date-localized-plugin/issues/121
+    Failing Input:
+        All Inputs
+    Notes:
+        Test will only fail if you are in a non-utc timezone.
+    """
     @unittest.expectedFailure
     @given(integers(min_value=0, max_value=4294967296), timezones())
     def test_deprecated_api_usage_1(self, timestamp: int, timezone: timezone) -> None:
