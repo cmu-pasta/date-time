@@ -92,7 +92,7 @@ def run_test_suite(suite, control_time=False, verbose=False):
     else:
         result = runner.run(suite)
     
-    print_result(result)
+    print_result(result, print_examples=verbose)
 
 
 def test_runner(verbose=False):
@@ -116,7 +116,7 @@ if __name__ == "__main__":
         prog="run_benchmarks.py",
         description="Run all tests \"test_*.py\" in this folder."
     )
-    parser.add_argument("-v", "--verbose",action="store_true", help="Output individual test results")
+    parser.add_argument("-v", "--verbose",action="store_true", help="Output individual test results and falsifying examples")
     args = parser.parse_args()
 
     test_runner(verbose=args.verbose)
