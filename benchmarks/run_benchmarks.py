@@ -18,21 +18,38 @@ def pretty_print(string: str):
     print(string)
     print("-" * length)
 
-def print_result(result: unittest.TestResult):
+def print_result(result: unittest.TestResult, print_examples: bool = False):
     print("Tests run:", result.testsRun)
     if len(result.skipped) != 0:
-        print("Skipped: ", len(result.skipped))
+        print("Skipped:", len(result.skipped))
     if len(result.expectedFailures) != 0:
-        print("Expected failures: ", len(result.expectedFailures))
+        print("Expected failures:", len(result.expectedFailures))
     if len(result.unexpectedSuccesses) != 0:
-        print("Unexpected successes: ")
+        print("Unexpected successes:")
         for us in result.unexpectedSuccesses:
             print("-", us.id())
     fails = result.errors + result.failures
     if len(fails) != 0:
-        print("Failures: ")
+        print("Failures:")
         for fail in fails:
             print("-", fail[0].id())
+
+    if print_examples:
+        print("-"*length)
+        for ef in result.expectedFailures:
+            test_name = ef[0].id()
+            print(f"### {test_name} ###")
+            falsifying_count = ef[1].count("Falsifying")
+            if falsifying_count == 0:
+                print("No falsifying example found, printing full traceback")
+                print(ef[1])
+            elif falsifying_count == 1:
+                starti = ef[1].find("Falsifying")
+                print(ef[1][starti:])
+            else:
+                print("Multiple falsifying examples found, printing full traceback")
+                print(ef[1])
+        
     if result.wasSuccessful():
         print("All tests executed as expected")
     print("-" * length)
@@ -75,7 +92,7 @@ def run_test_suite(suite, control_time=False, verbose=False):
     else:
         result = runner.run(suite)
     
-    print_result(result)
+    print_result(result, print_examples=verbose)
 
 
 def test_runner(verbose=False):
@@ -99,7 +116,7 @@ if __name__ == "__main__":
         prog="run_benchmarks.py",
         description="Run all tests \"test_*.py\" in this folder."
     )
-    parser.add_argument("-v", "--verbose",action="store_true", help="Output individual test results")
+    parser.add_argument("-v", "--verbose",action="store_true", help="Output individual test results and falsifying examples")
     args = parser.parse_args()
 
     test_runner(verbose=args.verbose)
