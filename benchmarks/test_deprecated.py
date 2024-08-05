@@ -32,6 +32,8 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
       - https://github.com/requests-cache/aiohttp-client-cache/issues/237
     Failing Input:
         N/A
+    Notes:
+        Test will only fail if you are in a non-utc timezone.
     """
     @unittest.expectedFailure
     def test_deprecated_api_usage_0(self) -> None:
@@ -47,7 +49,9 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
     Examples:
       - https://github.com/timvink/mkdocs-git-revision-date-localized-plugin/issues/121
     Failing Input:
-        N/A
+        All Inputs
+    Notes:
+        Test will only fail if you are in a non-utc timezone.
     """
     @unittest.expectedFailure
     @given(integers(min_value=0, max_value=4294967296), timezones())
