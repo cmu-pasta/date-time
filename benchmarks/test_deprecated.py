@@ -30,6 +30,8 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
     Examples:
       - https://github.com/python-poetry/tomlkit/issues/297
       - https://github.com/requests-cache/aiohttp-client-cache/issues/237
+    Failing Input:
+        N/A
     """
     @unittest.expectedFailure
     def test_deprecated_api_usage_0(self) -> None:
@@ -44,6 +46,8 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
         datetime.utcfromtimestamp() is a deprecated function and will raise a warning when called.
     Examples:
       - https://github.com/timvink/mkdocs-git-revision-date-localized-plugin/issues/121
+    Failing Input:
+        N/A
     """
     @unittest.expectedFailure
     @given(integers(min_value=0, max_value=4294967296), timezones())
