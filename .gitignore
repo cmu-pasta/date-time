@@ -1,5 +1,5 @@
-# results
-*results.csv
+#codeql databases
+*databases/*
 
 #.vscode
 *.vscode

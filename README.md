@@ -27,8 +27,7 @@ This repository focuses on the first research thrust, which seeks to systematica
 This repository will be organized to facilitate the development and evaluation of the DATE-SMELLS and DATE-COP components:
 - assignments: This folder contains the solutions from all REU students to assignments created on various important topics. 
 - benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. 
-- documentation: This folder will provide documentation for the project, including a detailed description of the DATE-SMELLS taxonomy, the implementation details of DATE-COP, and the evaluation methodology.
-- scripts: This directory contains the scripts used for data mining, cleaning, and visualization.
+- scripts: This directory contains the helper scripts used for data mining, cleaning, visualization, and other computations.
 - date-cop: This folder will contain the source code for the DATE-COP GitHub bot, including its static and dynamic analysis components.
 
 ## Prerequisites

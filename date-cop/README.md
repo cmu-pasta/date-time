@@ -22,6 +22,7 @@ Before using Date-Cop, ensure you have the following:
 
 1. CodeQL CLI installed on your system via the appropriate CodeQL pack
 2. `CODEQL_PATH` environment variable set to your CodeQL installation directory
+3. Run `code pack install` to get all python pack references
 
 ## Usage
 
@@ -30,23 +31,25 @@ Before using Date-Cop, ensure you have the following:
 To create a CodeQL database for the Python benchmarks, run the following command:
 
 ```bash
-python3 1_generate_databases.py
+codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=../../benchmarks/
 ```
 
-<!--
-codeql database create ./date-cop/static-analysis/databases/<name of your db> \-\-language=python \-\-source-root=./benchmarks/
--->
 
 ### Running the Analysis
 
 To run the CodeQL analysis using the Date-Cop query, use this command:
 
 ```bash
-python3 _2_run_benchmarks.py
+codeql database analyze ./static-analysis/databases/<name of your db> ./static-analysis/queries/<name of your query>.ql --output=results.csv --format=csv --verbose --no-rerun=false --download
 ```
 
-<!--
-codeql database analyze ./date-cop/static-analysis/databases/<name of your db> ./date-cop/static-analysis/<name of your query>.ql \-\-output=results.csv \-\-format=csv \-\-verbose \-\-no-rerun=false
--->
+### Running the Helper Script
+
+Alternatively, you can run the helper script to automatically execute queries:
+
+```bash
+cd ./static-analysis
+python run_codeql.py -r -a
+```
 
 
