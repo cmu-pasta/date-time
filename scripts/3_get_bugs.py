@@ -6,43 +6,53 @@ import subprocess
 import time
 import sys
 import re
+import argparse
 
 from __global_paths import *
 
-keywords = [
-  "datetime OR timestamp OR tzinfo OR epoch OR timedelta OR fold",
-  "pytz OR dateutil OR arrow OR pendulum OR UTC OR elapsed",
-  "leap OR DST OR daylight OR year OR localtime OR duration",
-  "strptime OR strftime OR utcnow OR fromtimestamp OR GMT OR month",
-  "microsecond OR nanosecond OR millisecond OR timezone OR interval",
-]
+# parse command line args
 
-open_or_closed = "closed"
-key = 0
-num_gh_keys = 1
+parser = argparse.ArgumentParser(
+    prog="get_bugs",
+    description="Get bugs from github GraphQL"
+)
+parser.add_argument(
+   "key",
+    type=int,
+    default=0,
+    help="Which github key to use (default 0)"
+)
+parser.add_argument(
+   "--open",
+    action="store_const",
+    const="open",
+    default="closed",
+    dest="clopen",
+    help="Get open issues instead of closed issues"
+)
+parser.add_argument(
+   "--closed",
+    action="store_const",
+    const="closed",
+    default="closed",
+    dest="clopen",
+    help="Get closed issues only (default behavior)"
+)
+args = parser.parse_args()
 
-if len(sys.argv) == 4:
-    try:
-        key = int(sys.argv[2])
-        num_gh_keys = int(sys.argv[3])
-    except:
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
-    if key < 0 or key >= len(keywords):
-        raise RuntimeError(f"key must be between 0 and {len(keywords)}")
-    if (open_or_closed != "open" and open_or_closed != "closed"):
-        raise RuntimeError(f"Usage: {sys.argv[0]} [open/closed] key num_gh_keys")
+key = args.key
+open_or_closed = args.clopen
 
+WRITE_ISSUES_PATH = PARTIAL_ISSUES_DIR if open_or_closed == "closed" else PARTIAL_OPEN_ISSUES_DIR
+WRITE_BUGS_PATH   = PARTIAL_BUGS_DIR   if open_or_closed == "closed" else PARTIAL_OPEN_BUGS_DIR
 
-WRITE_ISSUES_PATH = ISSUES_PATH if open_or_closed == "closed" else OPEN_ISSUES_PATH
-WRITE_BUGS_PATH   = BUGS_PATH   if open_or_closed == "closed" else OPEN_BUGS_PATH
+WRITE_ISSUES_PATH += f"{key}"
+WRITE_BUGS_PATH += f"{key}"
 
-WRITE_ISSUES_PATH += f"_{key}"
-WRITE_BUGS_PATH += f"_{key}"
-
-with open(GH_ACCESS_TOKEN + f"_{key%num_gh_keys}", "r") as file:
+with open(GH_ACCESS_TOKEN + f"_{key%NUM_GH_ACCESS_TOKENS}", "r") as file:
   gh_access_token = file.read().strip()
 
-df = pd.read_csv(SEPARATED_FILTERED_REPOS_PATH[:-4] + "_filtered.csv")
+df = pd.read_csv(DT_REPOS_PATH)
 
 gh_query = """
     query($q: String!, $cursor: String) {
@@ -60,8 +70,8 @@ gh_query = """
                 ... on Issue {
                     id
                     title
-                    bodyHTML
                     url
+                    body
                     activeLockReason
                     labels (first:100) {
                         nodes {
@@ -115,12 +125,11 @@ timeline_checks = [
 
 url = "https://api.github.com/graphql"
 headers = {"Authorization": f"Bearer {gh_access_token}"}
-pattern = r'\\"https?:\/\/[^\\]*pull[^\\]*\\"'
 
 def search_issues(owner, name):
   nameWithOwner = owner + "/" + name
   count = 0
-  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title {keywords[key]}"
+  q = f"repo:{nameWithOwner} is:issue is:{open_or_closed} in:title {KEYWORDS_WITH_OR[key]}"
   cursor = None
   while (True):
     json = {"query": gh_query, "variables": {"q": q, "cursor": cursor}}
@@ -139,7 +148,7 @@ def search_issues(owner, name):
         if (error["type"] == "RATE_LIMITED"):
           cont = True
       if cont:
-        print("Key: {key}. Rate limited. Sleeping...")
+        print(f"Key: {key}. Rate limited. Sleeping...")
         time.sleep(20)
         continue
       else:
@@ -162,6 +171,8 @@ def search_issues(owner, name):
             for l in issue["labels"]["nodes"]:
                 labels.append(l["name"])
             with open(f"{COMMENTS_DIR}{issue['id']}", "w") as cfile:
+                cfile.write(issue["title"] + "\n")
+                cfile.write(issue["body"] + "\n")
                 for c in issue["comments"]["nodes"]:
                     cfile.write(c["bodyText"] + "\n")
             for tl_item in issue["timelineItems"]["nodes"]:
@@ -195,9 +206,12 @@ def search_issues(owner, name):
 
 def main():
   subprocess.run(f"mkdir -p {COMMENTS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_ISSUES_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_BUGS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_OPEN_ISSUES_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+  subprocess.run(f"mkdir -p {PARTIAL_OPEN_BUGS_DIR}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
-  print("STARTING GET_ISSUES")
-  print(f"NUM_GH_KEYS: {num_gh_keys}. KEY: {key}. KEYWORDS: {keywords[key]}")
+  print(f"STARTING. NUM_GH_ACCESS_TOKENS: {NUM_GH_ACCESS_TOKENS}. KEY: {key}. KEYWORDS: {KEYWORDS_WITH_OR[key]}")
 
   with open(WRITE_ISSUES_PATH, "w") as file:
     writer = csv.writer(file, lineterminator="\n")

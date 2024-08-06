@@ -9,6 +9,7 @@ This directory contains the scripts used to generate our dataset.
  - repos\_with\_separated\_grep.csv: contains the grep results of each repository (i.e., whether it contains "import datetime", "import arrow", etc., or similar)
  - issues.csv: contains all the issues found by searching for specific key-words among only the repositories containing a datetime import (see repos\_with\_separated\_grep.csv)
  - bugs.csv: contains all issues.csv lines that contain the keyword "bug", "fix", or similar.
+ - bugs\_top.csv: Contains the top K (default 100) bugs from each sorting category.
 
 ## Usage
 

@@ -1,3 +1,12 @@
+# results
+*results.csv
+
+#.vscode
+*.vscode
+
+# data_ln
+*data_ln*
+
 # access tokens
 *_access_token*
 
@@ -167,3 +176,6 @@ cython_debug/
 
 # Mac Finder artifacts
 .DS_Store
+
+# codeql databases
+date-cop/static-analysis/databases
