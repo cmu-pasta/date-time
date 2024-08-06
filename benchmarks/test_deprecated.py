@@ -6,10 +6,15 @@ Description:
     Tests which make use of deprecated datetime APIs.
 
 Notes: 
+<<<<<<< HEAD
     All of these bugs involve functions which treat naive datetimes as utc, which is being phased out in favor of using timezoned objects.
     test_deprecated_api_usage_2 is not a deprecated function but has the same root issue as the other two tests, which is why it is still included.
     Our dataset includes another bug tagged Deprecated, which may be added to this suite in the future. (https://github.com/googlemaps/google-maps-services-python/issues/185)
     
+=======
+    This file only focuses on utcnow and utcfromtimestamp. Other deprecations such as datetime.datetime.timetuple() may be added later.
+
+>>>>>>> b1eefe5 (Merging updates from Dev (#39))
 Further Reading:
   - https://blog.ganssle.io/articles/2019/11/utcnow.html
   - https://discuss.python.org/t/deprecating-utcnow-and-utcfromtimestamp/26221
