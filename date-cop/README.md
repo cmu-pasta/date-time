@@ -22,7 +22,10 @@ Before using Date-Cop, ensure you have the following:
 
 1. CodeQL CLI installed on your system via the appropriate CodeQL pack
 2. `CODEQL_PATH` environment variable set to your CodeQL installation directory
+<<<<<<< HEAD
 3. Run `code pack install` to get all python pack references
+=======
+>>>>>>> main
 
 ## Usage
 

@@ -1,5 +1,6 @@
 """
 <<<<<<< HEAD
+<<<<<<< HEAD
 Associated Category: 
     Date
 
@@ -70,6 +71,8 @@ class TestDate(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 =======
+=======
+>>>>>>> main
 1) https://github.com/scrapinghub/dateparser/pull/1086/files
 
 Creating datetimes with some constant and some variable parameters.
@@ -107,5 +110,9 @@ E.g., parse("2016-08-05T03:14:14.809Z") => dt(2016, 8, 5, 3, 14, 14)
 Parsing huge datetimes.
 E.g., parse("9999-12-31T23:59:59.999999") => error
 
+<<<<<<< HEAD
 """
 >>>>>>> b1eefe5 (Merging updates from Dev (#39))
+=======
+"""
+>>>>>>> main
