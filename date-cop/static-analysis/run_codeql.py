@@ -11,7 +11,10 @@ CODEQL_PATH = ""
 QUERIES_LIST = [
     # "delta_divide",
     # "delta_times_float",
-    "deprecated_method",
+    # "deprecated_method",
+    # "now_without_tz"
+    # "timestamp_without_tz"
+    "tz_equals_none"
     # "multiple_nows",
     # "timezone_offset",
 ]

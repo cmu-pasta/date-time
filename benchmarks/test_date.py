@@ -17,7 +17,7 @@ Notes:
     https://github.com/KoffeinFlummi/Chronyk/issues/5       - test_date_0/test_date_1
     https://github.com/sdispater/pendulum/issues/686        - Maybe Benchmarkable (but probably not this file)
     https://github.com/tobymao/sqlglot/issues/1779          - Marked no
-    https://github.com/art049/odmantic/issues/99            - Dissagree with tag
+    https://github.com/art049/odmantic/issues/99            - Disagree with tag
     https://github.com/sktime/sktime/issues/3188            - Marked no
 
 Further Reading:
