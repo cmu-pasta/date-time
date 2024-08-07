@@ -12,9 +12,23 @@
 
 import python
 
-from AssignExpr_ a
+from Call c, None n
 where
-  a.getTarget().toString() = "tz" and
-  a.getValue() instanceof None
-select a, "datetime.now() must have a tz argument."
+  (
+    ((Attribute)c.getFunc()).getName() = "now" or
+    ((Attribute)c.getFunc()).getName() = "fromtimestamp" or
+    c.getFunc().toString() = "datetime"
+  ) and
+  (
+    c.getANamedArg().contains(n) or
+    (
+      ((Attribute)c.getFunc()).getName() = "fromtimestamp" and
+      not exists(c.getPositionalArg(1))
+    ) or
+    (
+      not ((Attribute)c.getFunc()).getName() = "fromtimestamp" and
+      not exists(c.getANamedArg())
+    )
+  )
+select c, "datetime.now() must have a tz argument."
 
