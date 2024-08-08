@@ -5,7 +5,8 @@ from pathlib import Path
 
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
-DB_PATH = Path("./databases/benchmark-db")
+DEFAULT_DB_PATH = Path("./databases/benchmark-db")
+DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
 QUERIES_LIST = [
@@ -15,7 +16,7 @@ QUERIES_LIST = [
     "tz_equals_none",
     "multiple_nows",
     "timezone_offset",
-    "bad_pytz_init",
+    #"bad_pytz_init",
 ]
 
 
@@ -39,27 +40,27 @@ def set_codeql_path():
     CODEQL_PATH = CodeQL_path
 
 
-def run_query(Query_path, Output_path):
+def run_query(db_path, Query_path, Output_path):
     return run_command(
-        f"{CODEQL_PATH} database analyze {DB_PATH} {Query_path} --output={Output_path} --format=csv --verbose --rerun"
+        f"{CODEQL_PATH} database analyze {db_path} {Query_path} --output={Output_path} --format=csv --verbose --rerun"
     )
 
-def run_named_query(query):
-    print(f"Running query {query} for database {DB_PATH}")
+def run_named_query(db_path, query):
+    print(f"Running query {query} for database {db_path}")
     
     if not os.path.exists(RS_DIR):
         os.makedirs(RS_DIR)
 
     q_path = os.path.join(QL_DIR, query + ".ql")
     out_path = os.path.join(RS_DIR, query + ".csv")
-    result = run_query(q_path, out_path)
+    result = run_query(db_path, q_path, out_path)
     if result.returncode != 0:
-        print(f"Error found with database {DB_PATH} and query {q_path}:\n{result}")
+        print(f"Error found with database {db_path} and query {q_path}:\n{result}")
         exit(1)
 
 
-def run_all_queries():
-    print(f"Running all queries for database {DB_PATH}")
+def run_all_queries(db_path):
+    print(f"Running all queries for database {db_path}")
 
     if not os.path.exists(RS_DIR):
         os.makedirs(RS_DIR)
@@ -67,20 +68,20 @@ def run_all_queries():
     for query in QUERIES_LIST:
         q_path = os.path.join(QL_DIR, query + ".ql")
         out_path = os.path.join(RS_DIR, query + ".csv")
-        result = run_query(q_path, out_path)
+        result = run_query(db_path, q_path, out_path)
         if result.returncode != 0:
-            print(f"Error found with database {DB_PATH} and query {q_path}:\n{result}")
+            print(f"Error found with database {db_path} and query {q_path}:\n{result}")
             exit(1)
 
 
 def create_db():
     print("Creating benchmark database...")
 
-    if not DB_PATH.exists():
-        os.makedirs(DB_PATH)
+    if not DEFAULT_DB_PATH():
+        os.makedirs(DEFAULT_DB_PATH)
 
     return run_command(
-        f"{CODEQL_PATH} database create {DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
+        f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
     )
 
 
@@ -103,18 +104,27 @@ def main():
         "-o",
         help="Run a single specified query.",
     )
+    parser.add_argument(
+        "--databases",
+        "-d",
+        nargs="+",
+        help="Run on a single specified database"
+    )
 
     args = parser.parse_args()
     set_codeql_path()
 
-    if args.recreate or not DB_PATH.exists():
+    global DB_PATHS
+    DB_PATHS = [Path(db) for db in args.databases] if args.databases else [DEFAULT_DB_PATH]
+    
+    if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
 
-    if args.all:
-        run_all_queries()
-    
-    if args.one is not None:
-        run_named_query(args.one)
+    for db_path in DB_PATHS:
+        if args.all:
+            run_all_queries(db_path)
+        elif args.one is not None:
+            run_named_query(db_path, args.one)
 
 
 if __name__ == "__main__":
