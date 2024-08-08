@@ -86,14 +86,14 @@ def merge_results(db_name):
         out = open(out_path, "r")
         merged = open(merged_path, "a")
         if out_path.exists():
-            for line in out.readlines()
+            for line in out.readlines():
                 merged.write(f"{db_name},"+line)
 
 
 def create_db():
     print("Creating benchmark database...")
 
-    if not DEFAULT_DB_PATH():
+    if not DEFAULT_DB_PATH.exists():
         os.makedirs(DEFAULT_DB_PATH)
 
     return run_command(
