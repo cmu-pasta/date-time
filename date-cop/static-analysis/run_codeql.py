@@ -16,7 +16,7 @@ QUERIES_LIST = [
     "tz_equals_none",
     "multiple_nows",
     "timezone_offset",
-    #"bad_pytz_init",
+    "bad_pytz_init",
 ]
 
 
@@ -73,11 +73,27 @@ def run_all_queries(db_path):
             print(f"Error found with database {db_path} and query {q_path}:\n{result}")
             exit(1)
 
+def clean_merged_files():
+    for query in QUERIES_LIST:
+        merged_path = Path(RS_DIR, query + "_merged.csv")
+        if merged_path.exists():
+            run_command(f"rm -f {merged_path}")
+
+def merge_results(db_name):
+    for query in QUERIES_LIST:
+        out_path = Path(RS_DIR, query + ".csv")
+        merged_path = Path(RS_DIR, query + "_merged.csv")
+        if out_path.exists():
+            out = open(out_path, "r")
+            merged = open(merged_path, "a")
+            for line in out.readlines():
+                merged.write(f"{db_name},"+line)
+
 
 def create_db():
     print("Creating benchmark database...")
 
-    if not DEFAULT_DB_PATH():
+    if not DEFAULT_DB_PATH.exists():
         os.makedirs(DEFAULT_DB_PATH)
 
     return run_command(
@@ -119,12 +135,18 @@ def main():
     
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
+    
+    if len(DB_PATHS) > 1:
+        clean_merged_files()
 
     for db_path in DB_PATHS:
         if args.all:
             run_all_queries(db_path)
         elif args.one is not None:
             run_named_query(db_path, args.one)
+
+        if len(DB_PATHS) > 1:
+            merge_results(db_path.stem)
 
 
 if __name__ == "__main__":
