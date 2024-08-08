@@ -9,12 +9,13 @@ DB_PATH = Path("./databases/benchmark-db")
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
 QUERIES_LIST = [
-    # "delta_divide",
-    # "delta_times_float",
-    # "deprecated_method",
-    "tz_equals_none"
-    # "multiple_nows",
-    # "timezone_offset",
+    "delta_divide",
+    "delta_times_float",
+    "deprecated_method",
+    "tz_equals_none",
+    "multiple_nows",
+    "timezone_offset",
+    "bad_pytz_init",
 ]
 
 
@@ -40,8 +41,21 @@ def set_codeql_path():
 
 def run_query(Query_path, Output_path):
     return run_command(
-        f"{CODEQL_PATH} database analyze {DB_PATH} {Query_path} --output={Output_path} --format=csv --verbose --no-rerun=false"
+        f"{CODEQL_PATH} database analyze {DB_PATH} {Query_path} --output={Output_path} --format=csv --verbose --rerun"
     )
+
+def run_named_query(query):
+    print(f"Running query {query} for database {DB_PATH}")
+    
+    if not os.path.exists(RS_DIR):
+        os.makedirs(RS_DIR)
+
+    q_path = os.path.join(QL_DIR, query + ".ql")
+    out_path = os.path.join(RS_DIR, query + ".csv")
+    result = run_query(q_path, out_path)
+    if result.returncode != 0:
+        print(f"Error found with database {DB_PATH} and query {q_path}:\n{result}")
+        exit(1)
 
 
 def run_all_queries():
@@ -84,17 +98,23 @@ def main():
         action="store_true",
         help="Run all queries on the benchmarks database.",
     )
+    parser.add_argument(
+        "--one",
+        "-o",
+        help="Run a single specified query.",
+    )
 
     args = parser.parse_args()
     set_codeql_path()
 
-    if args.recreate:
+    if args.recreate or not DB_PATH.exists():
         create_db()
 
     if args.all:
-        if not DB_PATH.exists():
-            create_db()
         run_all_queries()
+    
+    if args.one is not None:
+        run_named_query(args.one)
 
 
 if __name__ == "__main__":
