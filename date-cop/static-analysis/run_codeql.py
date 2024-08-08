@@ -79,12 +79,16 @@ def clean_merged_files():
         if merged_path.exists():
             run_command(f"rm -f {merged_path}")
 
-def merge_results():
+def merge_results(db_name):
     for query in QUERIES_LIST:
         out_path = Path(RS_DIR, query + ".csv")
         merged_path = Path(RS_DIR, query + "_merged.csv")
+        out = open(out_path, "r")
+        merged = open(merged_path, "a")
         if out_path.exists():
-            run_command(f"cat {out_path} >> {merged_path}")
+            for line in out.readlines()
+                merged.write(f"{db_name},"+line)
+
 
 def create_db():
     print("Creating benchmark database...")
@@ -142,7 +146,7 @@ def main():
             run_named_query(db_path, args.one)
 
         if len(DB_PATHS) > 1:
-            merge_results()
+            merge_results(db_path.stem)
 
 
 if __name__ == "__main__":
