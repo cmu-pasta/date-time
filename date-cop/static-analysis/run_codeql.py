@@ -83,9 +83,9 @@ def merge_results(db_name):
     for query in QUERIES_LIST:
         out_path = Path(RS_DIR, query + ".csv")
         merged_path = Path(RS_DIR, query + "_merged.csv")
-        out = open(out_path, "r")
-        merged = open(merged_path, "a")
         if out_path.exists():
+            out = open(out_path, "r")
+            merged = open(merged_path, "a")
             for line in out.readlines():
                 merged.write(f"{db_name},"+line)
 
