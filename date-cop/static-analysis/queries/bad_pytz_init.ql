@@ -19,6 +19,7 @@ where
   (
     ((Attribute)c.getFunc()).getName() = "now" or
     ((Attribute)c.getFunc()).getName() = "fromtimestamp" or
+    ((Attribute)c.getFunc()).getName() = "datetime" or
     c.getFunc().toString() = "datetime"
   )
 select c, "pytz timezones must be initialized with localize, not by passing the timezone into tzinfo"

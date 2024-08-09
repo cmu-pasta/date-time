@@ -18,6 +18,7 @@ where
   (
     ((Attribute)c.getFunc()).getName() = "now" or
     ((Attribute)c.getFunc()).getName() = "fromtimestamp" or
+    ((Attribute)c.getFunc()).getName() = "datetime" or
     c.getFunc().toString() = "datetime"
   ) and
   set_var.getValue().contains(pytz_call) and
