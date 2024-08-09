@@ -124,7 +124,7 @@ def main():
         "--databases",
         "-d",
         nargs="+",
-        help="Run on a single specified database"
+        help="Run on specified databases"
     )
 
     args = parser.parse_args()
