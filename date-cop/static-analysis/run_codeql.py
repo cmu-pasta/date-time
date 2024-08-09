@@ -1,11 +1,13 @@
 import argparse
 import os
 import subprocess
+import random
 from pathlib import Path
 
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
 DEFAULT_DB_PATH = Path("./databases/benchmark-db")
+SELECT_DB_PATH = Path("/data/sjoukov/date-time/data/codeql_databases")
 DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
@@ -39,6 +41,15 @@ def set_codeql_path():
 
     CODEQL_PATH = CodeQL_path
 
+def create_db():
+    print("Creating benchmark database...")
+
+    if not DEFAULT_DB_PATH.exists():
+        os.makedirs(DEFAULT_DB_PATH)
+
+    return run_command(
+        f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
+    )
 
 def run_query(db_path, Query_path, Output_path):
     return run_command(
@@ -57,7 +68,6 @@ def run_named_query(db_path, query):
     if result.returncode != 0:
         print(f"Error found with database {db_path} and query {q_path}:\n{result}")
         exit(1)
-
 
 def run_all_queries(db_path):
     print(f"Running all queries for database {db_path}")
@@ -89,19 +99,13 @@ def merge_results(db_name):
             for line in out.readlines():
                 merged.write(f"{db_name},"+line)
 
+def randompaths(base, count, seed):
+    rng = random.Random(seed)
+    paths = [p for p in base.iterdir()]
+    rng.shuffle(paths)
+    return paths[:count]
 
-def create_db():
-    print("Creating benchmark database...")
-
-    if not DEFAULT_DB_PATH.exists():
-        os.makedirs(DEFAULT_DB_PATH)
-
-    return run_command(
-        f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
-    )
-
-
-def main():
+def init_parser():
     parser = argparse.ArgumentParser(description="Run CodeQL queries on benchmarks.")
     parser.add_argument(
         "--recreate",
@@ -126,12 +130,31 @@ def main():
         nargs="+",
         help="Run on specified databases"
     )
+    parser.add_argument(
+        "--select",
+        "-s",
+        type=int,
+        help="Run on specified number of random databases."
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default="125600",
+        help="Random seed (for use with --select)."
+    )
+    return parser
 
-    args = parser.parse_args()
+def main():
+    args = init_parser().parse_args()
     set_codeql_path()
 
     global DB_PATHS
-    DB_PATHS = [Path(db) for db in args.databases] if args.databases else [DEFAULT_DB_PATH]
+    if args.databases:
+        DB_PATHS = [Path(db) for db in args.databases]
+    elif args.select is not None:
+        DB_PATHS = randompaths(SELECT_DB_PATH, args.select, args.seed)
+    else:
+        DB_PATHS = [DEFAULT_DB_PATH]
     
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
