@@ -41,6 +41,15 @@ def set_codeql_path():
 
     CODEQL_PATH = CodeQL_path
 
+def create_db():
+    print("Creating benchmark database...")
+
+    if not DEFAULT_DB_PATH.exists():
+        os.makedirs(DEFAULT_DB_PATH)
+
+    return run_command(
+        f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
+    )
 
 def run_query(db_path, Query_path, Output_path):
     return run_command(
@@ -59,7 +68,6 @@ def run_named_query(db_path, query):
     if result.returncode != 0:
         print(f"Error found with database {db_path} and query {q_path}:\n{result}")
         exit(1)
-
 
 def run_all_queries(db_path):
     print(f"Running all queries for database {db_path}")
@@ -97,17 +105,7 @@ def randompaths(base, count, seed):
     rng.shuffle(paths)
     return paths[:count]
 
-def create_db():
-    print("Creating benchmark database...")
-
-    if not DEFAULT_DB_PATH.exists():
-        os.makedirs(DEFAULT_DB_PATH)
-
-    return run_command(
-        f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
-    )
-
-def main():
+def init_parser():
     parser = argparse.ArgumentParser(description="Run CodeQL queries on benchmarks.")
     parser.add_argument(
         "--recreate",
@@ -144,8 +142,10 @@ def main():
         default="125600",
         help="Random seed (for use with --select)."
     )
+    return parser
 
-    args = parser.parse_args()
+def main():
+    args = init_parser().parse_args()
     set_codeql_path()
 
     global DB_PATHS
