@@ -19,6 +19,8 @@ QUERIES_LIST = [
     "multiple_nows",
     "timezone_offset",
     "bad_pytz_init",
+    "bad_pytz_init_var",
+    "partial_replace"
 ]
 
 
