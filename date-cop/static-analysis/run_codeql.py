@@ -1,11 +1,13 @@
 import argparse
 import os
 import subprocess
+import random
 from pathlib import Path
 
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
 DEFAULT_DB_PATH = Path("./databases/benchmark-db")
+SELECT_DB_PATH = Path("/data/sjoukov/date-time/data/codeql_databases")
 DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
@@ -89,6 +91,11 @@ def merge_results(db_name):
             for line in out.readlines():
                 merged.write(f"{db_name},"+line)
 
+def randompaths(base, count, seed):
+    rng = random.Random(seed)
+    paths = [p for p in base.iterdir()]
+    rng.shuffle(paths)
+    return paths[:count]
 
 def create_db():
     print("Creating benchmark database...")
@@ -99,7 +106,6 @@ def create_db():
     return run_command(
         f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
     )
-
 
 def main():
     parser = argparse.ArgumentParser(description="Run CodeQL queries on benchmarks.")
@@ -126,12 +132,29 @@ def main():
         nargs="+",
         help="Run on specified databases"
     )
+    parser.add_argument(
+        "--select",
+        "-s",
+        type=int,
+        help="Run on specified number of random databases."
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default="125600",
+        help="Random seed (for use with --select)."
+    )
 
     args = parser.parse_args()
     set_codeql_path()
 
     global DB_PATHS
-    DB_PATHS = [Path(db) for db in args.databases] if args.databases else [DEFAULT_DB_PATH]
+    if args.databases:
+        DB_PATHS = [Path(db) for db in args.databases]
+    elif args.select is not None:
+        DB_PATHS = randompaths(SELECT_DB_PATH, args.select, args.seed)
+    else:
+        DB_PATHS = [DEFAULT_DB_PATH]
     
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
