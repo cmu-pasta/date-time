@@ -92,7 +92,7 @@ class TestStringRepresentation(unittest.TestCase):
         Test which doesn't parse the timezone
 
     Examples:
-        - https://github.com/python-openapi/openapi-core/pull/237/files
+        - https://github.com/python-openapi/openapi-core/issues/235
     """
     @unittest.expectedFailure
     @given(datetimes(), timezones())
