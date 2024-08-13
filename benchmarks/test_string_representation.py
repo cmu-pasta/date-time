@@ -81,9 +81,10 @@ class TestStringRepresentation(unittest.TestCase):
 
         Y, M, D, H, m, s, f = map(int, match.groups())
         incorrect_datetime = datetime.datetime(Y, M, D, H, m, s, (f + 500) // 1000 * 1000)
-        correct_datetime = datetime.datetime(Y, M, D, H, m, s, f // 1000 * 1000)
 
-        self.assertEqual(correct_datetime, incorrect_datetime)
+        dt = dt.replace(microsecond = dt.microsecond // 1000 * 1000)
+
+        self.assertEqual(dt, incorrect_datetime)
 
 
     """
