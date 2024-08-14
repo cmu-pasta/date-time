@@ -4,6 +4,7 @@ import pandas as pd
 from pathlib import Path
 import argparse
 import csv
+import re
 
 from __global_paths import *
 
@@ -55,7 +56,12 @@ def find_matches(path, patterns):
         try:
             semicolon = line.index(":")
             line_num = int(line[:semicolon])
-            ans.append((line_num, line[semicolon+1:]))
+            rest = line[semicolon+1:]
+            pat = "None"
+            for pattern in patterns:
+                if re.search(pattern, rest) is not None:
+                    pat = pattern
+            ans.append((line_num, line[semicolon+1:], pat))
         except Exception as e:
             # this usually happens when a file only uses carriage returns, which grep doesn't
             # see as newlines but python does.
@@ -92,6 +98,7 @@ def search_repo(owner, name):
                 "path":      relpath,
                 "line":      match[0],
                 "operation": "format",
+                "pattern":   match[2],
                 "text":      match[1]
             })
 
@@ -101,6 +108,7 @@ def search_repo(owner, name):
                 "path":      relpath,
                 "line":      match[0],
                 "operation": "parse",
+                "pattern":   match[2],
                 "text":      match[1]
             })
     return results
@@ -108,23 +116,20 @@ def search_repo(owner, name):
 def search_all_repos(dest):
     with open(dest, "w") as file:
         writer = csv.writer(file, lineterminator="\n")
-        writer.writerow(["owner", "repo", "path", "line", "operation", "text"])
+        writer.writerow(["owner", "repo", "path", "line", "operation", "pattern", "text"])
 
         dt_repos = pd.read_csv(DT_REPOS_PATH)
         total_rows = dt_repos.shape[0]
         for i, row in dt_repos.iterrows():
-            if i<9500:
-                continue
             for result in search_repo(row["owner"], row["name"]):
                 writer.writerow([
                     row["owner"], row["name"],
                     result["path"], result["line"],
-                    result["operation"], result["text"]
+                    result["operation"], result["pattern"], result["text"]
                 ])
-            # if i%500 == 0:
-            print(f"finished {row['owner']}/{row['name']}, {i} of {total_rows}")
+            if i%500 == 0:
+                print(f"finished {row['owner']}/{row['name']}, {i} of {total_rows}")
             
 
 if __name__ == "__main__":
-    STRING_OPS_PATH += "temp"
     search_all_repos(STRING_OPS_PATH)
