@@ -57,6 +57,8 @@ def find_matches(path, patterns):
             line_num = int(line[:semicolon])
             ans.append((line_num, line[semicolon+1:]))
         except Exception as e:
+            # this usually happens when a file only uses carriage returns, which grep doesn't
+            # see as newlines but python does.
             print(f"Skipping {path} - exception in parsing grep:")
             print(e)
             return []
@@ -111,15 +113,18 @@ def search_all_repos(dest):
         dt_repos = pd.read_csv(DT_REPOS_PATH)
         total_rows = dt_repos.shape[0]
         for i, row in dt_repos.iterrows():
+            if i<9500:
+                continue
             for result in search_repo(row["owner"], row["name"]):
                 writer.writerow([
                     row["owner"], row["name"],
                     result["path"], result["line"],
                     result["operation"], result["text"]
                 ])
-            if i%500 == 0:
-                print(f"finished {row['owner']}/{row['name']}, {i} of {total_rows}")
+            # if i%500 == 0:
+            print(f"finished {row['owner']}/{row['name']}, {i} of {total_rows}")
             
 
 if __name__ == "__main__":
+    STRING_OPS_PATH += "temp"
     search_all_repos(STRING_OPS_PATH)
