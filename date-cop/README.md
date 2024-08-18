@@ -26,30 +26,45 @@ Before using Date-Cop, ensure you have the following:
 
 ## Usage
 
-### Creating a CodeQL Database
+To help with testing queries, many of the most common operations have been compiled into `run_codeql.py`. For all of the following operations, you want to be inside the `static-analysis` folder.
 
-To create a CodeQL database for the Python benchmarks, run the following command:
+### Creating the CodeQL Database
 
+To create the database for the benchmarks, run
 ```bash
-codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=../../benchmarks/
+python3 run_codeql.py -r
 ```
+this creates a database in `date-cop/static-analysis/databases/benchmark-db` which the other commands can access.
 
+### Querying the benchmarks
 
-### Running the Analysis
-
-To run the CodeQL analysis using the Date-Cop query, use this command:
-
+To run a single query from the `queries` folder on the benchmarks, use
 ```bash
-codeql database analyze ./static-analysis/databases/<name of your db> ./static-analysis/queries/<name of your query>.ql --output=results.csv --format=csv --verbose --no-rerun=false --download
+python3 run_codeql.py -o your_query_here.ql
 ```
-
-### Running the Helper Script
-
-Alternatively, you can run the helper script to automatically execute queries:
-
+or, if you want to run all queries from the queries folder at once, use
 ```bash
-cd ./static-analysis
-python run_codeql.py -r -a
+python3 run_codeql.py -a
 ```
+Both of these commands will create CSV files in the `results` directory with names corresponding to each query.
 
+### Querying the repos
+
+(All of these commands also work with `-o`, but I'm using `-a` for brevity.) The easiest way to run a query on the repo databases is to use the `-s` command, which randomly (seeded) selects some number of repos to run on. There is currently no easy way to run on all repos, but `-s [total number of repos]` is nearly the same (the order will be weird mainly).
+```bash
+python3 run_codeql.py -a -s 100
+```
+for CodeQL databases stored elsewhere, use the `-d` flag.
+```bash
+python3 run_codeql.py -a -d ./databases/my_database -d ./databases/my_other_database
+```
+Commands which analyse multiple databases (which these do most of the time) will create an output in `results/your_query_here_merged.csv` and will include a database column on the left.
+
+### Manual Querying
+
+If you're more familiar with CodeQL or need to run your queries from another location, the following commands can be used to create a database and run a query on it respectively. (Assuming you are in the `/date-cop` folder).
+```bash
+codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=<original code directory>
+codeql database analyze ./static-analysis/databases/<name of your db> <path to your query>.ql --output=results.csv --format=csv --verbose --rerun --download
+```
 
