@@ -11,5 +11,5 @@
 
 import python
 
-from Call c
-select c
+from Expr e
+select e, e.getAQlClass()

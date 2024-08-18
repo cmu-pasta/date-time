@@ -1,7 +1,7 @@
 import argparse
 import os
-import subprocess
 import random
+import subprocess
 from pathlib import Path
 
 QL_DIR = "./queries/"
@@ -20,7 +20,7 @@ QUERIES_LIST = [
     "timezone_offset",
     "bad_pytz_init",
     "bad_pytz_init_var",
-    "partial_replace"
+    "partial_replace",
 ]
 
 
@@ -43,6 +43,7 @@ def set_codeql_path():
 
     CODEQL_PATH = CodeQL_path
 
+
 def create_db():
     print("Creating benchmark database...")
 
@@ -53,14 +54,16 @@ def create_db():
         f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
     )
 
+
 def run_query(db_path, Query_path, Output_path):
     return run_command(
         f"{CODEQL_PATH} database analyze {db_path} {Query_path} --output={Output_path} --format=csv --verbose --rerun"
     )
 
+
 def run_named_query(db_path, query):
     print(f"Running query {query} for database {db_path}")
-    
+
     if not os.path.exists(RS_DIR):
         os.makedirs(RS_DIR)
 
@@ -70,6 +73,7 @@ def run_named_query(db_path, query):
     if result.returncode != 0:
         print(f"Error found with database {db_path} and query {q_path}:\n{result}")
         exit(1)
+
 
 def run_all_queries(db_path):
     print(f"Running all queries for database {db_path}")
@@ -85,11 +89,13 @@ def run_all_queries(db_path):
             print(f"Error found with database {db_path} and query {q_path}:\n{result}")
             exit(1)
 
+
 def clean_merged_files():
     for query in QUERIES_LIST:
         merged_path = Path(RS_DIR, query + "_merged.csv")
         if merged_path.exists():
             run_command(f"rm -f {merged_path}")
+
 
 def merge_results(db_name):
     for query in QUERIES_LIST:
@@ -99,13 +105,15 @@ def merge_results(db_name):
             out = open(out_path, "r")
             merged = open(merged_path, "a")
             for line in out.readlines():
-                merged.write(f"{db_name},"+line)
+                merged.write(f"{db_name}," + line)
+
 
 def randompaths(base, count, seed):
     rng = random.Random(seed)
     paths = [p for p in base.iterdir()]
     rng.shuffle(paths)
     return paths[:count]
+
 
 def init_parser():
     parser = argparse.ArgumentParser(description="Run CodeQL queries on benchmarks.")
@@ -127,24 +135,19 @@ def init_parser():
         help="Run a single specified query.",
     )
     parser.add_argument(
-        "--databases",
-        "-d",
-        nargs="+",
-        help="Run on specified databases"
+        "--databases", "-d", nargs="+", help="Run on specified databases"
     )
     parser.add_argument(
-        "--select",
-        "-s",
-        type=int,
-        help="Run on specified number of random databases."
+        "--select", "-s", type=int, help="Run on specified number of random databases."
     )
     parser.add_argument(
         "--seed",
         type=int,
         default="125600",
-        help="Random seed (for use with --select)."
+        help="Random seed (for use with --select).",
     )
     return parser
+
 
 def main():
     args = init_parser().parse_args()
@@ -157,10 +160,10 @@ def main():
         DB_PATHS = randompaths(SELECT_DB_PATH, args.select, args.seed)
     else:
         DB_PATHS = [DEFAULT_DB_PATH]
-    
+
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
-    
+
     if len(DB_PATHS) > 1:
         clean_merged_files()
 
