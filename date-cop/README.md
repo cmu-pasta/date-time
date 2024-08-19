@@ -32,7 +32,7 @@ To help with testing queries, many of the most common operations have been compi
 
 To create the database for the benchmarks, run
 ```bash
-python3 run_codeql.py -r
+python run_codeql.py -r
 ```
 this creates a database in `date-cop/static-analysis/databases/benchmark-db` which the other commands can access.
 
@@ -40,31 +40,31 @@ this creates a database in `date-cop/static-analysis/databases/benchmark-db` whi
 
 To run a single query from the `queries` folder on the benchmarks, use
 ```bash
-python3 run_codeql.py -o your_query_here.ql
+python run_codeql.py -q your_query_here.ql
 ```
 or, if you want to run all queries from the queries folder at once, use
 ```bash
-python3 run_codeql.py -a
+python run_codeql.py -a
 ```
 Both of these commands will create CSV files in the `results` directory with names corresponding to each query.
 
 ### Querying the repos
 
-(All of these commands also work with `-o`, but I'm using `-a` for brevity.) The easiest way to run a query on the repo databases is to use the `-s` command, which randomly (seeded) selects some number of repos to run on. There is currently no easy way to run on all repos, but `-s [total number of repos]` is nearly the same (the order will be weird mainly).
 ```bash
-python3 run_codeql.py -a -s 100
+python run_codeql.py -a -d ./databases_path -rp ./path_to_results -n 100
 ```
-for CodeQL databases stored elsewhere, use the `-d` flag.
-```bash
-python3 run_codeql.py -a -d ./databases/my_database -d ./databases/my_other_database
-```
-Commands which analyse multiple databases (which these do most of the time) will create an output in `results/your_query_here_merged.csv` and will include a database column on the left.
 
 ### Manual Querying
 
 If you're more familiar with CodeQL or need to run your queries from another location, the following commands can be used to create a database and run a query on it respectively. (Assuming you are in the `/date-cop` folder).
+
+Step 1: Create a CodeQL database
 ```bash
 codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=<original code directory>
+```
+
+Step 2: Run queries on the database
+```bash
 codeql database analyze ./static-analysis/databases/<name of your db> <path to your query>.ql --output=results.csv --format=csv --verbose --rerun --download
 ```
 

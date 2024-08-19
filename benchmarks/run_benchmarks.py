@@ -1,10 +1,8 @@
-import os
-import unittest
-import warnings
-import io
-import sys
 import argparse
-
+import io
+import os
+import sys
+import unittest
 from datetime import datetime, timedelta
 
 from freezegun import freeze_time
@@ -17,6 +15,7 @@ def pretty_print(string: str):
     print("\n" + "=" * length)
     print(string)
     print("-" * length)
+
 
 def print_result(result: unittest.TestResult, print_examples: bool = False):
     print("Tests run:", result.testsRun)
@@ -35,7 +34,7 @@ def print_result(result: unittest.TestResult, print_examples: bool = False):
             print("-", fail[0].id())
 
     if print_examples:
-        print("-"*length)
+        print("-" * length)
         for ef in result.expectedFailures:
             test_name = ef[0].id()
             print(f"### {test_name} ###")
@@ -49,10 +48,11 @@ def print_result(result: unittest.TestResult, print_examples: bool = False):
             else:
                 print("Multiple falsifying examples found, printing full traceback")
                 print(ef[1])
-        
+
     if result.wasSuccessful():
         print("All tests executed as expected")
     print("-" * length)
+
 
 def get_test_suites() -> list[tuple[str, unittest.TestSuite]]:
     loader = unittest.TestLoader()
@@ -91,7 +91,7 @@ def run_test_suite(suite, control_time=False, verbose=False):
             result = runner.run(suite)
     else:
         result = runner.run(suite)
-    
+
     print_result(result, print_examples=verbose)
 
 
@@ -114,10 +114,14 @@ if __name__ == "__main__":
     # parser
     parser = argparse.ArgumentParser(
         prog="run_benchmarks.py",
-        description="Run all tests \"test_*.py\" in this folder."
+        description='Run all tests "test_*.py" in this folder.',
     )
-    parser.add_argument("-v", "--verbose",action="store_true", help="Output individual test results and falsifying examples")
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Output individual test results and falsifying examples",
+    )
     args = parser.parse_args()
 
     test_runner(verbose=args.verbose)
-
