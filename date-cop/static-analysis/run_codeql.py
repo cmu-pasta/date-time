@@ -1,13 +1,11 @@
 import argparse
 import os
-import random
 import subprocess
 from pathlib import Path
 
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
 DEFAULT_DB_PATH = Path("./databases/benchmark-db")
-SELECT_DB_PATH = Path("/data/sjoukov/date-time/data/codeql_databases")
 DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
