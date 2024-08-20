@@ -17,9 +17,9 @@ class DeprecatedMethodCall extends Call {
   }
 
   string getMethod() {
-    attr.getName() = result
+    result = attr.getName()
   }
 }
 
 from DeprecatedMethodCall call
-select call, "Deprecated methods such as " + call.getMethod() + " should not be used."
+select call, "Deprecated methods such as $@ should not be used.", call, call.getMethod()
