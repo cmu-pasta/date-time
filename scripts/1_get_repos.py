@@ -12,6 +12,12 @@ from __global_paths import *
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2
 
+datetime_repos = [
+    "datetime",
+    "arrow",
+    "pendulum"
+]
+
 def setup_logger(name, log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
@@ -25,7 +31,7 @@ def run_command(command):
     return result.stdout, result.stderr
 
 def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF_FACTOR):
-    repo_path = f"{repo_owner}:{repo_name}"
+    repo_path = f"{repo_owner}+{repo_name}"
 
     if os.path.exists(os.path.join(CLONE_REPOS_DIR, repo_path)):
         return "Repository already exists, skipping clone.", "", True
@@ -38,23 +44,22 @@ def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF
     return stdout, stderr, False
 
 def grep_repo(repo_owner, repo_name):
-    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
-    stdout0, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+datetime(\s|,|$)' {repo_path}")
-    stdout1, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+arrow(\s|,|$)' {repo_path}")
-    stdout2, _ = run_command(f"grep -m 1 --include=\*.py -rE '^\s*(import.*|from)\s+pendulum(\s|,|$)' {repo_path}")
-    return (1 if stdout0 else 0,
-            1 if stdout1 else 0,
-            1 if stdout2 else 0
-            )
+    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}+{repo_name}")
+    stdouts = []
+    for datetime_repo in datetime_repos:
+        stdout, _ = run_command(f"grep -m 1 --include=\\*.py -rE '^\\s*(import.*|from)\\s+{datetime_repo}(\\s|,|$)' {repo_path}")
+        stdouts.append(stdout)
+
+    return [1 if stdout else 0 for stdout in stdouts]
 
 def count_python_lines(repo_owner, repo_name):
-    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
+    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}+{repo_name}")
     stdout, stderr = run_command(f"find {repo_path} -name '*.py' | xargs wc -l")
     total_lines = sum(int(line.split()[0]) for line in stdout.splitlines() if line.split())
     return total_lines
 
 def process_repo(repo_owner, repo_name, logger):
-#    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}:{repo_name}")
+#    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}+{repo_name}")
 #    clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
 #    if not success:
 #        logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")

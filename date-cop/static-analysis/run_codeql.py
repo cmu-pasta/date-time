@@ -1,13 +1,11 @@
 import argparse
 import os
 import subprocess
-import random
 from pathlib import Path
 
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
 DEFAULT_DB_PATH = Path("./databases/benchmark-db")
-SELECT_DB_PATH = Path("/data/sjoukov/date-time/data/codeql_databases")
 DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
@@ -20,12 +18,12 @@ QUERIES_LIST = [
     "timezone_offset",
     "bad_pytz_init",
     "bad_pytz_init_var",
-    "partial_replace"
+    "partial_replace",
 ]
 
 
 def run_command(command):
-    print(f"\nRunning command: {command}")
+    print(f"Running command: {command}\n")
     result = subprocess.run(
         command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
     )
@@ -43,6 +41,7 @@ def set_codeql_path():
 
     CODEQL_PATH = CodeQL_path
 
+
 def create_db():
     print("Creating benchmark database...")
 
@@ -53,37 +52,26 @@ def create_db():
         f"{CODEQL_PATH} database create {DEFAULT_DB_PATH} --language=python --source-root={BENCHMARKS_PATH} --overwrite"
     )
 
-def run_query(db_path, Query_path, Output_path):
+
+def run_query(db_path, query_path, output_path):
     return run_command(
-        f"{CODEQL_PATH} database analyze {db_path} {Query_path} --output={Output_path} --format=csv --verbose --rerun"
+        f"{CODEQL_PATH} database analyze {db_path} {query_path} --output={output_path} --format=csv --verbose --rerun"
     )
 
-def run_named_query(db_path, query):
-    print(f"Running query {query} for database {db_path}")
-    
-    if not os.path.exists(RS_DIR):
-        os.makedirs(RS_DIR)
-
-    q_path = os.path.join(QL_DIR, query + ".ql")
-    out_path = os.path.join(RS_DIR, query + ".csv")
-    result = run_query(db_path, q_path, out_path)
-    if result.returncode != 0:
-        print(f"Error found with database {db_path} and query {q_path}:\n{result}")
-        exit(1)
 
 def run_all_queries(db_path):
-    print(f"Running all queries for database {db_path}")
-
     if not os.path.exists(RS_DIR):
         os.makedirs(RS_DIR)
 
     for query in QUERIES_LIST:
+        print(f"Running {query} for database {db_path}")
         q_path = os.path.join(QL_DIR, query + ".ql")
-        out_path = os.path.join(RS_DIR, query + ".csv")
+        out_path = os.path.join(RS_DIR, query + "_" + db_path.parts[-1] + ".csv")
         result = run_query(db_path, q_path, out_path)
         if result.returncode != 0:
             print(f"Error found with database {db_path} and query {q_path}:\n{result}")
             exit(1)
+
 
 def clean_merged_files():
     for query in QUERIES_LIST:
@@ -91,21 +79,23 @@ def clean_merged_files():
         if merged_path.exists():
             run_command(f"rm -f {merged_path}")
 
-def merge_results(db_name):
-    for query in QUERIES_LIST:
-        out_path = Path(RS_DIR, query + ".csv")
-        merged_path = Path(RS_DIR, query + "_merged.csv")
-        if out_path.exists():
-            out = open(out_path, "r")
-            merged = open(merged_path, "a")
-            for line in out.readlines():
-                merged.write(f"{db_name},"+line)
 
-def randompaths(base, count, seed):
-    rng = random.Random(seed)
-    paths = [p for p in base.iterdir()]
-    rng.shuffle(paths)
-    return paths[:count]
+def merge_results_for_query(query):
+    global ouputs
+    ouputs = [
+        Path(RS_DIR, query + "_" + db_path.parts[-1] + ".csv") for db_path in DB_PATHS
+    ]
+    merged = open(Path(RS_DIR, query + "_merged.csv"), "w")
+    for output in ouputs:
+        out = open(output, "r")
+        for line in out.readlines():
+            merged.write(line)
+
+
+def merge_results():
+    for query in QUERIES_LIST:
+        merge_results_for_query(query)
+
 
 def init_parser():
     parser = argparse.ArgumentParser(description="Run CodeQL queries on benchmarks.")
@@ -122,56 +112,55 @@ def init_parser():
         help="Run all queries on the benchmarks database.",
     )
     parser.add_argument(
-        "--one",
-        "-o",
+        "--query",
+        "-q",
+        type=str,
         help="Run a single specified query.",
     )
+    parser.add_argument("--dbpath", "-dp", type=str, help="Run on a set of databases.")
     parser.add_argument(
-        "--databases",
-        "-d",
-        nargs="+",
-        help="Run on specified databases"
+        "--number", "-n", type=int, help="Run on specified number of databases."
     )
     parser.add_argument(
-        "--select",
-        "-s",
-        type=int,
-        help="Run on specified number of random databases."
-    )
-    parser.add_argument(
-        "--seed",
-        type=int,
-        default="125600",
-        help="Random seed (for use with --select)."
+        "--resultpath",
+        "-rp",
+        type=str,
+        help="Path to store the results of the queries.",
     )
     return parser
+
 
 def main():
     args = init_parser().parse_args()
     set_codeql_path()
 
     global DB_PATHS
-    if args.databases:
-        DB_PATHS = [Path(db) for db in args.databases]
-    elif args.select is not None:
-        DB_PATHS = randompaths(SELECT_DB_PATH, args.select, args.seed)
+    if args.dbpath is not None:
+        DB_PATHS = [Path(args.dbpath, p) for p in os.listdir(args.dbpath)]
+        if args.number is not None and args.number < len(DB_PATHS):
+            DB_PATHS = DB_PATHS[: args.number]
     else:
         DB_PATHS = [DEFAULT_DB_PATH]
-    
+
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
-    
+
+    if args.query is not None:
+        global QUERIES_LIST
+        QUERIES_LIST = [args.query]
+
+    if args.resultpath is not None:
+        global RS_DIR
+        RS_DIR = args.resultpath
+
     if len(DB_PATHS) > 1:
         clean_merged_files()
 
     for db_path in DB_PATHS:
-        if args.all:
-            run_all_queries(db_path)
-        elif args.one is not None:
-            run_named_query(db_path, args.one)
+        run_all_queries(db_path)
 
-        if len(DB_PATHS) > 1:
-            merge_results(db_path.stem)
+    if len(DB_PATHS) > 1:
+        merge_results()
 
 
 if __name__ == "__main__":

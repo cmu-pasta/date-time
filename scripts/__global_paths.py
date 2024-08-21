@@ -70,3 +70,14 @@ ISSUE_REPR_SAMPLE_PATH = DATA_DIR + "issue_repr_sample.csv"
 IDFS_PATH = DATA_DIR + "idfs.csv"
 
 CODEQL_DBS_DIR = DATA_DIR + "codeql_databases/"
+
+keyws = [
+    "now",
+    "pytz",
+    "tzinfo"
+]
+
+REPOS_WITH_GREP_FUNCS_PATH = DATA_DIR + "repos_w_grep_funcs.csv"
+REPOS_WITH_FUNCS_STATS_PATH = DATA_DIR + "repos_w_funcs_stats.csv"
+
+FUNCS_GREP_DIR = DATA_DIR + "funcs_greps/"

@@ -22,34 +22,49 @@ Before using Date-Cop, ensure you have the following:
 
 1. CodeQL CLI installed on your system via the appropriate CodeQL pack
 2. `CODEQL_PATH` environment variable set to your CodeQL installation directory
-3. Run `code pack install` to get all python pack references
+3. Run `codeql pack install` to get all python pack references
 
 ## Usage
 
-### Creating a CodeQL Database
+To help with testing queries, many of the most common operations have been compiled into `run_codeql.py`. For all of the following operations, you want to be inside the `static-analysis` folder.
 
-To create a CodeQL database for the Python benchmarks, run the following command:
+### Creating the CodeQL Database
+
+To create the database for the benchmarks, run
+```bash
+python run_codeql.py -r
+```
+this creates a database in `date-cop/static-analysis/databases/benchmark-db` which the other commands can access.
+
+### Querying the benchmarks
+
+To run a single query from the `queries` folder on the benchmarks, use
+```bash
+python run_codeql.py -q your_query_here.ql
+```
+or, if you want to run all queries from the queries folder at once, use
+```bash
+python run_codeql.py -a
+```
+Both of these commands will create CSV files in the `results` directory with names corresponding to each query.
+
+### Querying the repos
 
 ```bash
-codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=../../benchmarks/
+python run_codeql.py -a -d ./databases_path -rp ./path_to_results -n 100
 ```
 
+### Manual Querying
 
-### Running the Analysis
+If you're more familiar with CodeQL or need to run your queries from another location, the following commands can be used to create a database and run a query on it respectively. (Assuming you are in the `/date-cop` folder).
 
-To run the CodeQL analysis using the Date-Cop query, use this command:
-
+Step 1: Create a CodeQL database
 ```bash
-codeql database analyze ./static-analysis/databases/<name of your db> ./static-analysis/queries/<name of your query>.ql --output=results.csv --format=csv --verbose --no-rerun=false --download
+codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=<original code directory>
 ```
 
-### Running the Helper Script
-
-Alternatively, you can run the helper script to automatically execute queries:
-
+Step 2: Run queries on the database
 ```bash
-cd ./static-analysis
-python run_codeql.py -r -a
+codeql database analyze ./static-analysis/databases/<name of your db> <path to your query>.ql --output=results.csv --format=csv --verbose --rerun --download
 ```
-
 
