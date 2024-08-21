@@ -39,7 +39,7 @@ class TestTimeZones(unittest.TestCase):
         fixed_timezone = dutz.gettz("EST")
         custom_timezone = timezone(timedelta(hours=offset))
         builtin_timezone = tz_info
-        now = datetime.now()
+        now = datetime(2024,1,1)
 
         offset1 = now.astimezone(fixed_timezone).utcoffset().total_seconds() / 3600
         offset2 = now.astimezone(custom_timezone).utcoffset().total_seconds() / 3600
@@ -65,9 +65,9 @@ class TestTimeZones(unittest.TestCase):
             if new_offset3 != offset3:
                 is_bad_timezone3 = False
 
-        assert is_bad_timezone1 == False
-        assert is_bad_timezone2 == False
-        assert is_bad_timezone3 == False
+        assert not is_bad_timezone1
+        assert not is_bad_timezone2
+        assert not is_bad_timezone3
 
     # Test: Assigning specific timezones to datetime objects will succeeded even when it should not.
     @unittest.expectedFailure
