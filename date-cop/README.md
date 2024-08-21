@@ -50,6 +50,8 @@ Both of these commands will create CSV files in the `results` directory with nam
 
 ### Querying the repos
 
+You can pass in a directory that contains multiple databases with `-d`. Since running a query on every repo would take way to long, use the `-n` flag to limit the number of to a smaller sample (100 or 1000 are usually good).
+
 ```bash
 python run_codeql.py -a -d ./databases_path -rp ./path_to_results -n 100
 ```
@@ -62,6 +64,7 @@ Step 1: Create a CodeQL database
 ```bash
 codeql database create ./static-analysis/databases/<name of your db> --language=python --source-root=<original code directory>
 ```
+Commands which analyse multiple databases (which these do most of the time) will create an output in `results/your_query_here_merged.csv` and will include a database column on the left.
 
 Step 2: Run queries on the database
 ```bash

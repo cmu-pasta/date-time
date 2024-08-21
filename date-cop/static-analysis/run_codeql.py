@@ -1,6 +1,7 @@
 import argparse
 import os
 import subprocess
+import random
 from pathlib import Path
 
 QL_DIR = "./queries/"
@@ -96,6 +97,13 @@ def merge_results():
     for query in QUERIES_LIST:
         merge_results_for_query(query)
 
+def randompaths(base, count, seed):
+    if type(base) != Path:
+        base = Path(base)
+    rng = random.Random(seed)
+    paths = [p for p in base.iterdir()]
+    rng.shuffle(paths)
+    return paths[:count]
 
 def init_parser():
     parser = argparse.ArgumentParser(description="Run CodeQL queries on benchmarks.")
@@ -122,6 +130,12 @@ def init_parser():
         "--number", "-n", type=int, help="Run on specified number of databases."
     )
     parser.add_argument(
+        "--seed", type=int, default=123456, help="Set the random seed for -n"
+    )
+    parser.add_argument(
+        "--norandom", action="store_true", default=False, help="don't shuffle and instead take the first n arguments with `-n`"
+    )
+    parser.add_argument(
         "--resultpath",
         "-rp",
         type=str,
@@ -136,9 +150,13 @@ def main():
 
     global DB_PATHS
     if args.dbpath is not None:
-        DB_PATHS = [Path(args.dbpath, p) for p in os.listdir(args.dbpath)]
-        if args.number is not None and args.number < len(DB_PATHS):
-            DB_PATHS = DB_PATHS[: args.number]
+        if args.number is not None:
+            if args.norandom:
+                DB_PATHS = [p for p in Path(args.dbpath).iterdir()][: args.number]
+            else:
+                DB_PATHS = randompaths(args.dbpath, args.number, args.seed)
+        else:
+            DB_PATHS = [p for p in Path(args.dbpath).iterdir()]
     else:
         DB_PATHS = [DEFAULT_DB_PATH]
 
