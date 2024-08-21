@@ -9,8 +9,6 @@ import sys
 
 from __global_paths import *
 
-K = 50
-
 contains_funcs_df = pd.read_csv(REPOS_WITH_GREP_FUNCS_PATH)
 issues_w_stats_df = pd.read_csv(BUGS_WITH_STATS_PATH)
 
