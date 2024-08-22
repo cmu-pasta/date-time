@@ -1,35 +1,37 @@
 /**
- * @name Block datetime.now without tz argument
+ * @id py/block-datetime-now-no-tz
  * @description Prevent usage of datetime.now with tz=None.
  * @kind problem
  * @tags
+ *   - code-smell
  *   - naive-datetime
  * @problem.severity recommendation
- * @sub-severity high
  * @precision high
- * @id py/block-datetime-now-no-tz
  */
 
 import python
 
-from Call c, None n
-where
-  (
-    ((Attribute)c.getFunc()).getName() = "now" or
-    ((Attribute)c.getFunc()).getName() = "fromtimestamp" or
-    ((Attribute)c.getFunc()).getName() = "datetime" or
-    c.getFunc().toString() = "datetime"
-  ) and
-  (
-    c.getANamedArg().contains(n) or
+class NaiveDatetimeCreation extends Call{
+  None n;
+  Attribute attr;
+
+  NaiveDatetimeCreation() {
+    attr = (Attribute)this.getFunc()
+    
+    and
     (
-      ((Attribute)c.getFunc()).getName() = "fromtimestamp" and
-      not exists(c.getPositionalArg(1))
-    ) or
+      attr.getName() = "fromtimestamp" or attr.getName() = "datetime" or this.getFunc().toString() = "datetime"
+    ) 
+    
+    and
     (
-      not ((Attribute)c.getFunc()).getName() = "fromtimestamp" and
-      not exists(c.getANamedArg())
+      this.getANamedArg().contains(n) or 
+      (attr.getName() = "fromtimestamp" and not exists(this.getPositionalArg(1))) or
+      (not attr.getName() = "fromtimestamp" and not exists(this.getANamedArg()))
     )
-  )
-select c, "datetime.now() must have a tz argument."
+  }
+}
+
+from NaiveDatetimeCreation c
+select c, "Initializatio of a naive datetime object."
 

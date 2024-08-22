@@ -1,10 +1,8 @@
 /**
- * @name
- * @description
+ * @description Test query to find out entity QL classes
  * @kind problem
  * @tags
- * @problem.severity r
- * @sub-severity high
+ * @problem.severity recommendation
  * @precision high
  * @id py/multiple-nows
  */

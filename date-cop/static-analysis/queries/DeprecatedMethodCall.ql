@@ -1,23 +1,22 @@
 /**
- * @name deprecated methods being used
- * @description Deprecated methods are dangerous and can cause silent failures.
+ * @id py/deprecated-method-call
+ * @description Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.
  * @kind problem
- * @tags correctness
+ * @tags
+ *   - correctness
  * @problem.severity warning
  * @precision very-high
- * @id py/deprecated-method-call
  */
 
 import python
 
 class DeprecatedMethodCall extends Call {
-  Attribute attr;
   DeprecatedMethodCall() {
-    this.getFunc() = attr and (attr.getName() = "utcnow" or attr.getName() = "utcfromtimestamp")
+    ((Attribute)this.getFunc()).getName() = "utcnow" or ((Attribute)this.getFunc()).getName() = "utcfromtimestamp"
   }
 
   string getMethod() {
-    result = attr.getName()
+    result = ((Attribute)this.getFunc()).getName()
   }
 }
 
