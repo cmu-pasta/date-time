@@ -11,10 +11,11 @@
 
 import python
 
-from Call c, AssignStmt set_var, Attribute pytz_call
+from Call c, Attribute pytz_call, Name pytz
 where
+  pytz.toString() = "pytz" and
   c.getANamedArg().contains(pytz_call) and
-  pytz_call.getObject().toString() = "pytz" and
+  pytz = pytz_call.getObject() and
   (
     ((Attribute)c.getFunc()).getName() = "now" or
     ((Attribute)c.getFunc()).getName() = "fromtimestamp" or
