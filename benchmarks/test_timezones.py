@@ -112,13 +112,19 @@ class TestTimeZones(unittest.TestCase):
     @unittest.expectedFailure
     @given(datetimes(), timezones())
     def test_timezones_4(self, dt: datetime, tz_info: timezone) -> None:
-        tz1 = pytz.timezone(str(tz_info))
-        tz2 = dutz.gettz(str(tz_info))
         dt1 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
-                       tzinfo=tz1)
+                       tzinfo=pytz.timezone(str(tz_info)))
         dt2 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
-                       tzinfo=tz2)
-        assert tz1.timestamp() == tz2.timestamp()
+                       tzinfo=dutz.gettz(str(tz_info)))
+        assert dt1.timestamp() == dt2.timestamp()
+
+    # Test: passing pytz.utc specifically is fine
+    def test_timezones_5(self, dt: datetime, tz_info: timezone) -> None:
+        dt1 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
+                       tzinfo=pytz.utc)
+        dt2 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
+                       tzinfo=dutz.gettz("UTC"))
+        assert dt1.timestamp() == dt2.timestamp()
 
 
 if __name__ == "__main__":
