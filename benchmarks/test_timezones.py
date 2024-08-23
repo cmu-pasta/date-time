@@ -119,6 +119,7 @@ class TestTimeZones(unittest.TestCase):
         assert dt1.timestamp() == dt2.timestamp()
 
     # Test: passing pytz.utc specifically is fine
+    @given(datetimes(), timezones())
     def test_timezones_5(self, dt: datetime, tz_info: timezone) -> None:
         dt1 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
                        tzinfo=pytz.utc)
