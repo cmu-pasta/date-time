@@ -16,8 +16,9 @@ QUERIES_LIST = [
 ]
 
 
-def run_command(command):
-    print(f"Running command: {command}\n")
+def run_command(command, verbose=True):
+    if verbose:
+        print(f"Running command: {command}\n")
     result = subprocess.run(
         command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
     )
@@ -66,14 +67,6 @@ def run_all_queries(db_path):
             print(f"Error found with database {db_path} and query {q_path}:\n{result}")
             exit(1)
 
-
-def clean_merged_files():
-    for query in QUERIES_LIST:
-        merged_path = Path(RS_DIR, query + "_merged.csv")
-        if merged_path.exists():
-            run_command(f"rm -f {merged_path}")
-
-
 def merge_results_for_query(query):
     global ouputs
     ouputs = [
@@ -89,6 +82,15 @@ def merge_results_for_query(query):
 def merge_results():
     for query in QUERIES_LIST:
         merge_results_for_query(query)
+
+def clean_merged_files():
+    for query in QUERIES_LIST:
+        for db_path in DB_PATHS:
+            out_path = Path(RS_DIR, query + "_" + db_path.parts[-1] + ".csv")
+            if out_path.exists():
+                run_command(f"rm -f {out_path}", verbose=False)
+            else:
+                print(f"failed to find {out_path}")
 
 
 def init_parser():
@@ -153,14 +155,12 @@ def main():
         global RS_DIR
         RS_DIR = args.resultpath
 
-    if len(DB_PATHS) > 1:
-        clean_merged_files()
-
     for db_path in DB_PATHS:
         run_all_queries(db_path)
 
     if len(DB_PATHS) > 1:
         merge_results()
+        clean_merged_files()
 
 
 if __name__ == "__main__":
