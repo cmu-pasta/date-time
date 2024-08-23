@@ -38,9 +38,9 @@ this creates a database in `date-cop/static-analysis/databases/benchmark-db` whi
 
 ### Querying the benchmarks
 
-To run a single query from the `queries` folder on the benchmarks, use
+To run a single query `your_query_here.ql` from the `queries` folder on the benchmarks, use 
 ```bash
-python run_codeql.py -q your_query_here.ql
+python run_codeql.py -q your_query_here
 ```
 or, if you want to run all queries from the queries folder at once, use
 ```bash

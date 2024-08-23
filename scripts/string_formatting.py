@@ -39,6 +39,13 @@ F_PATTERNS = [
     # not included in here is the potential to use str(dt) or format strings
 ]
 
+# unlike the above patterns, these need to match a prefix of the line
+ANTI_PATTERNS = [
+    "import",
+    "from.*import",
+    "\\s*#"
+]
+
 def run_command(command):
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return result.stdout, result.stderr
@@ -57,11 +64,18 @@ def find_matches(path, patterns):
             semicolon = line.index(":")
             line_num = int(line[:semicolon])
             rest = line[semicolon+1:]
+
+            good = True
+            for ap in ANTI_PATTERNS:
+                if re.match(ap, rest):
+                    good = False
+            if not good: continue
+
             pat = "None"
             for pattern in patterns:
                 if re.search(pattern, rest) is not None:
                     pat = pattern
-            ans.append((line_num, line[semicolon+1:], pat))
+            ans.append((line_num, rest, pat))
         except Exception as e:
             # this usually happens when a file only uses carriage returns, which grep doesn't
             # see as newlines but python does.

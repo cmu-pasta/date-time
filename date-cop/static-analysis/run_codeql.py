@@ -11,15 +11,9 @@ DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
 QUERIES_LIST = [
-    "delta_divide",
-    "delta_times_float",
-    "deprecated_method",
-    "tz_equals_none",
-    "multiple_nows",
-    "timezone_offset",
-    "bad_pytz_init",
-    "bad_pytz_init_var",
-    "partial_replace",
+    "DeprecatedMethodCall",
+    "PartialReplace",
+    "NaiveDatetimeCreation",
 ]
 
 
@@ -123,6 +117,7 @@ def init_parser():
         "--query",
         "-q",
         type=str,
+        default=None,
         help="Run a single specified query.",
     )
     parser.add_argument("--dbpath", "-dp", type=str, help="Run on a set of databases.")
@@ -148,6 +143,9 @@ def main():
     args = init_parser().parse_args()
     set_codeql_path()
 
+    if args.recreate or not DEFAULT_DB_PATH.exists():
+        create_db()
+
     global DB_PATHS
     if args.dbpath is not None:
         if args.number is not None:
@@ -160,12 +158,14 @@ def main():
     else:
         DB_PATHS = [DEFAULT_DB_PATH]
 
-    if args.recreate or not DEFAULT_DB_PATH.exists():
-        create_db()
-
-    if args.query is not None:
+    if args.all:
+        pass
+    elif not args.all and args.query is not None:
         global QUERIES_LIST
         QUERIES_LIST = [args.query]
+    else:
+        print("Not running any queries.")
+        return
 
     if args.resultpath is not None:
         global RS_DIR
