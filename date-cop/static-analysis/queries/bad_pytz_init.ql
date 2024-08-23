@@ -10,15 +10,11 @@
  */
 
 import python
-
-class BadPytzInitCall extends Call{
-  Attribute pytz_call;
-  Name pytz;
-  BadPytzInitCall() {
-    pytz.toString() = "pytz" and
-    this.getANamedArg().contains(pytz_call) and
-    pytz = pytz_call.getObject() and
-    pytz_call.getName() != "utc" and
+import semmle.python.dataflow.new.DataFlow
+import semmle.python.ApiGraphs
+ 
+class DtConstructor extends Call{
+  DtConstructor() {
     (
       ((Attribute)this.getFunc()).getName() = "now" or
       ((Attribute)this.getFunc()).getName() = "fromtimestamp" or
@@ -28,5 +24,9 @@ class BadPytzInitCall extends Call{
   }
 }
 
-from BadPytzInitCall c
+from DtConstructor c, DataFlow::CallCfgNode pytz_call, Expr tzarg
+where
+  pytz_call = API::moduleImport("pytz").getMember("timezone").getACall() and
+  c.getANamedArg().contains(tzarg) and 
+  DataFlow::localFlow(pytz_call, DataFlow::exprNode(tzarg))
 select c, "pytz timezones must be initialized with localize, not by passing the timezone into tzinfo"
