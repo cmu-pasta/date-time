@@ -10,15 +10,9 @@ DB_PATHS = []
 BENCHMARKS_PATH = Path("../../benchmarks")
 CODEQL_PATH = ""
 QUERIES_LIST = [
-    "delta_divide",
-    "delta_times_float",
-    "deprecated_method",
-    "tz_equals_none",
-    "multiple_nows",
-    "timezone_offset",
-    "bad_pytz_init",
-    "bad_pytz_init_var",
-    "partial_replace",
+    "DeprecatedMethodCall",
+    "PartialReplace",
+    "NaiveDatetimeCreation",
 ]
 
 

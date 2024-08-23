@@ -51,4 +51,4 @@ class NaiveDatetimeCreation extends Call{
 }
 
 from NaiveDatetimeCreation c
-select c, "Initialization of a naive datetime object."
+select c, "Initialization of a naive datetime object using $@.", c.getFunc(), ((Attribute)c.getFunc()).getName().toString()
