@@ -1,13 +1,12 @@
 /**
- * @name Block pytz in tzinfo field
+ * @id py/block-pytz-in-tzinfo
  * @description Prevent passing a pytz timezone into the tzinfo field of now, datetime or fromtimestamp
  * @kind problem
  * @tags
+ *   - correctness
  *   - timezone
- * @problem.severity recommendation
- * @sub-severity high
+ * @problem.severity warning
  * @precision high
- * @id py/block-pytz-in-tzinfo
  */
 
 import python
