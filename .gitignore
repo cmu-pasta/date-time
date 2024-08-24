@@ -1,5 +1,6 @@
 #codeql databases
 *databases/*
+*results*
 
 #.vscode
 *.vscode
