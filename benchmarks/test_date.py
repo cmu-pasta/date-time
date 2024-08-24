@@ -24,17 +24,17 @@ Further Reading:
 """
 
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime
 
 from hypothesis import example, given
-from hypothesis.strategies import integers, datetimes, timezones
+from hypothesis.strategies import datetimes, integers
 
 
 class TestDate(unittest.TestCase):
     """
     Description:
         Test which calls replace on only the year.
-    Failure Reason: 
+    Failure Reason:
         If the original date is Feb 29, the new date may not exist
     Examples:
       - https://github.com/KoffeinFlummi/Chronyk/issues/5
@@ -42,12 +42,13 @@ class TestDate(unittest.TestCase):
         dt = datetime(2024,2,29,0,0,0)
         new_year = 2023
     """
+
     @unittest.expectedFailure
     @given(datetimes(), integers(min_value=1900, max_value=2100))
-    @example(datetime(2024,2,29,0,0,0), 2023)
+    @example(datetime(2024, 2, 29, 0, 0, 0), 2023)
     def test_date_0(self, dt: datetime, new_year: int) -> None:
         dt_2 = dt.replace(year=new_year)
-    
+
     """
     Description:
         Test which calls replace on only the month.
@@ -60,11 +61,13 @@ class TestDate(unittest.TestCase):
         dt = datetime(2024,1,31,0,0,0)
         new_month = 2
     """
+
     @unittest.expectedFailure
     @given(datetimes(), integers(min_value=1, max_value=12))
-    @example(datetime(2024,1,31,0,0,0), 2)
+    @example(datetime(2024, 1, 31, 0, 0, 0), 2)
     def test_date_1(self, dt: datetime, new_month: int) -> None:
         dt_2 = dt.replace(month=new_month)
+
 
 if __name__ == "__main__":
     unittest.main()
