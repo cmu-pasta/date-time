@@ -1,11 +1,11 @@
 /**
- * @id py/block-pytz-in-tzinfo
+ * @id py/bad-pytz-timezone-init
  * @description Prevent passing a pytz timezone into the tzinfo field of now, datetime or fromtimestamp
  * @kind problem
  * @tags
  *   - correctness
  *   - timezone
- * @problem.severity warning
+ * @problem.severity error
  * @precision high
  */
 
@@ -13,8 +13,8 @@ import python
 import semmle.python.dataflow.new.DataFlow
 import semmle.python.ApiGraphs
  
-class DtConstructor extends Call{
-  DtConstructor() {
+class DatetimeCreation extends Call{
+  DatetimeCreation() {
     (
       ((Attribute)this.getFunc()).getName() = "now" or
       ((Attribute)this.getFunc()).getName() = "fromtimestamp" or
@@ -24,9 +24,9 @@ class DtConstructor extends Call{
   }
 }
 
-from DtConstructor c, DataFlow::CallCfgNode pytz_call, Expr tzarg
+from DatetimeCreation c, DataFlow::CallCfgNode pytz_call, Expr tzarg
 where
   pytz_call = API::moduleImport("pytz").getMember("timezone").getACall() and
   c.getANamedArg().contains(tzarg) and 
   DataFlow::localFlow(pytz_call, DataFlow::exprNode(tzarg))
-select c, "pytz timezones must be initialized with localize, not by passing the timezone into tzinfo"
+select c, "Datetime objects using Pytz timezones must be initialized using the localize method."

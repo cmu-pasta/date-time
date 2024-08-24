@@ -3,7 +3,7 @@ import os
 import subprocess
 from pathlib import Path
 
-VERBOSE = False
+VERBOSE = True
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
 DEFAULT_DB_PATH = Path("./databases/benchmark-db")
@@ -14,6 +14,7 @@ QUERIES_LIST = [
     "DeprecatedMethodCall",
     "PartialReplace",
     "NaiveDatetimeCreation",
+    "BadPytzTimezoneInit",
 ]
 
 
@@ -158,10 +159,11 @@ def init_parser():
 
 def main():
     args = init_parser().parse_args()
-    set_codeql_path()
 
     global VERBOSE
     VERBOSE = args.verbose
+
+    set_codeql_path()
 
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
