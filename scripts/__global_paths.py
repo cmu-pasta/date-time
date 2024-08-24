@@ -72,9 +72,13 @@ IDFS_PATH = DATA_DIR + "idfs.csv"
 CODEQL_DBS_DIR = DATA_DIR + "codeql_databases/"
 
 keyws = [
-    "now",
-    "pytz",
-    "tzinfo"
+    "pytz\.localize",
+    "pytz\.normalize",
+    "pytz\.gettz",
+    "strftime",
+    "strptime",
+    ".one.nfo",
+    "dateutil"
 ]
 
 REPOS_WITH_GREP_FUNCS_PATH = DATA_DIR + "repos_w_grep_funcs.csv"
