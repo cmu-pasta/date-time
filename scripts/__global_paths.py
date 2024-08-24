@@ -72,9 +72,9 @@ IDFS_PATH = DATA_DIR + "idfs.csv"
 CODEQL_DBS_DIR = DATA_DIR + "codeql_databases/"
 
 keyws = [
-    "pytz\.localize",
-    "pytz\.normalize",
-    "pytz\.gettz",
+    "localize",
+    "normalize",
+    "gettz",
     "strftime",
     "strptime",
     ".one.nfo",
