@@ -12,7 +12,8 @@ import python
 
 class DeprecatedMethodCall extends Call {
   DeprecatedMethodCall() {
-    ((Attribute)this.getFunc()).getName() = "utcnow" or ((Attribute)this.getFunc()).getName() = "utcfromtimestamp"
+    ((Attribute)this.getFunc()).getName() = "utcnow" or 
+    ((Attribute)this.getFunc()).getName() = "utcfromtimestamp"
   }
 
   string getMethod() {

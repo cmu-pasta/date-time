@@ -3,6 +3,7 @@ import os
 import subprocess
 from pathlib import Path
 
+VERBOSE = False
 QL_DIR = "./queries/"
 RS_DIR = "./results/"
 DEFAULT_DB_PATH = Path("./databases/benchmark-db")
@@ -16,8 +17,16 @@ QUERIES_LIST = [
 ]
 
 
+def pretty_print(message, indent=0):
+    if VERBOSE:
+        if indent == 0:
+            print("=" * 20 + "\n" + message + "\n" + "=" * 20)
+        else:
+            print("  " * indent + "\\_" + message)
+
+
 def run_command(command):
-    print(f"Running command: {command}\n")
+    pretty_print(f"Running command: {command}\n", 1)
     result = subprocess.run(
         command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
     )
@@ -30,14 +39,14 @@ def set_codeql_path():
         CodeQL_dir = Path(os.environ["CODEQL_PATH"])
         CodeQL_path = os.path.join(CodeQL_dir, "codeql")
     else:
-        print("CODEQL_PATH is not set")
+        pretty_print("CODEQL_PATH is not set")
         exit(1)
 
     CODEQL_PATH = CodeQL_path
 
 
 def create_db():
-    print("Creating benchmark database...")
+    pretty_print("Creating benchmark database...")
 
     if not DEFAULT_DB_PATH.exists():
         os.makedirs(DEFAULT_DB_PATH)
@@ -58,23 +67,18 @@ def run_all_queries(db_path):
         os.makedirs(RS_DIR)
 
     for query in QUERIES_LIST:
-        print(f"Running {query} for database {db_path}")
+        pretty_print(f"Running {query} for database {db_path}")
         q_path = os.path.join(QL_DIR, query + ".ql")
         out_path = os.path.join(RS_DIR, query + "_" + db_path.parts[-1] + ".csv")
         result = run_query(db_path, q_path, out_path)
         if result.returncode != 0:
-            print(f"Error found with database {db_path} and query {q_path}:\n{result}")
+            pretty_print(f"Error found with database {db_path} and query {q_path}", 1)
             exit(1)
 
 
-def clean_merged_files():
-    for query in QUERIES_LIST:
-        merged_path = Path(RS_DIR, query + "_merged.csv")
-        if merged_path.exists():
-            run_command(f"rm -f {merged_path}")
-
-
 def merge_results_for_query(query):
+    pretty_print(f"Merging results for query {query}.\n", 1)
+
     global ouputs
     ouputs = [
         Path(RS_DIR, query + "_" + db_path.parts[-1] + ".csv") for db_path in DB_PATHS
@@ -87,8 +91,21 @@ def merge_results_for_query(query):
 
 
 def merge_results():
+    pretty_print("Merging results.")
     for query in QUERIES_LIST:
         merge_results_for_query(query)
+
+
+def clean_merged_files():
+    pretty_print("Cleaning up files.")
+
+    for query in QUERIES_LIST:
+        for db_path in DB_PATHS:
+            out_path = Path(RS_DIR, query + "_" + db_path.parts[-1] + ".csv")
+            if out_path.exists():
+                run_command(f"rm -f {out_path}")
+            else:
+                pretty_print(f"Skipping cleanup as {out_path} does not exist.\n", 1)
 
 
 def init_parser():
@@ -112,9 +129,17 @@ def init_parser():
         default=None,
         help="Run a single specified query.",
     )
-    parser.add_argument("--dbpath", "-dp", type=str, help="Run on a set of databases.")
     parser.add_argument(
-        "--number", "-n", type=int, help="Run on specified number of databases."
+        "--dbpath",
+        "-dp",
+        type=str,
+        help="Run on a set of databases.",
+    )
+    parser.add_argument(
+        "--number",
+        "-n",
+        type=int,
+        help="Run on specified number of databases.",
     )
     parser.add_argument(
         "--resultpath",
@@ -122,12 +147,21 @@ def init_parser():
         type=str,
         help="Path to store the results of the queries.",
     )
+    parser.add_argument(
+        "--verbose",
+        "-v",
+        action="store_true",
+        help="Print verbose output.",
+    )
     return parser
 
 
 def main():
     args = init_parser().parse_args()
     set_codeql_path()
+
+    global VERBOSE
+    VERBOSE = args.verbose
 
     if args.recreate or not DEFAULT_DB_PATH.exists():
         create_db()
@@ -146,21 +180,19 @@ def main():
         global QUERIES_LIST
         QUERIES_LIST = [args.query]
     else:
-        print("Not running any queries.")
+        pretty_print("Not running any queries.")
         return
 
     if args.resultpath is not None:
         global RS_DIR
         RS_DIR = args.resultpath
 
-    if len(DB_PATHS) > 1:
-        clean_merged_files()
-
     for db_path in DB_PATHS:
         run_all_queries(db_path)
 
     if len(DB_PATHS) > 1:
         merge_results()
+        clean_merged_files()
 
 
 if __name__ == "__main__":

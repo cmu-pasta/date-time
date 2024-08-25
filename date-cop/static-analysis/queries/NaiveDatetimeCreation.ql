@@ -1,5 +1,5 @@
 /**
- * @id py/block-datetime-now-no-tz
+ * @id py/naive-datetime-creation
  * @description Prevent usage of datetime.now with tz=None.
  * @kind problem
  * @tags
@@ -37,14 +37,14 @@ class NaiveDatetimeCreation extends Call{
           exists(string s | s = this.getANamedArgumentName() and s = "tzinfo" | this.getANamedArg().contains(n))
         )
 
-        or
-        (
-          attr.getName() = "now" and 
-          (
-            this.getPositionalArgumentCount() = 0 and
-            (this.getKeyword(0).getValue() = n or not exists(this.getAKeyword()))
-          )
-        )
+        // or
+        // (
+        //   attr.getName() = "now" and 
+        //   (
+        //     this.getPositionalArgumentCount() = 0 and
+        //     (this.getKeyword(0).getValue() = n or not exists(this.getAKeyword()))
+        //   )
+        // )
       )
     )
   }
@@ -52,3 +52,4 @@ class NaiveDatetimeCreation extends Call{
 
 from NaiveDatetimeCreation c
 select c, "Initialization of a naive datetime object using $@.", c.getFunc(), ((Attribute)c.getFunc()).getName().toString()
+ 
