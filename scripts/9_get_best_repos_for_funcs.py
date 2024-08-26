@@ -16,8 +16,13 @@ merged_df = pd.merge(contains_funcs_df, issues_w_stats_df, on="nameWithOwner", h
 
 agg_dict = {keyw: "first" for keyw in keyws}
 agg_dict["tf_idf"] = "sum"
+agg_dict["stars"] = "first"
+agg_dict["size"] = "first"
+
 
 result_df = merged_df.groupby(["nameWithOwner", "name", "owner"]).agg(agg_dict).reset_index()
+result_df['bug_count'] = merged_df.groupby(["nameWithOwner", "name", "owner"])['tf_idf'].transform('count')
+
 sorted_df = result_df.sort_values(by="tf_idf", ascending=False)
 
 sorted_df.to_csv(REPOS_WITH_FUNCS_STATS_PATH, index=False)
