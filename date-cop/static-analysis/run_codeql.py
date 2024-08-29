@@ -17,6 +17,7 @@ QUERIES_LIST = [
     "BadPytzTimezoneInit",
     "RelativedeltaDivide",
     "FixedOffsetTimezone",
+    "SubtractingDatetimes",
 ]
 
 

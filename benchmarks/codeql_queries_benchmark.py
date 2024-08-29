@@ -1,4 +1,4 @@
-from datetime import *
+from datetime import datetime, time, timedelta, timezone
 
 import pytz
 
@@ -23,6 +23,11 @@ c = datetime(2024, 6, 7)
 c1 = datetime(2024, 6, 7, tzinfo=None)
 c2 = datetime(2024, 6, 7, tzinfo=timezone.utc)
 
+c = c.astimezone(timezone.utc)
+
+temp = c1 - c  # Cannot catch this since the astimezone() method is called on c
+temp = b4 - a3
+
 c = datetime.datetime(2024, 6, 7)
 c1 = datetime.datetime(2024, 6, 7, tzinfo=None)
 c2 = datetime.datetime(2024, 6, 7, tzinfo=timezone.utc)
@@ -30,6 +35,9 @@ c2 = datetime.datetime(2024, 6, 7, tzinfo=timezone.utc)
 d = time(12, 30, 45)
 d1 = time(12, 30, 45, tzinfo=None)
 d2 = time(12, 30, 45, tzinfo=timezone.utc)
+
+temp = d2 - d1
+
 
 d = datetime.time(12, 30, 45)
 d1 = datetime.time(12, 30, 45, tzinfo=None)
