@@ -63,6 +63,7 @@ def create_db():
 def run_query(db_path, query_path, output_path):
     return run_command(
         f"{CODEQL_PATH} database analyze {db_path} {query_path} --output={output_path} --format=csv --verbose --rerun"
+        # f"{CODEQL_PATH} database analyze {db_path} {query_path} --output={output_path} --format=sarif-latest --verbose --rerun --no-sarif-minify --no-group-results"
     )
 
 
@@ -90,6 +91,7 @@ def merge_results_for_query(query):
     merged = open(Path(RS_DIR, query + "_merged.csv"), "w")
     for output in ouputs:
         out = open(output, "r")
+        merged.write("\n" + ("=" * 20) + "\n" + output.parts[-1] + "\n")
         for line in out.readlines():
             merged.write(line)
 
@@ -157,6 +159,12 @@ def init_parser():
         action="store_true",
         help="Print verbose output.",
     )
+    parser.add_argument(
+        "--cleanup",
+        "-c",
+        action="store_true",
+        help="Clean up the merged files.",
+    )
     return parser
 
 
@@ -197,7 +205,8 @@ def main():
 
     if len(DB_PATHS) > 1:
         merge_results()
-        clean_merged_files()
+        if args.cleanup:
+            clean_merged_files()
 
 
 if __name__ == "__main__":
