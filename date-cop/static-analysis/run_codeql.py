@@ -15,6 +15,8 @@ QUERIES_LIST = [
     "PartialReplace",
     "NaiveDatetimeCreation",
     "BadPytzTimezoneInit",
+    "RelativedeltaDivide",
+    "FixedOffsetTimezone",
 ]
 
 

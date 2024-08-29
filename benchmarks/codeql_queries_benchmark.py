@@ -1,5 +1,10 @@
 from datetime import *
 
+import pytz
+
+# from dateutil.relativedelta import relativedelta
+from dateutil import relativedelta
+
 # Not targetting it right now since, it is commonly used for basic operations... maybe noisy
 a = datetime.now()
 a1 = datetime.now(tz=None)
@@ -40,3 +45,27 @@ aware_dt_from_string = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S").repla
 
 dt_string = "2023-08-22 14:30:00-0400"
 dt = datetime.strptime(dt_string, "%Y-%m-%d %H:%M:%S%z")
+
+
+duration = relativedelta.relativedelta(
+    days=1, hours=2, minutes=3, seconds=4, microseconds=5
+)
+x = duration / 2  # relativedelta(hours=+1, minutes=+1, seconds=+2, microseconds=+2)
+
+duration = timedelta(days=1, hours=2, minutes=3, seconds=4, microseconds=5)
+x = duration / 2  # datetime.timedelta(seconds=46892, microseconds=2)
+
+x = timedelta(days=1, hours=2, minutes=3, seconds=4, microseconds=5) / 2
+
+temp = pytz.timezone("US/Eastern")
+dt2 = datetime(
+    1,
+    1,
+    1,
+    tzinfo=temp,
+)
+
+custom_tz = timezone(timedelta(hours=5, minutes=30))
+aware_dt = datetime(2023, 10, 5, 14, 30, 45, tzinfo=custom_tz)
+
+custom_tz = timezone(duration)
