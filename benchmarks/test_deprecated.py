@@ -10,25 +10,26 @@ Notes:
     test_deprecated_api_usage_2 is not a deprecated function but has the same root issue as the other two tests, which is why it is still included.
     Our dataset includes another bug tagged Deprecated, which may be added to this suite in the future. (https://github.com/googlemaps/google-maps-services-python/issues/185)
 
+>>>>>>> main
 Further Reading:
   - https://blog.ganssle.io/articles/2019/11/utcnow.html
   - https://discuss.python.org/t/deprecating-utcnow-and-utcfromtimestamp/26221
   - https://blog.miguelgrinberg.com/post/it-s-time-for-a-change-datetime-utcnow-is-now-deprecated
 """
 
-import unittest
 import time
+import unittest
 from datetime import datetime, timezone
 
 from hypothesis import given
-from hypothesis.strategies import integers, datetimes, timezones
+from hypothesis.strategies import datetimes, integers, timezones
 
 
 class TestDeprecatedAPIUsage(unittest.TestCase):
     """
     Description:
         Test which calls datetime.utcnow()
-    Failure Reason: 
+    Failure Reason:
         datetime.utcnow() is a deprecated function and will raise a warning when called.
     Examples:
       - https://github.com/python-poetry/tomlkit/issues/297
@@ -38,6 +39,7 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
     Notes:
         Test will only fail if you are in a non-utc timezone.
     """
+
     @unittest.expectedFailure
     def test_deprecated_api_usage_0(self) -> None:
         dt_utcnow = datetime.utcnow()
@@ -56,13 +58,14 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
     Notes:
         Test will only fail if you are in a non-utc timezone.
     """
+
     @unittest.expectedFailure
     @given(integers(min_value=0, max_value=4294967296), timezones())
     def test_deprecated_api_usage_1(self, timestamp: int, timezone: timezone) -> None:
         dt = datetime.utcfromtimestamp(timestamp)
         ts_new = dt.astimezone(tz=timezone).timestamp()
         self.assertEqual(ts_new, timestamp)
-    
+
     """
     Description:
         Test which uses time.mktime and timetuple to construct a timestamp
@@ -75,6 +78,7 @@ class TestDeprecatedAPIUsage(unittest.TestCase):
     Notes:
         Test will only fail if you are in a non-utc timezone.
     """
+
     @unittest.expectedFailure
     @given(datetimes(), timezones())
     def test_deprecated_api_usage_2(self, dt: datetime, timezone: timezone):
