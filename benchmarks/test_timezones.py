@@ -8,8 +8,8 @@ Links:
 import unittest
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
-import pytz
 
+import pytz
 from dateutil import tz as dutz
 from hypothesis import example, given
 from hypothesis.strategies import datetimes, integers, text, timezones
@@ -39,7 +39,7 @@ class TestTimeZones(unittest.TestCase):
         fixed_timezone = dutz.gettz("EST")
         custom_timezone = timezone(timedelta(hours=offset))
         builtin_timezone = tz_info
-        now = datetime.now()
+        now = datetime(2024, 1, 1)
 
         offset1 = now.astimezone(fixed_timezone).utcoffset().total_seconds() / 3600
         offset2 = now.astimezone(custom_timezone).utcoffset().total_seconds() / 3600
@@ -65,9 +65,9 @@ class TestTimeZones(unittest.TestCase):
             if new_offset3 != offset3:
                 is_bad_timezone3 = False
 
-        assert is_bad_timezone1 == False
-        assert is_bad_timezone2 == False
-        assert is_bad_timezone3 == False
+        assert not is_bad_timezone1
+        assert not is_bad_timezone2
+        assert not is_bad_timezone3
 
     # Test: Assigning specific timezones to datetime objects will succeeded even when it should not.
     @unittest.expectedFailure
@@ -112,13 +112,59 @@ class TestTimeZones(unittest.TestCase):
     @unittest.expectedFailure
     @given(datetimes(), timezones())
     def test_timezones_4(self, dt: datetime, tz_info: timezone) -> None:
-        tz1 = pytz.timezone(str(tz_info))
-        tz2 = dutz.gettz(str(tz_info))
-        dt1 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
-                       tzinfo=tz1)
-        dt2 = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, dt.microsecond,
-                       tzinfo=tz2)
-        assert tz1.timestamp() == tz2.timestamp()
+        dt1 = datetime(
+            dt.year,
+            dt.month,
+            dt.day,
+            dt.hour,
+            dt.minute,
+            dt.second,
+            dt.microsecond,
+            tzinfo=dutz.gettz(str(tz_info)),
+        )
+
+        dt2 = datetime(
+            dt.year,
+            dt.month,
+            dt.day,
+            dt.hour,
+            dt.minute,
+            dt.second,
+            dt.microsecond,
+            tzinfo=pytz.timezone(str(tz_info)),
+        )
+
+        dt3 = pytz.timezone(str(tz_info)).localize(dt)
+
+        assert dt1.timestamp() == dt2.timestamp() == dt3.timestamp()
+
+    # Test: passing pytz.utc specifically is fine
+    @unittest.expectedFailure
+    @given(datetimes(), timezones())
+    def test_timezones_5(self, dt: datetime, tz_info: timezone) -> None:
+        dt1 = datetime(
+            dt.year,
+            dt.month,
+            dt.day,
+            dt.hour,
+            dt.minute,
+            dt.second,
+            dt.microsecond,
+            tzinfo=pytz.utc,
+        )
+
+        dt2 = datetime(
+            dt.year,
+            dt.month,
+            dt.day,
+            dt.hour,
+            dt.minute,
+            dt.second,
+            dt.microsecond,
+            tzinfo=dutz.gettz("UTC"),
+        )
+
+        assert dt1.timestamp() != dt2.timestamp()
 
 
 if __name__ == "__main__":

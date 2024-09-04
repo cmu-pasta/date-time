@@ -9,15 +9,6 @@ import sys
 
 from __global_paths import *
 
-MAX_RETRIES = 5
-BACKOFF_FACTOR = 2
-
-datetime_repos = [
-    "datetime",
-    "arrow",
-    "pendulum"
-]
-
 def setup_logger(name, log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
@@ -30,24 +21,11 @@ def run_command(command):
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return result.stdout, result.stderr
 
-def git_clone(repo_owner, repo_name, retries=MAX_RETRIES, backoff_factor=BACKOFF_FACTOR):
-    repo_path = f"{repo_owner}+{repo_name}"
-
-    if os.path.exists(os.path.join(CLONE_REPOS_DIR, repo_path)):
-        return "Repository already exists, skipping clone.", "", True
-
-    for attempt in range(retries):
-        stdout, stderr = run_command(f"git clone --depth 1 https://github.com/{repo_owner}/{repo_name} {os.path.join(CLONE_REPOS_DIR, repo_path)}")
-        if "fatal" not in stderr:
-            return stdout, stderr, True
-        time.sleep(backoff_factor ** attempt)
-    return stdout, stderr, False
-
 def grep_repo(repo_owner, repo_name):
     repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}+{repo_name}")
     stdouts = []
-    for datetime_repo in datetime_repos:
-        stdout, _ = run_command(f"grep -m 1 --include=\\*.py -rE '^\\s*(import.*|from)\\s+{datetime_repo}(\\s|,|$)' {repo_path}")
+    for keyw in keyws:
+        stdout, _ = run_command(f"grep -m 1 --include=*.py -rE '{keyw}' {repo_path}")
         stdouts.append(stdout)
 
     return [1 if stdout else 0 for stdout in stdouts]
@@ -59,28 +37,19 @@ def count_python_lines(repo_owner, repo_name):
     return total_lines
 
 def process_repo(repo_owner, repo_name, logger):
-#    repo_path = os.path.join(CLONE_REPOS_DIR, f"{repo_owner}+{repo_name}")
-#    clone_stdout, clone_stderr, success = git_clone(repo_owner, repo_name)
-#    if not success:
-#        logger.error(f"Failed to clone repository {repo_owner}/{repo_name} after {MAX_RETRIES} attempts.")
-#        return pd.DataFrame()
-
     grep_result = grep_repo(repo_owner, repo_name)
-    # loc = count_python_lines(repo_owner, repo_name)
 
     return pd.DataFrame({
         "nameWithOwner": [repo_owner + "/" + repo_name],
         "owner": [repo_owner],
         "name": [repo_name],
-        "grep_results0": [grep_result[0]],
-        "grep_results1": [grep_result[1]],
-        "grep_results2": [grep_result[2]]
-        # "loc": [loc]
+        **{f"{keyws[i]}": [grep_result[i]] for i in range(len(grep_result))}
     })
 
 def process_repos(df, logger):
     df_curs = []
     for i, row in df.iterrows():
+        #if (i == 50): break
         repo_owner = row['owner']
         repo_name = row['name']
         df_curs.append(process_repo(repo_owner, repo_name, logger))
@@ -89,19 +58,14 @@ def process_repos(df, logger):
     return df_ret
 
 def main():
-    print("STARTING REPO FILTERING")
-
-    df = pd.read_csv(REPOS_PATH)
+    df = pd.read_csv(DT_REPOS_PATH)
     if not os.path.exists(CLONE_REPOS_DIR):
         os.makedirs(CLONE_REPOS_DIR)
 
-    logger = setup_logger("get_repos", LOG_PATH)
+    logger = setup_logger("get_repos_with_specific_funcs", LOG_PATH)
     df_ret = process_repos(df, logger)
 
-    df_ret.to_csv(REPOS_WITH_GREP_PATH, index=False)
-    
-    run_command(f"head -n 1 {REPOS_WITH_GREP_PATH} > {DT_REPOS_PATH}")
-    run_command(f"grep ',1,' {REPOS_WITH_GREP_PATH} >> {DT_REPOS_PATH}")
+    df_ret.to_csv(REPOS_WITH_GREP_FUNCS_PATH, index=False)
     
 if __name__ == "__main__":
     main()
