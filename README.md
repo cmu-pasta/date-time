@@ -20,15 +20,14 @@ This repository focuses on the first research thrust, which seeks to systematica
 2. Automatic Bug-Finding Tool (DATE-COP):
 - Based on the identified DATE-SMELLS, we will develop complementary static and dynamic analysis techniques to automatically discover and report date/time-related bugs in open-source projects.
 - Static analysis: We will leverage tools like CodeQL to implement syntax-based static analysis rules that can detect specific bug patterns across vast amounts of code.
-- Dynamic analysis: We will develop dynamic linting techniques that can identify problematic date/time operations by monitoring and analyzing program execution during testing.
 - These analysis techniques will be integrated into a GitHub bot, DATE-COP, capable of automatically identifying and reporting bugs in repositories at scale.
 
 ## Repository Structure
 This repository will be organized to facilitate the development and evaluation of the DATE-SMELLS and DATE-COP components:
-- assignments: This folder contains the solutions from all REU students to assignments created on various important topics. 
+- analysis: This directory contains the labelled analysis results and the insights derived from the study. 
 - benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. 
 - scripts: This directory contains the helper scripts used for data mining, cleaning, visualization, and other computations.
-- date-cop: This folder will contain the source code for the DATE-COP GitHub bot, including its static and dynamic analysis components.
+- date-cop: This folder contains the source code for the DATE-COP static analysis tool.
 
 ## Prerequisites
 
