@@ -16,19 +16,8 @@ import semmle.python.dataflow.new.DataFlow
  
 class DatetimeCreation extends Call{
   DatetimeCreation() {
-    (
-      ((Attribute)this.getFunc()).getName() = "time" or
-      this.getFunc().toString() = "time" or
-
-      ((Attribute)this.getFunc()).getName() = "now" or
-      this.getFunc().toString() = "now" or
-
-      ((Attribute)this.getFunc()).getName() = "fromtimestamp" or
-      this.getFunc().toString() = "fromtimestamp" or
-
       ((Attribute)this.getFunc()).getName() = "datetime" or
       this.getFunc().toString() = "datetime"
-    )
   }
 }
 
