@@ -75,10 +75,15 @@ def run_all_queries(db_path):
         pretty_print(f"Running {query} for database {db_path}")
         q_path = os.path.join(QL_DIR, query + ".ql")
         out_path = os.path.join(RS_DIR, query + "_" + db_path.parts[-1] + ".csv")
+
+        if os.path.exists(out_path):
+            pretty_print(f"Output file {out_path} already exists. Skipping query.\n", 1)
+            return
+
         result = run_query(db_path, q_path, out_path)
         if result.returncode != 0:
             pretty_print(f"Error found with database {db_path} and query {q_path}", 1)
-            exit(1)
+            # exit(1)
 
 
 def merge_results_for_query(query):
@@ -90,10 +95,16 @@ def merge_results_for_query(query):
     ]
     merged = open(Path(RS_DIR, query + "_merged.csv"), "w")
     for output in ouputs:
-        out = open(output, "r")
-        merged.write("\n" + ("=" * 20) + "\n" + output.parts[-1] + "\n")
-        for line in out.readlines():
-            merged.write(line)
+        # try to open file:
+        try:
+            out = open(output, "r")
+            merged.write("\n" + ("=" * 20) + "\n" + output.parts[-1] + "\n")
+            for line in out.readlines():
+                merged.write(line)
+            out.close()
+        except:
+            pretty_print(f"Error opening {output}.", 1)
+            continue
 
 
 def merge_results():
