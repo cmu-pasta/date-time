@@ -21,9 +21,24 @@ class DatetimeCreation extends Call{
   }
 }
 
-from DatetimeCreation c, DataFlow::CallCfgNode pytz_call, Expr tzarg
+class ReplaceCall extends Call{
+  ReplaceCall(){
+    ((Attribute)this.getFunc()).getName() = "replace"
+  }
+}
+
+from DatetimeCreation c, DataFlow::CallCfgNode pytz_call, Expr tzarg, ReplaceCall rc
 where
   pytz_call = API::moduleImport("pytz").getMember("timezone").getACall() and
-  c.getANamedArg().contains(tzarg) and 
-  DataFlow::localFlow(pytz_call, DataFlow::exprNode(tzarg))
+  (
+    (
+      c.getANamedArg().contains(tzarg) and 
+      DataFlow::localFlow(pytz_call, DataFlow::exprNode(tzarg))
+    ) 
+    
+    // Not working for now :(
+    or
+    DataFlow::localFlow(pytz_call, DataFlow::exprNode(rc))
+  )
+
 select c, "Datetime objects using Pytz timezones must be initialized using the localize method."

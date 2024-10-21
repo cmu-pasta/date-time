@@ -73,7 +73,13 @@ dt2 = datetime(
     tzinfo=temp,
 )
 
+dt3 = datetime(1, 1, 1)
+dt3 = dt3.replace(tzinfo=temp)
+
 custom_tz = timezone(timedelta(hours=5, minutes=30))
 aware_dt = datetime(2023, 10, 5, 14, 30, 45, tzinfo=custom_tz)
 
 custom_tz = timezone(duration)
+
+c = datetime(2024, 6, 7)
+c.replace(tzinfo=temp)
