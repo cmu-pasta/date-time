@@ -22,27 +22,9 @@ class DatetimeCreation extends DataFlow::CallCfgNode {
   }
 }
 
-// from DataFlow::CallCfgNode dtc1, BinaryExpr sub
-// where
-//     dtc1 = API::moduleImport("datetime").getMember("datetime").getACall() and
-//     sub.getOp() instanceof Sub and
-//     DataFlow::localFlow(dtc1, DataFlow::exprNode(sub.getLeft()))
-// select sub.getLeft(), "Subtraction of datetimes can result in unexpected durations."
-
 from DatetimeCreation dtc1, DatetimeCreation dtc2, BinaryExpr sub
 where
     sub.getOp() instanceof Sub and
     DataFlow::localFlow(dtc1, DataFlow::exprNode(sub.getLeft())) and
     DataFlow::localFlow(dtc2, DataFlow::exprNode(sub.getRight()))
 select sub, "Datetime subtraction can result in unexpected durations."
-
-// from BinaryExpr sub
-// where
-//     sub.getOp() instanceof Sub and
-//     sub.getLocation().toString().matches("%codeql_queries%")
-// select sub, "Subtraction of datetimes can result in unexpected durations."
-
-// from DatetimeCreation dtc
-// where
-//     dtc.getLocation().toString().matches("%codeql_queries%")
-// select dtc, "Datetime creation."

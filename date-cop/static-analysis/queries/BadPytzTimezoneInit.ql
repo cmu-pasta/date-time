@@ -16,25 +16,29 @@ import semmle.python.dataflow.new.DataFlow
  
 class DatetimeCreation extends Call{
   DatetimeCreation() {
-    (
-      ((Attribute)this.getFunc()).getName() = "time" or
-      this.getFunc().toString() = "time" or
-
-      ((Attribute)this.getFunc()).getName() = "now" or
-      this.getFunc().toString() = "now" or
-
-      ((Attribute)this.getFunc()).getName() = "fromtimestamp" or
-      this.getFunc().toString() = "fromtimestamp" or
-
       ((Attribute)this.getFunc()).getName() = "datetime" or
       this.getFunc().toString() = "datetime"
-    )
   }
 }
 
-from DatetimeCreation c, DataFlow::CallCfgNode pytz_call, Expr tzarg
+class ReplaceCall extends Call{
+  ReplaceCall(){
+    ((Attribute)this.getFunc()).getName() = "replace"
+  }
+}
+
+from DatetimeCreation c, DataFlow::CallCfgNode pytz_call, Expr tzarg, ReplaceCall rc
 where
   pytz_call = API::moduleImport("pytz").getMember("timezone").getACall() and
-  c.getANamedArg().contains(tzarg) and 
-  DataFlow::localFlow(pytz_call, DataFlow::exprNode(tzarg))
+  (
+    (
+      c.getANamedArg().contains(tzarg) and 
+      DataFlow::localFlow(pytz_call, DataFlow::exprNode(tzarg))
+    ) 
+    
+    // Not working for now :(
+    or
+    DataFlow::localFlow(pytz_call, DataFlow::exprNode(rc))
+  )
+
 select c, "Datetime objects using Pytz timezones must be initialized using the localize method."
