@@ -1,16 +1,12 @@
 # Date-Cop
 
-Date-Cop is an advanced tool for identifying and reporting date and time related bugs in open-source projects. It is a two part tool that utilizes static and dynamic analysis techniques to discover bugs in Python codebases.
+Date-Cop is an advanced tool for identifying and reporting date and time related bugs in open-source projects.
 
 ## Features
 
 ### Static Analysis
 
 Our static analysis approach targets Python code by traversing Abstract Syntax Trees (ASTs) derived from parsing source code. We utilize GitHub's CodeQL, a purpose-built AST query language, for discovering buggy patterns. For each identified DATE-SMELL, we develop a CodeQL query, typically consisting of about 5-20 lines of SQL-like code. This lightweight approach allows for analysis of vast amounts of code at scale, aiming to find the most bugs with the fewest false positives.
-
-## Evaluation - GitHub Bot
-
-DATE-COP, our GitHub bot, will leverage the GitHub API to identify active Python projects with at least 100 stars. It runs static analysis on the project's source code and executes dynamic analysis (if applicable) on the project's test executions. The bot will automatically create GitHub issues to report warnings and suggests fixes via pull requests. We will measure success based on maintainer responses, marking reports as true or false positives.
 
 ## Prerequisites
 

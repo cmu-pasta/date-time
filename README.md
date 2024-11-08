@@ -9,24 +9,14 @@ These complexities often result in bugs that can be challenging to detect and fi
 
 ## Proposed Approach
 
-This repository focuses on the first research thrust, which seeks to systematically identify and mitigate date and time-related bugs in open-source repositories:
+This repository focuses is the first to systematically identify and study date and time related bugs in open-source repositories.
 
-1. Empirical Study of Date/Time-Related Issues (DATE-SMELLS):
-- We will perform a comprehensive analysis of open-source repositories on GitHub, particularly those using Python, JavaScript, and Java, to identify common date/time-related issues and bug patterns.
-- This analysis will involve analyzing GitHub issues, code commits, and discussions to uncover how developers have encountered and addressed date/time-related problems.
-- We will develop a taxonomy to classify these issues based on factors like affected functions, relevant logic, root cause, and impact.
-- The results of this study will be documented and disseminated in the form of DATE-SMELLS, a catalog of common date/time-related bug patterns, to raise awareness among software engineers.
-
-2. Automatic Bug-Finding Tool (DATE-COP):
-- Based on the identified DATE-SMELLS, we will develop complementary static and dynamic analysis techniques to automatically discover and report date/time-related bugs in open-source projects.
-- Static analysis: We will leverage tools like CodeQL to implement syntax-based static analysis rules that can detect specific bug patterns across vast amounts of code.
-- These analysis techniques will be integrated into a GitHub bot, DATE-COP, capable of automatically identifying and reporting bugs in repositories at scale.
 
 ## Repository Structure
 This repository will be organized to facilitate the development and evaluation of the DATE-SMELLS and DATE-COP components:
-- analysis: This directory contains the labelled analysis results and the insights derived from the study. 
+- analysis: This directory contains the labeled analysis results and the insights derived from the study. 
 - benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. 
-- scripts: This directory contains the helper scripts used for data mining, cleaning, visualization, and other computations.
+- scripts: This directory contains the helper scripts used for data mining, cleaning, and other computations.
 - date-cop: This folder contains the source code for the DATE-COP static analysis tool.
 
 ## Prerequisites
