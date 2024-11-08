@@ -26,4 +26,8 @@ python3 2_get_repo_statistics.py
 ./3_get_bugs.sh
 python3 4_get_bug_statistics.py
 python3 5_get_tf_idf.py
+python3 6_get_tf_idf.py
+python3 7_get_issue_stats.py
+python3 8_get_repos_with_specific_funcs.py
+python3 9_get_best_repos_for_funcs.py
 ```

@@ -3,14 +3,39 @@ DATA_DIR = "/data/sjoukov/date-time/data/"
 LOG_PATH = DATA_DIR + "log"
 
 KEYWORDS_RAW = """
-datetime    nanosecond  strptime    timezone    elapsed
-pytz    millisecond strftime    timezones   interval
-dateutil    microsecond timestamp   GMT intervals
-arrow   second  utcnow  UTC duration
-pendulum    seconds fromtimestamp   DST 
-tzinfo  day localtime   daylight    
-days    timedelta   fold    
-week        leap    
+datetime
+nanosecond
+strptime
+timezone
+elapsed
+pytz
+millisecond
+strftime
+timezones
+interval
+dateutil
+microsecond
+timestamp
+GMT
+intervals
+arrow
+second
+utcnow
+UTC
+duration
+pendulum
+seconds
+fromtimestamp
+DST 
+tzinfo
+day
+localtime
+daylight    
+days
+timedelta
+fold    
+week
+leap    
 weeks
 month
 months
@@ -21,18 +46,40 @@ epoch
 KEYWORDS_LIST_LEN = 7
 
 KEYWORDS = []
-for start in range(0, len(KEYWORDS_RAW), 6): KEYWORDS.append(KEYWORDS_RAW[start:start+6])
+for start in range(0, len(KEYWORDS_RAW), 6):
+    KEYWORDS.append(KEYWORDS_RAW[start : start + 6])
 KEYWORDS_WITH_OR = [" OR ".join(KEYWORDS[i]) for i in range(len(KEYWORDS))]
 
 KEYWORDS_SINGULAR = """
-datetime    nanosecond  strptime    timezone    elapsed
-pytz    millisecond strftime     interval
-dateutil    microsecond timestamp   GMT 
-arrow   second  utcnow  UTC duration
-pendulum     fromtimestamp   DST 
-tzinfo  day localtime   daylight    
-   timedelta   fold    
-week        leap    
+datetime
+nanosecond
+strptime
+timezone
+elapsed
+pytz
+millisecond
+strftime
+interval
+dateutil
+microsecond
+timestamp
+GMT 
+arrow
+second
+utcnow
+UTC
+duration
+pendulum
+fromtimestamp
+DST 
+tzinfo
+day
+localtime
+daylight    
+timedelta   
+fold    
+week        
+leap    
 month
 year
 epoch
@@ -48,7 +95,6 @@ CLONE_REPOS_DIR = DATA_DIR + "cloned_repos/"
 REPOS_PATH = DATA_DIR + "repos.csv"
 REPOS_WITH_GREP_PATH = DATA_DIR + "repos_w_grep.csv"
 DT_REPOS_PATH = DATA_DIR + "dt_repos.csv"
-# "GREPPOS"
 
 PARTIAL_ISSUES_DIR = DATA_DIR + "partial_issues/"
 PARTIAL_BUGS_DIR = DATA_DIR + "partial_issues/"
@@ -78,7 +124,7 @@ keyws = [
     "strftime",
     "strptime",
     ".one.nfo",
-    "dateutil"
+    "dateutil",
 ]
 
 REPOS_WITH_GREP_FUNCS_PATH = DATA_DIR + "repos_w_grep_funcs.csv"
