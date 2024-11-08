@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///modules/module-1/resources/azure_function/data/app/__init__.py:32:31:32:47""]] should not be used.","/modules/module-1/resources/azure_function/data/app/__init__.py","32","31","32","47"

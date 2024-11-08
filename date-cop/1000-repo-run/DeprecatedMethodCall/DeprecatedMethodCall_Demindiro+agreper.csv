@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///main.py:781:23:781:61""]] should not be used.","/main.py","781","23","781","61"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///main.py:804:16:804:53""]] should not be used.","/main.py","804","16","804","53"

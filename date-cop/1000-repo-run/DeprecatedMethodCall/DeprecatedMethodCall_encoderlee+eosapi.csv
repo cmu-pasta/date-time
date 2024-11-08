@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///eosapi/packer.py:65:16:65:58""]] should not be used.","/eosapi/packer.py","65","16","65","58"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///eosapi/transaction.py:94:27:94:52""]] should not be used.","/eosapi/transaction.py","94","27","94","52"

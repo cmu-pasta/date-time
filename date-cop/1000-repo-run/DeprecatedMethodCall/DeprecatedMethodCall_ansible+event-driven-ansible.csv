@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///extensions/eda/plugins/event_source/aws_cloudtrail.py:88:27:88:43""]] should not be used.","/extensions/eda/plugins/event_source/aws_cloudtrail.py","88","27","88","43"

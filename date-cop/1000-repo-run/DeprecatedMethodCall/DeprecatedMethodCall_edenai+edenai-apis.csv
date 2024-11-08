@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///edenai_apis/utils/monitoring.py:114:23:114:39""]] should not be used.","/edenai_apis/utils/monitoring.py","114","23","114","39"

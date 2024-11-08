@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///nablaDFT/phisnet/train.py:53:13:53:29""]] should not be used.","/nablaDFT/phisnet/train.py","53","13","53","29"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///nablaDFT/phisnet/train_ddp.py:54:13:54:29""]] should not be used.","/nablaDFT/phisnet/train_ddp.py","54","13","54","29"

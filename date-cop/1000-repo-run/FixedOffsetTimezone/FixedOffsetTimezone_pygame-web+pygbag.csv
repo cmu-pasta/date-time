@@ -1,0 +1,1 @@
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/src/pygbag/support/cross/tomllib/_re.py","88","12","93","5"

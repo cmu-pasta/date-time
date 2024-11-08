@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///requisitos/theHarvester/theHarvester/screenshot/screenshot.py:78:20:78:36""]] should not be used.","/requisitos/theHarvester/theHarvester/screenshot/screenshot.py","78","20","78","36"

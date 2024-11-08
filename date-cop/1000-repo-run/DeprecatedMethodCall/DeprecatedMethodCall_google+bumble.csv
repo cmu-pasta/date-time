@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///bumble/snoop.py:87:18:87:43""]] should not be used.","/bumble/snoop.py","87","18","87","43"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///bumble/snoop.py:155:24:155:49""]] should not be used.","/bumble/snoop.py","155","24","155","49"

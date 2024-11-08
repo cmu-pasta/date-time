@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///aioscpy/libs/extensions/corestats.py:23:27:23:43""]] should not be used.","/aioscpy/libs/extensions/corestats.py","23","27","23","43"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///aioscpy/libs/extensions/corestats.py:27:23:27:39""]] should not be used.","/aioscpy/libs/extensions/corestats.py","27","23","27","39"

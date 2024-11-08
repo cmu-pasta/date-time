@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///custom_components/proxmoxve/sensor.py:251:13:251:28""]] should not be used.","/custom_components/proxmoxve/sensor.py","251","13","251","28"

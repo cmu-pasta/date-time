@@ -1,0 +1,1 @@
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/scripts/special_dates.py","14","10","14","49"

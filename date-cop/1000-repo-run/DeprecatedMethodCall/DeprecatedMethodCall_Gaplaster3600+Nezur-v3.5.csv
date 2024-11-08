@@ -1,0 +1,3 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///source/main.py:33:6:33:22""]] should not be used.","/source/main.py","33","6","33","22"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///source/performance.py:35:6:35:22""]] should not be used.","/source/performance.py","35","6","35","22"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///source/planb.py:33:6:33:22""]] should not be used.","/source/planb.py","33","6","33","22"

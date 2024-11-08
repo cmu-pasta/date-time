@@ -1,0 +1,3 @@
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/pmcaptcha/main.py","104","18","104","63"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/autochangename/main.py","52","25","52","52"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/news60s/main.py","24","26","24","53"

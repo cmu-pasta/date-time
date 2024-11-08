@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///lib/sqlmap/thirdparty/bottle/bottle.py:1806:26:1806:65""]] should not be used.","/lib/sqlmap/thirdparty/bottle/bottle.py","1806","26","1806","65"

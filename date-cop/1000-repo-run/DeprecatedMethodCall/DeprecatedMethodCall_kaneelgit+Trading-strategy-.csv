@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///stock_utils/stock_utils.py:24:13:24:40""]] should not be used.","/stock_utils/stock_utils.py","24","13","24","40"

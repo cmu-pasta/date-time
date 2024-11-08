@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///llama-index-core/llama_index/core/readers/file/base.py:109:20:109:55""]] should not be used.","/llama-index-core/llama_index/core/readers/file/base.py","109","20","109","55"

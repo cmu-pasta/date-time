@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///utilities/Plugins/Token_Info.py:69:21:69:91""]] should not be used.","/utilities/Plugins/Token_Info.py","69","21","69","91"

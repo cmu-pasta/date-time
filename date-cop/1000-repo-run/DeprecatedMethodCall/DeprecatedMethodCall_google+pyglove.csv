@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///pyglove/core/typing/type_conversion_test.py:130:11:130:55""]] should not be used.","/pyglove/core/typing/type_conversion_test.py","130","11","130","55"

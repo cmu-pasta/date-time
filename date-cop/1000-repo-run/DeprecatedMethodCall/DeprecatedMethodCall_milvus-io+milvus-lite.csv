@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///tests/utils/wrapper.py:16:30:16:46""]] should not be used.","/tests/utils/wrapper.py","16","30","16","46"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///tests/utils/wrapper.py:20:28:20:44""]] should not be used.","/tests/utils/wrapper.py","20","28","20","44"

@@ -1,0 +1,2 @@
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/stator/models.py","332","35","332","52"
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/stator/models.py","395","35","395","52"

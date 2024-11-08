@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///thirdparty/flask_unsign/helpers.py:44:16:44:52""]] should not be used.","/thirdparty/flask_unsign/helpers.py","44","16","44","52"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///thirdparty/tqdm/std.py:468:46:468:73""]] should not be used.","/thirdparty/tqdm/std.py","468","46","468","73"

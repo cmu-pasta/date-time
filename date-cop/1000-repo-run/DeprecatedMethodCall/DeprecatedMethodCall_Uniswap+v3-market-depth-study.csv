@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///data_kaiko.py:17:9:17:28""]] should not be used.","/data_kaiko.py","17","9","17","28"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///data_kaiko.py:76:9:76:28""]] should not be used.","/data_kaiko.py","76","9","76","28"

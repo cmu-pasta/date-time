@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///src/pygbag/dbgserv.py:623:21:623:37""]] should not be used.","/src/pygbag/dbgserv.py","623","21","623","37"

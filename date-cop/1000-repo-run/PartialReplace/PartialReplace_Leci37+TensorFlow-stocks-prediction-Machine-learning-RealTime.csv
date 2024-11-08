@@ -1,0 +1,1 @@
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/useless/investing_API/Investing_api_util_and.py","173","18","173","69"

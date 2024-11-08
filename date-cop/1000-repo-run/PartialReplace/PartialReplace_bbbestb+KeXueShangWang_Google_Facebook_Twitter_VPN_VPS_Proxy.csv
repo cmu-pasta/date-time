@@ -1,0 +1,4 @@
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/kexue/date_test.py","14","31","14","48"
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/kexue/date_test.py","15","28","15","45"
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/kexue/date_test.py","16","27","16","78"
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/kexue/date_test.py","17","29","17","70"

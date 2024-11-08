@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///weather/main.py:29:17:29:61""]] should not be used.","/weather/main.py","29","17","29","61"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///autochangename/main.py:50:13:50:29""]] should not be used.","/autochangename/main.py","50","13","50","29"

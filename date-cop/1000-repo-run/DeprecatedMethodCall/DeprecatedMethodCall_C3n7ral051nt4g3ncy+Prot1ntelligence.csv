@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///protintel.py:64:29:64:73""]] should not be used.","/protintel.py","64","29","64","73"

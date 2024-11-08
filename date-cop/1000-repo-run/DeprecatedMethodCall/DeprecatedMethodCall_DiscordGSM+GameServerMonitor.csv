@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///discordgsm/database.py:506:46:506:62""]] should not be used.","/discordgsm/database.py","506","46","506","62"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///discordgsm/main.py:1029:29:1029:45""]] should not be used.","/discordgsm/main.py","1029","29","1029","45"

@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///src/codeparts/checkers.py:94:38:95:75""]] should not be used.","/src/codeparts/checkers.py","94","38","95","75"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///src/codeparts/checkers.py:125:25:125:70""]] should not be used.","/src/codeparts/checkers.py","125","25","125","70"

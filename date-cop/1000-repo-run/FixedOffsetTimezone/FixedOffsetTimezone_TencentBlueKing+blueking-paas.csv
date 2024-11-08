@@ -1,0 +1,4 @@
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/apiserver/paasng/tests/paasng/test_utils/es_log/test_time_range.py","33","71","33","116"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/apiserver/paasng/tests/paasng/test_utils/es_log/test_time_range.py","38","71","38","116"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/apiserver/paasng/tests/paasng/test_utils/es_log/test_time_range.py","44","71","44","117"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/apiserver/paasng/tests/paasng/test_utils/es_log/test_time_range.py","49","71","49","117"

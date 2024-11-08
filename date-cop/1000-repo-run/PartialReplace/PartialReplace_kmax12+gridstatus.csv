@@ -1,0 +1,1 @@
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates.","/gridstatus/tests/test_nyiso.py","35","30","35","77"

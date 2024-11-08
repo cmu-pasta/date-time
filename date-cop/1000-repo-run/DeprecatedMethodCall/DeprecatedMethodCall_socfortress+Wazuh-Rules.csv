@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///Office Defender/defender_for_endpoint_alerts.py:53:14:53:30""]] should not be used.","/Office Defender/defender_for_endpoint_alerts.py","53","14","53","30"

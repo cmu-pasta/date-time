@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///alfa/main/collector.py:224:39:224:55""]] should not be used.","/alfa/main/collector.py","224","39","224","55"

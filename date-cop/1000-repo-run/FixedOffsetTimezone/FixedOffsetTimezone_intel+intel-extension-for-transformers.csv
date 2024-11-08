@@ -1,0 +1,6 @@
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/intel_extension_for_transformers/neural_chat/server/restful/photoai_api.py","87","14","90","5"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/intel_extension_for_transformers/neural_chat/server/restful/photoai_services.py","245","18","248","9"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/intel_extension_for_transformers/neural_chat/utils/record_request.py","29","14","32","5"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/intel_extension_for_transformers/neural_chat/server/restful/retrieval_api.py","48","14","51","5"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/intel_extension_for_transformers/neural_chat/server/restful/retrieval_api.py","508","14","511","5"
+,"Timezones with offsets don't account for DST.","warning","Timezone with a fixed offset.","/intel_extension_for_transformers/neural_chat/pipeline/plugins/ner/utils/utils.py","31","14","34","5"

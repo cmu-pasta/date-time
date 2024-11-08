@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///TestHubspace.py:219:12:219:37""]] should not be used.","/TestHubspace.py","219","12","219","37"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///custom_components/hubspace/hubspace.py:33:16:33:41""]] should not be used.","/custom_components/hubspace/hubspace.py","33","16","33","41"

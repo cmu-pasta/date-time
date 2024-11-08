@@ -1,0 +1,2 @@
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates","/kindle_download_helper/third_party/kfxlib/ion.py","237","25","237","48"
+,"Prevent calls to datetime.replace which replace a subset of {year, month, day} but not all of them","warning","Replacing individual parts of a date can result in invalid dates","/kindle_download_helper/third_party/kfxlib/ion_text.py","428","25","428","48"

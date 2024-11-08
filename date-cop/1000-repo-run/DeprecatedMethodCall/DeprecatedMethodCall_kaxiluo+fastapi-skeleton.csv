@@ -1,0 +1,2 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///app/services/auth/jwt_helper.py:13:18:13:34""]] should not be used.","/app/services/auth/jwt_helper.py","13","18","13","34"
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///app/services/auth/jwt_helper.py:15:18:15:34""]] should not be used.","/app/services/auth/jwt_helper.py","15","18","15","34"

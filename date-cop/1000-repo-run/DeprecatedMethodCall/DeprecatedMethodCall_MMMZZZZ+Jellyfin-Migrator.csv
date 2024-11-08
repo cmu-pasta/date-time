@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///jellyfin_migrator.py:1193:17:1193:58""]] should not be used.","/jellyfin_migrator.py","1193","17","1193","58"

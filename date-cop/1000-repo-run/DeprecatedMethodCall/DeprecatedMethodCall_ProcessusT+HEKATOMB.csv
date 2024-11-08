@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcfromtimestamp""|""relative:///src/hekatomb/hekatomb.py:304:38:304:97""]] should not be used.","/src/hekatomb/hekatomb.py","304","38","304","97"

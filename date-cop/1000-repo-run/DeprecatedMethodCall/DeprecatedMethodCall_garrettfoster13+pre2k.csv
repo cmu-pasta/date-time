@@ -1,0 +1,1 @@
+,"Deprecated methods are dangerous and can cause silent failures or unexpected behaviour.","warning","Deprecated methods such as [[""utcnow""|""relative:///pre2k/lib/ldap.py:200:11:200:36""]] should not be used.","/pre2k/lib/ldap.py","200","11","200","36"
