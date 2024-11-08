@@ -7,13 +7,12 @@ Software systems across various industries rely heavily on date and time computa
 4. API Nuances: Subtle differences in the APIs of date and time libraries can lead to incorrect assumptions and unexpected behavior.
 These complexities often result in bugs that can be challenging to detect and fix.
 
-## Proposed Approach
+## About
 
-This repository focuses is the first to systematically identify and study date and time related bugs in open-source repositories.
+This repository focuses on the first study to systematically identify and analyze date and time related bugs in open-source repositories.
 
 
 ## Repository Structure
-This repository will be organized to facilitate the development and evaluation of the DATE-SMELLS and DATE-COP components:
 - analysis: This directory contains the labeled analysis results and the insights derived from the study. 
 - benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. 
 - scripts: This directory contains the helper scripts used for data mining, cleaning, and other computations.
