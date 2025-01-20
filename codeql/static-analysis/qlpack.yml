@@ -1,4 +1,4 @@
-name: date-cop
+name: codeql-static-analysis
 version: 0.0.1
 dependencies:
   codeql/python-queries: "*"

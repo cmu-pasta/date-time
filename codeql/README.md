@@ -1,16 +1,10 @@
-# Date-Cop
+# Static Analysis using CodeQL
 
-Date-Cop is an advanced tool for identifying and reporting date and time related bugs in open-source projects.
-
-## Features
-
-### Static Analysis
-
-Our static analysis approach targets Python code by traversing Abstract Syntax Trees (ASTs) derived from parsing source code. We utilize GitHub's CodeQL, a purpose-built AST query language, for discovering buggy patterns. For each identified DATE-SMELL, we develop a CodeQL query, typically consisting of about 5-20 lines of SQL-like code. This lightweight approach allows for analysis of vast amounts of code at scale, aiming to find the most bugs with the fewest false positives.
+Our static analysis approach targets Python code by traversing Abstract Syntax Trees (ASTs) derived from parsing source code. We utilize GitHub's CodeQL, a purpose-built AST query language, for discovering buggy patterns. For each identified bug pattern, we develop a CodeQL query, typically consisting of about 5-20 lines of SQL-like code. This lightweight approach allows for analysis of vast amounts of code at scale, aiming to find the most bugs with the fewest false positives.
 
 ## Prerequisites
 
-Before using Date-Cop, ensure you have the following:
+Before using CodeQL, ensure you have the following:
 
 1. CodeQL CLI installed on your system via the appropriate CodeQL pack
 2. `CODEQL_PATH` environment variable set to your CodeQL installation directory
@@ -26,7 +20,7 @@ To create the database for the benchmarks, run
 ```bash
 python run_codeql.py -r
 ```
-this creates a database in `date-cop/static-analysis/databases/benchmark-db` which the other commands can access.
+this creates a database in `codeql/static-analysis/databases/benchmark-db` which the other commands can access.
 
 ### Querying the benchmarks
 
@@ -50,7 +44,7 @@ python run_codeql.py -a -d ./databases_path -rp ./path_to_results -n 100
 
 ### Manual Querying
 
-If you're more familiar with CodeQL or need to run your queries from another location, the following commands can be used to create a database and run a query on it respectively. (Assuming you are in the `/date-cop` folder).
+If you're more familiar with CodeQL or need to run your queries from another location, the following commands can be used to create a database and run a query on it respectively. (Assuming you are in the `/codeql` folder).
 
 Step 1: Create a CodeQL database
 ```bash
