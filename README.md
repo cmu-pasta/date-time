@@ -1,21 +1,14 @@
 # date-time
 
-Software systems across various industries rely heavily on date and time computations for crucial tasks like scheduling, financial transactions, data logging, and validation. However, these calculations can be surprisingly complex and error-prone due to factors like:
-1. Time Zones: Handling time across different regions and their varying time zones, including daylight saving time (DST), can lead to confusion and errors.
-2. Leap Years: Accounting for leap years and their impact on calendar calculations is a frequent source of bugs.
-3. Diverse Representations: Different programming languages and libraries use distinct date and time representations, introducing inconsistencies and potential for misuse.
-4. API Nuances: Subtle differences in the APIs of date and time libraries can lead to incorrect assumptions and unexpected behavior.
+Accurately performing date and time calculations in software is non-trivial due to the inherent complexity and variability of temporal concepts such as time zones, daylight saving time (DST) adjustments, leap years and leap seconds, clock drifts, and different calendar systems. Although the challenges are frequently discussed in the grey literature, there has not been any systematic study of date/time issues that have manifested in real software systems. 
 
-These complexities often result in bugs that can be challenging to detect and fix.
+This repository focuses on the first of its kind study to systematically identify and analyze date and time related bugs in open-source python repositories. We qualitatively study bugs in temporal calculations and their associated fixes from open-source Python projects on GitHub to understand: (a) the conceptual categories of date/time computations in which bugs occur, (b) the programmatic operations involved in the buggy computations, and (c) the underlying root causes of these errors. We also analyze metrics such as bug severity and detectability as well as fix size and complexity.
 
-## About
-
-This repository focuses on the first of its kind study to systematically identify and analyze date and time related bugs in open-source python repositories.
-
+Learn more about this work: <TODO: Add link to paper>
 
 ## Repository Structure
 - analysis: This directory contains the labeled analysis results and the insights derived from the study. 
-- benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. 
+- benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. CodeQL queries can be tested on these programs.
 - scripts: This directory contains the helper scripts used for data mining, cleaning, and other computations.
 - codeql: This folder contains the source code for the CodeQL queries used to perform the static analysis.
 
