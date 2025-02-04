@@ -4,8 +4,6 @@ Accurately performing date and time calculations in software is non-trivial due 
 
 This repository focuses on the first of its kind study to systematically identify and analyze date and time related bugs in open-source python repositories. We qualitatively study bugs in temporal calculations and their associated fixes from open-source Python projects on GitHub to understand: (a) the conceptual categories of date/time computations in which bugs occur, (b) the programmatic operations involved in the buggy computations, and (c) the underlying root causes of these errors. We also analyze metrics such as bug severity and detectability as well as fix size and complexity.
 
-Learn more about this work: <TODO: Add link to paper>
-
 ## Repository Structure
 - analysis: This directory contains the labeled analysis results and the insights derived from the study. 
 - benchmarks: This directory contains the benchmark suite created modeling real-world code bugs and smells that were identified during our research. CodeQL queries can be tested on these programs.
@@ -53,3 +51,6 @@ We welcome contributions from the community to help us achieve our goal of stren
 ## License
 This repository is licensed under the MIT License. Feel free to use, modify, and share the code and resources contained within it.
 We believe that by collaborating and sharing knowledge, we can make a significant impact on the reliability and security of software systems by reducing the number of date and time-related errors.
+
+## Acknowledgments
+This work was supported in part by the National Science Foundation via grants OAC-2244348, CCF-2120955, and CCF-2429384.
